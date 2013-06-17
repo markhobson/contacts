@@ -1,4 +1,4 @@
-package org.hobsoft.contacts;
+package org.hobsoft.contacts.server;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
