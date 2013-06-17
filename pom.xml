@@ -9,6 +9,10 @@
 	<version>0.1.0-SNAPSHOT</version>
 	
 	<name>Contacts Parent</name>
+	
+	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<modules>
 		<module>server</module>
