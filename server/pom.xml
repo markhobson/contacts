@@ -40,6 +40,8 @@
 			<version>2.0</version>
 		</dependency>
 		
+		<!-- runtime -->
+		
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
