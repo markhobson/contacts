@@ -2,7 +2,6 @@ package org.hobsoft.contacts.server;
 
 import javax.ws.rs.core.Application;
 
-import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
@@ -18,7 +17,7 @@ public class ContactsResourceTest extends JerseyTest
 	@Override
 	protected Application configure()
 	{
-		return new ResourceConfig(ContactsResource.class);
+		return new ContactsApplication();
 	}
 	
 	@Test
