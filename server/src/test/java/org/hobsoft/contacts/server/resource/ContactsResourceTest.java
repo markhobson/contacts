@@ -1,8 +1,9 @@
-package org.hobsoft.contacts.server;
+package org.hobsoft.contacts.server.resource;
 
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.hobsoft.contacts.server.ContactsApplication;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

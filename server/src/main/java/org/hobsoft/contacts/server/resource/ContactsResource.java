@@ -1,4 +1,4 @@
-package org.hobsoft.contacts.server;
+package org.hobsoft.contacts.server.resource;
 
 import java.io.InputStream;
 
