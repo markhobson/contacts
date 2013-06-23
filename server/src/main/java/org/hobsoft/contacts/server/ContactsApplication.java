@@ -6,6 +6,6 @@ public class ContactsApplication extends ResourceConfig
 {
 	public ContactsApplication()
 	{
-		packages(ContactsResource.class.getPackage().getName());
+		packages(RootResource.class.getPackage().getName());
 	}
 }
