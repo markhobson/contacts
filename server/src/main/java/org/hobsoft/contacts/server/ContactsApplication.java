@@ -6,6 +6,6 @@ public class ContactsApplication extends ResourceConfig
 {
 	public ContactsApplication()
 	{
-		packages("org.hobsoft.contacts.server");
+		packages(ContactsResource.class.getPackage().getName());
 	}
 }
