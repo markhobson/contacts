@@ -21,6 +21,8 @@ public class ContactsResourceTest extends JerseyTest
 		return new ContactsApplication();
 	}
 	
+	// tests ------------------------------------------------------------------
+	
 	@Test
 	public void contacts()
 	{
