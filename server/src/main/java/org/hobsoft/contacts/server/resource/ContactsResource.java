@@ -10,7 +10,7 @@ public class ContactsResource
 {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public Viewable contacts()
+	public Viewable get()
 	{
 		return new Viewable("index");
 	}

@@ -24,7 +24,7 @@ public class ContactsResourceTest extends JerseyTest
 	// tests ------------------------------------------------------------------
 	
 	@Test
-	public void contacts()
+	public void get()
 	{
 		String actual = target("contacts").request().get(String.class);
 		
