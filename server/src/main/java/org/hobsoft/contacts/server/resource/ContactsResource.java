@@ -12,6 +12,6 @@ public class ContactsResource
 	@Produces(MediaType.TEXT_HTML)
 	public Viewable contacts()
 	{
-		return new Viewable("contacts");
+		return new Viewable("index");
 	}
 }
