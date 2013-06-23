@@ -8,18 +8,18 @@
 	<display-name>Contacts</display-name>
 	<description>Contacts</description>
 
-	<servlet>
-		<servlet-name>Jersey Web Application</servlet-name>
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+	<filter>
+		<filter-name>Jersey Web Application</filter-name>
+		<filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>org.hobsoft.contacts.server.ContactsApplication</param-value>
 		</init-param>
-	</servlet>
+	</filter>
 	
-	<servlet-mapping>
-		<servlet-name>Jersey Web Application</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+	<filter-mapping>
+		<filter-name>Jersey Web Application</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 </web-app>
