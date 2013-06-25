@@ -26,9 +26,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>2.33.0</version>
+			<groupId>org.hobsoft.contacts</groupId>
+			<artifactId>contacts-driver</artifactId>
+			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 	
