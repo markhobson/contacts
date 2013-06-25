@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ContactsTest
 {
@@ -25,10 +26,20 @@ public class ContactsTest
 	}
 	
 	@Test
-	public void contacts()
+	public void contactsDisplaysHeader()
 	{
 		driver.contacts();
 		
 		assertEquals("Contacts", driver.getHeader());
+	}
+	
+	@Test
+	public void contactsDisplaysContacts()
+	{
+		driver.contacts();
+		
+		assertTrue(driver.hasContact("A"));
+		assertTrue(driver.hasContact("B"));
+		assertTrue(driver.hasContact("C"));
 	}
 }

@@ -25,10 +25,20 @@ public class ContactsResourceTest extends JerseyTest
 	// tests ------------------------------------------------------------------
 	
 	@Test
-	public void get()
+	public void getReturnsHeader()
 	{
 		String actual = target("contacts").request().get(String.class);
 		
 		assertThat(actual, containsString("<h1>Contacts</h1>"));
+	}
+	
+	@Test
+	public void getReturnsContacts()
+	{
+		String actual = target("contacts").request().get(String.class);
+		
+		assertThat(actual, containsString("<li>A</li>"));
+		assertThat(actual, containsString("<li>B</li>"));
+		assertThat(actual, containsString("<li>C</li>"));
 	}
 }

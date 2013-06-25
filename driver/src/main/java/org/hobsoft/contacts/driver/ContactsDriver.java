@@ -2,6 +2,7 @@ package org.hobsoft.contacts.driver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ContactsDriver
 {
@@ -31,5 +32,18 @@ public class ContactsDriver
 	public String getHeader()
 	{
 		return driver.findElement(By.tagName("h1")).getText();
+	}
+	
+	public boolean hasContact(String name)
+	{
+		for (WebElement element : driver.findElements(By.tagName("li")))
+		{
+			if (name.equals(element.getText()))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
