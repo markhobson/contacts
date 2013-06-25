@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class ContactsDriver
 {
 	// fields -----------------------------------------------------------------
@@ -14,7 +16,7 @@ public class ContactsDriver
 	
 	public ContactsDriver(WebDriver driver)
 	{
-		this.driver = driver;
+		this.driver = checkNotNull(driver, "driver");
 	}
 	
 	// public methods ---------------------------------------------------------
