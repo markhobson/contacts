@@ -4,7 +4,6 @@ import org.hobsoft.contacts.driver.ContactsDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
@@ -30,6 +29,6 @@ public class ContactsTest
 	{
 		driver.contacts();
 		
-		assertEquals("Contacts", driver.webDriver().findElement(By.tagName("h1")).getText());
+		assertEquals("Contacts", driver.getHeader());
 	}
 }

@@ -1,5 +1,6 @@
 package org.hobsoft.contacts.driver;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ContactsDriver
@@ -22,13 +23,13 @@ public class ContactsDriver
 		driver.quit();
 	}
 	
-	public WebDriver webDriver()
-	{
-		return driver;
-	}
-
 	public void contacts()
 	{
 		driver.get("http://localhost:8080/contacts");
+	}
+	
+	public String getHeader()
+	{
+		return driver.findElement(By.tagName("h1")).getText();
 	}
 }
