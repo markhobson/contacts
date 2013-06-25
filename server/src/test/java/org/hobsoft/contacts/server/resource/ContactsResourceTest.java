@@ -6,7 +6,8 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.hobsoft.contacts.server.ContactsApplication;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
 
 public class ContactsResourceTest extends JerseyTest
 {
@@ -28,6 +29,6 @@ public class ContactsResourceTest extends JerseyTest
 	{
 		String actual = target("contacts").request().get(String.class);
 		
-		assertEquals("<html><body><h1>Contacts</h1></body></html>", actual);
+		assertThat(actual, containsString("<h1>Contacts</h1>"));
 	}
 }
