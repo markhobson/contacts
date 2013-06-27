@@ -6,6 +6,9 @@ import org.hobsoft.contacts.server.dao.FakeContactDao;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
 
+/**
+ * Main Guice module.
+ */
 public class ContactsModule extends ServletModule
 {
 	// ServletModule methods --------------------------------------------------

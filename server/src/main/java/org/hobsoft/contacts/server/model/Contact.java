@@ -2,6 +2,9 @@ package org.hobsoft.contacts.server.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * Model for a contact.
+ */
 public class Contact
 {
 	// fields -----------------------------------------------------------------

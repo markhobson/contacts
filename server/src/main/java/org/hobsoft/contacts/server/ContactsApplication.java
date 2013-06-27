@@ -8,6 +8,9 @@ import org.glassfish.jersey.server.mvc.freemarker.FreemarkerProperties;
 import org.hobsoft.contacts.server.resource.ContactsResource;
 import org.hobsoft.contacts.server.support.GuiceResourceConfig;
 
+/**
+ * Main JAX-RS application.
+ */
 public class ContactsApplication extends GuiceResourceConfig
 {
 	// constructors -----------------------------------------------------------

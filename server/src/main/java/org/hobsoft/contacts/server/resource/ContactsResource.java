@@ -14,6 +14,9 @@ import org.hobsoft.contacts.server.dao.ContactDao;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * JAX-RS resource for contacts.
+ */
 @Path("/contacts")
 public class ContactsResource
 {

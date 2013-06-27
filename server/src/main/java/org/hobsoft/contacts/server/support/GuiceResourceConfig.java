@@ -16,6 +16,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Adds Guice module support to Jersey's {@code ResourceConfig}.
  * <p>
  * Use {@link #module(Module)} to add Guice modules to Jersey's HK2 injection.
+ * 
+ * @see <a href="https://hk2.java.net/guice-bridge/index.html">The Guice/HK2 Bridge</a>
  */
 public class GuiceResourceConfig extends ResourceConfig
 {
@@ -37,6 +39,13 @@ public class GuiceResourceConfig extends ResourceConfig
 	
 	// public methods ---------------------------------------------------------
 	
+	/**
+	 * Adds the specified Guice module to this application.
+	 * 
+	 * @param module
+	 *            the Guice module to add
+	 * @return this application
+	 */
 	public GuiceResourceConfig module(Module module)
 	{
 		GuiceIntoHK2Bridge guiceBridge = serviceLocator.getService(GuiceIntoHK2Bridge.class);
