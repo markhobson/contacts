@@ -3,10 +3,10 @@ package org.hobsoft.contacts.server;
 import javax.inject.Inject;
 
 import org.glassfish.hk2.api.ServiceLocator;
-import org.glassfish.jersey.server.mvc.freemarker.FreemarkerMvcFeature;
-import org.glassfish.jersey.server.mvc.freemarker.FreemarkerProperties;
 import org.hobsoft.contacts.server.resource.ContactsResource;
 import org.hobsoft.contacts.server.support.GuiceResourceConfig;
+import org.hobsoft.contacts.server.support.mustache.MustacheMvcFeature;
+import org.hobsoft.contacts.server.support.mustache.MustacheProperties;
 
 /**
  * Main JAX-RS application.
@@ -22,9 +22,9 @@ public class ContactsApplication extends GuiceResourceConfig
 		
 		packages(ContactsResource.class.getPackage().getName());
 		
-		register(FreemarkerMvcFeature.class);
+		register(MustacheMvcFeature.class);
 		
-		property(FreemarkerProperties.TEMPLATES_BASE_PATH, "templates");
+		property(MustacheProperties.TEMPLATES_BASE_PATH, "templates");
 		
 		module(new ContactsModule());
 	}

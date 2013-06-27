@@ -3,10 +3,10 @@ package org.hobsoft.contacts.server.resource;
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.mvc.freemarker.FreemarkerMvcFeature;
-import org.glassfish.jersey.server.mvc.freemarker.FreemarkerProperties;
 import org.glassfish.jersey.test.JerseyTest;
 import org.hobsoft.contacts.server.dao.FakeContactDao;
+import org.hobsoft.contacts.server.support.mustache.MustacheMvcFeature;
+import org.hobsoft.contacts.server.support.mustache.MustacheProperties;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -24,8 +24,8 @@ public class ContactsResourceTest extends JerseyTest
 	{
 		ResourceConfig application = new ResourceConfig();
 		application.register(new ContactsResource(new FakeContactDao()));
-		application.register(FreemarkerMvcFeature.class);
-		application.property(FreemarkerProperties.TEMPLATES_BASE_PATH, "templates");
+		application.register(MustacheMvcFeature.class);
+		application.property(MustacheProperties.TEMPLATES_BASE_PATH, "templates");
 		return application;
 	}
 	
