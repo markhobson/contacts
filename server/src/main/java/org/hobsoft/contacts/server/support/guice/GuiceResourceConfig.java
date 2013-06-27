@@ -1,4 +1,4 @@
-package org.hobsoft.contacts.server.support;
+package org.hobsoft.contacts.server.support.guice;
 
 import javax.inject.Inject;
 

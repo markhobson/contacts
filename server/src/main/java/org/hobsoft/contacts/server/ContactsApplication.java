@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.glassfish.hk2.api.ServiceLocator;
 import org.hobsoft.contacts.server.resource.ContactsResource;
-import org.hobsoft.contacts.server.support.GuiceResourceConfig;
+import org.hobsoft.contacts.server.support.guice.GuiceResourceConfig;
 import org.hobsoft.contacts.server.support.mustache.MustacheMvcFeature;
 import org.hobsoft.contacts.server.support.mustache.MustacheProperties;
 
