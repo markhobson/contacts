@@ -34,10 +34,14 @@
 	
 	<dependencies>
 	
+		<!-- Guava -->
+	
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
+		
+		<!-- Guice -->
 		
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -51,11 +55,15 @@
 			<version>3.0</version>
 		</dependency>
 		
+		<!-- JAX-RS -->
+		
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
 			<version>2.0</version>
 		</dependency>
+		
+		<!-- Jersey -->
 		
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
@@ -75,16 +83,12 @@
 			<version>2.0</version>
 		</dependency>
 		
-		<!-- runtime -->
-		
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>2.0</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<!-- test -->
 		
 		<dependency>
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
