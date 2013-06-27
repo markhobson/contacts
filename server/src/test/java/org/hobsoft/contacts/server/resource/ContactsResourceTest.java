@@ -2,8 +2,11 @@ package org.hobsoft.contacts.server.resource;
 
 import javax.ws.rs.core.Application;
 
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.mvc.freemarker.FreemarkerMvcFeature;
+import org.glassfish.jersey.server.mvc.freemarker.FreemarkerProperties;
 import org.glassfish.jersey.test.JerseyTest;
-import org.hobsoft.contacts.server.ContactsApplication;
+import org.hobsoft.contacts.server.dao.FakeContactDao;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -19,7 +22,11 @@ public class ContactsResourceTest extends JerseyTest
 	@Override
 	protected Application configure()
 	{
-		return new ContactsApplication();
+		ResourceConfig application = new ResourceConfig();
+		application.register(new ContactsResource(new FakeContactDao()));
+		application.register(FreemarkerMvcFeature.class);
+		application.property(FreemarkerProperties.TEMPLATES_BASE_PATH, "templates");
+		return application;
 	}
 	
 	// tests ------------------------------------------------------------------
