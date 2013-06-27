@@ -12,7 +12,7 @@
 	<artifactId>contacts-server</artifactId>
 	<packaging>war</packaging>
 	
-	<name>Contacts</name>
+	<name>Contacts Server</name>
 	
 	<build>
 	
