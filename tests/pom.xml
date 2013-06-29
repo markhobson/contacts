@@ -78,14 +78,6 @@
 	
 	<dependencies>
 	
-		<dependency>
-			<groupId>org.hobsoft.contacts</groupId>
-			<artifactId>contacts-server</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-			<scope>test</scope>
-		</dependency>
-		
 		<!-- JUnit -->
 		
 		<dependency>
@@ -103,6 +95,14 @@
 			<scope>test</scope>
 		</dependency>
 	
+		<dependency>
+			<groupId>org.hobsoft.contacts</groupId>
+			<artifactId>contacts-server</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>	
 
 </project>
