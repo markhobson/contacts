@@ -63,6 +63,14 @@
 				<version>3.0</version>
 			</dependency>
 			
+			<!-- Onami -->
+			
+			<dependency>
+				<groupId>org.apache.onami</groupId>
+				<artifactId>org.apache.onami.test</artifactId>
+				<version>1.4.0-incubating</version>
+			</dependency>
+			
 			<!-- JAX-RS -->
 			
 			<dependency>

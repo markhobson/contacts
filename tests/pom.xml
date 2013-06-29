@@ -86,6 +86,22 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Guice -->
+		
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Onami -->
+		
+		<dependency>
+			<groupId>org.apache.onami</groupId>
+			<artifactId>org.apache.onami.test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Contacts -->
 	
 		<dependency>

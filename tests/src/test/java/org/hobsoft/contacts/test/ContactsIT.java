@@ -16,12 +16,16 @@ package org.hobsoft.contacts.test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.inject.Inject;
+
+import org.apache.onami.test.OnamiRunner;
+import org.apache.onami.test.annotation.GuiceModules;
 import org.hobsoft.contacts.driver.ContactsDriver;
+import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +33,8 @@ import static org.junit.Assert.assertTrue;
 /**
  * Integration test for the contacts page.
  */
+@RunWith(OnamiRunner.class)
+@GuiceModules(ContactsITModule.class)
 public class ContactsIT
 {
 	private static final String DEFAULT_SERVER_PROTOCOL = "http";
@@ -40,28 +46,23 @@ public class ContactsIT
 	private static final String DEFAULT_SERVER_PORT = "8080";
 	
 	private static final String DEFAULT_SERVER_PATH = "/";
-	
-	private WebDriverProvider webDriverProvider = new WebDriverProvider()
-	{
-		@Override
-		protected WebDriver createWebDriver()
-		{
-			return new FirefoxDriver();
-		}
-	};
+
+	@Inject
+	private static WebDriver webDriver;
 	
 	private ContactsDriver driver;
-	
-	@Rule
-	public WebDriverProvider webDriverProvider()
-	{
-		return webDriverProvider;
-	}
 	
 	@Before
 	public void setUp() throws MalformedURLException
 	{
-		driver = new ContactsDriver(webDriverProvider().get(), getServerUrl());
+		driver = new ContactsDriver(webDriver, getServerUrl());
+	}
+	
+	// TODO: use onami-lifecycle when released
+	@AfterClass
+	public static void tearDownClass()
+	{
+		webDriver.quit();
 	}
 	
 	@Test
