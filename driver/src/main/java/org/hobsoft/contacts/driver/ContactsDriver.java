@@ -52,11 +52,6 @@ public class ContactsDriver
 	
 	// public methods ---------------------------------------------------------
 	
-	public void tearDown()
-	{
-		driver.quit();
-	}
-	
 	public void contacts()
 	{
 		driver.get(url(serverUrl, "/contacts").toString());

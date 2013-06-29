@@ -17,9 +17,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
@@ -40,18 +41,27 @@ public class ContactsIT
 	
 	private static final String DEFAULT_SERVER_PATH = "/";
 	
+	private WebDriverProvider webDriverProvider = new WebDriverProvider()
+	{
+		@Override
+		protected WebDriver createWebDriver()
+		{
+			return new FirefoxDriver();
+		}
+	};
+	
 	private ContactsDriver driver;
+	
+	@Rule
+	public WebDriverProvider webDriverProvider()
+	{
+		return webDriverProvider;
+	}
 	
 	@Before
 	public void setUp() throws MalformedURLException
 	{
-		driver = new ContactsDriver(new FirefoxDriver(), getServerUrl());
-	}
-	
-	@After
-	public void tearDown()
-	{
-		driver.tearDown();
+		driver = new ContactsDriver(webDriverProvider().get(), getServerUrl());
 	}
 	
 	@Test
