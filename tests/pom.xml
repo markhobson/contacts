@@ -13,6 +13,10 @@
 	<packaging>jar</packaging>
 	
 	<name>Contacts Test</name>
+	
+	<properties>
+		<serverPort>9998</serverPort>
+	</properties>
 
 	<build>
 
@@ -23,7 +27,7 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<configuration>
 					<systemPropertyVariables>
-						<serverPort>9998</serverPort>
+						<serverPort>${serverPort}</serverPort>
 					</systemPropertyVariables>
 				</configuration>
 				<executions>
@@ -42,9 +46,9 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
 					<httpConnector>
-						<port>9998</port>
+						<port>${serverPort}</port>
 					</httpConnector>
-					<stopPort>9998</stopPort>
+					<stopPort>${serverPort}</stopPort>
 					<stopKey>integration-test</stopKey>
 				</configuration>
 				<executions>
