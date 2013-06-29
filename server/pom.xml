@@ -14,24 +14,6 @@
 	
 	<name>Contacts Server</name>
 	
-	<build>
-	
-		<pluginManagement>
-		
-			<plugins>
-			
-				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>9.0.3.v20130506</version>
-				</plugin>
-				
-			</plugins>
-			
-		</pluginManagement>
-	
-	</build>
-	
 	<dependencies>
 	
 		<!-- Guava -->
