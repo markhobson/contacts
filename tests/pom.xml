@@ -86,7 +86,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- test -->
+		<!-- JUnit -->
 		
 		<dependency>
 			<groupId>junit</groupId>
@@ -94,6 +94,8 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Contacts -->
+	
 		<dependency>
 			<groupId>org.hobsoft.contacts</groupId>
 			<artifactId>contacts-driver</artifactId>

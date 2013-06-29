@@ -15,18 +15,22 @@
 	<name>Contacts Driver</name>
 
 	<dependencies>
+	
+		<!-- Guava -->
 		
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
 		
+		<!-- Selenium -->
+		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 		</dependency>
 	
-		<!-- test -->
+		<!-- JUnit -->
 		
 		<dependency>
 			<groupId>junit</groupId>
