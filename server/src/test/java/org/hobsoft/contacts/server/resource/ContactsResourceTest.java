@@ -25,6 +25,9 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Tests {@code ContactsResource}.
+ */
 public class ContactsResourceTest extends JerseyTest
 {
 	// JerseyTest methods -----------------------------------------------------

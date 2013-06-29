@@ -25,6 +25,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Integration test for the contacts page.
+ */
 public class ContactsIT
 {
 	private static final String DEFAULT_SERVER_PROTOCOL = "http";

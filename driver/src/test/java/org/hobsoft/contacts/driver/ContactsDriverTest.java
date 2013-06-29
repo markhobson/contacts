@@ -15,6 +15,9 @@ package org.hobsoft.contacts.driver;
 
 import org.junit.Test;
 
+/**
+ * Tests {@code ContactsDriver}.
+ */
 public class ContactsDriverTest
 {
 	// tests ------------------------------------------------------------------

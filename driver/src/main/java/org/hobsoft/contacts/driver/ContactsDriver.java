@@ -22,6 +22,9 @@ import org.openqa.selenium.WebElement;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * High-level web UI driver for the Contacts application.
+ */
 public class ContactsDriver
 {
 	// constants --------------------------------------------------------------

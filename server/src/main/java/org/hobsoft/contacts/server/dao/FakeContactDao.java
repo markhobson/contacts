@@ -18,6 +18,9 @@ import java.util.List;
 
 import org.hobsoft.contacts.server.model.Contact;
 
+/**
+ * In-memory contact DAO implementation.
+ */
 public class FakeContactDao implements ContactDao
 {
 	// ContactDao methods -----------------------------------------------------
