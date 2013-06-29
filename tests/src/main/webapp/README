@@ -1,0 +1,4 @@
+Workaround for Jetty bug:
+
+Bug 411934 - War overlay configuration assumes src/main/webapp exists
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=411934

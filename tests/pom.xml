@@ -32,11 +32,47 @@
 				</executions>
 			</plugin>
 			
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
+					<stopPort>8080</stopPort>
+					<stopKey>integration-test</stopKey>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start-jetty</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<daemon>true</daemon>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 			
 	</build>
 	
 	<dependencies>
+	
+		<dependency>
+			<groupId>org.hobsoft.contacts</groupId>
+			<artifactId>contacts-server</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>test</scope>
+		</dependency>
 		
 		<!-- test -->
 		
