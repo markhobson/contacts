@@ -17,6 +17,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import static org.mockito.Mockito.mock;
 
 /**
  * Tests {@code ContactsDriver}.
@@ -29,5 +32,11 @@ public class ContactsDriverTest
 	public void constructWithNullDriver() throws MalformedURLException
 	{
 		new ContactsDriver(null, new URL("http://localhost:8080/"));
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void constructWithNullServerUrl()
+	{
+		new ContactsDriver(mock(WebDriver.class), null);
 	}
 }
