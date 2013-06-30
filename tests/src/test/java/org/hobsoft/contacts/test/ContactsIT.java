@@ -13,16 +13,12 @@
  */
 package org.hobsoft.contacts.test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import javax.inject.Inject;
 
 import org.apache.onami.test.OnamiRunner;
 import org.apache.onami.test.annotation.GuiceModules;
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -37,26 +33,11 @@ import static org.junit.Assert.assertTrue;
 @GuiceModules(ContactsITModule.class)
 public class ContactsIT
 {
-	private static final String DEFAULT_SERVER_PROTOCOL = "http";
-	
-	private static final String DEFAULT_SERVER_HOST = "localhost";
-	
-	private static final String SERVER_PORT_PROPERTY = "serverPort";
-	
-	private static final String DEFAULT_SERVER_PORT = "8080";
-	
-	private static final String DEFAULT_SERVER_PATH = "/";
-
 	@Inject
 	private static WebDriver webDriver;
 	
+	@Inject
 	private ContactsDriver driver;
-	
-	@Before
-	public void setUp() throws MalformedURLException
-	{
-		driver = new ContactsDriver(webDriver, getServerUrl());
-	}
 	
 	// TODO: use onami-lifecycle when released
 	@AfterClass
@@ -81,15 +62,5 @@ public class ContactsIT
 		assertTrue(driver.hasContact("A"));
 		assertTrue(driver.hasContact("B"));
 		assertTrue(driver.hasContact("C"));
-	}
-	
-	private static URL getServerUrl() throws MalformedURLException
-	{
-		String protocol = DEFAULT_SERVER_PROTOCOL;
-		String host = DEFAULT_SERVER_HOST;
-		int port = Integer.valueOf(System.getProperty(SERVER_PORT_PROPERTY, DEFAULT_SERVER_PORT));
-		String path = DEFAULT_SERVER_PATH;
-		
-		return new URL(protocol, host, port, path);
 	}
 }

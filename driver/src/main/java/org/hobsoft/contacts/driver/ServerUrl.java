@@ -13,21 +13,25 @@
  */
 package org.hobsoft.contacts.driver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-import org.junit.Test;
+import javax.inject.Qualifier;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Tests {@code ContactsDriver}.
+ * Inject qualifier annotation for the driver server URL.
  */
-public class ContactsDriverTest
+@Qualifier
+@Target({FIELD, PARAMETER, METHOD})
+@Retention(RUNTIME)
+@Documented
+public @interface ServerUrl
 {
-	// tests ------------------------------------------------------------------
-
-	@Test(expected = NullPointerException.class)
-	public void constructWithNullDriver() throws MalformedURLException
-	{
-		new ContactsDriver(null, new URL("http://localhost:8080/"));
-	}
+	// inject qualifier
 }

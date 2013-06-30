@@ -16,6 +16,8 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.inject.Inject;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,10 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ContactsDriver
 {
-	// constants --------------------------------------------------------------
-	
-	private static final String DEFAULT_URL = "http://localhost:8080/";
-	
 	// fields -----------------------------------------------------------------
 	
 	private final WebDriver driver;
@@ -39,12 +37,8 @@ public class ContactsDriver
 	
 	// constructors -----------------------------------------------------------
 	
-	public ContactsDriver(WebDriver driver)
-	{
-		this(driver, url(DEFAULT_URL));
-	}
-	
-	public ContactsDriver(WebDriver driver, URL serverUrl)
+	@Inject
+	public ContactsDriver(WebDriver driver, @ServerUrl URL serverUrl)
 	{
 		this.driver = checkNotNull(driver, "driver");
 		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
@@ -76,18 +70,6 @@ public class ContactsDriver
 	}
 	
 	// private methods --------------------------------------------------------
-
-	private static URL url(String spec)
-	{
-		try
-		{
-			return new URL(spec);
-		}
-		catch (MalformedURLException exception)
-		{
-			throw new IllegalArgumentException(exception);
-		}
-	}
 
 	private static URL url(URL context, String spec)
 	{
