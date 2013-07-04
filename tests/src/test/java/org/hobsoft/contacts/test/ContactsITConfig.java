@@ -16,18 +16,20 @@ package org.hobsoft.contacts.test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.ServerUrl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.Scopes;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * Guice module for integration tests.
+ * Spring configuration for integration tests.
  */
-public class ContactsITModule extends AbstractModule
+@Configuration
+@ComponentScan(basePackageClasses = ContactsDriver.class)
+public class ContactsITConfig
 {
 	// constants --------------------------------------------------------------
 	
@@ -41,22 +43,17 @@ public class ContactsITModule extends AbstractModule
 	
 	private static final String DEFAULT_SERVER_PATH = "/";
 	
-	// AbstractModule methods -------------------------------------------------
+	// public methods ---------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void configure()
+	@Bean
+	public WebDriver webDriver()
 	{
-		bind(WebDriver.class).to(FirefoxDriver.class).in(Scopes.SINGLETON);
+		return new FirefoxDriver();
 	}
 	
-	// private methods --------------------------------------------------------
-
-	@Provides
+	@Bean
 	@ServerUrl
-	private URL serverUrl() throws MalformedURLException
+	public URL serverUrl() throws MalformedURLException
 	{
 		String protocol = DEFAULT_SERVER_PROTOCOL;
 		String host = DEFAULT_SERVER_HOST;

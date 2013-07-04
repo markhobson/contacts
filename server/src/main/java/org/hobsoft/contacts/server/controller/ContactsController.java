@@ -11,27 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.resource;
+package org.hobsoft.contacts.server.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import org.glassfish.jersey.server.mvc.Viewable;
 import org.hobsoft.contacts.server.dao.ContactDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * JAX-RS resource for contacts.
  */
-@Path("/contacts")
-public class ContactsResource
+@Controller
+@RequestMapping("/contacts")
+public class ContactsController
 {
 	// fields -----------------------------------------------------------------
 	
@@ -39,21 +39,20 @@ public class ContactsResource
 	
 	// constructors -----------------------------------------------------------
 	
-	@Inject
-	public ContactsResource(ContactDao contactDao)
+	@Autowired
+	public ContactsController(ContactDao contactDao)
 	{
 		this.contactDao = checkNotNull(contactDao, "contactDao");
 	}
 	
 	// public methods ---------------------------------------------------------
 	
-	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public Viewable get()
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public ModelAndView get()
 	{
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactDao.getAll());
 		
-		return new Viewable("index", model);
+		return new ModelAndView("index", model);
 	}
 }

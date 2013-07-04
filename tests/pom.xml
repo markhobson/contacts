@@ -86,19 +86,17 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Guice -->
+		<!-- Spring -->
 		
 		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Onami -->
-		
 		<dependency>
-			<groupId>org.apache.onami</groupId>
-			<artifactId>org.apache.onami.test</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		

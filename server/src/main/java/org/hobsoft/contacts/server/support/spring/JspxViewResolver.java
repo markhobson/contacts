@@ -11,23 +11,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.support.mustache;
+package org.hobsoft.contacts.server.support.spring;
 
-import org.glassfish.jersey.server.mvc.MvcProperties;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
- * Jersey MVC template processor properties for Mustache.java.
+ * Spring MVC view resolver for JSPX templates.
  */
-public final class MustacheProperties
+public class JspxViewResolver extends InternalResourceViewResolver
 {
-	// constants --------------------------------------------------------------
-	
-	public static final String TEMPLATES_BASE_PATH = MvcProperties.TEMPLATE_BASE_PATH + ".mustache";
-	
 	// constructors -----------------------------------------------------------
 	
-	private MustacheProperties()
+	public JspxViewResolver()
 	{
-		throw new AssertionError();
+		setPrefix("/WEB-INF/jsp/");
+		setSuffix(".jspx");
 	}
 }

@@ -16,17 +16,18 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.inject.Inject;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * High-level web UI driver for the Contacts application.
  */
+@Component
 public class ContactsDriver
 {
 	// fields -----------------------------------------------------------------
@@ -37,7 +38,7 @@ public class ContactsDriver
 	
 	// constructors -----------------------------------------------------------
 	
-	@Inject
+	@Autowired
 	public ContactsDriver(WebDriver driver, @ServerUrl URL serverUrl)
 	{
 		this.driver = checkNotNull(driver, "driver");

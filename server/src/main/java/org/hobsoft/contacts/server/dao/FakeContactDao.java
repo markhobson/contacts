@@ -17,10 +17,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hobsoft.contacts.server.model.Contact;
+import org.springframework.stereotype.Repository;
 
 /**
  * In-memory contact DAO implementation.
  */
+@Repository
 public class FakeContactDao implements ContactDao
 {
 	// ContactDao methods -----------------------------------------------------

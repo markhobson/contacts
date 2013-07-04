@@ -13,15 +13,14 @@
  */
 package org.hobsoft.contacts.test;
 
-import javax.inject.Inject;
-
-import org.apache.onami.test.OnamiRunner;
-import org.apache.onami.test.annotation.GuiceModules;
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,21 +28,27 @@ import static org.junit.Assert.assertTrue;
 /**
  * Integration test for the contacts page.
  */
-@RunWith(OnamiRunner.class)
-@GuiceModules(ContactsITModule.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ContactsITConfig.class)
 public class ContactsIT
 {
-	@Inject
 	private static WebDriver webDriver;
 	
-	@Inject
+	@Autowired
 	private ContactsDriver driver;
 	
-	// TODO: use onami-lifecycle when released
+	// TODO: use Spring lifecycle to achieve this
 	@AfterClass
 	public static void tearDownClass()
 	{
 		webDriver.quit();
+	}
+	
+	// workaround lack of @Autowired static support
+	@Autowired
+	public void setWebDriver(WebDriver webDriver)
+	{
+		ContactsIT.webDriver = webDriver;
 	}
 	
 	@Test
