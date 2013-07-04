@@ -18,6 +18,7 @@ import java.net.URL;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.ServerUrl;
+import org.hobsoft.contacts.driver.support.selenium.DestroyableWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +49,7 @@ public class ContactsITConfig
 	@Bean
 	public WebDriver webDriver()
 	{
-		return new FirefoxDriver();
+		return new DestroyableWebDriver(new FirefoxDriver());
 	}
 	
 	@Bean

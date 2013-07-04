@@ -14,10 +14,8 @@
 package org.hobsoft.contacts.test;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,24 +30,8 @@ import static org.junit.Assert.assertTrue;
 @ContextConfiguration(classes = ContactsITConfig.class)
 public class ContactsIT
 {
-	private static WebDriver webDriver;
-	
 	@Autowired
 	private ContactsDriver driver;
-	
-	// TODO: use Spring lifecycle to achieve this
-	@AfterClass
-	public static void tearDownClass()
-	{
-		webDriver.quit();
-	}
-	
-	// workaround lack of @Autowired static support
-	@Autowired
-	public void setWebDriver(WebDriver webDriver)
-	{
-		ContactsIT.webDriver = webDriver;
-	}
 	
 	@Test
 	public void contactsDisplaysHeader()
