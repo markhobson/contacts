@@ -1,4 +1,4 @@
-contacts
+Contacts
 ========
 
-An example well-architectured web application.
+An example web application using a modern Java stack.
