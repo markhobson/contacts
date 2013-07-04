@@ -30,8 +30,12 @@ import static org.junit.Assert.assertTrue;
 @ContextConfiguration(classes = ContactsITConfig.class)
 public class ContactsIT
 {
+	// fields -----------------------------------------------------------------
+	
 	@Autowired
 	private ContactsDriver driver;
+	
+	// tests ------------------------------------------------------------------
 	
 	@Test
 	public void contactsDisplaysHeader()
