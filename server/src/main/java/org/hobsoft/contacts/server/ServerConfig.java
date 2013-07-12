@@ -25,8 +25,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = ContactsConfig.class)
-public class ContactsConfig
+@ComponentScan(basePackageClasses = ServerConfig.class)
+public class ServerConfig
 {
 	// public methods ---------------------------------------------------------
 

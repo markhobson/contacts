@@ -17,7 +17,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>org.hobsoft.contacts.server.ContactsConfig</param-value>
+			<param-value>org.hobsoft.contacts.server.ServerConfig</param-value>
 		</init-param>
 	</servlet>
 	

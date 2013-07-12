@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.server.ContactsConfig;
+import org.hobsoft.contacts.server.ServerConfig;
 import org.hobsoft.contacts.server.repository.FakeContactRepository;
 import org.hobsoft.contacts.server.support.spring.JspxViewResolver;
 import org.junit.Before;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = ContactsConfig.class)
+@ContextConfiguration(classes = ServerConfig.class)
 public class ContactsControllerTest
 {
 	// fields -----------------------------------------------------------------
