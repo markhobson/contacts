@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Integration test for the root page.
@@ -50,6 +50,6 @@ public class RootIT
 		signIn.signIn("mark", "password");
 		root.show();
 		
-		assertEquals("Contacts", contacts.getHeader());
+		assertTrue(contacts.isVisible());
 	}
 }

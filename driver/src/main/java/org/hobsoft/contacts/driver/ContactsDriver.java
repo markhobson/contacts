@@ -39,9 +39,9 @@ public class ContactsDriver extends AbstractDriver
 		driver().get(url("/contacts"));
 	}
 	
-	public String getHeader()
+	public boolean isVisible()
 	{
-		return driver().findElement(By.tagName("h1")).getText();
+		return "Contacts".equals(driver().getTitle());
 	}
 	
 	public boolean hasContact(String name)

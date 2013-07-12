@@ -3,6 +3,9 @@
 	<jsp:directive.page contentType="text/html"/>
 	<jsp:output omit-xml-declaration="true" doctype-root-element="html" doctype-system="about:legacy-compat"/>
 	
+	<head>
+		<title>Contacts</title>
+	</head>
 	<body>
 		<h1>Contacts</h1>
 		<ul>

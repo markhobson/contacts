@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -47,7 +46,7 @@ public class ContactsIT
 		signIn.signIn("mark", "password");
 		contacts.show();
 		
-		assertEquals("Contacts", contacts.getHeader());
+		assertTrue(contacts.isVisible());
 	}
 	
 	@Test
