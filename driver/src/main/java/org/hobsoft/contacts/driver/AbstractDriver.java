@@ -27,15 +27,15 @@ public abstract class AbstractDriver
 {
 	// fields -----------------------------------------------------------------
 	
-	private final WebDriver driver;
+	private final WebDriver webDriver;
 	
 	private final URL serverUrl;
 	
 	// constructors -----------------------------------------------------------
 	
-	public AbstractDriver(WebDriver driver, @ServerUrl URL serverUrl)
+	public AbstractDriver(WebDriver webDriver, @ServerUrl URL serverUrl)
 	{
-		this.driver = checkNotNull(driver, "driver");
+		this.webDriver = checkNotNull(webDriver, "webDriver");
 		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
 	}
 	
@@ -43,7 +43,7 @@ public abstract class AbstractDriver
 	
 	public WebDriver driver()
 	{
-		return driver;
+		return webDriver;
 	}
 	
 	public URL getServerUrl()
