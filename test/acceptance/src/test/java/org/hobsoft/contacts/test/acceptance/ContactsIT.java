@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Integration test for the contacts page.
+ * Acceptance test for the contacts page.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AcceptanceTestConfig.class)

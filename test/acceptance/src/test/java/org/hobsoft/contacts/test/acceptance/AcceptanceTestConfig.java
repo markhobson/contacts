@@ -25,7 +25,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring configuration for integration tests.
+ * Spring configuration for acceptance tests.
  */
 @Configuration
 @ComponentScan(basePackageClasses = DriverConfiguration.class)
