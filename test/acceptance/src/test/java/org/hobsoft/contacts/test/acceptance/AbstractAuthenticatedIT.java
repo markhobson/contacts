@@ -37,6 +37,7 @@ public abstract class AbstractAuthenticatedIT
 	@Before
 	public final void setUpAuthentication()
 	{
+		signIn.show();
 		signIn.signIn("mark", "password");
 	}
 }
