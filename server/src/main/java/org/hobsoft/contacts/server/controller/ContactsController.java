@@ -16,7 +16,7 @@ package org.hobsoft.contacts.server.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hobsoft.contacts.server.dao.ContactDao;
+import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -35,14 +35,14 @@ public class ContactsController
 {
 	// fields -----------------------------------------------------------------
 	
-	private final ContactDao contactDao;
+	private final ContactRepository contactRepository;
 	
 	// constructors -----------------------------------------------------------
 	
 	@Autowired
-	public ContactsController(ContactDao contactDao)
+	public ContactsController(ContactRepository contactRepository)
 	{
-		this.contactDao = checkNotNull(contactDao, "contactDao");
+		this.contactRepository = checkNotNull(contactRepository, "contactRepository");
 	}
 	
 	// public methods ---------------------------------------------------------
@@ -51,7 +51,7 @@ public class ContactsController
 	public ModelAndView get()
 	{
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("contacts", contactDao.getAll());
+		model.put("contacts", contactRepository.getAll());
 		
 		return new ModelAndView("index", model);
 	}

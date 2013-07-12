@@ -11,16 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.dao;
+package org.hobsoft.contacts.server.repository;
 
 import java.util.List;
 
 import org.hobsoft.contacts.server.model.Contact;
 
 /**
- * DAO for contacts.
+ * Repository for contacts.
  */
-public interface ContactDao
+public interface ContactRepository
 {
 	// public methods ---------------------------------------------------------
 	

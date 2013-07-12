@@ -14,7 +14,7 @@
 package org.hobsoft.contacts.server.controller;
 
 import org.hobsoft.contacts.server.ContactsConfig;
-import org.hobsoft.contacts.server.dao.FakeContactDao;
+import org.hobsoft.contacts.server.repository.FakeContactRepository;
 import org.hobsoft.contacts.server.support.spring.JspxViewResolver;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -47,7 +47,7 @@ public class ContactsControllerTest
 	@Before
 	public void setUp()
 	{
-		mvc = MockMvcBuilders.standaloneSetup(new ContactsController(new FakeContactDao()))
+		mvc = MockMvcBuilders.standaloneSetup(new ContactsController(new FakeContactRepository()))
 			.setViewResolvers(new JspxViewResolver())
 			.build();
 	}

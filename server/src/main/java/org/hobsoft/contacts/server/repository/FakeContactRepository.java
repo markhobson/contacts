@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.dao;
+package org.hobsoft.contacts.server.repository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,12 +20,12 @@ import org.hobsoft.contacts.server.model.Contact;
 import org.springframework.stereotype.Repository;
 
 /**
- * In-memory contact DAO implementation.
+ * In-memory contact repository implementation.
  */
 @Repository
-public class FakeContactDao implements ContactDao
+public class FakeContactRepository implements ContactRepository
 {
-	// ContactDao methods -----------------------------------------------------
+	// ContactRepository methods ----------------------------------------------
 	
 	/**
 	 * {@inheritDoc}
