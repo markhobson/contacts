@@ -14,6 +14,8 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.SignInDriver;
+import org.hobsoft.contacts.driver.SignOutDriver;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public abstract class AbstractAuthenticatedIT
 	@Autowired
 	private SignInDriver signIn;
 	
+	@Autowired
+	private SignOutDriver signOut;
+	
 	// public methods ---------------------------------------------------------
 	
 	@Before
@@ -39,5 +44,11 @@ public abstract class AbstractAuthenticatedIT
 	{
 		signIn.show();
 		signIn.signIn("mark", "password");
+	}
+	
+	@After
+	public final void tearDownAuthentication()
+	{
+		signOut.signOut();
 	}
 }
