@@ -13,10 +13,7 @@
  */
 package org.hobsoft.contacts.driver;
 
-import java.net.URL;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +26,9 @@ public class SignInDriver extends AbstractDriver
 	// constructors -----------------------------------------------------------
 	
 	@Autowired
-	public SignInDriver(WebDriver driver, @ServerUrl URL serverUrl)
+	public SignInDriver(DriverConfiguration config)
 	{
-		super(driver, serverUrl);
+		super(config);
 	}
 	
 	// public methods ---------------------------------------------------------

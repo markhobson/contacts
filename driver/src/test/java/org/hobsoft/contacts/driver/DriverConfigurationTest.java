@@ -13,18 +13,30 @@
  */
 package org.hobsoft.contacts.driver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import static org.mockito.Mockito.mock;
 
 /**
- * Tests {@code ContactsDriver}.
+ * Tests {@code DriverConfiguration}.
  */
-public class ContactsDriverTest
+public class DriverConfigurationTest
 {
 	// tests ------------------------------------------------------------------
 
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullConfiguration()
+	public void constructWithNullDriver() throws MalformedURLException
 	{
-		new ContactsDriver(null);
+		new DriverConfiguration(null, new URL("http://localhost:8080/"));
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void constructWithNullServerUrl()
+	{
+		new DriverConfiguration(mock(WebDriver.class), null);
 	}
 }

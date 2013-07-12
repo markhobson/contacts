@@ -13,7 +13,6 @@
  */
 package org.hobsoft.contacts.driver;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
@@ -21,44 +20,33 @@ import org.openqa.selenium.WebDriver;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Base web UI driver.
+ * Configuration for web UI drivers.
  */
-public abstract class AbstractDriver
+public final class DriverConfiguration
 {
 	// fields -----------------------------------------------------------------
 	
-	private final DriverConfiguration config;
+	private final WebDriver webDriver;
+	
+	private final URL serverUrl;
 	
 	// constructors -----------------------------------------------------------
 	
-	public AbstractDriver(DriverConfiguration config)
+	public DriverConfiguration(WebDriver webDriver, URL serverUrl)
 	{
-		this.config = checkNotNull(config, "config");
+		this.webDriver = checkNotNull(webDriver, "webDriver");
+		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
 	}
 	
 	// public methods ---------------------------------------------------------
 	
-	public DriverConfiguration getConfiguration()
+	public WebDriver getWebDriver()
 	{
-		return config;
+		return webDriver;
 	}
 	
-	public WebDriver driver()
+	public URL getServerUrl()
 	{
-		return config.getWebDriver();
-	}
-	
-	// protected methods ------------------------------------------------------
-	
-	protected String url(String spec)
-	{
-		try
-		{
-			return new URL(config.getServerUrl(), spec).toString();
-		}
-		catch (MalformedURLException exception)
-		{
-			throw new IllegalArgumentException(exception);
-		}
+		return serverUrl;
 	}
 }

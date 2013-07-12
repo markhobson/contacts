@@ -16,8 +16,7 @@ package org.hobsoft.contacts.test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hobsoft.contacts.driver.ContactsDriver;
-import org.hobsoft.contacts.driver.ServerUrl;
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.support.selenium.DestroyableWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -29,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for integration tests.
  */
 @Configuration
-@ComponentScan(basePackageClasses = ContactsDriver.class)
+@ComponentScan(basePackageClasses = DriverConfiguration.class)
 public class ContactsITConfig
 {
 	// constants --------------------------------------------------------------
@@ -53,8 +52,14 @@ public class ContactsITConfig
 	}
 	
 	@Bean
-	@ServerUrl
-	public URL serverUrl() throws MalformedURLException
+	public DriverConfiguration driverConfiguration() throws MalformedURLException
+	{
+		return new DriverConfiguration(webDriver(), getServerUrl());
+	}
+	
+	// private methods --------------------------------------------------------
+	
+	private static URL getServerUrl() throws MalformedURLException
 	{
 		String protocol = DEFAULT_SERVER_PROTOCOL;
 		String host = DEFAULT_SERVER_HOST;
