@@ -9,7 +9,7 @@
 	</parent>
 	
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>contacts-tests</artifactId>
+	<artifactId>contacts-test</artifactId>
 	<packaging>jar</packaging>
 	
 	<name>Contacts Test</name>
