@@ -9,114 +9,13 @@
 	</parent>
 	
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>contacts-test</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>contacts-test-parent</artifactId>
+	<packaging>pom</packaging>
 	
-	<name>Contacts Test</name>
+	<name>Contacts Test Parent</name>
 	
-	<properties>
-		<serverPort>9998</serverPort>
-	</properties>
-
-	<build>
-
-		<plugins>
-		
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<configuration>
-					<systemPropertyVariables>
-						<serverPort>${serverPort}</serverPort>
-					</systemPropertyVariables>
-				</configuration>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<configuration>
-					<httpConnector>
-						<port>${serverPort}</port>
-					</httpConnector>
-					<stopPort>${serverPort}</stopPort>
-					<stopKey>integration-test</stopKey>
-				</configuration>
-				<executions>
-					<execution>
-						<id>start-jetty</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<daemon>true</daemon>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-jetty</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-		</plugins>
-			
-	</build>
-	
-	<dependencies>
-	
-		<!-- JUnit -->
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<!-- Spring -->
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<!-- Contacts -->
-	
-		<dependency>
-			<groupId>org.hobsoft.contacts</groupId>
-			<artifactId>contacts-driver</artifactId>
-			<version>${project.version}</version>
-			<scope>test</scope>
-		</dependency>
-	
-		<dependency>
-			<groupId>org.hobsoft.contacts</groupId>
-			<artifactId>contacts-server</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-			<scope>test</scope>
-		</dependency>
-		
-	</dependencies>	
+	<modules>
+		<module>acceptance</module>
+	</modules>
 
 </project>
