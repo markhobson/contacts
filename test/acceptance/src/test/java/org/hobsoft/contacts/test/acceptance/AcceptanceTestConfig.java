@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test;
+package org.hobsoft.contacts.test.acceptance;
 
 import java.net.MalformedURLException;
 import java.net.URL;
