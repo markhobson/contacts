@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
  * Integration test for the root page.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ContactsITConfig.class)
+@ContextConfiguration(classes = AcceptanceTestConfig.class)
 public class RootIT
 {
 	// fields -----------------------------------------------------------------

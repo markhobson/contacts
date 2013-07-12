@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
  * Integration test for the contacts page.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ContactsITConfig.class)
+@ContextConfiguration(classes = AcceptanceTestConfig.class)
 public class ContactsIT
 {
 	// fields -----------------------------------------------------------------

@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackageClasses = DriverConfiguration.class)
-public class ContactsITConfig
+public class AcceptanceTestConfig
 {
 	// constants --------------------------------------------------------------
 	
