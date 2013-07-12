@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * JAX-RS resource for contacts.
+ * Spring MVC controller for contacts.
  */
 @Controller
 @RequestMapping("/contacts")
