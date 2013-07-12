@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
+import org.hobsoft.contacts.driver.SignInDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,25 +34,30 @@ public class ContactsIT
 	// fields -----------------------------------------------------------------
 	
 	@Autowired
-	private ContactsDriver driver;
+	private SignInDriver signIn;
+	
+	@Autowired
+	private ContactsDriver contacts;
 	
 	// tests ------------------------------------------------------------------
 	
 	@Test
 	public void contactsDisplaysHeader()
 	{
-		driver.contacts();
+		signIn.signIn("mark", "password");
+		contacts.show();
 		
-		assertEquals("Contacts", driver.getHeader());
+		assertEquals("Contacts", contacts.getHeader());
 	}
 	
 	@Test
 	public void contactsDisplaysContacts()
 	{
-		driver.contacts();
+		signIn.signIn("mark", "password");
+		contacts.show();
 		
-		assertTrue(driver.hasContact("A"));
-		assertTrue(driver.hasContact("B"));
-		assertTrue(driver.hasContact("C"));
+		assertTrue(contacts.hasContact("A"));
+		assertTrue(contacts.hasContact("B"));
+		assertTrue(contacts.hasContact("C"));
 	}
 }

@@ -13,50 +13,55 @@
  */
 package org.hobsoft.contacts.driver;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Web UI driver for the contacts page.
+ * Base web UI driver.
  */
-@Component
-public class ContactsDriver extends AbstractDriver
+public abstract class AbstractDriver
 {
+	// fields -----------------------------------------------------------------
+	
+	private final WebDriver driver;
+	
+	private final URL serverUrl;
+	
 	// constructors -----------------------------------------------------------
 	
-	@Autowired
-	public ContactsDriver(WebDriver driver, @ServerUrl URL serverUrl)
+	public AbstractDriver(WebDriver driver, @ServerUrl URL serverUrl)
 	{
-		super(driver, serverUrl);
+		this.driver = checkNotNull(driver, "driver");
+		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
 	}
 	
 	// public methods ---------------------------------------------------------
 	
-	public void show()
+	public WebDriver getDriver()
 	{
-		getDriver().get(url("/contacts"));
+		return driver;
 	}
 	
-	public String getHeader()
+	public URL getServerUrl()
 	{
-		return getDriver().findElement(By.tagName("h1")).getText();
+		return serverUrl;
 	}
 	
-	public boolean hasContact(String name)
+	// protected methods ------------------------------------------------------
+	
+	protected String url(String spec)
 	{
-		for (WebElement element : getDriver().findElements(By.tagName("li")))
+		try
 		{
-			if (name.equals(element.getText()))
-			{
-				return true;
-			}
+			return new URL(serverUrl, spec).toString();
 		}
-		
-		return false;
+		catch (MalformedURLException exception)
+		{
+			throw new IllegalArgumentException(exception);
+		}
 	}
 }

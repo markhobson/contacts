@@ -17,20 +17,19 @@ import java.net.URL;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Web UI driver for the contacts page.
+ * Web UI driver for the sign-in page.
  */
 @Component
-public class ContactsDriver extends AbstractDriver
+public class SignInDriver extends AbstractDriver
 {
 	// constructors -----------------------------------------------------------
 	
 	@Autowired
-	public ContactsDriver(WebDriver driver, @ServerUrl URL serverUrl)
+	public SignInDriver(WebDriver driver, @ServerUrl URL serverUrl)
 	{
 		super(driver, serverUrl);
 	}
@@ -39,24 +38,15 @@ public class ContactsDriver extends AbstractDriver
 	
 	public void show()
 	{
-		getDriver().get(url("/contacts"));
+		getDriver().get(url("/login"));
 	}
 	
-	public String getHeader()
+	public void signIn(String username, String password)
 	{
-		return getDriver().findElement(By.tagName("h1")).getText();
-	}
-	
-	public boolean hasContact(String name)
-	{
-		for (WebElement element : getDriver().findElements(By.tagName("li")))
-		{
-			if (name.equals(element.getText()))
-			{
-				return true;
-			}
-		}
+		show();
 		
-		return false;
+		getDriver().findElement(By.name("username")).sendKeys(username);
+		getDriver().findElement(By.name("password")).sendKeys(password);
+		getDriver().findElement(By.name("submit")).click();
 	}
 }
