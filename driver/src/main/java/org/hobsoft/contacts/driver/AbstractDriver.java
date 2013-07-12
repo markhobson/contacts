@@ -41,7 +41,7 @@ public abstract class AbstractDriver
 	
 	// public methods ---------------------------------------------------------
 	
-	public WebDriver getDriver()
+	public WebDriver driver()
 	{
 		return driver;
 	}

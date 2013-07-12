@@ -38,15 +38,15 @@ public class SignInDriver extends AbstractDriver
 	
 	public void show()
 	{
-		getDriver().get(url("/login"));
+		driver().get(url("/login"));
 	}
 	
 	public void signIn(String username, String password)
 	{
 		show();
 		
-		getDriver().findElement(By.name("username")).sendKeys(username);
-		getDriver().findElement(By.name("password")).sendKeys(password);
-		getDriver().findElement(By.name("submit")).click();
+		driver().findElement(By.name("username")).sendKeys(username);
+		driver().findElement(By.name("password")).sendKeys(password);
+		driver().findElement(By.name("submit")).click();
 	}
 }

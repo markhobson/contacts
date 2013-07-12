@@ -39,17 +39,17 @@ public class ContactsDriver extends AbstractDriver
 	
 	public void show()
 	{
-		getDriver().get(url("/contacts"));
+		driver().get(url("/contacts"));
 	}
 	
 	public String getHeader()
 	{
-		return getDriver().findElement(By.tagName("h1")).getText();
+		return driver().findElement(By.tagName("h1")).getText();
 	}
 	
 	public boolean hasContact(String name)
 	{
-		for (WebElement element : getDriver().findElements(By.tagName("li")))
+		for (WebElement element : driver().findElements(By.tagName("li")))
 		{
 			if (name.equals(element.getText()))
 			{
