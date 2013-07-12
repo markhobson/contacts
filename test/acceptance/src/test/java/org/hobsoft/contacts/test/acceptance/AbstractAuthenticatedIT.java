@@ -13,38 +13,30 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.ContactsDriver;
-import org.hobsoft.contacts.driver.RootDriver;
-import org.junit.Test;
+import org.hobsoft.contacts.driver.SignInDriver;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertTrue;
-
 /**
- * Acceptance test for the root page.
+ * Base acceptance test for a page that requires authentication.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AcceptanceTestConfig.class)
-public class RootIT extends AbstractAuthenticatedIT
+public abstract class AbstractAuthenticatedIT
 {
 	// fields -----------------------------------------------------------------
 	
 	@Autowired
-	private RootDriver root;
+	private SignInDriver signIn;
 	
-	@Autowired
-	private ContactsDriver contacts;
+	// public methods ---------------------------------------------------------
 	
-	// tests ------------------------------------------------------------------
-	
-	@Test
-	public void rootShowsContacts()
+	@Before
+	public final void setUpAuthentication()
 	{
-		root.show();
-		
-		assertTrue(contacts.isVisible());
+		signIn.signIn("mark", "password");
 	}
 }

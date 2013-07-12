@@ -14,7 +14,6 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
-import org.hobsoft.contacts.driver.SignInDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,9 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AcceptanceTestConfig.class)
-public class ContactsIT
+public class ContactsIT extends AbstractAuthenticatedIT
 {
 	// fields -----------------------------------------------------------------
-	
-	@Autowired
-	private SignInDriver signIn;
 	
 	@Autowired
 	private ContactsDriver contacts;
@@ -43,7 +39,6 @@ public class ContactsIT
 	@Test
 	public void contactsDisplaysHeader()
 	{
-		signIn.signIn("mark", "password");
 		contacts.show();
 		
 		assertTrue(contacts.isVisible());
@@ -52,7 +47,6 @@ public class ContactsIT
 	@Test
 	public void contactsDisplaysContacts()
 	{
-		signIn.signIn("mark", "password");
 		contacts.show();
 		
 		assertTrue(contacts.hasContact("A"));
