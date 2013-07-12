@@ -11,28 +11,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server;
+package org.hobsoft.contacts.server.repository;
 
-import org.hobsoft.contacts.server.support.spring.JspxViewResolver;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
- * Main Spring configuration.
+ * Spring configuration for repositories.
  */
 @Configuration
-@EnableWebMvc
-@ComponentScan(basePackageClasses = ServerConfig.class)
-public class ServerConfig
+@ComponentScan(basePackageClasses = RepositoryConfig.class)
+public class RepositoryConfig
 {
-	// public methods ---------------------------------------------------------
-
-	@Bean
-	public ViewResolver viewResolver()
-	{
-		return new JspxViewResolver();
-	}
+	// no explicit beans
 }

@@ -7,6 +7,24 @@
 > 
 	<display-name>Contacts</display-name>
 	<description>Contacts</description>
+	
+	<!-- Spring IoC -->
+	
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>org.hobsoft.contacts.server.repository.RepositoryConfig</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Spring MVC -->
 
 	<servlet>
 		<servlet-name>Spring Web Application</servlet-name>
@@ -17,7 +35,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>org.hobsoft.contacts.server.ServerConfig</param-value>
+			<param-value>org.hobsoft.contacts.server.controller.ControllerConfig</param-value>
 		</init-param>
 	</servlet>
 	
