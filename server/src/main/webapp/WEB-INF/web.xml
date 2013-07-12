@@ -27,7 +27,7 @@
 	<!-- Spring MVC -->
 
 	<servlet>
-		<servlet-name>Spring Web Application</servlet-name>
+		<servlet-name>springWebDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextClass</param-name>
@@ -40,7 +40,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>Spring Web Application</servlet-name>
+		<servlet-name>springWebDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
