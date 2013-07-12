@@ -18,6 +18,7 @@ import java.net.URL;
 
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.support.selenium.DestroyableWebDriver;
+import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for acceptance tests.
  */
 @Configuration
-@ComponentScan(basePackageClasses = DriverConfiguration.class)
+@ComponentScan(basePackageClasses = {DriverConfiguration.class, AuthenticatedRule.class})
 public class AcceptanceTestConfig
 {
 	// constants --------------------------------------------------------------

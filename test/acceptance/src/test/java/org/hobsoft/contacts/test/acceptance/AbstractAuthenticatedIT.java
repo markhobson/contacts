@@ -13,10 +13,8 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.SignInDriver;
-import org.hobsoft.contacts.driver.SignOutDriver;
-import org.junit.After;
-import org.junit.Before;
+import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
+import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,23 +30,13 @@ public abstract class AbstractAuthenticatedIT
 	// fields -----------------------------------------------------------------
 	
 	@Autowired
-	private SignInDriver signIn;
-	
-	@Autowired
-	private SignOutDriver signOut;
+	private AuthenticatedRule authenticatedRule;
 	
 	// public methods ---------------------------------------------------------
 	
-	@Before
-	public final void setUpAuthentication()
+	@Rule
+	public AuthenticatedRule getAuthenticatedRule()
 	{
-		signIn.show();
-		signIn.signIn("mark", "password");
-	}
-	
-	@After
-	public final void tearDownAuthentication()
-	{
-		signOut.signOut();
+		return authenticatedRule;
 	}
 }
