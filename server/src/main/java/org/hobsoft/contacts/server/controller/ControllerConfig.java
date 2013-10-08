@@ -35,7 +35,7 @@ public class ControllerConfig
 	public ViewResolver viewResolver()
 	{
 		UrlBasedViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/jsp/");
+		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jspx");
 		return viewResolver;
 	}
