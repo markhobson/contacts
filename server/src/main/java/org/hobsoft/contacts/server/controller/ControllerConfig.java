@@ -13,12 +13,13 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.server.support.spring.JspxViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
  * Spring configuration for controllers.
@@ -33,6 +34,9 @@ public class ControllerConfig
 	@Bean
 	public ViewResolver viewResolver()
 	{
-		return new JspxViewResolver();
+		UrlBasedViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/jsp/");
+		viewResolver.setSuffix(".jspx");
+		return viewResolver;
 	}
 }
