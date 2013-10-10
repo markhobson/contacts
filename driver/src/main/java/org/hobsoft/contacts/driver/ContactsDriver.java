@@ -41,7 +41,8 @@ public class ContactsDriver extends AbstractDriver
 	
 	public boolean isVisible()
 	{
-		return "Contacts".equals(driver().getTitle());
+		WebElement body = driver().findElement(By.tagName("body"));
+		return "contacts".equals(body.getAttribute("id"));
 	}
 	
 	public boolean hasContact(String name)

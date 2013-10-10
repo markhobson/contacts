@@ -6,7 +6,7 @@
 	<head>
 		<title>Contacts</title>
 	</head>
-	<body>
+	<body id="contacts">
 		<h1>Contacts</h1>
 		<ul>
 			<c:forEach var="contact" items="${contacts}">
