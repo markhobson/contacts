@@ -16,13 +16,15 @@ package org.hobsoft.contacts.test.acceptance.rule;
 import org.hobsoft.contacts.driver.SignInDriver;
 import org.hobsoft.contacts.driver.SignOutDriver;
 import org.junit.rules.ExternalResource;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * JUnit rule to sign-in and sign-out around tests.
+ * JUnit rule to sign-in and sign-out around tests annotated with {@code @Authenticated}.
  */
 @Component
 public class AuthenticatedRule extends ExternalResource
@@ -40,6 +42,21 @@ public class AuthenticatedRule extends ExternalResource
 	{
 		this.signIn = checkNotNull(signIn, "signIn");
 		this.signOut = checkNotNull(signOut, "signOut");
+	}
+	
+	// TestRule methods -------------------------------------------------------
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public Statement apply(final Statement base, Description description)
+	{
+		if (description.getAnnotation(Authenticated.class) == null)
+		{
+			return base;
+		}
+		
+		return super.apply(base, description);
 	}
 	
 	// ExternalResource methods -----------------------------------------------

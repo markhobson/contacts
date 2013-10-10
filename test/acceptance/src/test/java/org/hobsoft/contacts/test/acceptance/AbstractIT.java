@@ -21,11 +21,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Base acceptance test for a page that requires authentication.
+ * Base acceptance test.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AcceptanceTestConfig.class)
-public abstract class AbstractAuthenticatedIT
+public abstract class AbstractIT
 {
 	// fields -----------------------------------------------------------------
 	

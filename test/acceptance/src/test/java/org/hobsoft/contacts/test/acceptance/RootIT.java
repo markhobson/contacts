@@ -15,6 +15,7 @@ package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.RootDriver;
+import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AcceptanceTestConfig.class)
-public class RootIT extends AbstractAuthenticatedIT
+public class RootIT extends AbstractIT
 {
 	// fields -----------------------------------------------------------------
 	
@@ -41,6 +42,7 @@ public class RootIT extends AbstractAuthenticatedIT
 	// tests ------------------------------------------------------------------
 	
 	@Test
+	@Authenticated
 	public void rootShowsContacts()
 	{
 		root.show();
