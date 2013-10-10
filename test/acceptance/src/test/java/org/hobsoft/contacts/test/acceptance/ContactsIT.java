@@ -17,18 +17,13 @@ import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the contacts page.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AcceptanceTestConfig.class)
 public class ContactsIT extends AbstractIT
 {
 	// fields -----------------------------------------------------------------
