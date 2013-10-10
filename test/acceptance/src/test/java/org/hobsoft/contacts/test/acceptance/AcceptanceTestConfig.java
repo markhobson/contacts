@@ -46,7 +46,7 @@ public class AcceptanceTestConfig
 	
 	// public methods ---------------------------------------------------------
 	
-	@Bean
+	@Bean(destroyMethod = "")
 	public WebDriver webDriver()
 	{
 		return new DestroyableWebDriver(new FirefoxDriver());
