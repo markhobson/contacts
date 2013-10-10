@@ -38,6 +38,11 @@ public class SignInDriver extends AbstractDriver
 		driver().get(url("/login"));
 	}
 	
+	public boolean isVisible()
+	{
+		return "Login Page".equals(driver().getTitle());
+	}
+	
 	public void signIn(String username, String password)
 	{
 		driver().findElement(By.name("username")).sendKeys(username);
