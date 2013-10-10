@@ -30,6 +30,7 @@ public class FakeContactRepository implements ContactRepository
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Contact> getAll()
 	{
 		return Arrays.asList(

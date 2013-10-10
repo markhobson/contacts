@@ -49,6 +49,7 @@ public class AuthenticatedRule extends ExternalResource
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Statement apply(final Statement base, Description description)
 	{
 		if (description.getAnnotation(Authenticated.class) == null)
