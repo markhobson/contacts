@@ -53,6 +53,6 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactRepository.getAll());
 		
-		return new ModelAndView("index", model);
+		return new ModelAndView("contacts", model);
 	}
 }
