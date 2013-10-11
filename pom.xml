@@ -95,6 +95,14 @@
 				<version>${springSecurityVersion}</version>
 			</dependency>
 			
+			<!-- Contacts -->
+			
+			<dependency>
+				<groupId>org.hobsoft.contacts</groupId>
+				<artifactId>contacts-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
 			<!-- SLF4J -->
 			
 			<dependency>

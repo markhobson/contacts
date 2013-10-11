@@ -15,7 +15,7 @@ package org.hobsoft.contacts.server.controller;
 
 import java.util.List;
 
-import org.hobsoft.contacts.server.model.Contact;
+import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.junit.Before;
 import org.junit.Test;
