@@ -10,8 +10,8 @@
 		<h1>Contacts</h1>
 		<ul>
 			<c:forEach var="contact" items="${contacts}">
-				<li>
-					<c:out value="${contact.name}"/>
+				<li itemscope="itemscope" itemtype="http://schema.org/Person">
+					<span itemprop="name"><c:out value="${contact.name}"/></span>
 				</li>
 			</c:forEach>
 		</ul>

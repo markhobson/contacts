@@ -15,10 +15,14 @@ package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.SignInDriver;
+import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -63,8 +67,10 @@ public class ContactsIT extends AbstractIT
 	{
 		contacts.show();
 		
-		assertTrue(contacts.hasContact("A"));
-		assertTrue(contacts.hasContact("B"));
-		assertTrue(contacts.hasContact("C"));
+		assertThat(contacts.getContacts(), contains(
+			samePropertyValuesAs(new Contact("A")),
+			samePropertyValuesAs(new Contact("B")),
+			samePropertyValuesAs(new Contact("C"))
+		));
 	}
 }

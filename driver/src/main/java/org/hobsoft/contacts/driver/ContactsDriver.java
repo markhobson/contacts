@@ -13,6 +13,10 @@
  */
 package org.hobsoft.contacts.driver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,18 +58,38 @@ public class ContactsDriver extends AbstractDriver
 		driver().get(url("/contacts"));
 	}
 	
-	public boolean hasContact(String name)
+	public List<Contact> getContacts()
 	{
 		checkVisible();
 		
-		for (WebElement element : driver().findElements(By.tagName("li")))
+		List<Contact> contacts = new ArrayList<>();
+		
+		for (WebElement element : driver().findElements(byItemScope("http://schema.org/Person")))
 		{
-			if (name.equals(element.getText()))
-			{
-				return true;
-			}
+			contacts.add(parseContact(element));
 		}
 		
-		return false;
+		return contacts;
+	}
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static Contact parseContact(WebElement element)
+	{
+		String name = element.findElement(byItemProp("name")).getText();
+		
+		return new Contact(name);
+	}
+
+	private static By byItemScope(String itemType)
+	{
+		return By.cssSelector(String.format("[itemscope][itemtype='%s']", itemType));
+	}
+
+	private static By byItemProp(String itemProp)
+	{
+		return By.cssSelector(String.format("[itemprop='%s']", itemProp));
 	}
 }

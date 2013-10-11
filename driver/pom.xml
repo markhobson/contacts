@@ -37,6 +37,13 @@
 			<artifactId>selenium-java</artifactId>
 		</dependency>
 	
+		<!-- Contacts -->
+		
+		<dependency>
+			<groupId>org.hobsoft.contacts</groupId>
+			<artifactId>contacts-model</artifactId>
+		</dependency>
+		
 		<!-- JUnit -->
 		
 		<dependency>
