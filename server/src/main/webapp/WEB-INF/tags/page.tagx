@@ -13,7 +13,9 @@
 			<script src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"><jsp:text/></script>
 		</head>
 		<body id="${id}">
-			<jsp:doBody/>
+			<div class="container">
+				<jsp:doBody/>
+			</div>
 		</body>
 	</html>
 
