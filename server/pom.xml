@@ -83,6 +83,13 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- Bootstrap -->
+		
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+		</dependency>
+		
 		<!-- SLF4J -->
 		
 		<dependency>

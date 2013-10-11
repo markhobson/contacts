@@ -17,7 +17,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -25,10 +26,22 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * Spring configuration for controllers.
  */
 @Configuration
-@EnableWebMvc
 @ComponentScan(basePackageClasses = ControllerConfig.class)
-public class ControllerConfig
+public class ControllerConfig extends WebMvcConfigurationSupport
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// WebMvcConfigurationSupport methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void addResourceHandlers(ResourceHandlerRegistry registry)
+	{
+		registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
