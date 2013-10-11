@@ -25,7 +25,9 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/")
 public class RootController
 {
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public RedirectView get()

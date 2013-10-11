@@ -29,7 +29,9 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @ComponentScan(basePackageClasses = ControllerConfig.class)
 public class ControllerConfig
 {
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 
 	@Bean
 	public ViewResolver viewResolver()

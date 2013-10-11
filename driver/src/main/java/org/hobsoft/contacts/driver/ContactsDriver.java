@@ -24,7 +24,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ContactsDriver extends AbstractDriver
 {
-	// constructors -----------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	public ContactsDriver(DriverConfiguration config)
@@ -32,7 +34,9 @@ public class ContactsDriver extends AbstractDriver
 		super(config);
 	}
 	
-	// AbstractDriver methods -------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// AbstractDriver methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public boolean isVisible()
@@ -41,7 +45,9 @@ public class ContactsDriver extends AbstractDriver
 		return "contacts".equals(body.getAttribute("id"));
 	}
 	
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	public void show()
 	{

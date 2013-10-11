@@ -32,7 +32,9 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackageClasses = {DriverConfiguration.class, AuthenticatedRule.class})
 public class AcceptanceTestConfig
 {
-	// constants --------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// constants
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	private static final String DEFAULT_SERVER_PROTOCOL = "http";
 	
@@ -44,7 +46,9 @@ public class AcceptanceTestConfig
 	
 	private static final String DEFAULT_SERVER_PATH = "/";
 	
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Bean(destroyMethod = "")
 	public WebDriver webDriver()
@@ -58,7 +62,9 @@ public class AcceptanceTestConfig
 		return new DriverConfiguration(webDriver(), getServerUrl());
 	}
 	
-	// private methods --------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	private static URL getServerUrl() throws MalformedURLException
 	{

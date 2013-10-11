@@ -25,7 +25,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FakeContactRepository implements ContactRepository
 {
-	// ContactRepository methods ----------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// ContactRepository methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	/**
 	 * {@inheritDoc}
@@ -40,7 +42,9 @@ public class FakeContactRepository implements ContactRepository
 		);
 	}
 	
-	// private methods --------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
 
 	private Contact createContact(String name)
 	{

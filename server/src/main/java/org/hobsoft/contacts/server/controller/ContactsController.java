@@ -33,11 +33,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @RequestMapping("/contacts")
 public class ContactsController
 {
-	// fields -----------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	private final ContactRepository contactRepository;
 	
-	// constructors -----------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	public ContactsController(ContactRepository contactRepository)
@@ -45,7 +49,9 @@ public class ContactsController
 		this.contactRepository = checkNotNull(contactRepository, "contactRepository");
 	}
 	
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView get()

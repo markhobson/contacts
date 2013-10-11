@@ -26,7 +26,9 @@ import static org.mockito.Mockito.mock;
  */
 public class DriverConfigurationTest
 {
-	// tests ------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// tests
+	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullDriver() throws MalformedURLException

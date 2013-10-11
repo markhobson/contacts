@@ -27,12 +27,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = AcceptanceTestConfig.class)
 public abstract class AbstractIT
 {
-	// fields -----------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	private AuthenticatedRule authenticatedRule;
 	
-	// public methods ---------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Rule
 	public AuthenticatedRule getAuthenticatedRule()

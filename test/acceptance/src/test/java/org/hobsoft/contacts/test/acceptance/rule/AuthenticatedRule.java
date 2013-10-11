@@ -29,13 +29,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Component
 public class AuthenticatedRule extends ExternalResource
 {
-	// fields -----------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	private final SignInDriver signIn;
 	
 	private final SignOutDriver signOut;
 	
-	// constructors -----------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
 
 	@Autowired
 	public AuthenticatedRule(SignInDriver signIn, SignOutDriver signOut)
@@ -44,7 +48,9 @@ public class AuthenticatedRule extends ExternalResource
 		this.signOut = checkNotNull(signOut, "signOut");
 	}
 	
-	// TestRule methods -------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// TestRule methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	/**
 	 * {@inheritDoc}
@@ -60,7 +66,9 @@ public class AuthenticatedRule extends ExternalResource
 		return super.apply(base, description);
 	}
 	
-	// ExternalResource methods -----------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+	// ExternalResource methods
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	/**
 	 * {@inheritDoc}
