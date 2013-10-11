@@ -11,24 +11,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.driver.auth;
 
-import org.openqa.selenium.By;
+import org.hobsoft.contacts.driver.AbstractDriver;
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Web UI driver for the sign-in page.
+ * Web UI driver for the sign-out page.
  */
 @Component
-public class SignInDriver extends AbstractDriver
+public class SignOutDriver extends AbstractDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public SignInDriver(DriverConfiguration config)
+	public SignOutDriver(DriverConfiguration config)
 	{
 		super(config);
 	}
@@ -43,24 +44,15 @@ public class SignInDriver extends AbstractDriver
 	@Override
 	public boolean isVisible()
 	{
-		return "Login Page".equals(driver().getTitle());
+		return false;
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public void show()
+	public void signOut()
 	{
-		driver().get(url("/login"));
-	}
-	
-	public void signIn(Credentials credentials)
-	{
-		checkVisible();
-		
-		driver().findElement(By.name("username")).sendKeys(credentials.getUsername());
-		driver().findElement(By.name("password")).sendKeys(credentials.getPassword());
-		driver().findElement(By.name("submit")).click();
+		driver().get(url("/logout"));
 	}
 }

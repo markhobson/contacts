@@ -13,9 +13,9 @@
  */
 package org.hobsoft.contacts.test.acceptance.rule;
 
-import org.hobsoft.contacts.driver.Credentials;
-import org.hobsoft.contacts.driver.SignInDriver;
-import org.hobsoft.contacts.driver.SignOutDriver;
+import org.hobsoft.contacts.driver.auth.Credentials;
+import org.hobsoft.contacts.driver.auth.SignInDriver;
+import org.hobsoft.contacts.driver.auth.SignOutDriver;
 import org.junit.rules.ExternalResource;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
