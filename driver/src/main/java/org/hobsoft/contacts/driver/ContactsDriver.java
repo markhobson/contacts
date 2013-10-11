@@ -50,6 +50,8 @@ public class ContactsDriver extends AbstractDriver
 	
 	public boolean hasContact(String name)
 	{
+		checkVisible();
+		
 		for (WebElement element : driver().findElements(By.tagName("li")))
 		{
 			if (name.equals(element.getText()))
