@@ -29,4 +29,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Authenticated
 {
+	String username() default "mark";
+	
+	String password() default "password";
 }

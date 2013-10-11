@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance.rule;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.junit.rules.ExternalResource;
+import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * JUnit rule to sign-in and sign-out around tests annotated with {@code @Authenticated}.
  */
 @Component
-public class AuthenticatedRule extends ExternalResource
+public class AuthenticatedRule implements TestRule
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -59,34 +59,34 @@ public class AuthenticatedRule extends ExternalResource
 	@Override
 	public Statement apply(final Statement base, Description description)
 	{
-		if (description.getAnnotation(Authenticated.class) == null)
+		Authenticated authenticated = description.getAnnotation(Authenticated.class);
+		
+		if (authenticated == null)
 		{
 			return base;
 		}
 		
-		return super.apply(base, description);
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// ExternalResource methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void before()
-	{
-		signIn.show();
-		signIn.signIn(new Credentials("mark", "password"));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void after()
-	{
-		signOut.signOut();
+		final Credentials credentials = new Credentials(authenticated.username(), authenticated.password());
+		
+		return new Statement()
+		{
+			@Override
+			// CHECKSTYLE:OFF
+			public void evaluate() throws Throwable
+			// CHECKSTYLE:ON
+			{
+				signIn.show();
+				signIn.signIn(credentials);
+				
+				try
+				{
+					base.evaluate();
+				}
+				finally
+				{
+					signOut.signOut();
+				}
+			}
+		};
 	}
 }
