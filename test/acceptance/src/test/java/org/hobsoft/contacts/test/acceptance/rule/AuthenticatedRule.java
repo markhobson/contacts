@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.rule;
 
+import org.hobsoft.contacts.driver.Credentials;
 import org.hobsoft.contacts.driver.SignInDriver;
 import org.hobsoft.contacts.driver.SignOutDriver;
 import org.junit.rules.ExternalResource;
@@ -77,7 +78,7 @@ public class AuthenticatedRule extends ExternalResource
 	protected void before()
 	{
 		signIn.show();
-		signIn.signIn("mark", "password");
+		signIn.signIn(new Credentials("mark", "password"));
 	}
 	
 	/**
