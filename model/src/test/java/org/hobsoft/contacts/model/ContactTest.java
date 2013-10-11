@@ -27,7 +27,7 @@ public class ContactTest
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	public void construct()
+	public void constructorSetsProperties()
 	{
 		Contact contact = new Contact();
 		
@@ -35,7 +35,7 @@ public class ContactTest
 	}
 
 	@Test
-	public void setName()
+	public void setNameSetsProperty()
 	{
 		Contact contact = new Contact();
 		
@@ -45,7 +45,7 @@ public class ContactTest
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void setNameWithNull()
+	public void setNameWithNullThrowsException()
 	{
 		Contact contact = new Contact();
 		
