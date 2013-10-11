@@ -30,6 +30,17 @@ public class RootDriver extends AbstractDriver
 		super(config);
 	}
 	
+	// Driver methods ---------------------------------------------------------
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isVisible()
+	{
+		return false;
+	}
+	
 	// public methods ---------------------------------------------------------
 	
 	public void show()

@@ -32,17 +32,20 @@ public class ContactsDriver extends AbstractDriver
 		super(config);
 	}
 	
+	// AbstractDriver methods -------------------------------------------------
+	
+	@Override
+	public boolean isVisible()
+	{
+		WebElement body = driver().findElement(By.tagName("body"));
+		return "contacts".equals(body.getAttribute("id"));
+	}
+	
 	// public methods ---------------------------------------------------------
 	
 	public void show()
 	{
 		driver().get(url("/contacts"));
-	}
-	
-	public boolean isVisible()
-	{
-		WebElement body = driver().findElement(By.tagName("body"));
-		return "contacts".equals(body.getAttribute("id"));
 	}
 	
 	public boolean hasContact(String name)

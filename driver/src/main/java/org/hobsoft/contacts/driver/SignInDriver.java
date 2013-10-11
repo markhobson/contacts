@@ -31,16 +31,22 @@ public class SignInDriver extends AbstractDriver
 		super(config);
 	}
 	
+	// Driver methods ---------------------------------------------------------
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isVisible()
+	{
+		return "Login Page".equals(driver().getTitle());
+	}
+	
 	// public methods ---------------------------------------------------------
 	
 	public void show()
 	{
 		driver().get(url("/login"));
-	}
-	
-	public boolean isVisible()
-	{
-		return "Login Page".equals(driver().getTitle());
 	}
 	
 	public void signIn(String username, String password)

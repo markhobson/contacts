@@ -19,11 +19,12 @@ import java.net.URL;
 import org.openqa.selenium.WebDriver;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Base web UI driver.
  */
-public abstract class AbstractDriver
+public abstract class AbstractDriver implements Driver
 {
 	// fields -----------------------------------------------------------------
 	
@@ -49,6 +50,11 @@ public abstract class AbstractDriver
 	}
 	
 	// protected methods ------------------------------------------------------
+	
+	protected void checkVisible()
+	{
+		checkState(isVisible(), "Expected visible: " + this);
+	}
 	
 	protected String url(String spec)
 	{
