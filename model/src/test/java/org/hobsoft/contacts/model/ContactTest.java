@@ -35,6 +35,14 @@ public class ContactTest
 	}
 
 	@Test
+	public void constructorWithNameSetsProperties()
+	{
+		Contact contact = new Contact("x");
+		
+		assertEquals("x", contact.getName());
+	}
+
+	@Test
 	public void setNameSetsProperty()
 	{
 		Contact contact = new Contact();
