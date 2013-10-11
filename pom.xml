@@ -99,8 +99,21 @@
 			
 			<dependency>
 				<groupId>org.hobsoft.contacts</groupId>
+				<artifactId>contacts-driver</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.hobsoft.contacts</groupId>
 				<artifactId>contacts-model</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.hobsoft.contacts</groupId>
+				<artifactId>contacts-server</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
 			</dependency>
 			
 			<!-- SLF4J -->

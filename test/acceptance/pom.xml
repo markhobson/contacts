@@ -111,14 +111,12 @@
 		<dependency>
 			<groupId>org.hobsoft.contacts</groupId>
 			<artifactId>contacts-driver</artifactId>
-			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 	
 		<dependency>
 			<groupId>org.hobsoft.contacts</groupId>
 			<artifactId>contacts-server</artifactId>
-			<version>${project.version}</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>
