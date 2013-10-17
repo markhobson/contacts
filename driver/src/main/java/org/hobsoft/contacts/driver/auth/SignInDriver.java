@@ -16,6 +16,7 @@ package org.hobsoft.contacts.driver.auth;
 import org.hobsoft.contacts.driver.AbstractDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +46,8 @@ public class SignInDriver extends AbstractDriver
 	@Override
 	public boolean isVisible()
 	{
-		return "Login Page".equals(driver().getTitle());
+		WebElement body = driver().findElement(By.tagName("body"));
+		return "login".equals(body.getAttribute("id"));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
