@@ -55,7 +55,9 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		return visibleCondition.apply(config.getWebDriver());
+		Boolean visible = visibleCondition.apply(config.getWebDriver());
+		
+		return Boolean.TRUE.equals(visible);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -65,6 +67,11 @@ public abstract class AbstractDriver implements Driver
 	public final DriverConfiguration getConfiguration()
 	{
 		return config;
+	}
+	
+	public final ExpectedCondition<Boolean> getVisibleCondition()
+	{
+		return visibleCondition;
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
