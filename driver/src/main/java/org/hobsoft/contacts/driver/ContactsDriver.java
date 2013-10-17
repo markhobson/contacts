@@ -22,6 +22,8 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
+
 /**
  * Web UI driver for the contacts page.
  */
@@ -35,18 +37,7 @@ public class ContactsDriver extends AbstractDriver
 	@Autowired
 	public ContactsDriver(DriverConfiguration config)
 	{
-		super(config);
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// AbstractDriver methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Override
-	public boolean isVisible()
-	{
-		WebElement body = driver().findElement(By.tagName("body"));
-		return "contacts".equals(body.getAttribute("id"));
+		super(config, elementPresent(By.cssSelector("body[id = 'contacts']")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

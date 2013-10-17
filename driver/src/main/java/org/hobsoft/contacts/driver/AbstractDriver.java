@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -32,13 +33,29 @@ public abstract class AbstractDriver implements Driver
 	
 	private final DriverConfiguration config;
 	
+	private final ExpectedCondition<Boolean> visibleCondition;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public AbstractDriver(DriverConfiguration config)
+	public AbstractDriver(DriverConfiguration config, ExpectedCondition<Boolean> visibleCondition)
 	{
 		this.config = checkNotNull(config, "config");
+		this.visibleCondition = checkNotNull(visibleCondition, "visibleCondition");
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// Driver methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final boolean isVisible()
+	{
+		return visibleCondition.apply(config.getWebDriver());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -61,7 +78,7 @@ public abstract class AbstractDriver implements Driver
 	
 	protected void checkVisible()
 	{
-		checkState(isVisible(), "Expected visible: " + this);
+		checkState(isVisible(), "Expected " + visibleCondition);
 	}
 	
 	protected String url(String spec)
