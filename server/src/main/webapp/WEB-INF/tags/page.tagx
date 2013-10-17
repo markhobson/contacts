@@ -6,17 +6,34 @@
 	<jsp:output omit-xml-declaration="true" doctype-root-element="html" doctype-system="about:legacy-compat"/>
 
 	<html>
+	
 		<head>
 			<title>${title}</title>
 			<link href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 			<script src="/webjars/jquery/1.9.0/jquery.min.js"><jsp:text/></script>
 			<script src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"><jsp:text/></script>
 		</head>
+		
 		<body id="${id}">
+		
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".contacts-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Contacts</a>
+				</div>
+			</nav>
+			
 			<div class="container">
 				<jsp:doBody/>
 			</div>
+			
 		</body>
+		
 	</html>
 
 </jsp:root>
