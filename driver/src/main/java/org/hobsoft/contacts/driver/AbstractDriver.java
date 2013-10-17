@@ -62,26 +62,26 @@ public abstract class AbstractDriver implements Driver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public DriverConfiguration getConfiguration()
+	public final DriverConfiguration getConfiguration()
 	{
 		return config;
-	}
-	
-	public WebDriver driver()
-	{
-		return config.getWebDriver();
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// protected methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	protected void checkVisible()
+	protected final void checkVisible()
 	{
 		checkState(isVisible(), "Expected " + visibleCondition);
 	}
 	
-	protected String url(String spec)
+	protected final WebDriver driver()
+	{
+		return config.getWebDriver();
+	}
+	
+	protected final String url(String spec)
 	{
 		try
 		{
