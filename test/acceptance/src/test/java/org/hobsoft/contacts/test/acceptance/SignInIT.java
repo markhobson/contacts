@@ -61,8 +61,8 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void signInWithKnownCredentialsShowsContacts()
 	{
-		signIn.show();
-		signIn.signIn(new Credentials("mark", "password"));
+		signIn.show()
+			.signIn(new Credentials("mark", "password"));
 		
 		assertTrue(contacts.isVisible());
 	}

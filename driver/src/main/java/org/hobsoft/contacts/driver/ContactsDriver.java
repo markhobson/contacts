@@ -53,9 +53,11 @@ public class ContactsDriver extends AbstractDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public void show()
+	public ContactsDriver show()
 	{
 		driver().get(url("/contacts"));
+		
+		return this;
 	}
 	
 	public List<Contact> getContacts()

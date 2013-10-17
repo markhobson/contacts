@@ -49,8 +49,10 @@ public class RootDriver extends AbstractDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public void show()
+	public RootDriver show()
 	{
 		driver().get(url("/"));
+		
+		return this;
 	}
 }

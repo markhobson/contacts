@@ -54,9 +54,11 @@ public class SignInDriver extends AbstractDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public void show()
+	public SignInDriver show()
 	{
 		driver().get(url("/login"));
+		
+		return this;
 	}
 	
 	public void signIn(Credentials credentials)
