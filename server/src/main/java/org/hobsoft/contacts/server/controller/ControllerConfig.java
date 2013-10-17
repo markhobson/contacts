@@ -27,7 +27,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * Spring configuration for controllers.
  */
 @Configuration
-@ComponentScan(basePackageClasses = ControllerConfig.class)
+@ComponentScan
 public class ControllerConfig extends WebMvcConfigurationSupport
 {
 	// ----------------------------------------------------------------------------------------------------------------

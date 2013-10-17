@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for repositories.
  */
 @Configuration
-@ComponentScan(basePackageClasses = RepositoryConfig.class)
+@ComponentScan
 public class RepositoryConfig
 {
 	// no explicit beans
