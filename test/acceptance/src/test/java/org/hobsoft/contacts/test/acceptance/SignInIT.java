@@ -20,6 +20,7 @@ import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -65,5 +66,14 @@ public class SignInIT extends AbstractIT
 			.signIn(new Credentials("mark", "password"));
 		
 		assertTrue(contacts.isVisible());
+	}
+	
+	@Test
+	public void signInWithUnknownCredentialsShowsError()
+	{
+		signIn.show()
+			.signIn(new Credentials("mark", ""));
+		
+		assertEquals("Incorrect username or password.", signIn.getErrorMessage());
 	}
 }

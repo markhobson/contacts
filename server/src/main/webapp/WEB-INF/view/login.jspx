@@ -1,9 +1,14 @@
 <tag:page id="login" title="Sign in"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
 >
 	<jsp:directive.page contentType="text/html"/>
 
+	<c:if test="${param.error != null}">
+		<div id="error" class="alert alert-danger">Incorrect username or password.</div>
+	</c:if>
+	
 	<h1>Sign in</h1>
 	
 	<form method="post" action="/login">

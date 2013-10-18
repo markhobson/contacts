@@ -47,6 +47,13 @@ public class SignInDriver extends AbstractDriver
 		
 		return this;
 	}
+
+	public String getErrorMessage()
+	{
+		checkVisible();
+		
+		return driver().findElement(By.id("error")).getText();
+	}
 	
 	public void signIn(Credentials credentials)
 	{
