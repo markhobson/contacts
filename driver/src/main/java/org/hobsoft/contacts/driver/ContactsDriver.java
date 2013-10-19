@@ -37,7 +37,7 @@ public class ContactsDriver extends AbstractPageDriver
 	@Autowired
 	public ContactsDriver(DriverConfiguration config)
 	{
-		super(config, elementPresent(By.cssSelector("body[id = 'contacts']")));
+		super(config, elementPresent(By.cssSelector("body#contacts")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

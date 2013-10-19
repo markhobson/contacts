@@ -34,7 +34,7 @@ public class SignInDriver extends AbstractPageDriver
 	@Autowired
 	public SignInDriver(DriverConfiguration config)
 	{
-		super(config, elementPresent(By.cssSelector("body[id = 'login']")));
+		super(config, elementPresent(By.cssSelector("body#login")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
