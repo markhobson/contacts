@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -57,6 +58,23 @@ public class SignInIT extends AbstractIT
 		signIn.show();
 		
 		assertTrue(signIn.isVisible());
+	}
+	
+	@Test
+	public void pageWhenUnauthenticatedDoesNotShowSignOut()
+	{
+		signIn.show();
+		
+		assertFalse(signIn.isSignOutVisible());
+	}
+	
+	@Test
+	@Authenticated
+	public void pageWhenAuthenticatedShowsSignOut()
+	{
+		signIn.show();
+		
+		assertTrue(signIn.isSignOutVisible());
 	}
 	
 	@Test

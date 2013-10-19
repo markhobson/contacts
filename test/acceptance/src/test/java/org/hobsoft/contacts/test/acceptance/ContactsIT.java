@@ -63,6 +63,15 @@ public class ContactsIT extends AbstractIT
 	
 	@Test
 	@Authenticated
+	public void pageShowsSignOut()
+	{
+		contacts.show();
+		
+		assertTrue(contacts.isSignOutVisible());
+	}
+	
+	@Test
+	@Authenticated
 	public void pageShowsContacts()
 	{
 		contacts.show();

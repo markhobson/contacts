@@ -28,7 +28,7 @@ import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.e
  * Web UI driver for the contacts page.
  */
 @Component
-public class ContactsDriver extends AbstractDriver
+public class ContactsDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors

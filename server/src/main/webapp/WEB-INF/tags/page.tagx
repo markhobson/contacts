@@ -1,5 +1,7 @@
-<jsp:root version="2.0" xmlns:jsp="http://java.sun.com/JSP/Page">
-
+<jsp:root version="2.0"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+>
 	<jsp:directive.attribute name="id" required="true"/>
 	<jsp:directive.attribute name="title" required="true"/>
 	
@@ -17,6 +19,7 @@
 		<body id="${id}">
 		
 			<nav class="navbar navbar-default" role="navigation">
+			
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".contacts-navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
@@ -26,6 +29,17 @@
 					</button>
 					<a class="navbar-brand" href="/">Contacts</a>
 				</div>
+				
+				<div class="collapse navbar-collapse contacts-navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<li>
+								<a id="logout" href="/logout">Sign out</a>
+							</li>
+						</sec:authorize>
+					</ul>
+				</div>
+				
 			</nav>
 			
 			<div class="container">

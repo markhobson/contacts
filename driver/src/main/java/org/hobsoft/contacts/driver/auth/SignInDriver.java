@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.driver.auth;
 
-import org.hobsoft.contacts.driver.AbstractDriver;
+import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.e
  * Web UI driver for the sign-in page.
  */
 @Component
-public class SignInDriver extends AbstractDriver
+public class SignInDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
