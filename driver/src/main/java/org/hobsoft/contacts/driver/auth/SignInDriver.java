@@ -48,6 +48,13 @@ public class SignInDriver extends AbstractPageDriver
 		return this;
 	}
 
+	public String getSuccessMessage()
+	{
+		checkVisible();
+		
+		return driver().findElement(By.id("success")).getText();
+	}
+
 	public String getErrorMessage()
 	{
 		checkVisible();

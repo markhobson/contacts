@@ -5,6 +5,10 @@
 >
 	<jsp:directive.page contentType="text/html"/>
 
+	<c:if test="${param.logout != null}">
+		<div id="success" class="alert alert-success">You have been signed out.</div>
+	</c:if>
+	
 	<c:if test="${param.error != null}">
 		<div id="error" class="alert alert-danger">Incorrect username or password.</div>
 	</c:if>
