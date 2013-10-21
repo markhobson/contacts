@@ -13,11 +13,16 @@
  */
 package org.hobsoft.contacts.server.repository;
 
-import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hobsoft.contacts.model.Contact;
 import org.springframework.stereotype.Repository;
+
+import com.google.common.collect.ImmutableList;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * In-memory contact repository implementation.
@@ -25,6 +30,25 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FakeContactRepository implements ContactRepository
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final Map<Long, Contact> contactsById;
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public FakeContactRepository()
+	{
+		contactsById = new LinkedHashMap<>();
+		
+		create(newContact(1, "A"));
+		create(newContact(2, "B"));
+		create(newContact(3, "C"));
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ContactRepository methods
 	// ----------------------------------------------------------------------------------------------------------------
@@ -35,20 +59,41 @@ public class FakeContactRepository implements ContactRepository
 	@Override
 	public List<Contact> getAll()
 	{
-		return Arrays.asList(
-			createContact("A"),
-			createContact("B"),
-			createContact("C")
-		);
+		return ImmutableList.copyOf(contactsById.values());
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Contact get(long id)
+	{
+		Contact contact = contactsById.get(id);
+		
+		if (contact == null)
+		{
+			throw new IllegalArgumentException("Contact not found: " + id);
+		}
+		
+		return contact;
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	private void create(Contact contact)
+	{
+		Long id = contact.getId();
+		checkArgument(id != null, "id must be set");
+		
+		contactsById.put(id, contact);
+	}
 
-	private Contact createContact(String name)
+	private Contact newContact(long id, String name)
 	{
 		Contact contact = new Contact();
+		contact.setId(id);
 		contact.setName(name);
 		return contact;
 	}

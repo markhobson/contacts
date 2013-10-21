@@ -65,6 +65,24 @@ public class ContactsDriver extends AbstractPageDriver
 		return contacts;
 	}
 
+	public void clickContact(String name)
+	{
+		checkVisible();
+		
+		for (WebElement element : driver().findElements(byItemScope("http://schema.org/Person")))
+		{
+			Contact contact = parseContact(element);
+			
+			if (name.equals(contact.getName()))
+			{
+				element.findElement(byItemProp("url")).click();
+				return;
+			}
+		}
+		
+		throw new IllegalArgumentException("Cannot find contact: " + name);
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------

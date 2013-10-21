@@ -16,8 +16,10 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -27,6 +29,12 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public abstract class AbstractDriver implements Driver
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// constants
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static final long VISIBLE_TIMEOUT = 1;
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
@@ -55,9 +63,15 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		Boolean visible = visibleCondition.apply(config.getWebDriver());
-		
-		return Boolean.TRUE.equals(visible);
+		try
+		{
+			new WebDriverWait(driver(), VISIBLE_TIMEOUT).until(visibleCondition);
+			return true;
+		}
+		catch (TimeoutException exception)
+		{
+			return false;
+		}
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

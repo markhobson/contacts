@@ -16,7 +16,9 @@
 		<tbody>
 			<c:forEach var="contact" items="${contacts}">
 				<tr itemscope="itemscope" itemtype="http://schema.org/Person">
-					<td itemprop="name"><c:out value="${contact.name}"/></td>
+					<td itemprop="name">
+						<a href="/contact/${contact.id}" itemprop="url"><c:out value="${contact.name}"/></a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

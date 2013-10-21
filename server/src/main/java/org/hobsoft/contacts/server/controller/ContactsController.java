@@ -20,6 +20,7 @@ import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Spring MVC controller for contacts.
  */
 @Controller
-@RequestMapping("/contacts")
 public class ContactsController
 {
 	// ----------------------------------------------------------------------------------------------------------------
@@ -53,12 +53,21 @@ public class ContactsController
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView getAll()
 	{
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactRepository.getAll());
 		
 		return new ModelAndView("contacts", model);
+	}
+	
+	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public ModelAndView get(@PathVariable long id)
+	{
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("contact", contactRepository.get(id));
+		
+		return new ModelAndView("contact", model);
 	}
 }

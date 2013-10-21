@@ -1,0 +1,9 @@
+<tag:page id="contact" title="Contact"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
+>
+	<jsp:directive.page contentType="text/html"/>
+
+	<h1>${contact.name}</h1>
+
+</tag:page>

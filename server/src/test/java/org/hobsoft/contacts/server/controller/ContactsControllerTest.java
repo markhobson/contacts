@@ -79,4 +79,23 @@ public class ContactsControllerTest
 		
 		assertEquals("contacts", actual.getViewName());
 	}
+	
+	@Test
+	public void getAddsContactToModel()
+	{
+		Contact contact = new Contact();
+		when(contactRepository.get(1)).thenReturn(contact);
+		
+		ModelAndView actual = controller.get(1);
+		
+		assertEquals(contact, actual.getModel().get("contact"));
+	}
+
+	@Test
+	public void getReturnsView()
+	{
+		ModelAndView actual = controller.get(1);
+		
+		assertEquals("contact", actual.getViewName());
+	}
 }

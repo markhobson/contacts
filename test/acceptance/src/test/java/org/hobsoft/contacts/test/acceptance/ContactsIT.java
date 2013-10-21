@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
+import org.hobsoft.contacts.driver.ContactDriver;
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.model.Contact;
@@ -39,6 +40,9 @@ public class ContactsIT extends AbstractIT
 	
 	@Autowired
 	private SignInDriver signIn;
+
+	@Autowired
+	private ContactDriver contact;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -81,5 +85,15 @@ public class ContactsIT extends AbstractIT
 			samePropertyValuesAs(new Contact("B")),
 			samePropertyValuesAs(new Contact("C"))
 		));
+	}
+	
+	@Test
+	@Authenticated
+	public void contactWhenClickedShowsContact()
+	{
+		contacts.show()
+			.clickContact("A");
+		
+		assertTrue(contact.isVisible());
 	}
 }
