@@ -16,6 +16,7 @@ package org.hobsoft.contacts.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests {@code Contact}.
@@ -31,7 +32,8 @@ public class ContactTest
 	{
 		Contact contact = new Contact();
 		
-		assertEquals("", contact.getName());
+		assertNull("id", contact.getId());
+		assertEquals("name", "", contact.getName());
 	}
 
 	@Test
@@ -39,9 +41,30 @@ public class ContactTest
 	{
 		Contact contact = new Contact("x");
 		
-		assertEquals("x", contact.getName());
+		assertNull("id", contact.getId());
+		assertEquals("name", "x", contact.getName());
 	}
 
+	@Test
+	public void setIdSetsProperty()
+	{
+		Contact contact = new Contact();
+		
+		contact.setId(1L);
+		
+		assertEquals(Long.valueOf(1), contact.getId());
+	}
+	
+	@Test
+	public void setIdWithNullSetsProperty()
+	{
+		Contact contact = new Contact();
+		
+		contact.setId(null);
+		
+		assertNull(contact.getId());
+	}
+	
 	@Test
 	public void setNameSetsProperty()
 	{
