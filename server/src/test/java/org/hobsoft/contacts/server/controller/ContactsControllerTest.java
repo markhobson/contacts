@@ -62,20 +62,20 @@ public class ContactsControllerTest
 	}
 
 	@Test
-	public void getAddsContactsToModel()
+	public void getAllAddsContactsToModel()
 	{
 		List<Contact> contacts = asList(new Contact());
 		when(contactRepository.getAll()).thenReturn(contacts);
 		
-		ModelAndView actual = controller.get();
+		ModelAndView actual = controller.getAll();
 		
 		assertEquals(contacts, actual.getModel().get("contacts"));
 	}
 	
 	@Test
-	public void getReturnsView()
+	public void getAllReturnsView()
 	{
-		ModelAndView actual = controller.get();
+		ModelAndView actual = controller.getAll();
 		
 		assertEquals("contacts", actual.getViewName());
 	}

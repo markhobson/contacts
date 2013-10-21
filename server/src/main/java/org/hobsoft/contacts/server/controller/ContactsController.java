@@ -54,7 +54,7 @@ public class ContactsController
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	public ModelAndView get()
+	public ModelAndView getAll()
 	{
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactRepository.getAll());
