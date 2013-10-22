@@ -57,7 +57,7 @@ public class ContactsDriver extends AbstractPageDriver
 		
 		List<Contact> contacts = new ArrayList<>();
 		
-		for (WebElement element : driver().findElements(byItemScope("http://schema.org/Person")))
+		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
 		{
 			contacts.add(parseContact(element));
 		}
@@ -69,13 +69,13 @@ public class ContactsDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		for (WebElement element : driver().findElements(byItemScope("http://schema.org/Person")))
+		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
 		{
 			Contact contact = parseContact(element);
 			
 			if (name.equals(contact.getName()))
 			{
-				element.findElement(byItemProp("url")).click();
+				element.findElement(ByItem.prop("url")).click();
 				return;
 			}
 		}
@@ -89,18 +89,8 @@ public class ContactsDriver extends AbstractPageDriver
 
 	private static Contact parseContact(WebElement element)
 	{
-		String name = element.findElement(byItemProp("name")).getText();
+		String name = element.findElement(ByItem.prop("name")).getText();
 		
 		return new Contact(name);
-	}
-
-	private static By byItemScope(String itemType)
-	{
-		return By.cssSelector(String.format("[itemscope][itemtype='%s']", itemType));
-	}
-
-	private static By byItemProp(String itemProp)
-	{
-		return By.cssSelector(String.format("[itemprop='%s']", itemProp));
 	}
 }

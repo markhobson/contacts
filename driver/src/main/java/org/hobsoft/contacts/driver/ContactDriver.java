@@ -13,7 +13,9 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,5 +46,25 @@ public class ContactDriver extends AbstractPageDriver
 		driver().get(url("/contact/" + id));
 		
 		return this;
+	}
+
+	public Contact getContact()
+	{
+		checkVisible();
+		
+		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
+		
+		return parseContact(element);
+	}
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static Contact parseContact(WebElement element)
+	{
+		String name = element.findElement(ByItem.prop("name")).getText();
+		
+		return new Contact(name);
 	}
 }

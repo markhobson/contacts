@@ -4,6 +4,8 @@
 >
 	<jsp:directive.page contentType="text/html"/>
 
-	<h1>${contact.name}</h1>
+	<div itemscope="itemscope" itemtype="http://schema.org/Person">
+		<h1 itemprop="name">${contact.name}</h1>
+	</div>
 
 </tag:page>
