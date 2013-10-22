@@ -13,9 +13,9 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
+import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactDriver;
 import org.hobsoft.contacts.driver.ContactsDriver;
-import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Acceptance test for the contacts page.
  */
-public class ContactsIT extends AbstractIT
+public class ContactsIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -39,40 +39,11 @@ public class ContactsIT extends AbstractIT
 	private ContactsDriver contacts;
 	
 	@Autowired
-	private SignInDriver signIn;
-
-	@Autowired
 	private ContactDriver contact;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Test
-	public void pageWhenUnauthenticatedShowsSignIn()
-	{
-		contacts.show();
-		
-		assertTrue(signIn.isVisible());
-	}
-	
-	@Test
-	@Authenticated
-	public void pageWhenAuthenticatedIsVisible()
-	{
-		contacts.show();
-		
-		assertTrue(contacts.isVisible());
-	}
-	
-	@Test
-	@Authenticated
-	public void pageShowsSignOut()
-	{
-		contacts.show();
-		
-		assertTrue(contacts.isSignOutVisible());
-	}
 	
 	@Test
 	@Authenticated
@@ -95,5 +66,27 @@ public class ContactsIT extends AbstractIT
 			.clickContact("A");
 		
 		assertTrue(contact.isVisible());
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// AbstractSecurePageIT methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void show()
+	{
+		contacts.show();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected AbstractPageDriver driver()
+	{
+		return contacts;
 	}
 }

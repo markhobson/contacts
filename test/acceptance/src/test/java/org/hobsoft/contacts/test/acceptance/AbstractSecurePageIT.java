@@ -14,59 +14,60 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ContactDriver;
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.hamcrest.Matchers.samePropertyValuesAs;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Acceptance test for the contact page.
+ * Base acceptance test for pages that require authentication.
  */
-public class ContactIT extends AbstractSecurePageIT
+public abstract class AbstractSecurePageIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private ContactDriver contact;
-	
+	private SignInDriver signIn;
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	@Authenticated
-	public void pageShowsContact()
+	public final void pageWhenUnauthenticatedShowsSignIn()
 	{
-		contact.show(1);
+		show();
 		
-		assertThat(contact.getContact(), samePropertyValuesAs(new Contact("A")));
+		assertTrue(signIn.isVisible());
+	}
+	
+	@Test
+	@Authenticated
+	public final void pageWhenAuthenticatedIsVisible()
+	{
+		show();
+		
+		assertTrue(driver().isVisible());
+	}
+	
+	@Test
+	@Authenticated
+	public final void pageShowsSignOut()
+	{
+		show();
+		
+		assertTrue(driver().isSignOutVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
-	// AbstractSecurePageIT methods
+	// protected methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void show()
-	{
-		contact.show(1);
-	}
+	protected abstract void show();
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected AbstractPageDriver driver()
-	{
-		return contact;
-	}
+	protected abstract AbstractPageDriver driver();
 }
