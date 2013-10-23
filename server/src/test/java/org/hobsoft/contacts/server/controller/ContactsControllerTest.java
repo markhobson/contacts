@@ -19,6 +19,7 @@ import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.hateoas.Resource;
 import org.springframework.web.servlet.ModelAndView;
 
 import static java.util.Arrays.asList;
@@ -38,6 +39,8 @@ public class ContactsControllerTest
 
 	private ContactRepository contactRepository;
 	
+	private ContactResourceAssembler contactResourceAssembler;
+	
 	private ContactsController controller;
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -48,7 +51,8 @@ public class ContactsControllerTest
 	public void setUp()
 	{
 		contactRepository = mock(ContactRepository.class);
-		controller = new ContactsController(contactRepository);
+		contactResourceAssembler = mock(ContactResourceAssembler.class);
+		controller = new ContactsController(contactRepository, contactResourceAssembler);
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -58,18 +62,28 @@ public class ContactsControllerTest
 	@Test(expected = NullPointerException.class)
 	public void constructorWithNullContactRepository()
 	{
-		new ContactsController(null);
+		new ContactsController(null, contactResourceAssembler);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullContactResourceAssembler()
+	{
+		new ContactsController(contactRepository, null);
 	}
 
 	@Test
 	public void getAllAddsContactsToModel()
 	{
-		List<Contact> contacts = asList(new Contact());
+		Contact contact = new Contact();
+		List<Contact> contacts = asList(contact);
 		when(contactRepository.getAll()).thenReturn(contacts);
+		
+		List<Resource<Contact>> resources = asList(new Resource<Contact>(contact));
+		when(contactResourceAssembler.toResources(contacts)).thenReturn(resources);
 		
 		ModelAndView actual = controller.getAll();
 		
-		assertEquals(contacts, actual.getModel().get("contacts"));
+		assertEquals(resources, actual.getModel().get("contacts"));
 	}
 	
 	@Test

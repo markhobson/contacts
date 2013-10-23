@@ -101,6 +101,14 @@
 				<version>${springSecurityVersion}</version>
 			</dependency>
 			
+			<!-- Spring Hateoas -->
+			
+			<dependency>
+				<groupId>org.springframework.hateoas</groupId>
+				<artifactId>spring-hateoas</artifactId>
+				<version>0.8.0.RELEASE</version>
+			</dependency>
+			
 			<!-- Contacts -->
 			
 			<dependency>

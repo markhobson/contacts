@@ -79,6 +79,13 @@
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
 		
+		<!-- Spring Hateoas -->
+		
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
+		
 		<!-- Contacts -->
 		
 		<dependency>

@@ -14,8 +14,10 @@
 package org.hobsoft.contacts.server.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -39,14 +41,17 @@ public class ContactsController
 	
 	private final ContactRepository contactRepository;
 	
+	private final ContactResourceAssembler contactResourceAssembler;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactsController(ContactRepository contactRepository)
+	public ContactsController(ContactRepository contactRepository, ContactResourceAssembler contactResourceAssembler)
 	{
 		this.contactRepository = checkNotNull(contactRepository, "contactRepository");
+		this.contactResourceAssembler = checkNotNull(contactResourceAssembler, "contactResourceAssembler");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -56,8 +61,10 @@ public class ContactsController
 	@RequestMapping(value = "/contacts", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView getAll()
 	{
+		List<Contact> contacts = contactRepository.getAll();
+		
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("contacts", contactRepository.getAll());
+		model.put("contacts", contactResourceAssembler.toResources(contacts));
 		
 		return new ModelAndView("contacts", model);
 	}
