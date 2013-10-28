@@ -17,7 +17,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.support.selenium.DestroyableWebDriver;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -50,10 +49,10 @@ public class AcceptanceTestConfig
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Bean(destroyMethod = "")
+	@Bean(destroyMethod = "quit")
 	public WebDriver webDriver()
 	{
-		return new DestroyableWebDriver(new FirefoxDriver());
+		return new FirefoxDriver();
 	}
 	
 	@Bean
