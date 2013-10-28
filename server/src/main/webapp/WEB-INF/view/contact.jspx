@@ -5,7 +5,7 @@
 	<jsp:directive.page contentType="text/html"/>
 
 	<div itemscope="itemscope" itemtype="http://schema.org/Person">
-		<h1 itemprop="name">${contact.name}</h1>
+		<h1 itemprop="name">${contact.content.name}</h1>
 	</div>
 
 </tag:page>

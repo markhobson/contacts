@@ -72,8 +72,10 @@ public class ContactsController
 	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView get(@PathVariable long id)
 	{
+		Contact contact = contactRepository.get(id);
+		
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("contact", contactRepository.get(id));
+		model.put("contact", contactResourceAssembler.toResource(contact));
 		
 		return new ModelAndView("contact", model);
 	}

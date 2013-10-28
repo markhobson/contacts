@@ -100,9 +100,12 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
+		Resource<Contact> resource = new Resource<Contact>(contact);
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
+		
 		ModelAndView actual = controller.get(1);
 		
-		assertEquals(contact, actual.getModel().get("contact"));
+		assertEquals(resource, actual.getModel().get("contact"));
 	}
 
 	@Test
