@@ -54,17 +54,6 @@ public class ContactCreateDriver extends AbstractPageDriver
 		
 		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
 		
-		return parseContact(element);
-	}
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private static Contact parseContact(WebElement element)
-	{
-		String name = element.findElement(ByItem.prop("name")).getText();
-		
-		return new Contact(name);
+		return ContactParser.parse(element);
 	}
 }

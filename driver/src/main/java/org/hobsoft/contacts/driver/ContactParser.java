@@ -14,46 +14,30 @@
 package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.model.Contact;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
 /**
- * Web UI driver for the contact page.
+ * Microdata parser for contacts.
  */
-@Component
-public class ContactDriver extends AbstractPageDriver
+final class ContactParser
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	public ContactDriver(DriverConfiguration config)
+
+	private ContactParser()
 	{
-		super(config, elementPresent(By.cssSelector("body#contact")));
+		throw new AssertionError();
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	public ContactDriver show(long id)
-	{
-		driver().get(url("/contact/" + id));
-		
-		return this;
-	}
 
-	public Contact getContact()
+	public static Contact parse(WebElement element)
 	{
-		checkVisible();
+		String name = element.findElement(ByItem.prop("name")).getText();
 		
-		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
-		
-		return ContactParser.parse(element);
+		return new Contact(name);
 	}
 }
