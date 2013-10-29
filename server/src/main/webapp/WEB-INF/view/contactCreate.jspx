@@ -1,0 +1,15 @@
+<tag:page id="contactCreate" title="Add new contact"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
+>
+	<jsp:directive.page contentType="text/html"/>
+
+	<form method="post" action="/contacts" itemscope="itemscope" itemtype="http://schema.org/Person">
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name" class="form-control" itemprop="name"/>
+		</div>
+		<button type="submit" name="submit" class="btn btn-default">Create</button>
+	</form>	
+
+</tag:page>

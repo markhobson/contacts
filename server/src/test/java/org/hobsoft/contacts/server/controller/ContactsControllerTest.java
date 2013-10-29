@@ -72,6 +72,14 @@ public class ContactsControllerTest
 	}
 
 	@Test
+	public void createFormReturnsView()
+	{
+		ModelAndView actual = controller.createForm();
+		
+		assertEquals("contactCreate", actual.getViewName());
+	}
+	
+	@Test
 	public void getAllAddsContactsToModel()
 	{
 		Contact contact = new Contact();

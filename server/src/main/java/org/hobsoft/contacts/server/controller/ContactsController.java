@@ -58,6 +58,12 @@ public class ContactsController
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	@RequestMapping(value = "/contacts/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public ModelAndView createForm()
+	{
+		return new ModelAndView("contactCreate");
+	}
+	
 	@RequestMapping(value = "/contacts", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView getAll()
 	{
