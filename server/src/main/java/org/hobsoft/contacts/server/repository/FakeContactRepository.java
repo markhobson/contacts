@@ -22,8 +22,6 @@ import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.ImmutableList;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 /**
  * In-memory contact repository implementation.
  */
@@ -36,6 +34,8 @@ public class FakeContactRepository implements ContactRepository
 
 	private final Map<Long, Contact> contactsById;
 	
+	private long nextId;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
@@ -43,16 +43,34 @@ public class FakeContactRepository implements ContactRepository
 	public FakeContactRepository()
 	{
 		contactsById = new LinkedHashMap<>();
+		nextId = 1;
 		
-		create(newContact(1, "A"));
-		create(newContact(2, "B"));
-		create(newContact(3, "C"));
+		create(new Contact("A"));
+		create(new Contact("B"));
+		create(new Contact("C"));
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ContactRepository methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void create(Contact contact)
+	{
+		Long id = contact.getId();
+		
+		if (id == null)
+		{
+			id = nextId++;
+			contact.setId(id);
+		}
+		
+		contactsById.put(id, contact);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -75,26 +93,6 @@ public class FakeContactRepository implements ContactRepository
 			throw new IllegalArgumentException("Contact not found: " + id);
 		}
 		
-		return contact;
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	private void create(Contact contact)
-	{
-		Long id = contact.getId();
-		checkArgument(id != null, "id must be set");
-		
-		contactsById.put(id, contact);
-	}
-
-	private Contact newContact(long id, String name)
-	{
-		Contact contact = new Contact();
-		contact.setId(id);
-		contact.setName(name);
 		return contact;
 	}
 }

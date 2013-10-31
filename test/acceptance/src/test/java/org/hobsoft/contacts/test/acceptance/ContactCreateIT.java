@@ -17,6 +17,7 @@ import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,6 +47,19 @@ public class ContactCreateIT extends AbstractSecurePageIT
 		contactCreate.show();
 		
 		assertThat(contactCreate.getContact(), samePropertyValuesAs(new Contact("")));
+	}
+	
+	@Ignore("Reinstate when we can delete created contact")
+	@Test
+	@Authenticated
+	public void submitCreatesContact()
+	{
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
+		
+		assertThat(contact, samePropertyValuesAs(new Contact("x")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

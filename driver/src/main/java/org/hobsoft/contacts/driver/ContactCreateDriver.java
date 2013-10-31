@@ -21,6 +21,8 @@ import org.springframework.stereotype.Component;
 
 import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Web UI driver for the create contact page.
  */
@@ -28,13 +30,21 @@ import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.e
 public class ContactCreateDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final ContactDriver contactDriver;
+
+	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config)
+	public ContactCreateDriver(DriverConfiguration config, ContactDriver contactDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactCreate")));
+		
+		this.contactDriver = checkNotNull(contactDriver, "contactDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -55,5 +65,25 @@ public class ContactCreateDriver extends AbstractPageDriver
 		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
 		
 		return ContactParser.parse(element);
+	}
+
+	public ContactCreateDriver setContact(Contact contact)
+	{
+		checkVisible();
+		
+		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
+
+		element.findElement(ByItem.prop("name")).sendKeys(contact.getName());
+		
+		return this;
+	}
+
+	public ContactDriver create()
+	{
+		checkVisible();
+		
+		driver().findElement(By.name("submit")).click();
+		
+		return contactDriver;
 	}
 }

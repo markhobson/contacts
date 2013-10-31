@@ -13,19 +13,25 @@
  */
 package org.hobsoft.contacts.server.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 
 import static java.util.Arrays.asList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -80,6 +86,29 @@ public class ContactsControllerTest
 	}
 	
 	@Test
+	public void createCreatesContact()
+	{
+		Contact contact = new Contact();
+		when(contactResourceAssembler.toResource(contact)).thenReturn(createContactResource(contact));
+		
+		controller.create(contact);
+
+		verify(contactRepository).create(contact);
+	}
+	
+	@Test
+	public void createReturnsSeeOtherAndLocation() throws URISyntaxException
+	{
+		Contact contact = new Contact();
+		when(contactResourceAssembler.toResource(contact)).thenReturn(new Resource<Contact>(contact, new Link("x")));
+		
+		ResponseEntity<Object> actual = controller.create(contact);
+		
+		assertEquals(HttpStatus.SEE_OTHER, actual.getStatusCode());
+		assertEquals(new URI("x"), actual.getHeaders().getLocation());
+	}
+
+	@Test
 	public void getAllAddsContactsToModel()
 	{
 		Contact contact = new Contact();
@@ -122,5 +151,14 @@ public class ContactsControllerTest
 		ModelAndView actual = controller.get(1);
 		
 		assertEquals("contact", actual.getViewName());
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static Resource<Contact> createContactResource(Contact contact)
+	{
+		return new Resource<Contact>(contact, new Link("_self"));
 	}
 }

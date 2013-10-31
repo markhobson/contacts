@@ -26,6 +26,8 @@ public interface ContactRepository
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	void create(Contact contact);
+	
 	List<Contact> getAll();
 
 	Contact get(long id);
