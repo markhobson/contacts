@@ -105,4 +105,15 @@ public class ContactsController
 		
 		return new ModelAndView("contact", model);
 	}
+
+	@RequestMapping(value = "/contact/{id}/delete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public ModelAndView deleteForm(@PathVariable long id)
+	{
+		Contact contact = contactRepository.get(id);
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("contact", contactResourceAssembler.toResource(contact));
+		
+		return new ModelAndView("contactDelete", model);
+	}
 }

@@ -153,6 +153,28 @@ public class ContactsControllerTest
 		assertEquals("contact", actual.getViewName());
 	}
 	
+	@Test
+	public void deleteFormAddsContactToModel()
+	{
+		Contact contact = new Contact();
+		when(contactRepository.get(1)).thenReturn(contact);
+		
+		Resource<Contact> resource = new Resource<Contact>(contact);
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
+		
+		ModelAndView actual = controller.deleteForm(1);
+		
+		assertEquals(resource, actual.getModel().get("contact"));
+	}
+
+	@Test
+	public void deleteFormReturnsView()
+	{
+		ModelAndView actual = controller.deleteForm(1);
+		
+		assertEquals("contactDelete", actual.getViewName());
+	}
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
