@@ -35,16 +35,19 @@ public class ContactCreateDriver extends AbstractPageDriver
 
 	private final ContactDriver contactDriver;
 
+	private final ContactsDriver contactsDriver;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config, ContactDriver contactDriver)
+	public ContactCreateDriver(DriverConfiguration config, ContactDriver contactDriver, ContactsDriver contactsDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactCreate")));
 		
 		this.contactDriver = checkNotNull(contactDriver, "contactDriver");
+		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -85,5 +88,14 @@ public class ContactCreateDriver extends AbstractPageDriver
 		driver().findElement(By.name("submit")).click();
 		
 		return contactDriver;
+	}
+
+	public ContactsDriver cancel()
+	{
+		checkVisible();
+		
+		driver().findElement(By.id("cancel")).click();
+		
+		return contactsDriver;
 	}
 }

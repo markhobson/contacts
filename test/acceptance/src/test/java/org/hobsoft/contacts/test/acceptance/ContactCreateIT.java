@@ -15,6 +15,7 @@ package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
+import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
@@ -23,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the create contact page.
@@ -35,6 +37,9 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	
 	@Autowired
 	private ContactCreateDriver contactCreate;
+	
+	@Autowired
+	private ContactsDriver contacts;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -60,6 +65,16 @@ public class ContactCreateIT extends AbstractSecurePageIT
 			.getContact();
 		
 		assertThat(contact, samePropertyValuesAs(new Contact("x")));
+	}
+	
+	@Test
+	@Authenticated
+	public void cancelShowsContacts()
+	{
+		contactCreate.show()
+			.cancel();
+		
+		assertTrue(contacts.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
