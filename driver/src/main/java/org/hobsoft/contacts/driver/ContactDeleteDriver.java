@@ -34,17 +34,20 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 
 	private final ContactsDriver contactsDriver;
+	
+	private final ContactDriver contactDriver;
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactDeleteDriver(DriverConfiguration config, ContactsDriver contactsDriver)
+	public ContactDeleteDriver(DriverConfiguration config, ContactsDriver contactsDriver, ContactDriver contactDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactDelete")));
 		
 		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
+		this.contactDriver = checkNotNull(contactDriver, "contactDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -74,5 +77,14 @@ public class ContactDeleteDriver extends AbstractPageDriver
 		driver().findElement(By.name("submit")).click();
 		
 		return contactsDriver;
+	}
+
+	public ContactDriver cancel()
+	{
+		checkVisible();
+		
+		driver().findElement(By.id("cancel")).click();
+		
+		return contactDriver;
 	}
 }

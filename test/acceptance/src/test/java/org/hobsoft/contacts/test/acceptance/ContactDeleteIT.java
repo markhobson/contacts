@@ -16,6 +16,7 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.ContactDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the delete contact page.
@@ -39,6 +41,9 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	
 	@Autowired
 	private ContactDeleteDriver contactDelete;
+	
+	@Autowired
+	private ContactDriver contact;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -57,6 +62,17 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		contactDelete.show(contact.getId());
 		
 		assertThat(contactDelete.getContact(), samePropertyValuesAs(new Contact("x")));
+	}
+	
+	@Test
+	@Authenticated
+	public void cancelShowsContacts()
+	{
+		contactDelete.show(1)
+			.cancel();
+		
+		// TODO: assert correct contact
+		assertTrue(contact.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

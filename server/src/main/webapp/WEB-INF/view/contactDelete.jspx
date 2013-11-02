@@ -1,4 +1,4 @@
-<tag:page id="contactCreate" title="Add new contact"
+<tag:page id="contactDelete" title="Delete contact"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
 >
@@ -10,7 +10,10 @@
 		<p>Are you sure you want to delete contact "<span itemprop="name">${contact.content.name}</span>"?</p>
 		
 		<form method="post" action="/contact/${contact.content.id}/delete">
-			<button type="submit" name="submit" class="btn btn-danger">Delete</button>
+			<div class="btn-toolbar">
+				<button type="submit" name="submit" class="btn btn-danger">Delete</button>
+				<a id="cancel" href="/contact/${contact.content.id}" class="btn btn-default">Cancel</a>
+			</div>
 		</form>	
 	</div>
 	
