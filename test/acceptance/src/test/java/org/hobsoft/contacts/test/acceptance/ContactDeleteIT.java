@@ -62,9 +62,6 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		Contact actual = contactDelete.show(contact)
 			.getContact();
 		
-		contactDelete.show(contact)
-			.delete();
-		
 		assertThat(actual.getName(), is("x"));
 	}
 	
@@ -98,13 +95,8 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		contactDelete.show(contact)
 			.cancel();
 		
-		boolean actual = this.contact.isVisible();
-		
-		contactDelete.show(contact)
-			.delete();
-	
 		// TODO: assert correct contact
-		assertTrue(actual);
+		assertTrue(this.contact.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

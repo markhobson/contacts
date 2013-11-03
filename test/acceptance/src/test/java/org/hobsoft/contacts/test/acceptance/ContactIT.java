@@ -59,9 +59,6 @@ public class ContactIT extends AbstractSecurePageIT
 		Contact actual = this.contact.show(contact)
 			.getContact();
 		
-		contactDelete.show(actual)
-			.delete();
-	
 		Contact expected = new Contact("x");
 		expected.setId(contact.getId());
 		assertThat(actual, samePropertyValuesAs(expected));

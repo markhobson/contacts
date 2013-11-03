@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,8 @@ public class ContactCreateDriver extends AbstractPageDriver
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
+	private final ContactListener contactListener;
+	
 	private final ContactDriver contactDriver;
 
 	private final ContactsDriver contactsDriver;
@@ -42,10 +45,12 @@ public class ContactCreateDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config, ContactDriver contactDriver, ContactsDriver contactsDriver)
+	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener, ContactDriver contactDriver,
+		ContactsDriver contactsDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactCreate")));
 		
+		this.contactListener = checkNotNull(contactListener, "contactListener");
 		this.contactDriver = checkNotNull(contactDriver, "contactDriver");
 		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
 	}
@@ -86,6 +91,11 @@ public class ContactCreateDriver extends AbstractPageDriver
 		checkVisible();
 		
 		driver().findElement(By.name("submit")).click();
+		
+		if (contactDriver.isVisible())
+		{
+			contactListener.contactCreated(contactDriver.getContact());
+		}
 		
 		return contactDriver;
 	}

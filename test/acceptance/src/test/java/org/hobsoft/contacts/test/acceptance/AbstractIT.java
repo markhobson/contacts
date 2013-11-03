@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
+import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public abstract class AbstractIT
 	@Autowired
 	private AuthenticatedRule authenticatedRule;
 	
+	@Autowired
+	private ContactRule contactRule;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
@@ -42,5 +46,11 @@ public abstract class AbstractIT
 	public AuthenticatedRule getAuthenticatedRule()
 	{
 		return authenticatedRule;
+	}
+
+	@Rule
+	public ContactRule getContactRule()
+	{
+		return contactRule;
 	}
 }
