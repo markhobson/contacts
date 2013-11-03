@@ -23,7 +23,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -52,7 +52,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Ignore("Reinstate when we can delete created contact")
 	@Test
 	@Authenticated
-	public void pageShowsForm()
+	public void pageShowsName()
 	{
 		Contact contact = contactCreate.show()
 			.setContact(new Contact("x"))
@@ -61,7 +61,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		
 		contactDelete.show(contact.getId());
 		
-		assertThat(contactDelete.getContact(), samePropertyValuesAs(new Contact("x")));
+		assertThat(contactDelete.getContact().getName(), is("x"));
 	}
 	
 	@Test
