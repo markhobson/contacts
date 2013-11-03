@@ -14,6 +14,8 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.ContactCreateDriver;
+import org.hobsoft.contacts.driver.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.ContactDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -33,6 +35,12 @@ public class ContactIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
+	private ContactCreateDriver contactCreate;
+	
+	@Autowired
+	private ContactDeleteDriver contactDelete;
+	
+	@Autowired
 	private ContactDriver contact;
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -43,11 +51,20 @@ public class ContactIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContact()
 	{
-		contact.show(1);
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
 		
-		Contact expected = new Contact("A");
-		expected.setId(1L);
-		assertThat(contact.getContact(), samePropertyValuesAs(expected));
+		Contact actual = this.contact.show(contact.getId())
+			.getContact();
+		
+		contactDelete.show(actual.getId())
+			.delete();
+	
+		Contact expected = new Contact("x");
+		expected.setId(contact.getId());
+		assertThat(actual, samePropertyValuesAs(expected));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
