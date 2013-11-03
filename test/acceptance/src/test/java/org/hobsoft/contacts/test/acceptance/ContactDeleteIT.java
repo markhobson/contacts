@@ -50,7 +50,6 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Ignore("Reinstate when we can delete created contact")
 	@Test
 	@Authenticated
 	public void pageShowsName()
@@ -60,9 +59,13 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		contactDelete.show(contact.getId());
+		Contact actual = contactDelete.show(contact.getId())
+			.getContact();
 		
-		assertThat(contactDelete.getContact().getName(), is("x"));
+		contactDelete.show(contact.getId())
+			.delete();
+		
+		assertThat(actual.getName(), is("x"));
 	}
 	
 	@Ignore("Reinstate when we can assert contact not found")
