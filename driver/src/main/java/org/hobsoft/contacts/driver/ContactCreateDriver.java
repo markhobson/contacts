@@ -36,7 +36,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 
 	private final ContactListener contactListener;
 	
-	private final ContactDriver contactDriver;
+	private final ContactViewDriver contactViewDriver;
 
 	private final ContactsDriver contactsDriver;
 	
@@ -45,13 +45,13 @@ public class ContactCreateDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener, ContactDriver contactDriver,
-		ContactsDriver contactsDriver)
+	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener,
+		ContactViewDriver contactViewDriver, ContactsDriver contactsDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactCreate")));
 		
 		this.contactListener = checkNotNull(contactListener, "contactListener");
-		this.contactDriver = checkNotNull(contactDriver, "contactDriver");
+		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");
 		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
 	}
 	
@@ -86,18 +86,18 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return this;
 	}
 
-	public ContactDriver create()
+	public ContactViewDriver create()
 	{
 		checkVisible();
 		
 		driver().findElement(By.name("submit")).click();
 		
-		if (contactDriver.isVisible())
+		if (contactViewDriver.isVisible())
 		{
-			contactListener.contactCreated(contactDriver.getContact());
+			contactListener.contactCreated(contactViewDriver.getContact());
 		}
 		
-		return contactDriver;
+		return contactViewDriver;
 	}
 
 	public ContactsDriver cancel()

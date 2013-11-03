@@ -15,7 +15,7 @@ package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
-import org.hobsoft.contacts.driver.ContactDriver;
+import org.hobsoft.contacts.driver.ContactViewDriver;
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -43,7 +43,7 @@ public class ContactsIT extends AbstractSecurePageIT
 	private ContactsDriver contacts;
 	
 	@Autowired
-	private ContactDriver contact;
+	private ContactViewDriver contactView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -83,7 +83,7 @@ public class ContactsIT extends AbstractSecurePageIT
 		contacts.show()
 			.clickContact("x");
 		
-		assertTrue(contact.isVisible());
+		assertTrue(contactView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

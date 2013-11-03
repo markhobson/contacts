@@ -22,31 +22,31 @@ import org.springframework.stereotype.Component;
 import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
 /**
- * Web UI driver for the contact page.
+ * Web UI driver for the view contact page.
  */
 @Component
-public class ContactDriver extends AbstractPageDriver
+public class ContactViewDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactDriver(DriverConfiguration config)
+	public ContactViewDriver(DriverConfiguration config)
 	{
-		super(config, elementPresent(By.cssSelector("body#contact")));
+		super(config, elementPresent(By.cssSelector("body#contactView")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public ContactDriver show(Contact contact)
+	public ContactViewDriver show(Contact contact)
 	{
 		return show(contact.getId());
 	}
 	
-	public ContactDriver show(long id)
+	public ContactViewDriver show(long id)
 	{
 		driver().get(url("/contact/" + id));
 		

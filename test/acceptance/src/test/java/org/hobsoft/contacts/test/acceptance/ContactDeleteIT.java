@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.ContactDriver;
+import org.hobsoft.contacts.driver.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
@@ -44,7 +44,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
-	private ContactDriver contact;
+	private ContactViewDriver contactView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -78,7 +78,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		contactDelete.show(contact)
 			.delete();
 		
-		this.contact.show(contact);
+		contactView.show(contact);
 		// TODO: assert 404
 		fail();
 	}
@@ -96,7 +96,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.cancel();
 		
 		// TODO: assert correct contact
-		assertTrue(this.contact.isVisible());
+		assertTrue(contactView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

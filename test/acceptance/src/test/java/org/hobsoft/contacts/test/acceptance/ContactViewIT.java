@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.ContactDriver;
+import org.hobsoft.contacts.driver.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
@@ -26,9 +26,9 @@ import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
 
 /**
- * Acceptance test for the contact page.
+ * Acceptance test for the view contact page.
  */
-public class ContactIT extends AbstractSecurePageIT
+public class ContactViewIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -41,7 +41,7 @@ public class ContactIT extends AbstractSecurePageIT
 	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
-	private ContactDriver contact;
+	private ContactViewDriver contactView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -56,7 +56,7 @@ public class ContactIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		Contact actual = this.contact.show(contact)
+		Contact actual = contactView.show(contact)
 			.getContact();
 		
 		Contact expected = new Contact("x");
@@ -74,7 +74,7 @@ public class ContactIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		contact.show(1);
+		contactView.show(1);
 	}
 	
 	/**
@@ -83,6 +83,6 @@ public class ContactIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contact;
+		return contactView;
 	}
 }

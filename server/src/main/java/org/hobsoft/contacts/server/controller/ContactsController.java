@@ -103,7 +103,7 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contact", contactResourceAssembler.toResource(contact));
 		
-		return new ModelAndView("contact", model);
+		return new ModelAndView("contactView", model);
 	}
 
 	@RequestMapping(value = "/contact/{id}/delete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

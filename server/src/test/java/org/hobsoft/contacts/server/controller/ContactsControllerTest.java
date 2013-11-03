@@ -152,7 +152,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.get(1);
 		
-		assertEquals("contact", actual.getViewName());
+		assertEquals("contactView", actual.getViewName());
 	}
 	
 	@Test
