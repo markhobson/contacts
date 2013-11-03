@@ -47,4 +47,16 @@ public final class WebDriverUtils
 			return null;
 		}
 	}
+
+	public static WebElement quietFindElementBy(WebElement element, By by)
+	{
+		try
+		{
+			return element.findElement(by);
+		}
+		catch (NoSuchElementException exception)
+		{
+			return null;
+		}
+	}
 }

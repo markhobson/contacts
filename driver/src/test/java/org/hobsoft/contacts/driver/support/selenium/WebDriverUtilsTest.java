@@ -34,7 +34,7 @@ public class WebDriverUtilsTest
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test
-	public void quietFindElementByWithKnownElementReturnsElement()
+	public void quietFindElementByWithDriverAndKnownElementReturnsElement()
 	{
 		WebDriver driver = mock(WebDriver.class);
 		By by = mock(By.class);
@@ -45,12 +45,33 @@ public class WebDriverUtilsTest
 	}
 	
 	@Test
-	public void quietFindElementByWithUnknownElementReturnsNull()
+	public void quietFindElementByWithDriverAndUnknownElementReturnsNull()
 	{
 		WebDriver driver = mock(WebDriver.class);
 		By by = mock(By.class);
 		when(driver.findElement(by)).thenThrow(new NoSuchElementException(""));
 		
 		assertNull(WebDriverUtils.quietFindElementBy(driver, by));
+	}
+	
+	@Test
+	public void quietFindElementByWithElementAndKnownElementReturnsElement()
+	{
+		WebElement element = mock(WebElement.class);
+		By by = mock(By.class);
+		WebElement child = mock(WebElement.class);
+		when(element.findElement(by)).thenReturn(child);
+		
+		assertEquals(child, WebDriverUtils.quietFindElementBy(element, by));
+	}
+	
+	@Test
+	public void quietFindElementByWithElementAndUnknownElementReturnsNull()
+	{
+		WebElement element = mock(WebElement.class);
+		By by = mock(By.class);
+		when(element.findElement(by)).thenThrow(new NoSuchElementException(""));
+		
+		assertNull(WebDriverUtils.quietFindElementBy(element, by));
 	}
 }
