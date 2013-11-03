@@ -46,10 +46,6 @@ public class FakeContactRepository implements ContactRepository
 	{
 		contactsById = new LinkedHashMap<>();
 		nextId = 1;
-		
-		create(new Contact("A"));
-		create(new Contact("B"));
-		create(new Contact("C"));
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------

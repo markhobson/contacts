@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactDriver;
 import org.hobsoft.contacts.driver.ContactsDriver;
 import org.hobsoft.contacts.model.Contact;
@@ -36,6 +37,9 @@ public class ContactsIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
+	private ContactCreateDriver contactCreate;
+	
+	@Autowired
 	private ContactsDriver contacts;
 	
 	@Autowired
@@ -49,12 +53,22 @@ public class ContactsIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContacts()
 	{
+		contactCreate.show()
+			.setContact(new Contact("x"))
+			.create();
+		contactCreate.show()
+			.setContact(new Contact("y"))
+			.create();
+		contactCreate.show()
+			.setContact(new Contact("z"))
+			.create();
+		
 		contacts.show();
 		
 		assertThat(contacts.getContacts(), contains(
-			samePropertyValuesAs(new Contact("A")),
-			samePropertyValuesAs(new Contact("B")),
-			samePropertyValuesAs(new Contact("C"))
+			samePropertyValuesAs(new Contact("x")),
+			samePropertyValuesAs(new Contact("y")),
+			samePropertyValuesAs(new Contact("z"))
 		));
 	}
 	
@@ -62,8 +76,12 @@ public class ContactsIT extends AbstractSecurePageIT
 	@Authenticated
 	public void contactWhenClickedShowsContact()
 	{
+		contactCreate.show()
+			.setContact(new Contact("x"))
+			.create();
+		
 		contacts.show()
-			.clickContact("A");
+			.clickContact("x");
 		
 		assertTrue(contact.isVisible());
 	}
