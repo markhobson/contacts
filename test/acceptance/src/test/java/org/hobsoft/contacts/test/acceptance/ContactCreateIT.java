@@ -52,9 +52,10 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsForm()
 	{
-		contactCreate.show();
+		Contact actual = contactCreate.show()
+			.getContact();
 		
-		assertThat(contactCreate.getContact(), samePropertyValuesAs(new Contact("")));
+		assertThat(actual, samePropertyValuesAs(new Contact("")));
 	}
 	
 	@Test
