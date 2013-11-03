@@ -39,7 +39,11 @@ public class ContactResourceAssembler extends AbstractResourceAssembler<Contact,
 	{
 		Resource<Contact> resource = new Resource<Contact>(contact);
 		
-		resource.add(linkTo(methodOn(ContactsController.class).get(contact.getId())).withSelfRel());
+		resource.add(linkTo(methodOn(ContactsController.class).get(contact.getId()))
+			.withSelfRel());
+		
+		resource.add(linkTo(methodOn(ContactsController.class).getAll())
+			.withRel(Relation.COLLECTION.rel()));
 		
 		return resource;
 	}

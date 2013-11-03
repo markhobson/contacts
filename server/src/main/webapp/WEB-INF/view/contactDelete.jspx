@@ -9,7 +9,8 @@
 	
 		<p>Are you sure you want to delete contact "<span itemprop="name">${contact.content.name}</span>"?</p>
 		
-		<form method="post" action="/contact/${contact.content.id}/delete">
+		<form method="post" action="/contact/${contact.content.id}">
+			<input type="hidden" name="_method" value="DELETE"/>
 			<div class="btn-toolbar">
 				<button type="submit" name="submit" class="btn btn-danger">Delete</button>
 				<a id="cancel" href="/contact/${contact.content.id}" class="btn btn-default">Cancel</a>

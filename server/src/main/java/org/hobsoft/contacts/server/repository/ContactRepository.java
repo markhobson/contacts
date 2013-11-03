@@ -31,4 +31,6 @@ public interface ContactRepository
 	List<Contact> getAll();
 
 	Contact get(long id);
+
+	void delete(Contact contact);
 }

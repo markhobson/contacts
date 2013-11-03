@@ -13,67 +13,39 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.model.Contact;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.springframework.hateoas.Link;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import static org.junit.Assert.assertEquals;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Tests {@code ContactResourceAssembler}.
+ * Hyperlink relation types.
  */
-public class ContactResourceAssemblerTest
+public enum Relation
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// constants
+	// ----------------------------------------------------------------------------------------------------------------
+
+	SELF(Link.REL_SELF),
+	COLLECTION("collection");
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private ContactResourceAssembler resourceAssembler;
+	private final String rel;
 	
 	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
+	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	@Before
-	public void setUp()
+	private Relation(String rel)
 	{
-		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
-		
-		resourceAssembler = new ContactResourceAssembler();
+		this.rel = checkNotNull(rel, "rel");
 	}
 	
-	@After
-	public void tearDown()
+	public String rel()
 	{
-		RequestContextHolder.resetRequestAttributes();
-	}
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// tests
-	// ----------------------------------------------------------------------------------------------------------------
-
-	@Test
-	public void toResourceReturnsResourceWithSelfLink()
-	{
-		Contact contact = new Contact();
-		contact.setId(1L);
-		
-		Link actual = resourceAssembler.toResource(contact).getId();
-		assertEquals(new Link("http://localhost/contact/1"), actual);
-	}
-
-	@Test
-	public void toResourceReturnsResourceWithCollectionLink()
-	{
-		Contact contact = new Contact();
-		contact.setId(1L);
-		
-		Link actual = resourceAssembler.toResource(contact).getLink("collection");
-		assertEquals(new Link("http://localhost/contacts", "collection"), actual);
+		return rel;
 	}
 }

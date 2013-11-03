@@ -22,6 +22,8 @@ import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.ImmutableList;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 /**
  * In-memory contact repository implementation.
  */
@@ -94,5 +96,17 @@ public class FakeContactRepository implements ContactRepository
 		}
 		
 		return contact;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void delete(Contact contact)
+	{
+		Long id = contact.getId();
+		checkArgument(id != null, "Cannot delete transient entity: " + contact);
+		
+		contactsById.remove(id);
 	}
 }

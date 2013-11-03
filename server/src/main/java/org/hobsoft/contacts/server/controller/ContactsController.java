@@ -116,4 +116,19 @@ public class ContactsController
 		
 		return new ModelAndView("contactDelete", model);
 	}
+	
+	@RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Object> delete(@PathVariable long id)
+	{
+		Contact contact = contactRepository.get(id);
+		
+		contactRepository.delete(contact);
+		
+		Link link = contactResourceAssembler.toResource(contact).getLink(Relation.COLLECTION.rel());
+		URI location = UriComponentsBuilder.fromUriString(link.getHref()).build().toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(location);
+		return new ResponseEntity<>(headers, HttpStatus.SEE_OTHER);
+	}
 }

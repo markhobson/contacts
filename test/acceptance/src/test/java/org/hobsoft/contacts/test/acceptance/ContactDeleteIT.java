@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Acceptance test for the delete contact page.
@@ -62,6 +63,24 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		contactDelete.show(contact.getId());
 		
 		assertThat(contactDelete.getContact().getName(), is("x"));
+	}
+	
+	@Ignore("Reinstate when we can assert contact not found")
+	@Test
+	@Authenticated
+	public void deleteDeletesContact()
+	{
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
+		
+		contactDelete.show(contact.getId())
+			.delete();
+		
+		this.contact.show(contact.getId());
+		// TODO: assert 404
+		fail();
 	}
 	
 	@Test

@@ -89,7 +89,8 @@ public class ContactsControllerTest
 	public void createCreatesContact()
 	{
 		Contact contact = new Contact();
-		when(contactResourceAssembler.toResource(contact)).thenReturn(createContactResource(contact));
+		Resource<Contact> resource = new Resource<Contact>(contact, createLink(Relation.SELF));
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		controller.create(contact);
 
@@ -100,7 +101,8 @@ public class ContactsControllerTest
 	public void createReturnsSeeOtherAndLocation() throws URISyntaxException
 	{
 		Contact contact = new Contact();
-		when(contactResourceAssembler.toResource(contact)).thenReturn(new Resource<Contact>(contact, new Link("x")));
+		Resource<Contact> resource = new Resource<Contact>(contact, new Link("x"));
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ResponseEntity<Object> actual = controller.create(contact);
 		
@@ -175,12 +177,41 @@ public class ContactsControllerTest
 		assertEquals("contactDelete", actual.getViewName());
 	}
 	
+	@Test
+	public void deleteDeletesContact()
+	{
+		Contact contact = new Contact();
+		when(contactRepository.get(1)).thenReturn(contact);
+		
+		Resource<Contact> resource = new Resource<Contact>(contact, createLink(Relation.COLLECTION));
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
+
+		controller.delete(1);
+
+		verify(contactRepository).delete(contact);
+	}
+
+	@Test
+	public void deleteReturnsSeeOtherAndLocation() throws URISyntaxException
+	{
+		Contact contact = new Contact();
+		when(contactRepository.get(1)).thenReturn(contact);
+		
+		Resource<Contact> resource = new Resource<Contact>(contact, new Link("x", Relation.COLLECTION.rel()));
+		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
+		
+		ResponseEntity<Object> actual = controller.delete(1);
+		
+		assertEquals(HttpStatus.SEE_OTHER, actual.getStatusCode());
+		assertEquals(new URI("x"), actual.getHeaders().getLocation());
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private static Resource<Contact> createContactResource(Contact contact)
+	private static Link createLink(Relation relation)
 	{
-		return new Resource<Contact>(contact, new Link("_self"));
+		return new Link("_href", relation.rel());
 	}
 }
