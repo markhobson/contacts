@@ -13,22 +13,18 @@
  */
 package org.hobsoft.contacts.driver;
 
-import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.WebElement;
 
-import static org.hobsoft.contacts.driver.MicrodataParser.getItemValue;
-import static org.hobsoft.contacts.driver.support.selenium.WebDriverUtils.quietFindElementBy;
-
 /**
- * Microdata parser for contacts.
+ * Selenium WebDriver to Microdata parser.
  */
-final class ContactParser
+final class MicrodataParser
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private ContactParser()
+	private MicrodataParser()
 	{
 		throw new AssertionError();
 	}
@@ -37,29 +33,25 @@ final class ContactParser
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static Contact parse(WebElement element)
+	public static String getItemValue(WebElement element)
 	{
-		String name = getItemValue(element.findElement(ByItem.prop("name")));
-		Contact contact = new Contact(name);
-		
-		String url = getItemValue(quietFindElementBy(element, ByItem.prop("url")));
-		if (url != null)
+		if (element == null)
 		{
-			contact.setId(parseId(url));
+			return null;
 		}
 		
-		return contact;
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	private static Long parseId(String url)
-	{
-		int lastSlash = url.lastIndexOf('/');
-		String idString = url.substring(lastSlash + 1);
+		String tagName = element.getTagName();
+		String value;
 		
-		return Long.valueOf(idString);
+		if ("link".equals(tagName))
+		{
+			value = element.getAttribute("href");
+		}
+		else
+		{
+			value = element.getText();
+		}
+		
+		return value;
 	}
 }
