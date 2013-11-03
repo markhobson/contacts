@@ -81,7 +81,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		contactDelete.show(contact)
 			.delete();
 		
-		this.contact.show(contact.getId());
+		this.contact.show(contact);
 		// TODO: assert 404
 		fail();
 	}

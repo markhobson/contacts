@@ -41,6 +41,11 @@ public class ContactDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	public ContactDriver show(Contact contact)
+	{
+		return show(contact.getId());
+	}
+	
 	public ContactDriver show(long id)
 	{
 		driver().get(url("/contact/" + id));
