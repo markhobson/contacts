@@ -54,6 +54,11 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	public ContactDeleteDriver show(Contact contact)
+	{
+		return show(contact.getId());
+	}
+	
 	public ContactDeleteDriver show(long id)
 	{
 		driver().get(url(String.format("/contact/%d/delete", id)));
