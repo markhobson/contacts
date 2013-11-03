@@ -90,11 +90,21 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContact()
 	{
-		contactDelete.show(1)
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
+		
+		contactDelete.show(contact.getId())
 			.cancel();
 		
+		boolean actual = this.contact.isVisible();
+		
+		contactDelete.show(contact.getId())
+			.delete();
+	
 		// TODO: assert correct contact
-		assertTrue(contact.isVisible());
+		assertTrue(actual);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
