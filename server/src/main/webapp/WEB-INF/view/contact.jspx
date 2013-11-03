@@ -6,6 +6,7 @@
 
 	<div itemscope="itemscope" itemtype="http://schema.org/Person">
 		<h1 itemprop="name">${contact.content.name}</h1>
+		<link itemprop="url" href="${contact.id.href}"/>
 	</div>
 
 </tag:page>

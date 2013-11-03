@@ -49,7 +49,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Ignore("Reinstate when contact page embeds id")
+	@Ignore("Reinstate when we can delete created contact")
 	@Test
 	@Authenticated
 	public void pageShowsForm()

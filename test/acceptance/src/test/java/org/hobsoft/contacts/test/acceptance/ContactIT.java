@@ -45,7 +45,9 @@ public class ContactIT extends AbstractSecurePageIT
 	{
 		contact.show(1);
 		
-		assertThat(contact.getContact(), samePropertyValuesAs(new Contact("A")));
+		Contact expected = new Contact("A");
+		expected.setId(1L);
+		assertThat(contact.getContact(), samePropertyValuesAs(expected));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
