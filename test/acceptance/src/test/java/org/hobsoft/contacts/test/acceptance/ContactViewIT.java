@@ -74,7 +74,23 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		contactView.show(1);
+		// TODO: simplify when we have client
+		
+		Contact contact;
+		
+		if (contactCreate.show().isVisible())
+		{
+			contact = contactCreate.setContact(new Contact("x"))
+				.create()
+				.getContact();
+		}
+		else
+		{
+			contact = new Contact();
+			contact.setId(1L);
+		}
+		
+		contactView.show(contact);
 	}
 	
 	/**
