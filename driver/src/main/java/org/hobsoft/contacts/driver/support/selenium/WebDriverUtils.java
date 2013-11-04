@@ -15,7 +15,7 @@ package org.hobsoft.contacts.driver.support.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -36,23 +36,11 @@ public final class WebDriverUtils
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static WebElement quietFindElementBy(WebDriver driver, By by)
+	public static WebElement quietFindElementBy(SearchContext context, By by)
 	{
 		try
 		{
-			return driver.findElement(by);
-		}
-		catch (NoSuchElementException exception)
-		{
-			return null;
-		}
-	}
-
-	public static WebElement quietFindElementBy(WebElement element, By by)
-	{
-		try
-		{
-			return element.findElement(by);
+			return context.findElement(by);
 		}
 		catch (NoSuchElementException exception)
 		{

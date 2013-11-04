@@ -16,7 +16,7 @@ package org.hobsoft.contacts.driver.support.selenium;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertEquals;
@@ -34,44 +34,23 @@ public class WebDriverUtilsTest
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test
-	public void quietFindElementByWithDriverAndKnownElementReturnsElement()
+	public void quietFindElementByWithKnownElementReturnsElement()
 	{
-		WebDriver driver = mock(WebDriver.class);
+		SearchContext context = mock(SearchContext.class);
 		By by = mock(By.class);
 		WebElement element = mock(WebElement.class);
-		when(driver.findElement(by)).thenReturn(element);
+		when(context.findElement(by)).thenReturn(element);
 		
-		assertEquals(element, WebDriverUtils.quietFindElementBy(driver, by));
+		assertEquals(element, WebDriverUtils.quietFindElementBy(context, by));
 	}
 	
 	@Test
 	public void quietFindElementByWithDriverAndUnknownElementReturnsNull()
 	{
-		WebDriver driver = mock(WebDriver.class);
+		SearchContext context = mock(SearchContext.class);
 		By by = mock(By.class);
-		when(driver.findElement(by)).thenThrow(new NoSuchElementException(""));
+		when(context.findElement(by)).thenThrow(new NoSuchElementException(""));
 		
-		assertNull(WebDriverUtils.quietFindElementBy(driver, by));
-	}
-	
-	@Test
-	public void quietFindElementByWithElementAndKnownElementReturnsElement()
-	{
-		WebElement element = mock(WebElement.class);
-		By by = mock(By.class);
-		WebElement child = mock(WebElement.class);
-		when(element.findElement(by)).thenReturn(child);
-		
-		assertEquals(child, WebDriverUtils.quietFindElementBy(element, by));
-	}
-	
-	@Test
-	public void quietFindElementByWithElementAndUnknownElementReturnsNull()
-	{
-		WebElement element = mock(WebElement.class);
-		By by = mock(By.class);
-		when(element.findElement(by)).thenThrow(new NoSuchElementException(""));
-		
-		assertNull(WebDriverUtils.quietFindElementBy(element, by));
+		assertNull(WebDriverUtils.quietFindElementBy(context, by));
 	}
 }
