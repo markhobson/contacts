@@ -40,7 +40,7 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	@Override
 	protected void addViewControllers(ViewControllerRegistry registry)
 	{
-		registry.addViewController("/login").setViewName("login");
+		registry.addViewController("/login").setViewName("auth/login");
 	}
 
 	/**
