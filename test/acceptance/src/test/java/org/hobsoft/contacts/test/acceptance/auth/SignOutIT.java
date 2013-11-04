@@ -11,87 +11,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.test.acceptance.auth;
 
-import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.auth.SignOutDriver;
+import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Acceptance test for the sign in page.
+ * Acceptance test for signing out page.
  */
-public class SignInIT extends AbstractIT
+public class SignOutIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private SignInDriver signIn;
+	private SignOutDriver signOut;
 	
 	@Autowired
-	private ContactsViewDriver contactsView;
+	private SignInDriver signIn;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	public void pageWhenUnauthenticatedShowsSignIn()
+	@Authenticated
+	public void signOutShowsSignIn()
 	{
-		signIn.show();
+		signOut.signOut();
 		
 		assertTrue(signIn.isVisible());
 	}
 	
 	@Test
 	@Authenticated
-	public void pageWhenAuthenticatedIsVisible()
+	public void signOutShowsSuccessMessage()
 	{
-		signIn.show();
+		signOut.signOut();
 		
-		assertTrue(signIn.isVisible());
-	}
-	
-	@Test
-	public void pageWhenUnauthenticatedDoesNotShowSignOut()
-	{
-		signIn.show();
-		
-		assertFalse(signIn.isSignOutVisible());
-	}
-	
-	@Test
-	@Authenticated
-	public void pageWhenAuthenticatedShowsSignOut()
-	{
-		signIn.show();
-		
-		assertTrue(signIn.isSignOutVisible());
-	}
-	
-	@Test
-	public void signInWithKnownCredentialsShowsContactsView()
-	{
-		signIn.show()
-			.signIn(new Credentials("mark", "password"));
-		
-		assertTrue(contactsView.isVisible());
-	}
-	
-	@Test
-	public void signInWithUnknownCredentialsShowsError()
-	{
-		signIn.show()
-			.signIn(new Credentials("mark", ""));
-		
-		assertEquals("Incorrect username or password.", signIn.getErrorMessage());
+		assertEquals("You have been signed out.", signIn.getSuccessMessage());
 	}
 }
