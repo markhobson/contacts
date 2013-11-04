@@ -43,7 +43,7 @@ final class MicrodataParser
 		String tagName = element.getTagName();
 		String value;
 		
-		if ("link".equals(tagName))
+		if ("link".equals(tagName) || "a".equals(tagName))
 		{
 			value = element.getAttribute("href");
 		}

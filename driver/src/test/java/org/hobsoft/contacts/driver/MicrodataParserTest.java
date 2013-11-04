@@ -40,6 +40,16 @@ public class MicrodataParserTest
 	}
 	
 	@Test
+	public void getItemValueWithAReturnsHref()
+	{
+		WebElement element = mock(WebElement.class);
+		when(element.getTagName()).thenReturn("a");
+		when(element.getAttribute("href")).thenReturn("x");
+		
+		assertEquals("x", MicrodataParser.getItemValue(element));
+	}
+	
+	@Test
 	public void getItemValueWithOtherReturnsText()
 	{
 		WebElement element = mock(WebElement.class);
