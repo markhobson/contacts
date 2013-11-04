@@ -59,7 +59,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
 		{
-			contacts.add(parseContact(element));
+			contacts.add(ContactParser.parse(element));
 		}
 		
 		return contacts;
@@ -71,7 +71,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
 		{
-			Contact contact = parseContact(element);
+			Contact contact = ContactParser.parse(element);
 			
 			if (name.equals(contact.getName()))
 			{
@@ -81,16 +81,5 @@ public class ContactsViewDriver extends AbstractPageDriver
 		}
 		
 		throw new IllegalArgumentException("Cannot find contact: " + name);
-	}
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private static Contact parseContact(WebElement element)
-	{
-		String name = element.findElement(ByItem.prop("name")).getText();
-		
-		return new Contact(name);
 	}
 }

@@ -53,22 +53,25 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContacts()
 	{
-		contactCreate.show()
+		Contact contact1 = contactCreate.show()
 			.setContact(new Contact("x"))
-			.create();
-		contactCreate.show()
+			.create()
+			.getContact();
+		Contact contact2 = contactCreate.show()
 			.setContact(new Contact("y"))
-			.create();
-		contactCreate.show()
+			.create()
+			.getContact();
+		Contact contact3 = contactCreate.show()
 			.setContact(new Contact("z"))
-			.create();
+			.create()
+			.getContact();
 		
 		contactsView.show();
 		
 		assertThat(contactsView.getContacts(), contains(
-			samePropertyValuesAs(new Contact("x")),
-			samePropertyValuesAs(new Contact("y")),
-			samePropertyValuesAs(new Contact("z"))
+			samePropertyValuesAs(contact1),
+			samePropertyValuesAs(contact2),
+			samePropertyValuesAs(contact3)
 		));
 	}
 	
