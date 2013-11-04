@@ -11,8 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.driver.contact;
 
+import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,34 +23,48 @@ import org.springframework.stereotype.Component;
 
 import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
- * Web UI driver for the view contact page.
+ * Web UI driver for the delete contact page.
  */
 @Component
-public class ContactViewDriver extends AbstractPageDriver
+public class ContactDeleteDriver extends AbstractPageDriver
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final ContactsViewDriver contactsDriver;
+	
+	private final ContactViewDriver contactViewDriver;
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactViewDriver(DriverConfiguration config)
+	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver,
+		ContactViewDriver contactViewDriver)
 	{
-		super(config, elementPresent(By.cssSelector("body#contactView")));
+		super(config, elementPresent(By.cssSelector("body#contactDelete")));
+		
+		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
+		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public ContactViewDriver show(Contact contact)
+	public ContactDeleteDriver show(Contact contact)
 	{
 		return show(contact.getId());
 	}
 	
-	public ContactViewDriver show(long id)
+	public ContactDeleteDriver show(long id)
 	{
-		driver().get(url("/contact/" + id));
+		driver().get(url(String.format("/contact/%d/delete", id)));
 		
 		return this;
 	}
@@ -60,5 +76,23 @@ public class ContactViewDriver extends AbstractPageDriver
 		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
 		
 		return ContactParser.parse(element);
+	}
+
+	public ContactsViewDriver delete()
+	{
+		checkVisible();
+		
+		driver().findElement(By.name("submit")).click();
+		
+		return contactsDriver;
+	}
+
+	public ContactViewDriver cancel()
+	{
+		checkVisible();
+		
+		driver().findElement(By.id("cancel")).click();
+		
+		return contactViewDriver;
 	}
 }

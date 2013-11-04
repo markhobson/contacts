@@ -11,11 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.driver.contact;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

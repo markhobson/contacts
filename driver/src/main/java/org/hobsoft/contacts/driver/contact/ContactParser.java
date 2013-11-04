@@ -11,58 +11,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.rule;
+package org.hobsoft.contacts.driver.contact;
 
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
-import org.junit.rules.ExternalResource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.openqa.selenium.WebElement;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static org.hobsoft.contacts.driver.contact.MicrodataParser.getItemValue;
+import static org.hobsoft.contacts.driver.support.selenium.WebDriverUtils.quietFindElementBy;
 
 /**
- * JUnit rule to delete created contacts on tear down. 
+ * Microdata parser for contacts.
  */
-@Component
-public class ContactRule extends ExternalResource
+final class ContactParser
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final ContactCollector contactCollector;
-	
-	private final ContactDeleteDriver contactDeleteDriver;
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	@Autowired
-	public ContactRule(ContactCollector contactCollector, ContactDeleteDriver contactDeleteDriver)
+	private ContactParser()
 	{
-		this.contactCollector = checkNotNull(contactCollector, "contactCollector");
-		this.contactDeleteDriver = checkNotNull(contactDeleteDriver, "contactDeleteDriver");
+		throw new AssertionError();
 	}
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// ExternalResource methods
-	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void after()
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public static Contact parse(WebElement element)
 	{
-		for (Contact contact : contactCollector.getCreatedContacts())
+		String name = getItemValue(element.findElement(ByItem.prop("name")));
+		Contact contact = new Contact(name);
+		
+		String url = getItemValue(quietFindElementBy(element, ByItem.prop("url")));
+		if (url != null)
 		{
-			contactDeleteDriver.show(contact)
-				.delete();
+			contact.setId(parseId(url));
 		}
 		
-		contactCollector.clear();
+		return contact;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	private static Long parseId(String url)
+	{
+		int lastSlash = url.lastIndexOf('/');
+		String idString = url.substring(lastSlash + 1);
+		
+		return Long.valueOf(idString);
 	}
 }

@@ -11,55 +11,56 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.driver.contact;
 
+import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import static org.hobsoft.contacts.driver.MicrodataParser.getItemValue;
-import static org.hobsoft.contacts.driver.support.selenium.WebDriverUtils.quietFindElementBy;
+import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
 /**
- * Microdata parser for contacts.
+ * Web UI driver for the view contact page.
  */
-final class ContactParser
+@Component
+public class ContactViewDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
-
-	private ContactParser()
+	
+	@Autowired
+	public ContactViewDriver(DriverConfiguration config)
 	{
-		throw new AssertionError();
+		super(config, elementPresent(By.cssSelector("body#contactView")));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
-
-	public static Contact parse(WebElement element)
+	
+	public ContactViewDriver show(Contact contact)
 	{
-		String name = getItemValue(element.findElement(ByItem.prop("name")));
-		Contact contact = new Contact(name);
-		
-		String url = getItemValue(quietFindElementBy(element, ByItem.prop("url")));
-		if (url != null)
-		{
-			contact.setId(parseId(url));
-		}
-		
-		return contact;
+		return show(contact.getId());
 	}
 	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	private static Long parseId(String url)
+	public ContactViewDriver show(long id)
 	{
-		int lastSlash = url.lastIndexOf('/');
-		String idString = url.substring(lastSlash + 1);
+		driver().get(url("/contact/" + id));
 		
-		return Long.valueOf(idString);
+		return this;
+	}
+
+	public Contact getContact()
+	{
+		checkVisible();
+		
+		WebElement element = driver().findElement(ByItem.scope("http://schema.org/Person"));
+		
+		return ContactParser.parse(element);
 	}
 }

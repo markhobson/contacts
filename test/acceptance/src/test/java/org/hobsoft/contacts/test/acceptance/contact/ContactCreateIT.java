@@ -11,24 +11,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ContactCreateDriver;
-import org.hobsoft.contacts.driver.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.ContactViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
+import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Acceptance test for the view contact page.
+ * Acceptance test for the create contact page.
  */
-public class ContactViewIT extends AbstractSecurePageIT
+public class ContactCreateIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -41,7 +43,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
-	private ContactViewDriver contactView;
+	private ContactsViewDriver contactsView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -49,19 +51,36 @@ public class ContactViewIT extends AbstractSecurePageIT
 	
 	@Test
 	@Authenticated
-	public void pageShowsContact()
+	public void pageShowsForm()
 	{
-		Contact contact = contactCreate.show()
+		Contact actual = contactCreate.show()
+			.getContact();
+		
+		assertThat(actual, samePropertyValuesAs(new Contact("")));
+	}
+	
+	@Test
+	@Authenticated
+	public void submitCreatesContact()
+	{
+		Contact actual = contactCreate.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		Contact actual = contactView.show(contact)
-			.getContact();
-		
 		Contact expected = new Contact("x");
-		expected.setId(contact.getId());
+		expected.setId(actual.getId());
 		assertThat(actual, samePropertyValuesAs(expected));
+	}
+	
+	@Test
+	@Authenticated
+	public void cancelShowsContactsView()
+	{
+		contactCreate.show()
+			.cancel();
+		
+		assertTrue(contactsView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -74,23 +93,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		// TODO: simplify when we have client
-		
-		Contact contact;
-		
-		if (contactCreate.show().isVisible())
-		{
-			contact = contactCreate.setContact(new Contact("x"))
-				.create()
-				.getContact();
-		}
-		else
-		{
-			contact = new Contact();
-			contact.setId(1L);
-		}
-		
-		contactView.show(contact);
+		contactCreate.show();
 	}
 	
 	/**
@@ -99,6 +102,6 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contactView;
+		return contactCreate;
 	}
 }

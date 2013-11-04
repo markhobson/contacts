@@ -11,13 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ContactCreateDriver;
-import org.hobsoft.contacts.driver.ContactViewDriver;
-import org.hobsoft.contacts.driver.ContactsViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

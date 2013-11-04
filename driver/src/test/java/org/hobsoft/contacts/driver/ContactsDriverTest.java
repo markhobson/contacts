@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.junit.Test;
 
 /**

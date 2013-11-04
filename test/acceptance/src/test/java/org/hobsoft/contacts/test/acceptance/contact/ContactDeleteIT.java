@@ -11,25 +11,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ContactCreateDriver;
-import org.hobsoft.contacts.driver.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.ContactsViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
+import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
- * Acceptance test for the create contact page.
+ * Acceptance test for the delete contact page.
  */
-public class ContactCreateIT extends AbstractSecurePageIT
+public class ContactDeleteIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -42,7 +45,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
-	private ContactsViewDriver contactsView;
+	private ContactViewDriver contactView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -50,36 +53,51 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	
 	@Test
 	@Authenticated
-	public void pageShowsForm()
+	public void pageShowsName()
 	{
-		Contact actual = contactCreate.show()
-			.getContact();
-		
-		assertThat(actual, samePropertyValuesAs(new Contact("")));
-	}
-	
-	@Test
-	@Authenticated
-	public void submitCreatesContact()
-	{
-		Contact actual = contactCreate.show()
+		Contact contact = contactCreate.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		Contact expected = new Contact("x");
-		expected.setId(actual.getId());
-		assertThat(actual, samePropertyValuesAs(expected));
+		Contact actual = contactDelete.show(contact)
+			.getContact();
+		
+		assertThat(actual.getName(), is("x"));
+	}
+	
+	@Ignore("Reinstate when we can assert contact not found")
+	@Test
+	@Authenticated
+	public void deleteDeletesContact()
+	{
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
+		
+		contactDelete.show(contact)
+			.delete();
+		
+		contactView.show(contact);
+		// TODO: assert 404
+		fail();
 	}
 	
 	@Test
 	@Authenticated
-	public void cancelShowsContactsView()
+	public void cancelShowsContactView()
 	{
-		contactCreate.show()
+		Contact contact = contactCreate.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
+		
+		contactDelete.show(contact)
 			.cancel();
 		
-		assertTrue(contactsView.isVisible());
+		// TODO: assert correct contact
+		assertTrue(contactView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -92,7 +110,23 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		contactCreate.show();
+		// TODO: simplify when we have client
+		
+		Contact contact;
+		
+		if (contactCreate.show().isVisible())
+		{
+			contact = contactCreate.setContact(new Contact("x"))
+				.create()
+				.getContact();
+		}
+		else
+		{
+			contact = new Contact();
+			contact.setId(1L);
+		}
+		
+		contactDelete.show(contact);
 	}
 	
 	/**
@@ -101,6 +135,6 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contactCreate;
+		return contactDelete;
 	}
 }
