@@ -67,7 +67,7 @@ public class ContactsController
 	@RequestMapping(value = "/contacts/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView createForm()
 	{
-		return new ModelAndView("contactCreate");
+		return new ModelAndView("contact/contactCreate");
 	}
 	
 	@RequestMapping(value = "/contacts", method = RequestMethod.POST,
@@ -92,7 +92,7 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactResourceAssembler.toResources(contacts));
 		
-		return new ModelAndView("contactsView", model);
+		return new ModelAndView("contact/contactsView", model);
 	}
 	
 	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -103,7 +103,7 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contact", contactResourceAssembler.toResource(contact));
 		
-		return new ModelAndView("contactView", model);
+		return new ModelAndView("contact/contactView", model);
 	}
 
 	@RequestMapping(value = "/contact/{id}/delete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -114,7 +114,7 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contact", contactResourceAssembler.toResource(contact));
 		
-		return new ModelAndView("contactDelete", model);
+		return new ModelAndView("contact/contactDelete", model);
 	}
 	
 	@RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)

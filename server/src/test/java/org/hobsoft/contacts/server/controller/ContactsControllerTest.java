@@ -82,7 +82,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.createForm();
 		
-		assertEquals("contactCreate", actual.getViewName());
+		assertEquals("contact/contactCreate", actual.getViewName());
 	}
 	
 	@Test
@@ -130,7 +130,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.getAll();
 		
-		assertEquals("contactsView", actual.getViewName());
+		assertEquals("contact/contactsView", actual.getViewName());
 	}
 	
 	@Test
@@ -152,7 +152,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.get(1);
 		
-		assertEquals("contactView", actual.getViewName());
+		assertEquals("contact/contactView", actual.getViewName());
 	}
 	
 	@Test
@@ -174,7 +174,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.deleteForm(1);
 		
-		assertEquals("contactDelete", actual.getViewName());
+		assertEquals("contact/contactDelete", actual.getViewName());
 	}
 	
 	@Test
