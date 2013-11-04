@@ -85,7 +85,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	
 	@Test
 	@Authenticated
-	public void cancelShowsContact()
+	public void cancelShowsContactView()
 	{
 		Contact contact = contactCreate.show()
 			.setContact(new Contact("x"))

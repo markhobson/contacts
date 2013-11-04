@@ -74,7 +74,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	
 	@Test
 	@Authenticated
-	public void contactWhenClickedShowsContact()
+	public void contactWhenClickedShowsContactView()
 	{
 		contactCreate.show()
 			.setContact(new Contact("x"))
