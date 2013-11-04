@@ -27,6 +27,6 @@ public class ContactsDriverTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullConfiguration()
 	{
-		new ContactsDriver(null);
+		new ContactsViewDriver(null);
 	}
 }

@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.ContactsDriver;
+import org.hobsoft.contacts.driver.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
-	private ContactsDriver contacts;
+	private ContactsViewDriver contactsView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -74,12 +74,12 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	
 	@Test
 	@Authenticated
-	public void cancelShowsContacts()
+	public void cancelShowsContactsView()
 	{
 		contactCreate.show()
 			.cancel();
 		
-		assertTrue(contacts.isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

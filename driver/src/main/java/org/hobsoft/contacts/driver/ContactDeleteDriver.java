@@ -33,7 +33,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final ContactsDriver contactsDriver;
+	private final ContactsViewDriver contactsDriver;
 	
 	private final ContactViewDriver contactViewDriver;
 
@@ -42,7 +42,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactDeleteDriver(DriverConfiguration config, ContactsDriver contactsDriver,
+	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver,
 		ContactViewDriver contactViewDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactDelete")));
@@ -76,7 +76,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 		return ContactParser.parse(element);
 	}
 
-	public ContactsDriver delete()
+	public ContactsViewDriver delete()
 	{
 		checkVisible();
 		

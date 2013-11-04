@@ -38,7 +38,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	
 	private final ContactViewDriver contactViewDriver;
 
-	private final ContactsDriver contactsDriver;
+	private final ContactsViewDriver contactsDriver;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
@@ -46,7 +46,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	
 	@Autowired
 	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener,
-		ContactViewDriver contactViewDriver, ContactsDriver contactsDriver)
+		ContactViewDriver contactViewDriver, ContactsViewDriver contactsDriver)
 	{
 		super(config, elementPresent(By.cssSelector("body#contactCreate")));
 		
@@ -100,7 +100,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return contactViewDriver;
 	}
 
-	public ContactsDriver cancel()
+	public ContactsViewDriver cancel()
 	{
 		checkVisible();
 		

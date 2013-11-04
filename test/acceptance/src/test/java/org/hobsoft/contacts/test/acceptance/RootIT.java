@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.ContactsDriver;
+import org.hobsoft.contacts.driver.ContactsViewDriver;
 import org.hobsoft.contacts.driver.RootDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -38,7 +38,7 @@ public class RootIT extends AbstractIT
 	private SignInDriver signIn;
 	
 	@Autowired
-	private ContactsDriver contacts;
+	private ContactsViewDriver contactsView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -54,10 +54,10 @@ public class RootIT extends AbstractIT
 	
 	@Test
 	@Authenticated
-	public void pageWhenAuthenticatedShowsContacts()
+	public void pageWhenAuthenticatedShowsContactsView()
 	{
 		root.show();
 		
-		assertTrue(contacts.isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 }

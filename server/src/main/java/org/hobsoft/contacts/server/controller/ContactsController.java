@@ -92,7 +92,7 @@ public class ContactsController
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("contacts", contactResourceAssembler.toResources(contacts));
 		
-		return new ModelAndView("contacts", model);
+		return new ModelAndView("contactsView", model);
 	}
 	
 	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

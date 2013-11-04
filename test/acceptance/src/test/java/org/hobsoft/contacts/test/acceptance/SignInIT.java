@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.ContactsDriver;
+import org.hobsoft.contacts.driver.ContactsViewDriver;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -37,7 +37,7 @@ public class SignInIT extends AbstractIT
 	private SignInDriver signIn;
 	
 	@Autowired
-	private ContactsDriver contacts;
+	private ContactsViewDriver contactsView;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -78,12 +78,12 @@ public class SignInIT extends AbstractIT
 	}
 	
 	@Test
-	public void signInWithKnownCredentialsShowsContacts()
+	public void signInWithKnownCredentialsShowsContactsView()
 	{
 		signIn.show()
 			.signIn(new Credentials("mark", "password"));
 		
-		assertTrue(contacts.isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 	
 	@Test

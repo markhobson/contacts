@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ContactCreateDriver;
 import org.hobsoft.contacts.driver.ContactViewDriver;
-import org.hobsoft.contacts.driver.ContactsDriver;
+import org.hobsoft.contacts.driver.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
@@ -28,9 +28,9 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Acceptance test for the contacts page.
+ * Acceptance test for the view contacts page.
  */
-public class ContactsIT extends AbstractSecurePageIT
+public class ContactsViewIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -40,7 +40,7 @@ public class ContactsIT extends AbstractSecurePageIT
 	private ContactCreateDriver contactCreate;
 	
 	@Autowired
-	private ContactsDriver contacts;
+	private ContactsViewDriver contactsView;
 	
 	@Autowired
 	private ContactViewDriver contactView;
@@ -63,9 +63,9 @@ public class ContactsIT extends AbstractSecurePageIT
 			.setContact(new Contact("z"))
 			.create();
 		
-		contacts.show();
+		contactsView.show();
 		
-		assertThat(contacts.getContacts(), contains(
+		assertThat(contactsView.getContacts(), contains(
 			samePropertyValuesAs(new Contact("x")),
 			samePropertyValuesAs(new Contact("y")),
 			samePropertyValuesAs(new Contact("z"))
@@ -80,7 +80,7 @@ public class ContactsIT extends AbstractSecurePageIT
 			.setContact(new Contact("x"))
 			.create();
 		
-		contacts.show()
+		contactsView.show()
 			.clickContact("x");
 		
 		assertTrue(contactView.isVisible());
@@ -96,7 +96,7 @@ public class ContactsIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		contacts.show();
+		contactsView.show();
 	}
 	
 	/**
@@ -105,6 +105,6 @@ public class ContactsIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contacts;
+		return contactsView;
 	}
 }
