@@ -16,6 +16,8 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.support.microbrowser.SeleniumMicrodataDocument;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -100,6 +102,11 @@ public abstract class AbstractDriver implements Driver
 	protected final WebDriver driver()
 	{
 		return config.getWebDriver();
+	}
+	
+	protected final MicrodataDocument document()
+	{
+		return new SeleniumMicrodataDocument(driver());
 	}
 	
 	protected final String url(String spec)

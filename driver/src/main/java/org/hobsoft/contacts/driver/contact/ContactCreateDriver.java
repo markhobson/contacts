@@ -16,9 +16,7 @@ package org.hobsoft.contacts.driver.contact;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
-import org.hobsoft.contacts.driver.support.microbrowser.SeleniumMicrodataDocument;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -75,8 +73,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
-		MicrodataItem item = document.getItem("http://schema.org/Person");
+		MicrodataItem item = document().getItem("http://schema.org/Person");
 		
 		return ContactParser.parse(item);
 	}
@@ -85,8 +82,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
-		MicrodataItem item = document.getItem("http://schema.org/Person");
+		MicrodataItem item = document().getItem("http://schema.org/Person");
 
 		item.getProperty("name").unwrap(WebElement.class).sendKeys(contact.getName());
 		

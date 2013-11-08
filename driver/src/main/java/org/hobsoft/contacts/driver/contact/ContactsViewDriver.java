@@ -18,9 +18,7 @@ import java.util.List;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.support.microbrowser.SeleniumMicrodataDocument;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -60,11 +58,9 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
-		
 		List<Contact> contacts = new ArrayList<>();
 		
-		for (MicrodataItem item : document.getItems("http://schema.org/Person"))
+		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
 		{
 			contacts.add(ContactParser.parse(item));
 		}
@@ -76,9 +72,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
-		
-		for (MicrodataItem item : document.getItems("http://schema.org/Person"))
+		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
 		{
 			Contact contact = ContactParser.parse(item);
 			
