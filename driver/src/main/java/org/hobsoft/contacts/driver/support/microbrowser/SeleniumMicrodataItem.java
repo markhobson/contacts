@@ -11,53 +11,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver.contact;
+package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.hobsoft.microbrowser.MicrodataProperty;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
+
+import static org.hobsoft.contacts.driver.support.selenium.WebDriverUtils.quietFindElementBy;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Microdata parser for contacts.
+ * {@code MicrodataItem} adapter to a Selenium {@code SearchContext}.
  */
-final class ContactParser
+public class SeleniumMicrodataItem implements MicrodataItem
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final SearchContext context;
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private ContactParser()
+	public SeleniumMicrodataItem(SearchContext context)
 	{
-		throw new AssertionError();
+		this.context = checkNotNull(context, "context");
 	}
-	
+
 	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
+	// MicrodataItem methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static Contact parse(MicrodataItem item)
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MicrodataProperty getProperty(String propertyName)
 	{
-		String name = item.getProperty("name").getValue();
-		Contact contact = new Contact(name);
+		WebElement element = quietFindElementBy(context, ByItem.prop(propertyName));
 		
-		MicrodataProperty urlProperty = item.getProperty("url");
-		if (urlProperty != null)
+		if (element == null)
 		{
-			contact.setId(parseId(urlProperty.getValue()));
+			return null;
 		}
 		
-		return contact;
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	private static Long parseId(String url)
-	{
-		int lastSlash = url.lastIndexOf('/');
-		String idString = url.substring(lastSlash + 1);
-		
-		return Long.valueOf(idString);
+		return new SeleniumMicrodataProperty(element);
 	}
 }

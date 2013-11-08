@@ -11,47 +11,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver.contact;
+package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 
 /**
- * Selenium WebDriver to Microdata parser.
+ * Factory for Microdata WebDriver locators.
  */
-final class MicrodataParser
+final class ByItem
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private MicrodataParser()
+	private ByItem()
 	{
 		throw new AssertionError();
 	}
-	
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static String getItemValue(WebElement element)
+	public static By type(String itemType)
 	{
-		if (element == null)
-		{
-			return null;
-		}
-		
-		String tagName = element.getTagName();
-		String value;
-		
-		if ("link".equals(tagName) || "a".equals(tagName))
-		{
-			value = element.getAttribute("href");
-		}
-		else
-		{
-			value = element.getText();
-		}
-		
-		return value;
+		return By.cssSelector(String.format("[itemscope][itemtype='%s']", itemType));
+	}
+
+	public static By prop(String itemProp)
+	{
+		return By.cssSelector(String.format("[itemprop='%s']", itemProp));
 	}
 }

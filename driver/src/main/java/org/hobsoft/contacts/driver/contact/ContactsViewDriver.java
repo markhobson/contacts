@@ -18,7 +18,10 @@ import java.util.List;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.support.microbrowser.SeleniumMicrodataDocument;
 import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.microbrowser.MicrodataDocument;
+import org.hobsoft.microbrowser.MicrodataItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +60,13 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
+		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
+		
 		List<Contact> contacts = new ArrayList<>();
 		
-		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
+		for (MicrodataItem item : document.getItems("http://schema.org/Person"))
 		{
-			contacts.add(ContactParser.parse(element));
+			contacts.add(ContactParser.parse(item));
 		}
 		
 		return contacts;
@@ -71,13 +76,15 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		for (WebElement element : driver().findElements(ByItem.scope("http://schema.org/Person")))
+		MicrodataDocument document = new SeleniumMicrodataDocument(driver());
+		
+		for (MicrodataItem item : document.getItems("http://schema.org/Person"))
 		{
-			Contact contact = ContactParser.parse(element);
+			Contact contact = ContactParser.parse(item);
 			
 			if (name.equals(contact.getName()))
 			{
-				element.findElement(ByItem.prop("url")).click();
+				item.getProperty("url").unwrap(WebElement.class).click();
 				return;
 			}
 		}

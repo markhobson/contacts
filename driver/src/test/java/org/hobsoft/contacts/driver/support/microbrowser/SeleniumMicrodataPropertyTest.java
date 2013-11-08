@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver.contact;
+package org.hobsoft.contacts.driver.support.microbrowser;
 
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
@@ -21,41 +21,41 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- * Tests {@code MicrodataParser}.
+ * Tests {@code SeleniumMicrodataProperty}.
  */
-public class MicrodataParserTest
+public class SeleniumMicrodataPropertyTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test
-	public void getItemValueWithLinkReturnsHref()
+	public void getValueWithLinkReturnsHref()
 	{
 		WebElement element = mock(WebElement.class);
 		when(element.getTagName()).thenReturn("link");
 		when(element.getAttribute("href")).thenReturn("x");
 		
-		assertEquals("x", MicrodataParser.getItemValue(element));
+		assertEquals("x", new SeleniumMicrodataProperty(element).getValue());
 	}
 	
 	@Test
-	public void getItemValueWithAReturnsHref()
+	public void getValueWithAReturnsHref()
 	{
 		WebElement element = mock(WebElement.class);
 		when(element.getTagName()).thenReturn("a");
 		when(element.getAttribute("href")).thenReturn("x");
 		
-		assertEquals("x", MicrodataParser.getItemValue(element));
+		assertEquals("x", new SeleniumMicrodataProperty(element).getValue());
 	}
 	
 	@Test
-	public void getItemValueWithOtherReturnsText()
+	public void getValueWithOtherReturnsText()
 	{
 		WebElement element = mock(WebElement.class);
 		when(element.getTagName()).thenReturn("div");
 		when(element.getText()).thenReturn("x");
 		
-		assertEquals("x", MicrodataParser.getItemValue(element));
+		assertEquals("x", new SeleniumMicrodataProperty(element).getValue());
 	}
 }

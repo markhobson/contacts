@@ -36,7 +36,14 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 		</dependency>
+		
+		<!-- Microbrowser -->
 	
+		<dependency>
+			<groupId>org.hobsoft.microbrowser</groupId>
+			<artifactId>microbrowser</artifactId>
+		</dependency>
+		
 		<!-- Contacts -->
 		
 		<dependency>
