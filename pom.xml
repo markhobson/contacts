@@ -204,7 +204,7 @@
 			
 			<dependency>
 				<groupId>org.hobsoft.microbrowser</groupId>
-				<artifactId>microbrowser</artifactId>
+				<artifactId>microbrowser-api</artifactId>
 				<version>0.1.0-SNAPSHOT</version>
 			</dependency>
 			

@@ -41,7 +41,7 @@
 	
 		<dependency>
 			<groupId>org.hobsoft.microbrowser</groupId>
-			<artifactId>microbrowser</artifactId>
+			<artifactId>microbrowser-api</artifactId>
 		</dependency>
 		
 		<!-- Contacts -->
