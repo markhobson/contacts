@@ -41,7 +41,7 @@
 	
 		<dependency>
 			<groupId>org.hobsoft.microbrowser</groupId>
-			<artifactId>microbrowser-api</artifactId>
+			<artifactId>microbrowser-selenium</artifactId>
 		</dependency>
 		
 		<!-- Contacts -->
