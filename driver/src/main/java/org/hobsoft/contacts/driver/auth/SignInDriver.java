@@ -65,9 +65,10 @@ public class SignInDriver extends AbstractPageDriver
 	public void signIn(Credentials credentials)
 	{
 		checkVisible();
-		
-		driver().findElement(By.name("username")).sendKeys(credentials.getUsername());
-		driver().findElement(By.name("password")).sendKeys(credentials.getPassword());
-		driver().findElement(By.name("submit")).click();
+
+		document().getForm("login")
+			.setParameter("username", credentials.getUsername())
+			.setParameter("password", credentials.getPassword())
+			.submit();
 	}
 }
