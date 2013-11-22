@@ -16,8 +16,8 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hobsoft.contacts.driver.support.microbrowser.SeleniumMicrodataDocument;
 import org.hobsoft.microbrowser.MicrodataDocument;
+import org.hobsoft.microbrowser.selenium.SeleniumMicrodataDocument;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
