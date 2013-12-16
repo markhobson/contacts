@@ -40,7 +40,7 @@ final class ContactParser
 		String name = item.getProperty("name").getValue();
 		Contact contact = new Contact(name);
 		
-		MicrodataProperty urlProperty = item.getProperty("url");
+		MicrodataProperty urlProperty = quietGetProperty(item, "url");
 		if (urlProperty != null)
 		{
 			contact.setId(parseId(urlProperty.getValue()));
@@ -52,6 +52,18 @@ final class ContactParser
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	private static MicrodataProperty quietGetProperty(MicrodataItem item, String name)
+	{
+		try
+		{
+			return item.getProperty(name);
+		}
+		catch (IllegalArgumentException exception)
+		{
+			return null;
+		}
+	}
 	
 	private static Long parseId(String url)
 	{
