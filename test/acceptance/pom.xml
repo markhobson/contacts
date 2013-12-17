@@ -42,33 +42,54 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
 				<configuration>
-					<httpConnector>
-						<port>${serverPort}</port>
-					</httpConnector>
-					<stopPort>${serverPort}</stopPort>
-					<stopKey>integration-test</stopKey>
+					<container>
+						<containerId>jetty9x</containerId>
+						<artifactInstaller>
+							<groupId>org.eclipse.jetty</groupId>
+							<artifactId>jetty-distribution</artifactId>
+							<version>${jettyVersion}</version>
+						</artifactInstaller>
+					</container>
+					<wait>false</wait>
 				</configuration>
 				<executions>
+				
 					<execution>
-						<id>start-jetty</id>
+						<id>start-server</id>
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>start</goal>
 						</goals>
 						<configuration>
-							<daemon>true</daemon>
+							<configuration>
+								<properties>
+									<cargo.servlet.port>${serverPort}</cargo.servlet.port>
+								</properties>
+							</configuration>
+							<deployables>
+								<deployable>
+									<groupId>org.hobsoft.contacts</groupId>
+									<artifactId>contacts-server</artifactId>
+									<type>war</type>
+									<properties>
+										<context>/</context>
+									</properties>
+								</deployable>
+							</deployables>
 						</configuration>
 					</execution>
+					
 					<execution>
-						<id>stop-jetty</id>
+						<id>stop-server</id>
 						<phase>post-integration-test</phase>
 						<goals>
 							<goal>stop</goal>
 						</goals>
 					</execution>
+					
 				</executions>
 			</plugin>
 			
