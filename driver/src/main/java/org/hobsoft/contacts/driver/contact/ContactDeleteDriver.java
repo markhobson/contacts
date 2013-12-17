@@ -64,7 +64,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	
 	public ContactDeleteDriver show(long id)
 	{
-		driver().get(url(String.format("/contact/%d/delete", id)));
+		browser().get(url(String.format("/contact/%d/delete", id)));
 		
 		return this;
 	}
@@ -82,7 +82,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		driver().findElement(By.name("submit")).click();
+		document().getForm("contactDelete").submit();
 		
 		return contactsDriver;
 	}
@@ -90,8 +90,8 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	public ContactViewDriver cancel()
 	{
 		checkVisible();
-		
-		driver().findElement(By.id("cancel")).click();
+
+		document().getLink("cancel").follow();
 		
 		return contactViewDriver;
 	}
