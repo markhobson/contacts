@@ -15,7 +15,6 @@ package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
@@ -37,9 +36,6 @@ public class ContactViewIT extends AbstractSecurePageIT
 	
 	@Autowired
 	private ContactCreateDriver contactCreate;
-	
-	@Autowired
-	private ContactDeleteDriver contactDelete;
 	
 	@Autowired
 	private ContactViewDriver contactView;
