@@ -16,8 +16,6 @@ package org.hobsoft.contacts.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.never;
-
 /**
  * Web UI driver for the root page.
  */
@@ -31,7 +29,7 @@ public class RootDriver extends AbstractDriver
 	@Autowired
 	public RootDriver(DriverConfiguration config)
 	{
-		super(config, never());
+		super(config, "/");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

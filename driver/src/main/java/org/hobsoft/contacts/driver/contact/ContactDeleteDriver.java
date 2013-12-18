@@ -17,11 +17,8 @@ import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
-import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -47,7 +44,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver,
 		ContactViewDriver contactViewDriver)
 	{
-		super(config, elementPresent(By.cssSelector("body#contactDelete")));
+		super(config, "/contact/\\d+/delete");
 		
 		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
 		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");

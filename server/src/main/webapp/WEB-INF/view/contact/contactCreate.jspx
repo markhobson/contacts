@@ -1,4 +1,4 @@
-<tag:page id="contactCreate" title="Add new contact"
+<tag:page self="/contacts/create" title="Add new contact"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
 >

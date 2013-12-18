@@ -14,7 +14,6 @@
 package org.hobsoft.contacts.driver;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 
 /**
  * Base web UI driver for common page elements.
@@ -25,9 +24,9 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public AbstractPageDriver(DriverConfiguration config, ExpectedCondition<Boolean> visibleCondition)
+	public AbstractPageDriver(DriverConfiguration config, String self)
 	{
-		super(config, visibleCondition);
+		super(config, self);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

@@ -15,15 +15,13 @@ package org.hobsoft.contacts.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrodataDocument;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -34,27 +32,21 @@ import static com.google.common.base.Preconditions.checkState;
 public abstract class AbstractDriver implements Driver
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constants
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private static final long VISIBLE_TIMEOUT = 1;
-
-	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	private final DriverConfiguration config;
 	
-	private final ExpectedCondition<Boolean> visibleCondition;
+	private final String selfPathPattern;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public AbstractDriver(DriverConfiguration config, ExpectedCondition<Boolean> visibleCondition)
+	public AbstractDriver(DriverConfiguration config, String selfPathPattern)
 	{
 		this.config = checkNotNull(config, "config");
-		this.visibleCondition = checkNotNull(visibleCondition, "visibleCondition");
+		this.selfPathPattern = checkNotNull(selfPathPattern, "selfPathPattern");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -67,15 +59,10 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		try
-		{
-			new WebDriverWait(driver(), VISIBLE_TIMEOUT).until(visibleCondition);
-			return true;
-		}
-		catch (TimeoutException exception)
-		{
-			return false;
-		}
+		String self = document().getLink("self").getHref();
+		String selfPath = quietNewUrl(self).getPath();
+		
+		return Pattern.matches(selfPathPattern, selfPath);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -87,9 +74,9 @@ public abstract class AbstractDriver implements Driver
 		return config;
 	}
 	
-	public final ExpectedCondition<Boolean> getVisibleCondition()
+	public final String getSelfPathPattern()
 	{
-		return visibleCondition;
+		return selfPathPattern;
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -98,7 +85,7 @@ public abstract class AbstractDriver implements Driver
 	
 	protected final void checkVisible()
 	{
-		checkState(isVisible(), "Expected " + visibleCondition);
+		checkState(isVisible(), "Expected self: " + selfPathPattern);
 	}
 	
 	protected final WebDriver driver()
@@ -125,6 +112,22 @@ public abstract class AbstractDriver implements Driver
 		catch (MalformedURLException exception)
 		{
 			throw new IllegalArgumentException(exception);
+		}
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static URL quietNewUrl(String spec)
+	{
+		try
+		{
+			return new URL(spec);
+		}
+		catch (MalformedURLException exception)
+		{
+			throw new IllegalArgumentException("Invalid URL: " + spec);
 		}
 	}
 }

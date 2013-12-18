@@ -18,12 +18,9 @@ import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -51,7 +48,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener,
 		ContactViewDriver contactViewDriver, ContactsViewDriver contactsDriver)
 	{
-		super(config, elementPresent(By.cssSelector("body#contactCreate")));
+		super(config, "/contacts/create");
 		
 		this.contactListener = checkNotNull(contactListener, "contactListener");
 		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");

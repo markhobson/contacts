@@ -13,8 +13,6 @@
  */
 package org.hobsoft.contacts.driver;
 
-import org.openqa.selenium.support.ui.ExpectedCondition;
-
 /**
  * Concrete {@code AbstractDriver} implementation for testing.
  */
@@ -24,8 +22,8 @@ public class FakeDriver extends AbstractDriver
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public FakeDriver(DriverConfiguration config, ExpectedCondition<Boolean> visibleCondition)
+	public FakeDriver(DriverConfiguration config, String self)
 	{
-		super(config, visibleCondition);
+		super(config, self);
 	}
 }

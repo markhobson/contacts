@@ -1,4 +1,4 @@
-<tag:page id="contactView" title="Contact"
+<tag:page self="${contact.id.href}" title="Contact"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
 >

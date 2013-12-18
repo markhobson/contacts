@@ -18,8 +18,6 @@ import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.never;
-
 /**
  * Web UI driver for the sign-out page.
  */
@@ -33,7 +31,7 @@ public class SignOutDriver extends AbstractDriver
 	@Autowired
 	public SignOutDriver(DriverConfiguration config)
 	{
-		super(config, never());
+		super(config, "/logout");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

@@ -19,8 +19,6 @@ import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static org.hobsoft.contacts.driver.support.selenium.ExpectedConditions2.elementPresent;
-
 /**
  * Web UI driver for the sign-in page.
  */
@@ -34,7 +32,7 @@ public class SignInDriver extends AbstractPageDriver
 	@Autowired
 	public SignInDriver(DriverConfiguration config)
 	{
-		super(config, elementPresent(By.cssSelector("body#login")));
+		super(config, "/login");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
