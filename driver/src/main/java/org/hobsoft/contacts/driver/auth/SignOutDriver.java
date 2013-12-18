@@ -42,6 +42,6 @@ public class SignOutDriver extends AbstractDriver
 	
 	public void signOut()
 	{
-		driver().get(url("/logout"));
+		browser().get(url("/logout"));
 	}
 }
