@@ -6,11 +6,15 @@
 	<jsp:directive.page contentType="text/html"/>
 
 	<c:if test="${param.logout != null}">
-		<div id="success" class="alert alert-success">You have been signed out.</div>
+		<div itemscope="itemscope" itemtype="http://www.hobsoft.org/microdata/success" class="alert alert-success">
+			<span itemprop="message">You have been signed out.</span>
+		</div>
 	</c:if>
 	
 	<c:if test="${param.error != null}">
-		<div id="error" class="alert alert-danger">Incorrect username or password.</div>
+		<div itemscope="itemscope" itemtype="http://www.hobsoft.org/microdata/error" class="alert alert-danger">
+			<span itemprop="message">Incorrect username or password.</span>
+		</div>
 	</c:if>
 	
 	<h1>Sign in</h1>

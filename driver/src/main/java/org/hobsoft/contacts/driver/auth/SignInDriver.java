@@ -15,7 +15,6 @@ package org.hobsoft.contacts.driver.auth;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,14 +49,14 @@ public class SignInDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		return driver().findElement(By.id("success")).getText();
+		return document().getItem("http://www.hobsoft.org/microdata/success").getProperty("message").getValue();
 	}
 
 	public String getErrorMessage()
 	{
 		checkVisible();
 		
-		return driver().findElement(By.id("error")).getText();
+		return document().getItem("http://www.hobsoft.org/microdata/error").getProperty("message").getValue();
 	}
 	
 	public void signIn(Credentials credentials)
