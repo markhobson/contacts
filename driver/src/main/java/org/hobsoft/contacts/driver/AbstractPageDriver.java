@@ -16,8 +16,6 @@ package org.hobsoft.contacts.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
-import static org.hobsoft.contacts.driver.support.selenium.WebDriverUtils.quietFindElementBy;
-
 /**
  * Base web UI driver for common page elements.
  */
@@ -40,6 +38,6 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	{
 		checkVisible();
 		
-		return quietFindElementBy(driver(), By.id("logout")) != null;
+		return !driver().findElements(By.id("logout")).isEmpty();
 	}
 }
