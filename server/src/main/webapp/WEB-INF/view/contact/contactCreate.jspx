@@ -4,10 +4,10 @@
 >
 	<jsp:directive.page contentType="text/html"/>
 
-	<form name="contactCreate" method="post" action="/contacts" itemscope="itemscope" itemtype="http://schema.org/Person">
+	<form name="contactCreate" method="post" action="/contacts">
 		<div class="form-group">
 			<label for="name">Name</label>
-			<input type="text" id="name" name="name" class="form-control" itemprop="name"/>
+			<input type="text" id="name" name="name" class="form-control"/>
 		</div>
 		<div class="btn-toolbar">
 			<button type="submit" name="submit" class="btn btn-success">Create</button>

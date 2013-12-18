@@ -17,8 +17,7 @@ import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.microbrowser.MicrodataItem;
-import org.openqa.selenium.WebElement;
+import org.hobsoft.microbrowser.Form;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -70,18 +69,18 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataItem item = document().getItem("http://schema.org/Person");
+		Form form = document().getForm("contactCreate");
+		String name = form.getParameter("name");
 		
-		return ContactParser.parse(item);
+		return new Contact(name);
 	}
 
 	public ContactCreateDriver setContact(Contact contact)
 	{
 		checkVisible();
 		
-		MicrodataItem item = document().getItem("http://schema.org/Person");
-
-		item.getProperty("name").unwrap(WebElement.class).sendKeys(contact.getName());
+		Form form = document().getForm("contactCreate");
+		form.setParameter("name", contact.getName());
 		
 		return this;
 	}
