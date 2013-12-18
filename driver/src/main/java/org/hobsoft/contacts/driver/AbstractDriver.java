@@ -21,7 +21,6 @@ import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrodataDocument;
-import org.openqa.selenium.WebDriver;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -88,19 +87,14 @@ public abstract class AbstractDriver implements Driver
 		checkState(isVisible(), "Expected self: " + selfPathPattern);
 	}
 	
-	protected final WebDriver driver()
-	{
-		return config.getWebDriver();
-	}
-	
 	protected final Microbrowser browser()
 	{
-		return new SeleniumMicrobrowser(driver());
+		return new SeleniumMicrobrowser(config.getWebDriver());
 	}
 	
 	protected final MicrodataDocument document()
 	{
-		return new SeleniumMicrodataDocument(driver());
+		return new SeleniumMicrodataDocument(config.getWebDriver());
 	}
 	
 	protected final String url(String spec)

@@ -114,16 +114,6 @@ public class AbstractDriverTest
 	}
 	
 	@Test
-	public void driverReturnsWebDriver() throws MalformedURLException
-	{
-		WebDriver webDriver = mock(WebDriver.class);
-		DriverConfiguration config = new DriverConfiguration(webDriver, createUrl());
-		AbstractDriver driver = new FakeDriver(config, "s");
-		
-		assertEquals(webDriver, driver.driver());
-	}
-	
-	@Test
 	public void urlReturnsResolvedUrl() throws MalformedURLException
 	{
 		DriverConfiguration config = new DriverConfiguration(mock(WebDriver.class), new URL("http://localhost/"));
