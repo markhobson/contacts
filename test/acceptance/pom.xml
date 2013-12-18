@@ -139,6 +139,11 @@
 	
 		<dependency>
 			<groupId>org.hobsoft.microbrowser</groupId>
+			<artifactId>microbrowser-jsoup</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hobsoft.microbrowser</groupId>
 			<artifactId>microbrowser-selenium</artifactId>
 		</dependency>
 		
