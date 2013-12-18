@@ -50,7 +50,7 @@ public class ContactViewDriver extends AbstractPageDriver
 	
 	public ContactViewDriver show(long id)
 	{
-		driver().get(url("/contact/" + id));
+		browser().get(url("/contact/" + id));
 		
 		return this;
 	}
