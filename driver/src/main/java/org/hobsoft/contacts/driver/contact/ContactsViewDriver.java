@@ -49,7 +49,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 	
 	public ContactsViewDriver show()
 	{
-		driver().get(url("/contacts"));
+		browser().get(url("/contacts"));
 		
 		return this;
 	}
