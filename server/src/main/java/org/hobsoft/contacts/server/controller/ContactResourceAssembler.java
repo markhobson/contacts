@@ -45,6 +45,9 @@ public class ContactResourceAssembler extends AbstractResourceAssembler<Contact,
 		resource.add(linkTo(methodOn(ContactsController.class).getAll())
 			.withRel(Relation.COLLECTION.rel()));
 		
+		resource.add(linkTo(methodOn(ContactsController.class).deleteForm(contact.getId()))
+			.withRel(Relation.DELETE.rel()));
+		
 		return resource;
 	}
 }

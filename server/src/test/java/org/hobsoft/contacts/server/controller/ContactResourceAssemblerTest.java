@@ -76,4 +76,14 @@ public class ContactResourceAssemblerTest
 		Link actual = resourceAssembler.toResource(contact).getLink("collection");
 		assertEquals(new Link("http://localhost/contacts", "collection"), actual);
 	}
+	
+	@Test
+	public void toResourceReturnsResourceWithDeleteLink()
+	{
+		Contact contact = new Contact();
+		contact.setId(1L);
+		
+		Link actual = resourceAssembler.toResource(contact).getLink("delete");
+		assertEquals(new Link("http://localhost/contact/1/delete", "delete"), actual);
+	}
 }
