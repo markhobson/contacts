@@ -35,7 +35,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<sec:authorize access="hasRole('ROLE_USER')">
 							<li>
-								<a id="logout" href="/logout">Sign out</a>
+								<a rel="logout" href="/logout">Sign out</a>
 							</li>
 						</sec:authorize>
 					</ul>

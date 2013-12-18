@@ -13,8 +13,6 @@
  */
 package org.hobsoft.contacts.driver;
 
-import org.openqa.selenium.By;
-
 /**
  * Base web UI driver for common page elements.
  */
@@ -37,6 +35,6 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	{
 		checkVisible();
 		
-		return !driver().findElements(By.id("logout")).isEmpty();
+		return document().hasLink("logout");
 	}
 }
