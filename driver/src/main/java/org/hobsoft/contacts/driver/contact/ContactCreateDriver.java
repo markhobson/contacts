@@ -69,8 +69,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		Form form = document().getForm("contactCreate");
-		String name = form.getParameter("name");
+		String name = getForm().getParameter("name");
 		
 		return new Contact(name);
 	}
@@ -79,8 +78,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		Form form = document().getForm("contactCreate");
-		form.setParameter("name", contact.getName());
+		getForm().setParameter("name", contact.getName());
 		
 		return this;
 	}
@@ -89,7 +87,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		document().getForm("contactCreate").submit();
+		getForm().submit();
 		
 		if (contactViewDriver.isVisible())
 		{
@@ -106,5 +104,14 @@ public class ContactCreateDriver extends AbstractPageDriver
 		document().getLink("cancel").follow();
 		
 		return contactsDriver;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private Form getForm()
+	{
+		return document().getForm("contactCreate");
 	}
 }
