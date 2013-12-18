@@ -43,7 +43,7 @@ public class SignInDriver extends AbstractPageDriver
 	
 	public SignInDriver show()
 	{
-		driver().get(url("/login"));
+		browser().get(url("/login"));
 		
 		return this;
 	}
