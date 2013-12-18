@@ -14,9 +14,7 @@
 package org.hobsoft.contacts.driver.support.selenium;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -74,7 +72,7 @@ public final class ExpectedConditions2
 			@Override
 			public Boolean apply(WebDriver driver)
 			{
-				return quietFindElement(driver, by) != null;
+				return !driver.findElements(by).isEmpty();
 			}
 			
 			@Override
@@ -83,21 +81,5 @@ public final class ExpectedConditions2
 				return by.toString();
 			}
 		};
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private static WebElement quietFindElement(WebDriver driver, By by)
-	{
-		try
-		{
-			return driver.findElement(by);
-		}
-		catch (NoSuchElementException exception)
-		{
-			return null;
-		}
 	}
 }

@@ -13,12 +13,15 @@
  */
 package org.hobsoft.contacts.driver.support.selenium;
 
+import java.util.Collections;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+
+import static java.util.Collections.singletonList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -73,7 +76,7 @@ public class ExpectedConditions2Test
 	{
 		WebDriver driver = mock(WebDriver.class);
 		By by = mock(By.class);
-		when(driver.findElement(by)).thenReturn(mock(WebElement.class));
+		when(driver.findElements(by)).thenReturn(singletonList(mock(WebElement.class)));
 		
 		ExpectedCondition<Boolean> actual = ExpectedConditions2.elementPresent(by);
 		
@@ -85,7 +88,7 @@ public class ExpectedConditions2Test
 	{
 		WebDriver driver = mock(WebDriver.class);
 		By by = mock(By.class);
-		when(driver.findElement(by)).thenThrow(new NoSuchElementException(""));
+		when(driver.findElements(by)).thenReturn(Collections.<WebElement>emptyList());
 		
 		ExpectedCondition<Boolean> actual = ExpectedConditions2.elementPresent(by);
 		
