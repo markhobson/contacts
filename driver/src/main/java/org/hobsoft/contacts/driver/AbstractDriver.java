@@ -17,10 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Pattern;
 
-import org.hobsoft.microbrowser.Microbrowser;
-import org.hobsoft.microbrowser.MicrodataDocument;
-import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
-import org.hobsoft.microbrowser.selenium.SeleniumMicrodataDocument;
+import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -58,7 +55,12 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		String self = document().getLink("self").getHref();
+		if (!browser().hasDocument())
+		{
+			return false;
+		}
+		
+		String self = browser().getDocument().getLink("self").getHref();
 		String selfPath = quietNewUrl(self).getPath();
 		
 		return Pattern.matches(selfPathPattern, selfPath);
@@ -87,14 +89,9 @@ public abstract class AbstractDriver implements Driver
 		checkState(isVisible(), "Expected self: " + selfPathPattern);
 	}
 	
-	protected final Microbrowser browser()
+	protected final StatefulMicrobrowser browser()
 	{
-		return new SeleniumMicrobrowser(config.getWebDriver());
-	}
-	
-	protected final MicrodataDocument document()
-	{
-		return new SeleniumMicrodataDocument(config.getWebDriver());
+		return config.getBrowser();
 	}
 	
 	protected final String url(String spec)

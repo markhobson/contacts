@@ -11,53 +11,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver.contact;
+package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.microbrowser.MicrodataItem;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.hobsoft.microbrowser.Microbrowser;
+import org.hobsoft.microbrowser.MicrodataDocument;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Web UI driver for the view contact page.
+ * {@code Microbrowser} that delegates to another instance.
  */
-@Component
-public class ContactViewDriver extends AbstractPageDriver
+public abstract class DelegatingMicrobrowser implements Microbrowser
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final Microbrowser delegate;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	public ContactViewDriver(DriverConfiguration config)
+
+	public DelegatingMicrobrowser(Microbrowser delegate)
 	{
-		super(config, "/contact/\\d+");
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	public ContactViewDriver show(Contact contact)
-	{
-		return show(contact.getId());
-	}
-	
-	public ContactViewDriver show(long id)
-	{
-		browser().get(url("/contact/" + id));
-		
-		return this;
+		this.delegate = checkNotNull(delegate, "delegate");
 	}
 
-	public Contact getContact()
+	// ----------------------------------------------------------------------------------------------------------------
+	// Microbrowser methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MicrodataDocument get(String url)
 	{
-		checkVisible();
-		
-		MicrodataItem item = browser().getDocument().getItem("http://schema.org/Person");
-		
-		return ContactParser.parse(item);
+		return delegate.get(url);
 	}
 }

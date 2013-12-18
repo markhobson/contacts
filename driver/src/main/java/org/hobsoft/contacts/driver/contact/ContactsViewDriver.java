@@ -57,7 +57,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		List<Contact> contacts = new ArrayList<>();
 		
-		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
+		for (MicrodataItem item : browser().getDocument().getItems("http://schema.org/Person"))
 		{
 			contacts.add(ContactParser.parse(item));
 		}
@@ -69,7 +69,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
+		for (MicrodataItem item : browser().getDocument().getItems("http://schema.org/Person"))
 		{
 			Contact contact = ContactParser.parse(item);
 			

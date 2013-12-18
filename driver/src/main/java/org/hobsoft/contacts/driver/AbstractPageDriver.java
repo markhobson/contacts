@@ -35,6 +35,6 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	{
 		checkVisible();
 		
-		return document().hasLink("logout");
+		return browser().getDocument().hasLink("logout");
 	}
 }

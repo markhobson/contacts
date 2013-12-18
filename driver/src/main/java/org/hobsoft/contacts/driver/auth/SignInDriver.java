@@ -49,21 +49,28 @@ public class SignInDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		return document().getItem("http://www.hobsoft.org/microdata/success").getProperty("message").getValue();
+		return browser().getDocument()
+			.getItem("http://www.hobsoft.org/microdata/success")
+			.getProperty("message")
+			.getValue();
 	}
 
 	public String getErrorMessage()
 	{
 		checkVisible();
 		
-		return document().getItem("http://www.hobsoft.org/microdata/error").getProperty("message").getValue();
+		return browser().getDocument()
+			.getItem("http://www.hobsoft.org/microdata/error")
+			.getProperty("message")
+			.getValue();
 	}
 	
 	public void signIn(Credentials credentials)
 	{
 		checkVisible();
 
-		document().getForm("login")
+		browser().getDocument()
+			.getForm("login")
 			.setParameter("username", credentials.getUsername())
 			.setParameter("password", credentials.getPassword())
 			.submit();

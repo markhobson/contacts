@@ -16,11 +16,11 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -116,7 +116,8 @@ public class AbstractDriverTest
 	@Test
 	public void urlReturnsResolvedUrl() throws MalformedURLException
 	{
-		DriverConfiguration config = new DriverConfiguration(mock(WebDriver.class), new URL("http://localhost/"));
+		DriverConfiguration config = new DriverConfiguration(mock(StatefulMicrobrowser.class),
+			new URL("http://localhost/"));
 		AbstractDriver driver = new FakeDriver(config, "s");
 		
 		assertEquals("http://localhost/x", driver.url("x"));
@@ -138,7 +139,7 @@ public class AbstractDriverTest
 
 	private static DriverConfiguration createConfig() throws MalformedURLException
 	{
-		return new DriverConfiguration(mock(WebDriver.class), createUrl());
+		return new DriverConfiguration(mock(StatefulMicrobrowser.class), createUrl());
 	}
 
 	private static URL createUrl() throws MalformedURLException

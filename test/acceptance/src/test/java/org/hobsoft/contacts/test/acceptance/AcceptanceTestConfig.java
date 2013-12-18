@@ -17,7 +17,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
+import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
@@ -56,9 +58,15 @@ public class AcceptanceTestConfig
 	}
 	
 	@Bean
+	public StatefulMicrobrowser microbrowser()
+	{
+		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver()));
+	}
+	
+	@Bean
 	public DriverConfiguration driverConfiguration() throws MalformedURLException
 	{
-		return new DriverConfiguration(webDriver(), getServerUrl());
+		return new DriverConfiguration(microbrowser(), getServerUrl());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

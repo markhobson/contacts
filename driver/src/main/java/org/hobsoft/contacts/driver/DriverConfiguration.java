@@ -15,7 +15,7 @@ package org.hobsoft.contacts.driver;
 
 import java.net.URL;
 
-import org.openqa.selenium.WebDriver;
+import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -28,7 +28,7 @@ public final class DriverConfiguration
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	private final WebDriver webDriver;
+	private final StatefulMicrobrowser browser;
 	
 	private final URL serverUrl;
 	
@@ -36,9 +36,9 @@ public final class DriverConfiguration
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public DriverConfiguration(WebDriver webDriver, URL serverUrl)
+	public DriverConfiguration(StatefulMicrobrowser browser, URL serverUrl)
 	{
-		this.webDriver = checkNotNull(webDriver, "webDriver");
+		this.browser = checkNotNull(browser, "browser");
 		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
 	}
 	
@@ -46,9 +46,9 @@ public final class DriverConfiguration
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public WebDriver getWebDriver()
+	public StatefulMicrobrowser getBrowser()
 	{
-		return webDriver;
+		return browser;
 	}
 	
 	public URL getServerUrl()
