@@ -135,6 +135,13 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Microbrowser -->
+	
+		<dependency>
+			<groupId>org.hobsoft.microbrowser</groupId>
+			<artifactId>microbrowser-selenium</artifactId>
+		</dependency>
+		
 		<!-- Contacts -->
 	
 		<dependency>
