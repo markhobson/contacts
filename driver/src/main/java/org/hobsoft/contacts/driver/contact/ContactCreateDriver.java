@@ -64,7 +64,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	
 	public ContactCreateDriver show()
 	{
-		driver().get(url("/contacts/create"));
+		browser().get(url("/contacts/create"));
 		
 		return this;
 	}
@@ -93,7 +93,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		driver().findElement(By.name("submit")).click();
+		document().getForm("contactCreate").submit();
 		
 		if (contactViewDriver.isVisible())
 		{
@@ -107,7 +107,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		driver().findElement(By.id("cancel")).click();
+		document().getLink("cancel").follow();
 		
 		return contactsDriver;
 	}

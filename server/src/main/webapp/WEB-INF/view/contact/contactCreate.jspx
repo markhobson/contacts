@@ -4,14 +4,14 @@
 >
 	<jsp:directive.page contentType="text/html"/>
 
-	<form method="post" action="/contacts" itemscope="itemscope" itemtype="http://schema.org/Person">
+	<form name="contactCreate" method="post" action="/contacts" itemscope="itemscope" itemtype="http://schema.org/Person">
 		<div class="form-group">
 			<label for="name">Name</label>
 			<input type="text" id="name" name="name" class="form-control" itemprop="name"/>
 		</div>
 		<div class="btn-toolbar">
 			<button type="submit" name="submit" class="btn btn-success">Create</button>
-			<a id="cancel" href="/contacts" class="btn btn-default">Cancel</a>
+			<a rel="cancel" href="/contacts" class="btn btn-default">Cancel</a>
 		</div>
 	</form>	
 
