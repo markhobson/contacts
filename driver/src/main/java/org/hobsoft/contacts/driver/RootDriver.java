@@ -40,7 +40,7 @@ public class RootDriver extends AbstractDriver
 	
 	public RootDriver show()
 	{
-		driver().get(url("/"));
+		browser().get(url("/"));
 		
 		return this;
 	}
