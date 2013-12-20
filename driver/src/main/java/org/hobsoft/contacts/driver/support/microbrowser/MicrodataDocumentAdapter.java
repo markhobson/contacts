@@ -13,50 +13,83 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
+import java.util.List;
+
+import org.hobsoft.microbrowser.Form;
+import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.hobsoft.microbrowser.MicrodataItem;
 
 /**
- * {@code Microbrowser} that delegates to another instance.
+ * {@code MicrodataDocument} that adapts to a {@code Microbrowser}.
  */
-public abstract class DelegatingMicrobrowser implements Microbrowser
+public class MicrodataDocumentAdapter extends DelegatingMicrobrowser implements MicrodataDocument
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final Microbrowser delegate;
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public DelegatingMicrobrowser(Microbrowser delegate)
+	public MicrodataDocumentAdapter(Microbrowser delegate)
 	{
-		this.delegate = checkNotNull(delegate, "delegate");
+		super(delegate);
 	}
-
+	
 	// ----------------------------------------------------------------------------------------------------------------
-	// Microbrowser methods
+	// MicrodataDocument methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MicrodataDocument get(String url)
+	public MicrodataItem getItem(String type)
 	{
-		return delegate.get(url);
+		throw new UnsupportedOperationException();
 	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
-	// ----------------------------------------------------------------------------------------------------------------
 
-	protected Microbrowser getDelegate()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<MicrodataItem> getItems(String type)
 	{
-		return delegate;
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean hasLink(String rel)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Link getLink(String rel)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Form getForm(String name)
+	{
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getCookie(String name)
+	{
+		throw new UnsupportedOperationException();
 	}
 }

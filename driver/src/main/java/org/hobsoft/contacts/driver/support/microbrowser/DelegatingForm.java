@@ -13,50 +13,69 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.hobsoft.microbrowser.Microbrowser;
+import org.hobsoft.microbrowser.Form;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * {@code Microbrowser} that delegates to another instance.
+ * {@code Form} that delegates to another instance.
  */
-public abstract class DelegatingMicrobrowser implements Microbrowser
+public abstract class DelegatingForm implements Form
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final Microbrowser delegate;
+	private final Form delegate;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public DelegatingMicrobrowser(Microbrowser delegate)
+	public DelegatingForm(Form delegate)
 	{
 		this.delegate = checkNotNull(delegate, "delegate");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
-	// Microbrowser methods
+	// Form methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MicrodataDocument get(String url)
+	public String getName()
 	{
-		return delegate.get(url);
+		return delegate.getName();
 	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
-	// ----------------------------------------------------------------------------------------------------------------
 
-	protected Microbrowser getDelegate()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getParameter(String name)
 	{
-		return delegate;
+		return delegate.getParameter(name);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Form setParameter(String name, String value)
+	{
+		delegate.setParameter(name, value);
+		return this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MicrodataDocument submit()
+	{
+		return delegate.submit();
 	}
 }

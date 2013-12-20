@@ -13,6 +13,8 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
+import org.hobsoft.microbrowser.Form;
+import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
@@ -48,7 +50,7 @@ public class StatefulMicrobrowser extends DelegatingMicrobrowser
 	@Override
 	public MicrodataDocument get(String url)
 	{
-		document = super.get(url);
+		document = newStatefulDocument(super.get(url));
 		
 		return document;
 	}
@@ -67,5 +69,63 @@ public class StatefulMicrobrowser extends DelegatingMicrobrowser
 		checkState(hasDocument(), "No document loaded");
 		
 		return document;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	private MicrodataDocument newStatefulDocument(MicrodataDocument delegate)
+	{
+		return new DelegatingMicrodataDocument(delegate)
+		{
+			@Override
+			public MicrodataDocument get(String url)
+			{
+				document = newStatefulDocument(super.get(url));
+				
+				return document;
+			}
+			
+			@Override
+			public Link getLink(String rel)
+			{
+				return newStatefulLink(super.getLink(rel));
+			}
+			
+			@Override
+			public Form getForm(String name)
+			{
+				return newStatefulForm(super.getForm(name));
+			}
+		};
+	}
+	
+	private Link newStatefulLink(Link delegate)
+	{
+		return new DelegatingLink(delegate)
+		{
+			@Override
+			public MicrodataDocument follow()
+			{
+				document = newStatefulDocument(super.follow());
+				
+				return document;
+			}
+		};
+	}
+	
+	private Form newStatefulForm(Form delegate)
+	{
+		return new DelegatingForm(delegate)
+		{
+			@Override
+			public MicrodataDocument submit()
+			{
+				document = newStatefulDocument(super.submit());
+				
+				return document;
+			}
+		};
 	}
 }

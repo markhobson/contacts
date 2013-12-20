@@ -13,50 +13,95 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.hobsoft.microbrowser.Microbrowser;
-import org.hobsoft.microbrowser.MicrodataDocument;
+import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.hobsoft.microbrowser.Form;
+import org.hobsoft.microbrowser.Link;
+import org.hobsoft.microbrowser.MicrodataDocument;
+import org.hobsoft.microbrowser.MicrodataItem;
 
 /**
- * {@code Microbrowser} that delegates to another instance.
+ * {@code MicrodataDocument} that delegates to another instance.
  */
-public abstract class DelegatingMicrobrowser implements Microbrowser
+public abstract class DelegatingMicrodataDocument extends DelegatingMicrobrowser implements MicrodataDocument
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final Microbrowser delegate;
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public DelegatingMicrobrowser(Microbrowser delegate)
+	public DelegatingMicrodataDocument(MicrodataDocument delegate)
 	{
-		this.delegate = checkNotNull(delegate, "delegate");
+		super(delegate);
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
-	// Microbrowser methods
+	// MicrodataDocument methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MicrodataDocument get(String url)
+	public MicrodataItem getItem(String type)
 	{
-		return delegate.get(url);
+		return getDelegate().getItem(type);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<MicrodataItem> getItems(String type)
+	{
+		return getDelegate().getItems(type);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean hasLink(String rel)
+	{
+		return getDelegate().hasLink(rel);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Link getLink(String rel)
+	{
+		return getDelegate().getLink(rel);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Form getForm(String name)
+	{
+		return getDelegate().getForm(name);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getCookie(String name)
+	{
+		return getDelegate().getCookie(name);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
+	// DelegatingMicrobrowser methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	protected Microbrowser getDelegate()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected MicrodataDocument getDelegate()
 	{
-		return delegate;
+		return (MicrodataDocument) super.getDelegate();
 	}
 }

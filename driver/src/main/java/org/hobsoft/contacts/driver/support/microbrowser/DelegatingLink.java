@@ -13,50 +13,59 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
-import org.hobsoft.microbrowser.Microbrowser;
+import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * {@code Microbrowser} that delegates to another instance.
+ * {@code Link} that delegates to another instance.
  */
-public abstract class DelegatingMicrobrowser implements Microbrowser
+public abstract class DelegatingLink implements Link
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final Microbrowser delegate;
+	private final Link delegate;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public DelegatingMicrobrowser(Microbrowser delegate)
+	public DelegatingLink(Link delegate)
 	{
 		this.delegate = checkNotNull(delegate, "delegate");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
-	// Microbrowser methods
+	// Link methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MicrodataDocument get(String url)
+	public String getRel()
 	{
-		return delegate.get(url);
+		return delegate.getRel();
 	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
-	// ----------------------------------------------------------------------------------------------------------------
 
-	protected Microbrowser getDelegate()
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getHref()
 	{
-		return delegate;
+		return delegate.getHref();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MicrodataDocument follow()
+	{
+		return delegate.follow();
 	}
 }
