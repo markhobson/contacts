@@ -17,7 +17,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Pattern;
 
+import org.hobsoft.contacts.driver.support.microbrowser.MicrodataDocumentAdapter;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
+import org.hobsoft.microbrowser.MicrodataDocument;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -55,12 +57,12 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		if (!browser().hasDocument())
+		if (document() == null)
 		{
 			return false;
 		}
 		
-		String self = browser().getDocument().getLink("self").getHref();
+		String self = document().getLink("self").getHref();
 		String selfPath = quietNewUrl(self).getPath();
 		
 		return Pattern.matches(selfPathPattern, selfPath);
@@ -89,9 +91,16 @@ public abstract class AbstractDriver implements Driver
 		checkState(isVisible(), "Expected self: " + selfPathPattern);
 	}
 	
-	protected final StatefulMicrobrowser browser()
+	protected final MicrodataDocument document()
 	{
-		return config.getBrowser();
+		StatefulMicrobrowser browser = config.getBrowser();
+		
+		if (browser.hasDocument())
+		{
+			return browser.getDocument();
+		}
+		
+		return new MicrodataDocumentAdapter(browser);
 	}
 	
 	protected final String url(String spec)

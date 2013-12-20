@@ -38,7 +38,7 @@ public class RootDriver extends AbstractDriver
 	
 	public RootDriver show()
 	{
-		browser().get(url("/"));
+		document().get(url("/"));
 		
 		return this;
 	}

@@ -60,7 +60,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	
 	public ContactCreateDriver show()
 	{
-		browser().get(url("/contacts/create"));
+		document().get(url("/contacts/create"));
 		
 		return this;
 	}
@@ -101,7 +101,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		browser().getDocument().getLink("cancel").follow();
+		document().getLink("cancel").follow();
 		
 		return contactsDriver;
 	}
@@ -112,6 +112,6 @@ public class ContactCreateDriver extends AbstractPageDriver
 
 	private Form getForm()
 	{
-		return browser().getDocument().getForm("contactCreate");
+		return document().getForm("contactCreate");
 	}
 }

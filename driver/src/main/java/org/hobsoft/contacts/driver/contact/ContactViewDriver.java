@@ -47,7 +47,7 @@ public class ContactViewDriver extends AbstractPageDriver
 	
 	public ContactViewDriver show(long id)
 	{
-		browser().get(url("/contact/" + id));
+		document().get(url("/contact/" + id));
 		
 		return this;
 	}
@@ -56,7 +56,7 @@ public class ContactViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataItem item = browser().getDocument().getItem("http://schema.org/Person");
+		MicrodataItem item = document().getItem("http://schema.org/Person");
 		
 		return ContactParser.parse(item);
 	}

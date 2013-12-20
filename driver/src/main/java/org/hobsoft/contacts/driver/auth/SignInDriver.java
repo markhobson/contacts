@@ -40,7 +40,7 @@ public class SignInDriver extends AbstractPageDriver
 	
 	public SignInDriver show()
 	{
-		browser().get(url("/login"));
+		document().get(url("/login"));
 		
 		return this;
 	}
@@ -49,7 +49,7 @@ public class SignInDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		return browser().getDocument()
+		return document()
 			.getItem("http://www.hobsoft.org/microdata/success")
 			.getProperty("message")
 			.getValue();
@@ -59,7 +59,7 @@ public class SignInDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		return browser().getDocument()
+		return document()
 			.getItem("http://www.hobsoft.org/microdata/error")
 			.getProperty("message")
 			.getValue();
@@ -69,7 +69,7 @@ public class SignInDriver extends AbstractPageDriver
 	{
 		checkVisible();
 
-		browser().getDocument()
+		document()
 			.getForm("login")
 			.setParameter("username", credentials.getUsername())
 			.setParameter("password", credentials.getPassword())
