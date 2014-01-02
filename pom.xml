@@ -18,7 +18,7 @@
 	
 	<properties>
 		<springVersion>3.2.3.RELEASE</springVersion>
-		<springSecurityVersion>3.2.0.M2</springSecurityVersion>
+		<springSecurityVersion>3.2.0.RELEASE</springSecurityVersion>
 		<slf4jVersion>1.7.5</slf4jVersion>
 		<jettyVersion>9.0.4.v20130625</jettyVersion>
 	</properties>
@@ -231,19 +231,6 @@
 		
 	</dependencyManagement>
 	
-	<repositories>
-	
-		<repository>
-			<id>springsource-milestone</id>
-			<name>SpringSource Milestone Repository</name>
-			<url>http://repo.springsource.org/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	
-	</repositories>
-
 	<modules>
 		<module>driver</module>
 		<module>model</module>

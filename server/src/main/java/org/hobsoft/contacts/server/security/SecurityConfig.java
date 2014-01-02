@@ -36,13 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
-		http.authorizeUrls()
+		http.authorizeRequests()
 				.antMatchers("/favicon.ico").permitAll()
 				.antMatchers("/webjars/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
-			.httpBasic()
-				.and()
+			// TODO: enable CSRF
+			.csrf()
+				.disable()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
@@ -55,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
 		auth.inMemoryAuthentication()
 			.withUser("mark").password("password").roles("USER");
