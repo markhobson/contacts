@@ -89,7 +89,7 @@ public class ContactsController
 	{
 		List<Contact> contacts = contactRepository.getAll();
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("contacts", contactResourceAssembler.toResources(contacts));
 		
 		return new ModelAndView("contact/contactsView", model);
@@ -100,7 +100,7 @@ public class ContactsController
 	{
 		Contact contact = contactRepository.get(id);
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("contact", contactResourceAssembler.toResource(contact));
 		
 		return new ModelAndView("contact/contactView", model);
@@ -111,7 +111,7 @@ public class ContactsController
 	{
 		Contact contact = contactRepository.get(id);
 		
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("contact", contactResourceAssembler.toResource(contact));
 		
 		return new ModelAndView("contact/contactDelete", model);

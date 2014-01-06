@@ -89,7 +89,7 @@ public class ContactsControllerTest
 	public void createCreatesContact()
 	{
 		Contact contact = new Contact();
-		Resource<Contact> resource = new Resource<Contact>(contact, createLink(Relation.SELF));
+		Resource<Contact> resource = new Resource<>(contact, createLink(Relation.SELF));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		controller.create(contact);
@@ -101,7 +101,7 @@ public class ContactsControllerTest
 	public void createReturnsSeeOtherAndLocation() throws URISyntaxException
 	{
 		Contact contact = new Contact();
-		Resource<Contact> resource = new Resource<Contact>(contact, new Link("x"));
+		Resource<Contact> resource = new Resource<>(contact, new Link("x"));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ResponseEntity<Object> actual = controller.create(contact);
@@ -117,7 +117,7 @@ public class ContactsControllerTest
 		List<Contact> contacts = asList(contact);
 		when(contactRepository.getAll()).thenReturn(contacts);
 		
-		List<Resource<Contact>> resources = asList(new Resource<Contact>(contact));
+		List<Resource<Contact>> resources = asList(new Resource<>(contact));
 		when(contactResourceAssembler.toResources(contacts)).thenReturn(resources);
 		
 		ModelAndView actual = controller.getAll();
@@ -139,7 +139,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<Contact>(contact);
+		Resource<Contact> resource = new Resource<>(contact);
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ModelAndView actual = controller.get(1);
@@ -161,7 +161,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<Contact>(contact);
+		Resource<Contact> resource = new Resource<>(contact);
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ModelAndView actual = controller.deleteForm(1);
@@ -183,7 +183,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<Contact>(contact, createLink(Relation.COLLECTION));
+		Resource<Contact> resource = new Resource<>(contact, createLink(Relation.COLLECTION));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 
 		controller.delete(1);
@@ -197,7 +197,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<Contact>(contact, new Link("x", Relation.COLLECTION.rel()));
+		Resource<Contact> resource = new Resource<>(contact, new Link("x", Relation.COLLECTION.rel()));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ResponseEntity<Object> actual = controller.delete(1);

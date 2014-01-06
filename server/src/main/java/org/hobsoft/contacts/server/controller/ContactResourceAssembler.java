@@ -37,7 +37,7 @@ public class ContactResourceAssembler extends AbstractResourceAssembler<Contact,
 	@Override
 	public Resource<Contact> toResource(Contact contact)
 	{
-		Resource<Contact> resource = new Resource<Contact>(contact);
+		Resource<Contact> resource = new Resource<>(contact);
 		
 		resource.add(linkTo(methodOn(ContactsController.class).get(contact.getId()))
 			.withSelfRel());
