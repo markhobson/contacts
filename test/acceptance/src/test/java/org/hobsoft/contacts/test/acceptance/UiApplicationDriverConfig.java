@@ -35,12 +35,13 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for the UI application driver.
  */
 @Configuration
-public class UiApplicationDriverConfig
+public class UiApplicationDriverConfig implements ApplicationDriverConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
+	// ApplicationDriverConfig methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	@Override
 	@Bean
 	@UI
 	public ApplicationDriver applicationDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
@@ -50,6 +51,7 @@ public class UiApplicationDriverConfig
 		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactCreate, contactDelete);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public RootDriver rootDriver(@UI DriverConfiguration config)
@@ -57,6 +59,7 @@ public class UiApplicationDriverConfig
 		return new RootDriver(config);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public SignInDriver signInDriver(@UI DriverConfiguration config)
@@ -64,6 +67,7 @@ public class UiApplicationDriverConfig
 		return new SignInDriver(config);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public SignOutDriver signOutDriver(@UI DriverConfiguration config)
@@ -71,6 +75,7 @@ public class UiApplicationDriverConfig
 		return new SignOutDriver(config);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config)
@@ -78,6 +83,7 @@ public class UiApplicationDriverConfig
 		return new ContactsViewDriver(config);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public ContactViewDriver contactViewDriver(@UI DriverConfiguration config)
@@ -85,6 +91,7 @@ public class UiApplicationDriverConfig
 		return new ContactViewDriver(config);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public ContactCreateDriver contactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
@@ -93,6 +100,7 @@ public class UiApplicationDriverConfig
 		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
 	}
 	
+	@Override
 	@Bean
 	@UI
 	public ContactDeleteDriver contactDeleteDriver(@UI DriverConfiguration config,
