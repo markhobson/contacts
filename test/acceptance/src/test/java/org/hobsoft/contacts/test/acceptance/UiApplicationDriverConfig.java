@@ -43,7 +43,7 @@ public class UiApplicationDriverConfig
 	
 	@Bean
 	@UI
-	public ApplicationDriver uiDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
+	public ApplicationDriver applicationDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
 		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView, @UI ContactCreateDriver contactCreate,
 		@UI ContactDeleteDriver contactDelete)
 	{
@@ -52,42 +52,42 @@ public class UiApplicationDriverConfig
 	
 	@Bean
 	@UI
-	public RootDriver uiRootDriver(@UI DriverConfiguration config)
+	public RootDriver rootDriver(@UI DriverConfiguration config)
 	{
 		return new RootDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public SignInDriver uiSignInDriver(@UI DriverConfiguration config)
+	public SignInDriver signInDriver(@UI DriverConfiguration config)
 	{
 		return new SignInDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public SignOutDriver uiSignOutDriver(@UI DriverConfiguration config)
+	public SignOutDriver signOutDriver(@UI DriverConfiguration config)
 	{
 		return new SignOutDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public ContactsViewDriver uiContactsViewDriver(@UI DriverConfiguration config)
+	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config)
 	{
 		return new ContactsViewDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public ContactViewDriver uiContactViewDriver(@UI DriverConfiguration config)
+	public ContactViewDriver contactViewDriver(@UI DriverConfiguration config)
 	{
 		return new ContactViewDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public ContactCreateDriver uiContactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
+	public ContactCreateDriver contactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
 		@UI ContactViewDriver contactView, @UI ContactsViewDriver contactsView)
 	{
 		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
@@ -95,7 +95,7 @@ public class UiApplicationDriverConfig
 	
 	@Bean
 	@UI
-	public ContactDeleteDriver uiContactDeleteDriver(@UI DriverConfiguration config,
+	public ContactDeleteDriver contactDeleteDriver(@UI DriverConfiguration config,
 		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView)
 	{
 		return new ContactDeleteDriver(config, contactsView, contactView);
@@ -103,7 +103,7 @@ public class UiApplicationDriverConfig
 	
 	@Bean
 	@UI
-	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
+	public DriverConfiguration driverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
 	{
 		return new DriverConfiguration(microbrowser, serverUrl);
 	}
