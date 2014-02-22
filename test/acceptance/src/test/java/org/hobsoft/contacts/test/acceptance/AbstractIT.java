@@ -37,10 +37,6 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	@Autowired
 	private ApiDriverRule apiDriverRule;
 	
 	@Autowired
@@ -48,6 +44,10 @@ public abstract class AbstractIT
 	
 	@Autowired
 	private ContactRule contactRule;
+	
+	@Autowired
+	@UI
+	private ApplicationDriver ui;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
