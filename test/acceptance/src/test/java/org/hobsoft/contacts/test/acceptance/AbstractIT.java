@@ -14,13 +14,10 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.auth.Credentials;
-import org.hobsoft.contacts.test.acceptance.config.API;
 import org.hobsoft.contacts.test.acceptance.config.UI;
+import org.hobsoft.contacts.test.acceptance.rule.ApiDriverRule;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +36,11 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	@API
-	private ApplicationDriver api;
-	
-	@Autowired
 	@UI
 	private ApplicationDriver ui;
+	
+	@Autowired
+	private ApiDriverRule apiDriverRule;
 	
 	@Autowired
 	private AuthenticatedRule authenticatedRule;
@@ -56,27 +52,18 @@ public abstract class AbstractIT
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Before
-	public final void setUpIT()
+	@Rule
+	public ApiDriverRule getApiDriverRule()
 	{
-		api.signIn()
-			.show()
-			.signIn(new Credentials("mark", "password"));
+		return apiDriverRule;
 	}
-	
-	@After
-	public final void tearDownIT()
-	{
-		api.signOut()
-			.signOut();
-	}
-	
+
 	@Rule
 	public AuthenticatedRule getAuthenticatedRule()
 	{
 		return authenticatedRule;
 	}
-
+	
 	@Rule
 	public ContactRule getContactRule()
 	{
@@ -89,7 +76,7 @@ public abstract class AbstractIT
 
 	protected final ApplicationDriver api()
 	{
-		return api;
+		return apiDriverRule.api();
 	}
 	
 	protected final ApplicationDriver ui()
