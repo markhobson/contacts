@@ -19,6 +19,7 @@ import org.hobsoft.contacts.test.acceptance.rule.ApiDriverRule;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
 import org.junit.Rule;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -53,23 +54,13 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Rule
-	public ApiDriverRule getApiDriverRule()
+	public RuleChain getRuleChain()
 	{
-		return apiDriverRule;
+		return RuleChain.outerRule(apiDriverRule)
+			.around(authenticatedRule)
+			.around(contactRule);
 	}
 
-	@Rule
-	public AuthenticatedRule getAuthenticatedRule()
-	{
-		return authenticatedRule;
-	}
-	
-	@Rule
-	public ContactRule getContactRule()
-	{
-		return contactRule;
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// protected methods
 	// ----------------------------------------------------------------------------------------------------------------
