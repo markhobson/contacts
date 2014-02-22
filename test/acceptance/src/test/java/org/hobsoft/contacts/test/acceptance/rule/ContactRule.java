@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance.rule;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.contacts.test.acceptance.config.UI;
+import org.hobsoft.contacts.test.acceptance.config.API;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,17 +35,17 @@ public class ContactRule extends ExternalResource
 
 	private final ContactCollector contactCollector;
 	
-	private final ApplicationDriver ui;
+	private final ApplicationDriver api;
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Autowired
-	public ContactRule(ContactCollector contactCollector, @UI ApplicationDriver ui)
+	public ContactRule(ContactCollector contactCollector, @API ApplicationDriver api)
 	{
 		this.contactCollector = checkNotNull(contactCollector, "contactCollector");
-		this.ui = checkNotNull(ui, "ui");
+		this.api = checkNotNull(api, "api");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ public class ContactRule extends ExternalResource
 	{
 		for (Contact contact : contactCollector.getCreatedContacts())
 		{
-			ui.contactDelete()
+			api.contactDelete()
 				.show(contact)
 				.delete();
 		}

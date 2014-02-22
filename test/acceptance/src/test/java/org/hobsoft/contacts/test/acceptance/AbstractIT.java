@@ -40,10 +40,10 @@ public abstract class AbstractIT
 	private ApiDriverRule apiDriverRule;
 	
 	@Autowired
-	private AuthenticatedRule authenticatedRule;
+	private ContactRule contactRule;
 	
 	@Autowired
-	private ContactRule contactRule;
+	private AuthenticatedRule authenticatedRule;
 	
 	@Autowired
 	@UI
@@ -57,8 +57,8 @@ public abstract class AbstractIT
 	public RuleChain getRuleChain()
 	{
 		return RuleChain.outerRule(apiDriverRule)
-			.around(authenticatedRule)
-			.around(contactRule);
+			.around(contactRule)
+			.around(authenticatedRule);
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
