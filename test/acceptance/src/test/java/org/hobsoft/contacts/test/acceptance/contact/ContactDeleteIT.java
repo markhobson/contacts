@@ -17,7 +17,7 @@ import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.UI;
+import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
 import org.junit.Test;

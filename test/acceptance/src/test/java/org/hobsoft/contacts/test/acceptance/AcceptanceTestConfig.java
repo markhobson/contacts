@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.event.ContactCollector;
+import org.hobsoft.contacts.test.acceptance.config.UiApplicationDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;

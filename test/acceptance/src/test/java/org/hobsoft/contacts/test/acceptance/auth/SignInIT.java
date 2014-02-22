@@ -16,7 +16,7 @@ package org.hobsoft.contacts.test.acceptance.auth;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
-import org.hobsoft.contacts.test.acceptance.UI;
+import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

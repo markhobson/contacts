@@ -15,7 +15,7 @@ package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.auth.Credentials;
-import org.hobsoft.contacts.test.acceptance.UI;
+import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;

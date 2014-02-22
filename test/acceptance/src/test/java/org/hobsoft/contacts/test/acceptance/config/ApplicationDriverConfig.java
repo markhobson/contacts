@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.test.acceptance.config;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
