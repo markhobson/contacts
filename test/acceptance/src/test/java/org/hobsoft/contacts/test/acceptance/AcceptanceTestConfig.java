@@ -16,7 +16,17 @@ package org.hobsoft.contacts.test.acceptance;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.RootDriver;
+import org.hobsoft.contacts.driver.auth.SignInDriver;
+import org.hobsoft.contacts.driver.auth.SignOutDriver;
+import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
+import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.event.ContactCollector;
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
@@ -30,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for acceptance tests.
  */
 @Configuration
-@ComponentScan(basePackageClasses = {DriverConfiguration.class, AuthenticatedRule.class})
+@ComponentScan(basePackageClasses = AuthenticatedRule.class)
 public class AcceptanceTestConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
@@ -51,22 +61,90 @@ public class AcceptanceTestConfig
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
+	@Bean
+	@UI
+	public ApplicationDriver uiDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
+		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView, @UI ContactCreateDriver contactCreate,
+		@UI ContactDeleteDriver contactDelete)
+	{
+		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactCreate, contactDelete);
+	}
+	
+	@Bean
+	@UI
+	public RootDriver uiRootDriver(@UI DriverConfiguration config)
+	{
+		return new RootDriver(config);
+	}
+	
+	@Bean
+	@UI
+	public SignInDriver uiSignInDriver(@UI DriverConfiguration config)
+	{
+		return new SignInDriver(config);
+	}
+	
+	@Bean
+	@UI
+	public SignOutDriver uiSignOutDriver(@UI DriverConfiguration config)
+	{
+		return new SignOutDriver(config);
+	}
+	
+	@Bean
+	@UI
+	public ContactsViewDriver uiContactsViewDriver(@UI DriverConfiguration config)
+	{
+		return new ContactsViewDriver(config);
+	}
+	
+	@Bean
+	@UI
+	public ContactViewDriver uiContactViewDriver(@UI DriverConfiguration config)
+	{
+		return new ContactViewDriver(config);
+	}
+	
+	@Bean
+	@UI
+	public ContactCreateDriver uiContactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
+		@UI ContactViewDriver contactView, @UI ContactsViewDriver contactsView)
+	{
+		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
+	}
+	
+	@Bean
+	@UI
+	public ContactDeleteDriver uiContactDeleteDriver(@UI DriverConfiguration config,
+		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView)
+	{
+		return new ContactDeleteDriver(config, contactsView, contactView);
+	}
+	
+	@Bean
+	@UI
+	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser) throws MalformedURLException
+	{
+		return new DriverConfiguration(microbrowser, getServerUrl());
+	}
+	
+	@Bean
+	public ContactCollector contactCollector()
+	{
+		return new ContactCollector();
+	}
+	
+	@Bean
+	@UI
+	public StatefulMicrobrowser microbrowser(WebDriver webDriver)
+	{
+		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver));
+	}
+	
 	@Bean(destroyMethod = "quit")
 	public WebDriver webDriver()
 	{
 		return new FirefoxDriver();
-	}
-	
-	@Bean
-	public StatefulMicrobrowser microbrowser()
-	{
-		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver()));
-	}
-	
-	@Bean
-	public DriverConfiguration driverConfiguration() throws MalformedURLException
-	{
-		return new DriverConfiguration(microbrowser(), getServerUrl());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
