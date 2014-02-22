@@ -15,10 +15,14 @@ package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
+import org.hobsoft.contacts.test.acceptance.config.API;
 import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,8 +41,31 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
+	@API
+	private ApplicationDriver api;
+	
+	@Autowired
 	@UI
 	private ApplicationDriver ui;
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	@Before
+	public void setUp()
+	{
+		api.signIn()
+			.show()
+			.signIn(new Credentials("mark", "password"));
+	}
+	
+	@After
+	public void tearDown()
+	{
+		api.signOut()
+			.signOut();
+	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -48,17 +75,17 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContacts()
 	{
-		Contact contact1 = ui.contactCreate()
+		Contact contact1 = api.contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
-		Contact contact2 = ui.contactCreate()
+		Contact contact2 = api.contactCreate()
 			.show()
 			.setContact(new Contact("y"))
 			.create()
 			.getContact();
-		Contact contact3 = ui.contactCreate()
+		Contact contact3 = api.contactCreate()
 			.show()
 			.setContact(new Contact("z"))
 			.create()
@@ -78,7 +105,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void contactWhenClickedShowsContactView()
 	{
-		ui.contactCreate()
+		api.contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create();

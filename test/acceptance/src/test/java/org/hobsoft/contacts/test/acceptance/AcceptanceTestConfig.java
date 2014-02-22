@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.event.ContactCollector;
+import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ import org.springframework.context.annotation.Import;
  * Spring configuration for acceptance tests.
  */
 @Configuration
-@Import(UiDriverConfig.class)
+@Import({ApiDriverConfig.class, UiDriverConfig.class})
 @ComponentScan(basePackageClasses = AuthenticatedRule.class)
 public class AcceptanceTestConfig
 {
