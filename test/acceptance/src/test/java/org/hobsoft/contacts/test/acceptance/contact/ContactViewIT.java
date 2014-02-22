@@ -14,13 +14,10 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
@@ -31,14 +28,6 @@ import static org.junit.Assert.assertThat;
 public class ContactViewIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -46,13 +35,13 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContact()
 	{
-		Contact contact = ui.contactCreate()
+		Contact contact = ui().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		Contact actual = ui.contactView()
+		Contact actual = ui().contactView()
 			.show(contact)
 			.getContact();
 		
@@ -75,9 +64,9 @@ public class ContactViewIT extends AbstractSecurePageIT
 		
 		Contact contact;
 		
-		if (ui.contactCreate().show().isVisible())
+		if (ui().contactCreate().show().isVisible())
 		{
-			contact = ui.contactCreate()
+			contact = ui().contactCreate()
 				.setContact(new Contact("x"))
 				.create()
 				.getContact();
@@ -88,7 +77,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 			contact.setId(1L);
 		}
 		
-		ui.contactView()
+		ui().contactView()
 			.show(contact);
 	}
 	
@@ -98,6 +87,6 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return ui.contactView();
+		return ui().contactView();
 	}
 }

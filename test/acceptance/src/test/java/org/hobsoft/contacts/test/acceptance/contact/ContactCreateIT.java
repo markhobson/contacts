@@ -14,13 +14,10 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
@@ -32,14 +29,6 @@ import static org.junit.Assert.assertTrue;
 public class ContactCreateIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -47,7 +36,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsForm()
 	{
-		Contact actual = ui.contactCreate()
+		Contact actual = ui().contactCreate()
 			.show()
 			.getContact();
 		
@@ -58,7 +47,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Authenticated
 	public void submitCreatesContact()
 	{
-		Contact actual = ui.contactCreate()
+		Contact actual = ui().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -73,11 +62,11 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContactsView()
 	{
-		ui.contactCreate()
+		ui().contactCreate()
 			.show()
 			.cancel();
 		
-		assertTrue(ui.contactsView().isVisible());
+		assertTrue(ui().contactsView().isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -90,7 +79,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		ui.contactCreate()
+		ui().contactCreate()
 			.show();
 	}
 	
@@ -100,6 +89,6 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return ui.contactCreate();
+		return ui().contactCreate();
 	}
 }

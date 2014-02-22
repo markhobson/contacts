@@ -13,13 +13,10 @@
  */
 package org.hobsoft.contacts.test.acceptance.auth;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -31,72 +28,64 @@ import static org.junit.Assert.assertTrue;
 public class SignInIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show();
 		
-		assertTrue(ui.signIn().isVisible());
+		assertTrue(ui().signIn().isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedIsVisible()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show();
 		
-		assertTrue(ui.signIn().isVisible());
+		assertTrue(ui().signIn().isVisible());
 	}
 	
 	@Test
 	public void pageWhenUnauthenticatedDoesNotShowSignOut()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show();
 		
-		assertFalse(ui.signIn().isSignOutVisible());
+		assertFalse(ui().signIn().isSignOutVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedShowsSignOut()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show();
 		
-		assertTrue(ui.signIn().isSignOutVisible());
+		assertTrue(ui().signIn().isSignOutVisible());
 	}
 	
 	@Test
 	public void signInWithKnownCredentialsShowsContactsView()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show()
 			.signIn(new Credentials("mark", "password"));
 		
-		assertTrue(ui.contactsView().isVisible());
+		assertTrue(ui().contactsView().isVisible());
 	}
 	
 	@Test
 	public void signInWithUnknownCredentialsShowsError()
 	{
-		ui.signIn()
+		ui().signIn()
 			.show()
 			.signIn(new Credentials("mark", ""));
 		
-		assertEquals("Incorrect username or password.", ui.signIn().getErrorMessage());
+		assertEquals("Incorrect username or password.", ui().signIn().getErrorMessage());
 	}
 }

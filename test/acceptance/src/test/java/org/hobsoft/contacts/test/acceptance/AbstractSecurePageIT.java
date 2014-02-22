@@ -14,11 +14,8 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertTrue;
 
@@ -28,14 +25,6 @@ import static org.junit.Assert.assertTrue;
 public abstract class AbstractSecurePageIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -44,7 +33,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		show();
 		
-		assertTrue(ui.signIn().isVisible());
+		assertTrue(ui().signIn().isVisible());
 	}
 	
 	@Test

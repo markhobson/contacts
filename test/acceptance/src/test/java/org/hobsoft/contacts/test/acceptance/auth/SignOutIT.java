@@ -13,12 +13,9 @@
  */
 package org.hobsoft.contacts.test.acceptance.auth;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,14 +26,6 @@ import static org.junit.Assert.assertTrue;
 public class SignOutIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -44,19 +33,19 @@ public class SignOutIT extends AbstractIT
 	@Authenticated
 	public void signOutShowsSignIn()
 	{
-		ui.signOut()
+		ui().signOut()
 			.signOut();
 		
-		assertTrue(ui.signIn().isVisible());
+		assertTrue(ui().signIn().isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void signOutShowsSuccessMessage()
 	{
-		ui.signOut()
+		ui().signOut()
 			.signOut();
 		
-		assertEquals("You have been signed out.", ui.signIn().getSuccessMessage());
+		assertEquals("You have been signed out.", ui().signIn().getSuccessMessage());
 	}
 }

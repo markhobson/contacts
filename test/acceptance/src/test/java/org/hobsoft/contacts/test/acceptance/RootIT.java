@@ -13,11 +13,8 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,31 +24,23 @@ import static org.junit.Assert.assertTrue;
 public class RootIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		ui.show();
+		ui().show();
 		
-		assertTrue(ui.signIn().isVisible());
+		assertTrue(ui().signIn().isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedShowsContactsView()
 	{
-		ui.show();
+		ui().show();
 		
-		assertTrue(ui.contactsView().isVisible());
+		assertTrue(ui().contactsView().isVisible());
 	}
 }

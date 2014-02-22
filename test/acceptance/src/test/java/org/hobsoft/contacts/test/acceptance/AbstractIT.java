@@ -13,8 +13,14 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
+import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.driver.auth.Credentials;
+import org.hobsoft.contacts.test.acceptance.config.API;
+import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +39,14 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
+	@API
+	private ApplicationDriver api;
+	
+	@Autowired
+	@UI
+	private ApplicationDriver ui;
+	
+	@Autowired
 	private AuthenticatedRule authenticatedRule;
 	
 	@Autowired
@@ -41,6 +55,21 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	@Before
+	public final void setUpIT()
+	{
+		api.signIn()
+			.show()
+			.signIn(new Credentials("mark", "password"));
+	}
+	
+	@After
+	public final void tearDownIT()
+	{
+		api.signOut()
+			.signOut();
+	}
 	
 	@Rule
 	public AuthenticatedRule getAuthenticatedRule()
@@ -52,5 +81,19 @@ public abstract class AbstractIT
 	public ContactRule getContactRule()
 	{
 		return contactRule;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// protected methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	protected final ApplicationDriver api()
+	{
+		return api;
+	}
+	
+	protected final ApplicationDriver ui()
+	{
+		return ui;
 	}
 }

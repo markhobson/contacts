@@ -14,14 +14,11 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -34,14 +31,6 @@ import static org.junit.Assert.fail;
 public class ContactDeleteIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -49,13 +38,13 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsName()
 	{
-		Contact contact = ui.contactCreate()
+		Contact contact = ui().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		Contact actual = ui.contactDelete()
+		Contact actual = ui().contactDelete()
 			.show(contact)
 			.getContact();
 		
@@ -67,17 +56,17 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void deleteDeletesContact()
 	{
-		Contact contact = ui.contactCreate()
+		Contact contact = ui().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		ui.contactDelete()
+		ui().contactDelete()
 			.show(contact)
 			.delete();
 		
-		ui.contactView()
+		ui().contactView()
 			.show(contact);
 		// TODO: assert 404
 		fail();
@@ -87,18 +76,18 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContactView()
 	{
-		Contact contact = ui.contactCreate()
+		Contact contact = ui().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		ui.contactDelete()
+		ui().contactDelete()
 			.show(contact)
 			.cancel();
 		
 		// TODO: assert correct contact
-		assertTrue(ui.contactView().isVisible());
+		assertTrue(ui().contactView().isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -115,9 +104,9 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		
 		Contact contact;
 		
-		if (ui.contactCreate().show().isVisible())
+		if (ui().contactCreate().show().isVisible())
 		{
-			contact = ui.contactCreate()
+			contact = ui().contactCreate()
 				.setContact(new Contact("x"))
 				.create()
 				.getContact();
@@ -128,7 +117,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			contact.setId(1L);
 		}
 		
-		ui.contactDelete()
+		ui().contactDelete()
 			.show(contact);
 	}
 	
@@ -138,6 +127,6 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return ui.contactDelete();
+		return ui().contactDelete();
 	}
 }

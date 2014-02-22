@@ -14,17 +14,10 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.config.API;
-import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
@@ -37,37 +30,6 @@ import static org.junit.Assert.assertTrue;
 public class ContactsViewIT extends AbstractSecurePageIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Autowired
-	@API
-	private ApplicationDriver api;
-	
-	@Autowired
-	@UI
-	private ApplicationDriver ui;
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	@Before
-	public void setUp()
-	{
-		api.signIn()
-			.show()
-			.signIn(new Credentials("mark", "password"));
-	}
-	
-	@After
-	public void tearDown()
-	{
-		api.signOut()
-			.signOut();
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
@@ -75,26 +37,26 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContacts()
 	{
-		Contact contact1 = api.contactCreate()
+		Contact contact1 = api().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
-		Contact contact2 = api.contactCreate()
+		Contact contact2 = api().contactCreate()
 			.show()
 			.setContact(new Contact("y"))
 			.create()
 			.getContact();
-		Contact contact3 = api.contactCreate()
+		Contact contact3 = api().contactCreate()
 			.show()
 			.setContact(new Contact("z"))
 			.create()
 			.getContact();
 		
-		ui.contactsView()
+		ui().contactsView()
 			.show();
 		
-		assertThat(ui.contactsView().getContacts(), contains(
+		assertThat(ui().contactsView().getContacts(), contains(
 			samePropertyValuesAs(contact1),
 			samePropertyValuesAs(contact2),
 			samePropertyValuesAs(contact3)
@@ -105,16 +67,16 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void contactWhenClickedShowsContactView()
 	{
-		api.contactCreate()
+		api().contactCreate()
 			.show()
 			.setContact(new Contact("x"))
 			.create();
 		
-		ui.contactsView()
+		ui().contactsView()
 			.show()
 			.clickContact("x");
 		
-		assertTrue(ui.contactView().isVisible());
+		assertTrue(ui().contactView().isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -127,7 +89,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		ui.contactsView().show();
+		ui().contactsView().show();
 	}
 	
 	/**
@@ -136,6 +98,6 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return ui.contactsView();
+		return ui().contactsView();
 	}
 }
