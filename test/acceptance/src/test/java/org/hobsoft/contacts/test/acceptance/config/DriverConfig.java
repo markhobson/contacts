@@ -27,7 +27,7 @@ import org.hobsoft.contacts.driver.event.ContactListener;
 /**
  * Spring configuration API for an application driver.
  */
-public interface ApplicationDriverConfig
+public interface DriverConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods

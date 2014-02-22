@@ -35,10 +35,10 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for the UI application driver.
  */
 @Configuration
-public class UiApplicationDriverConfig implements ApplicationDriverConfig
+public class UiDriverConfig implements DriverConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// ApplicationDriverConfig methods
+	// DriverConfig methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Override
