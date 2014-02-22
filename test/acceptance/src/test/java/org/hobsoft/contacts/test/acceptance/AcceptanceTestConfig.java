@@ -123,9 +123,9 @@ public class AcceptanceTestConfig
 	
 	@Bean
 	@UI
-	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser) throws MalformedURLException
+	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
 	{
-		return new DriverConfiguration(microbrowser, getServerUrl());
+		return new DriverConfiguration(microbrowser, serverUrl);
 	}
 	
 	@Bean
@@ -147,11 +147,8 @@ public class AcceptanceTestConfig
 		return new FirefoxDriver();
 	}
 	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	private static URL getServerUrl() throws MalformedURLException
+	@Bean
+	public URL serverUrl() throws MalformedURLException
 	{
 		String protocol = DEFAULT_SERVER_PROTOCOL;
 		String host = DEFAULT_SERVER_HOST;
