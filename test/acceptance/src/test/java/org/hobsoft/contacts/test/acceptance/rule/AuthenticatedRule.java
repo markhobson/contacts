@@ -13,9 +13,8 @@
  */
 package org.hobsoft.contacts.test.acceptance.rule;
 
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.auth.Credentials;
-import org.hobsoft.contacts.driver.auth.SignInDriver;
-import org.hobsoft.contacts.driver.auth.SignOutDriver;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -34,19 +33,16 @@ public class AuthenticatedRule implements TestRule
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	private final SignInDriver signIn;
-	
-	private final SignOutDriver signOut;
+	private final ApplicationDriver ui;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Autowired
-	public AuthenticatedRule(SignInDriver signIn, SignOutDriver signOut)
+	public AuthenticatedRule(ApplicationDriver ui)
 	{
-		this.signIn = checkNotNull(signIn, "signIn");
-		this.signOut = checkNotNull(signOut, "signOut");
+		this.ui = checkNotNull(ui, "ui");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -75,8 +71,9 @@ public class AuthenticatedRule implements TestRule
 			public void evaluate() throws Throwable
 			// CHECKSTYLE:ON
 			{
-				signIn.show();
-				signIn.signIn(credentials);
+				ui.signIn()
+					.show()
+					.signIn(credentials);
 				
 				try
 				{
@@ -84,7 +81,8 @@ public class AuthenticatedRule implements TestRule
 				}
 				finally
 				{
-					signOut.signOut();
+					ui.signOut()
+						.signOut();
 				}
 			}
 		};

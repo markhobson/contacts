@@ -14,9 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
-import org.hobsoft.contacts.driver.contact.ContactViewDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -38,13 +36,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private ContactCreateDriver contactCreate;
-	
-	@Autowired
-	private ContactsViewDriver contactsView;
-	
-	@Autowired
-	private ContactViewDriver contactView;
+	private ApplicationDriver ui;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -54,22 +46,26 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContacts()
 	{
-		Contact contact1 = contactCreate.show()
+		Contact contact1 = ui.contactCreate()
+			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
-		Contact contact2 = contactCreate.show()
+		Contact contact2 = ui.contactCreate()
+			.show()
 			.setContact(new Contact("y"))
 			.create()
 			.getContact();
-		Contact contact3 = contactCreate.show()
+		Contact contact3 = ui.contactCreate()
+			.show()
 			.setContact(new Contact("z"))
 			.create()
 			.getContact();
 		
-		contactsView.show();
+		ui.contactsView()
+			.show();
 		
-		assertThat(contactsView.getContacts(), contains(
+		assertThat(ui.contactsView().getContacts(), contains(
 			samePropertyValuesAs(contact1),
 			samePropertyValuesAs(contact2),
 			samePropertyValuesAs(contact3)
@@ -80,14 +76,16 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void contactWhenClickedShowsContactView()
 	{
-		contactCreate.show()
+		ui.contactCreate()
+			.show()
 			.setContact(new Contact("x"))
 			.create();
 		
-		contactsView.show()
+		ui.contactsView()
+			.show()
 			.clickContact("x");
 		
-		assertTrue(contactView.isVisible());
+		assertTrue(ui.contactView().isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -100,7 +98,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		contactsView.show();
+		ui.contactsView().show();
 	}
 	
 	/**
@@ -109,6 +107,6 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contactsView;
+		return ui.contactsView();
 	}
 }

@@ -14,8 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
-import org.hobsoft.contacts.driver.contact.ContactViewDriver;
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -35,10 +34,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private ContactCreateDriver contactCreate;
-	
-	@Autowired
-	private ContactViewDriver contactView;
+	private ApplicationDriver ui;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
@@ -48,12 +44,14 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContact()
 	{
-		Contact contact = contactCreate.show()
+		Contact contact = ui.contactCreate()
+			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		
-		Contact actual = contactView.show(contact)
+		Contact actual = ui.contactView()
+			.show(contact)
 			.getContact();
 		
 		Contact expected = new Contact("x");
@@ -75,9 +73,10 @@ public class ContactViewIT extends AbstractSecurePageIT
 		
 		Contact contact;
 		
-		if (contactCreate.show().isVisible())
+		if (ui.contactCreate().show().isVisible())
 		{
-			contact = contactCreate.setContact(new Contact("x"))
+			contact = ui.contactCreate()
+				.setContact(new Contact("x"))
 				.create()
 				.getContact();
 		}
@@ -87,7 +86,8 @@ public class ContactViewIT extends AbstractSecurePageIT
 			contact.setId(1L);
 		}
 		
-		contactView.show(contact);
+		ui.contactView()
+			.show(contact);
 	}
 	
 	/**
@@ -96,6 +96,6 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected AbstractPageDriver driver()
 	{
-		return contactView;
+		return ui.contactView();
 	}
 }

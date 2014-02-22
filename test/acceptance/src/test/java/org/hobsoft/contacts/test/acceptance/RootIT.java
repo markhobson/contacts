@@ -13,9 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.RootDriver;
-import org.hobsoft.contacts.driver.auth.SignInDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +30,8 @@ public class RootIT extends AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private RootDriver root;
+	private ApplicationDriver ui;
 
-	@Autowired
-	private SignInDriver signIn;
-	
-	@Autowired
-	private ContactsViewDriver contactsView;
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
@@ -47,17 +39,17 @@ public class RootIT extends AbstractIT
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		root.show();
+		ui.show();
 		
-		assertTrue(signIn.isVisible());
+		assertTrue(ui.signIn().isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedShowsContactsView()
 	{
-		root.show();
+		ui.show();
 		
-		assertTrue(contactsView.isVisible());
+		assertTrue(ui.contactsView().isVisible());
 	}
 }

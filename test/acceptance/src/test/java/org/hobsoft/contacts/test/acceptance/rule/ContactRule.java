@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.rule;
 
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
 import org.junit.rules.ExternalResource;
@@ -34,17 +34,17 @@ public class ContactRule extends ExternalResource
 
 	private final ContactCollector contactCollector;
 	
-	private final ContactDeleteDriver contactDeleteDriver;
+	private final ApplicationDriver ui;
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Autowired
-	public ContactRule(ContactCollector contactCollector, ContactDeleteDriver contactDeleteDriver)
+	public ContactRule(ContactCollector contactCollector, ApplicationDriver ui)
 	{
 		this.contactCollector = checkNotNull(contactCollector, "contactCollector");
-		this.contactDeleteDriver = checkNotNull(contactDeleteDriver, "contactDeleteDriver");
+		this.ui = checkNotNull(ui, "ui");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -59,7 +59,8 @@ public class ContactRule extends ExternalResource
 	{
 		for (Contact contact : contactCollector.getCreatedContacts())
 		{
-			contactDeleteDriver.show(contact)
+			ui.contactDelete()
+				.show(contact)
 				.delete();
 		}
 		
