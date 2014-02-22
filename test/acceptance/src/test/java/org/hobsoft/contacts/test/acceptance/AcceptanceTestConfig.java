@@ -16,30 +16,20 @@ package org.hobsoft.contacts.test.acceptance;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.RootDriver;
-import org.hobsoft.contacts.driver.auth.SignInDriver;
-import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.contact.ContactViewDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
-import org.hobsoft.contacts.driver.event.ContactListener;
-import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
-import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * Spring configuration for acceptance tests.
  */
 @Configuration
+@Import(UiApplicationDriverConfig.class)
 @ComponentScan(basePackageClasses = AuthenticatedRule.class)
 public class AcceptanceTestConfig
 {
@@ -62,83 +52,14 @@ public class AcceptanceTestConfig
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Bean
-	@UI
-	public ApplicationDriver uiDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
-		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView, @UI ContactCreateDriver contactCreate,
-		@UI ContactDeleteDriver contactDelete)
+	public URL serverUrl() throws MalformedURLException
 	{
-		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactCreate, contactDelete);
-	}
-	
-	@Bean
-	@UI
-	public RootDriver uiRootDriver(@UI DriverConfiguration config)
-	{
-		return new RootDriver(config);
-	}
-	
-	@Bean
-	@UI
-	public SignInDriver uiSignInDriver(@UI DriverConfiguration config)
-	{
-		return new SignInDriver(config);
-	}
-	
-	@Bean
-	@UI
-	public SignOutDriver uiSignOutDriver(@UI DriverConfiguration config)
-	{
-		return new SignOutDriver(config);
-	}
-	
-	@Bean
-	@UI
-	public ContactsViewDriver uiContactsViewDriver(@UI DriverConfiguration config)
-	{
-		return new ContactsViewDriver(config);
-	}
-	
-	@Bean
-	@UI
-	public ContactViewDriver uiContactViewDriver(@UI DriverConfiguration config)
-	{
-		return new ContactViewDriver(config);
-	}
-	
-	@Bean
-	@UI
-	public ContactCreateDriver uiContactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
-		@UI ContactViewDriver contactView, @UI ContactsViewDriver contactsView)
-	{
-		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
-	}
-	
-	@Bean
-	@UI
-	public ContactDeleteDriver uiContactDeleteDriver(@UI DriverConfiguration config,
-		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView)
-	{
-		return new ContactDeleteDriver(config, contactsView, contactView);
-	}
-	
-	@Bean
-	@UI
-	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
-	{
-		return new DriverConfiguration(microbrowser, serverUrl);
-	}
-	
-	@Bean
-	public ContactCollector contactCollector()
-	{
-		return new ContactCollector();
-	}
-	
-	@Bean
-	@UI
-	public StatefulMicrobrowser microbrowser(WebDriver webDriver)
-	{
-		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver));
+		String protocol = DEFAULT_SERVER_PROTOCOL;
+		String host = DEFAULT_SERVER_HOST;
+		int port = Integer.valueOf(System.getProperty(SERVER_PORT_PROPERTY, DEFAULT_SERVER_PORT));
+		String path = DEFAULT_SERVER_PATH;
+		
+		return new URL(protocol, host, port, path);
 	}
 	
 	@Bean(destroyMethod = "quit")
@@ -148,13 +69,8 @@ public class AcceptanceTestConfig
 	}
 	
 	@Bean
-	public URL serverUrl() throws MalformedURLException
+	public ContactCollector contactCollector()
 	{
-		String protocol = DEFAULT_SERVER_PROTOCOL;
-		String host = DEFAULT_SERVER_HOST;
-		int port = Integer.valueOf(System.getProperty(SERVER_PORT_PROPERTY, DEFAULT_SERVER_PORT));
-		String path = DEFAULT_SERVER_PATH;
-		
-		return new URL(protocol, host, port, path);
+		return new ContactCollector();
 	}
 }
