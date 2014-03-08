@@ -38,7 +38,8 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsName()
 	{
-		Contact contact = ui().contactCreate()
+		Contact contact = ui().contactsView()
+			.create()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -56,7 +57,8 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void deleteDeletesContact()
 	{
-		Contact contact = ui().contactCreate()
+		Contact contact = ui().contactsView()
+			.create()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -76,7 +78,8 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContactView()
 	{
-		Contact contact = ui().contactCreate()
+		Contact contact = ui().contactsView()
+			.create()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -104,9 +107,10 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		
 		Contact contact;
 		
-		if (ui().contactCreate().show().isVisible())
+		if (ui().contactsView().create().show().isVisible())
 		{
-			contact = ui().contactCreate()
+			contact = ui().contactsView()
+				.create()
 				.setContact(new Contact("x"))
 				.create()
 				.getContact();

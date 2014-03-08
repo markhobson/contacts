@@ -37,21 +37,18 @@ public class ContactCreateDriver extends AbstractPageDriver
 	
 	private final ContactViewDriver contactViewDriver;
 
-	private final ContactsViewDriver contactsDriver;
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener,
-		ContactViewDriver contactViewDriver, ContactsViewDriver contactsDriver)
+		ContactViewDriver contactViewDriver)
 	{
 		super(config, "/contacts/create");
 		
 		this.contactListener = checkNotNull(contactListener, "contactListener");
 		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");
-		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -97,13 +94,12 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return contactViewDriver;
 	}
 
-	public ContactsViewDriver cancel()
+	// TODO: return ContactsViewDriver
+	public void cancel()
 	{
 		checkVisible();
 		
 		document().getLink("cancel").follow();
-		
-		return contactsDriver;
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

@@ -45,9 +45,9 @@ public class ApiDriverConfig implements DriverConfig
 	@API
 	public ApplicationDriver applicationDriver(@API RootDriver root, @API SignInDriver signIn,
 		@API SignOutDriver signOut, @API ContactsViewDriver contactsView, @API ContactViewDriver contactView,
-		@API ContactCreateDriver contactCreate, @API ContactDeleteDriver contactDelete)
+		@API ContactDeleteDriver contactDelete)
 	{
-		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactCreate, contactDelete);
+		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactDelete);
 	}
 	
 	@Override
@@ -77,9 +77,10 @@ public class ApiDriverConfig implements DriverConfig
 	@Override
 	@Bean(name = "apiContactsViewDriver")
 	@API
-	public ContactsViewDriver contactsViewDriver(@API DriverConfiguration config)
+	public ContactsViewDriver contactsViewDriver(@API DriverConfiguration config,
+		@API ContactCreateDriver contactCreate)
 	{
-		return new ContactsViewDriver(config);
+		return new ContactsViewDriver(config, contactCreate);
 	}
 	
 	@Override
@@ -94,9 +95,9 @@ public class ApiDriverConfig implements DriverConfig
 	@Bean(name = "apiContactCreateDriver")
 	@API
 	public ContactCreateDriver contactCreateDriver(@API DriverConfiguration config, ContactListener contactListener,
-		@API ContactViewDriver contactView, @API ContactsViewDriver contactsView)
+		@API ContactViewDriver contactView)
 	{
-		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
+		return new ContactCreateDriver(config, contactListener, contactView);
 	}
 	
 	@Override

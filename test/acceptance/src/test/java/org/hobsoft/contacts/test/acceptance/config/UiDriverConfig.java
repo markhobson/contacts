@@ -45,10 +45,9 @@ public class UiDriverConfig implements DriverConfig
 	@Bean
 	@UI
 	public ApplicationDriver applicationDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
-		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView, @UI ContactCreateDriver contactCreate,
-		@UI ContactDeleteDriver contactDelete)
+		@UI ContactsViewDriver contactsView, @UI ContactViewDriver contactView, @UI ContactDeleteDriver contactDelete)
 	{
-		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactCreate, contactDelete);
+		return new ApplicationDriver(root, signIn, signOut, contactsView, contactView, contactDelete);
 	}
 	
 	@Override
@@ -78,9 +77,9 @@ public class UiDriverConfig implements DriverConfig
 	@Override
 	@Bean
 	@UI
-	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config)
+	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config, @UI ContactCreateDriver contactCreate)
 	{
-		return new ContactsViewDriver(config);
+		return new ContactsViewDriver(config, contactCreate);
 	}
 	
 	@Override
@@ -95,9 +94,9 @@ public class UiDriverConfig implements DriverConfig
 	@Bean
 	@UI
 	public ContactCreateDriver contactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
-		@UI ContactViewDriver contactView, @UI ContactsViewDriver contactsView)
+		@UI ContactViewDriver contactView)
 	{
-		return new ContactCreateDriver(config, contactListener, contactView, contactsView);
+		return new ContactCreateDriver(config, contactListener, contactView);
 	}
 	
 	@Override

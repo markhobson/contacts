@@ -15,7 +15,6 @@ package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
@@ -42,8 +41,6 @@ public class ApplicationDriver
 
 	private final ContactViewDriver contactView;
 	
-	private final ContactCreateDriver contactCreate;
-
 	private final ContactDeleteDriver contactDelete;
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -52,15 +49,13 @@ public class ApplicationDriver
 	
 	@Autowired
 	public ApplicationDriver(RootDriver root, SignInDriver signIn, SignOutDriver signOut,
-		ContactsViewDriver contactsView, ContactViewDriver contactView, ContactCreateDriver contactCreate,
-		ContactDeleteDriver contactDelete)
+		ContactsViewDriver contactsView, ContactViewDriver contactView, ContactDeleteDriver contactDelete)
 	{
 		this.root = root;
 		this.signIn = signIn;
 		this.signOut = signOut;
 		this.contactsView = contactsView;
 		this.contactView = contactView;
-		this.contactCreate = contactCreate;
 		this.contactDelete = contactDelete;
 	}
 
@@ -91,11 +86,6 @@ public class ApplicationDriver
 	public ContactViewDriver contactView()
 	{
 		return contactView;
-	}
-
-	public ContactCreateDriver contactCreate()
-	{
-		return contactCreate;
 	}
 
 	public ContactDeleteDriver contactDelete()

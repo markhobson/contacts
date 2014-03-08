@@ -34,8 +34,7 @@ public interface DriverConfig
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	ApplicationDriver applicationDriver(RootDriver root, SignInDriver signIn, SignOutDriver signOut,
-		ContactsViewDriver contactsView, ContactViewDriver contactView, ContactCreateDriver contactCreate,
-		ContactDeleteDriver contactDelete);
+		ContactsViewDriver contactsView, ContactViewDriver contactView, ContactDeleteDriver contactDelete);
 	
 	RootDriver rootDriver(DriverConfiguration config);
 	
@@ -43,12 +42,12 @@ public interface DriverConfig
 	
 	SignOutDriver signOutDriver(DriverConfiguration config);
 	
-	ContactsViewDriver contactsViewDriver(DriverConfiguration config);
+	ContactsViewDriver contactsViewDriver(DriverConfiguration config, ContactCreateDriver contactCreate);
 	
 	ContactViewDriver contactViewDriver(DriverConfiguration config);
 	
 	ContactCreateDriver contactCreateDriver(DriverConfiguration config, ContactListener contactListener,
-		ContactViewDriver contactView, ContactsViewDriver contactsView);
+		ContactViewDriver contactView);
 	
 	ContactDeleteDriver contactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsView,
 		ContactViewDriver contactView);

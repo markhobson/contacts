@@ -35,7 +35,8 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContact()
 	{
-		Contact contact = ui().contactCreate()
+		Contact contact = ui().contactsView()
+			.create()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -64,9 +65,10 @@ public class ContactViewIT extends AbstractSecurePageIT
 		
 		Contact contact;
 		
-		if (ui().contactCreate().show().isVisible())
+		if (ui().contactsView().create().show().isVisible())
 		{
-			contact = ui().contactCreate()
+			contact = ui().contactsView()
+				.create()
 				.setContact(new Contact("x"))
 				.create()
 				.getContact();

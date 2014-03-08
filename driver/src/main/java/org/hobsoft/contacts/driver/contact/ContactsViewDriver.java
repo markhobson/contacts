@@ -24,6 +24,8 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Web UI driver for the view contacts page.
  */
@@ -31,13 +33,21 @@ import org.springframework.stereotype.Component;
 public class ContactsViewDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final ContactCreateDriver contactCreate;
+
+	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactsViewDriver(DriverConfiguration config)
+	public ContactsViewDriver(DriverConfiguration config, ContactCreateDriver contactCreate)
 	{
 		super(config, "/contacts");
+		
+		this.contactCreate = checkNotNull(contactCreate, "contactCreate");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -49,6 +59,11 @@ public class ContactsViewDriver extends AbstractPageDriver
 		document().get(url("/contacts"));
 		
 		return this;
+	}
+
+	public ContactCreateDriver create()
+	{
+		return contactCreate;
 	}
 	
 	public List<Contact> getContacts()
