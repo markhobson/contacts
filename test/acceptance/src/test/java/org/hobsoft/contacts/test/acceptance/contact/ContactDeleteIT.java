@@ -116,7 +116,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void show()
+	protected ContactDeleteDriver show()
 	{
 		Contact contact = api().contactsView()
 			.create()
@@ -125,15 +125,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		page().show(contact);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected ContactDeleteDriver page()
-	{
-		return ui().contactDelete();
+		return ui().contactDelete()
+			.show(contact);
 	}
 }

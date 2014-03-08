@@ -59,7 +59,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void show()
+	protected ContactViewDriver show()
 	{
 		Contact contact = api().contactsView()
 			.create()
@@ -68,15 +68,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		page().show(contact);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected ContactViewDriver page()
-	{
-		return ui().contactView();
+		return ui().contactView()
+			.show(contact);
 	}
 }

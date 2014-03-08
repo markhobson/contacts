@@ -80,18 +80,10 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void show()
-	{
-		page().show();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected ContactCreateDriver page()
+	protected ContactCreateDriver show()
 	{
 		return ui().contactsView()
-			.create();
+			.create()
+			.show();
 	}
 }
