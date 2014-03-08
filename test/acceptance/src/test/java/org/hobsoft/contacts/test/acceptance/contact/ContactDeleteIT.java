@@ -56,15 +56,16 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsName()
 	{
-		Contact contact = api().contacts()
+		api().contacts()
 			.show()
 			.createForm()
 			.set(new Contact("x"))
-			.create()
-			.get();
+			.create();
 		
-		Contact actual = ui().contactDelete()
-			.show(contact)
+		Contact actual = ui().contacts()
+			.show()
+			.contact("x")
+			.deleteForm()
 			.get();
 		
 		assertThat(actual.getName(), is("x"));
@@ -74,15 +75,17 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void deleteDeletesContact()
 	{
-		Contact contact = api().contacts()
+		api().contacts()
 			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
-		ui().contactDelete()
-			.show(contact)
+		ui().contacts()
+			.show()
+			.contact("x")
+			.deleteForm()
 			.delete();
 		
 		ContactsViewDriver contactsView = api().contacts().show();
@@ -101,8 +104,10 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.create()
 			.get();
 		
-		ContactViewDriver actual = ui().contactDelete()
-			.show(contact)
+		ContactViewDriver actual = ui().contacts()
+			.show()
+			.contact("x")
+			.deleteForm()
 			.cancel();
 		
 		assertThat(actual.get(), samePropertyValuesAs(contact));
@@ -118,14 +123,16 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Override
 	protected ContactDeleteDriver show()
 	{
-		Contact contact = api().contacts()
+		api().contacts()
 			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
-		return ui().contactDelete()
-			.show(contact);
+		return ui().contacts()
+			.show()
+			.contact("x")
+			.deleteForm();
 	}
 }

@@ -75,7 +75,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 		
 		getForm().submit();
 		
-		ContactViewDriver contactViewDriver = new ContactViewDriver(getConfiguration());
+		ContactViewDriver contactViewDriver = new ContactViewDriver(getConfiguration(), contactListener);
 		
 		if (contactViewDriver.isVisible())
 		{

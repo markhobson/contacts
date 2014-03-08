@@ -20,7 +20,6 @@ import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.RootDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
@@ -42,9 +41,9 @@ public class ApiDriverConfig implements DriverConfig
 	@Bean(name = "apiApplicationDriver")
 	@API
 	public ApplicationDriver applicationDriver(@API RootDriver root, @API SignInDriver signIn,
-		@API SignOutDriver signOut, @API ContactsViewDriver contactsView, @API ContactDeleteDriver contactDelete)
+		@API SignOutDriver signOut, @API ContactsViewDriver contactsView)
 	{
-		return new ApplicationDriver(root, signIn, signOut, contactsView, contactDelete);
+		return new ApplicationDriver(root, signIn, signOut, contactsView);
 	}
 	
 	@Override
@@ -77,14 +76,6 @@ public class ApiDriverConfig implements DriverConfig
 	public ContactsViewDriver contactsViewDriver(@API DriverConfiguration config, ContactListener contactListener)
 	{
 		return new ContactsViewDriver(config, contactListener);
-	}
-	
-	@Override
-	@Bean(name = "apiContactDeleteDriver")
-	@API
-	public ContactDeleteDriver contactDeleteDriver(@API DriverConfiguration config, ContactListener contactListener)
-	{
-		return new ContactDeleteDriver(config, contactListener);
 	}
 	
 	@Bean(name = "apiDriverConfiguration")

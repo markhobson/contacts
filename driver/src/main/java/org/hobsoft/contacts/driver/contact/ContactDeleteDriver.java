@@ -87,6 +87,6 @@ public class ContactDeleteDriver extends AbstractPageDriver
 
 		document().getLink("cancel").follow();
 		
-		return new ContactViewDriver(getConfiguration());
+		return new ContactViewDriver(getConfiguration(), contactListener);
 	}
 }

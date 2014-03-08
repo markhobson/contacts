@@ -97,7 +97,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 			{
 				item.getProperty("url").unwrap(WebElement.class).click();
 				
-				return new ContactViewDriver(getConfiguration());
+				return new ContactViewDriver(getConfiguration(), contactListener);
 			}
 		}
 		

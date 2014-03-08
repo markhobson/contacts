@@ -14,11 +14,11 @@
 package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.contacts.test.acceptance.config.API;
-import org.hobsoft.microbrowser.MicrobrowserException;
+import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,8 +43,9 @@ public class ContactRule extends ExternalResource
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
+	// TODO: use API when contact() works under jsoup
 	@Autowired
-	public ContactRule(ContactCollector contactCollector, @API ApplicationDriver api)
+	public ContactRule(ContactCollector contactCollector, @UI ApplicationDriver api)
 	{
 		this.contactCollector = checkNotNull(contactCollector, "contactCollector");
 		this.api = checkNotNull(api, "api");
@@ -74,18 +75,21 @@ public class ContactRule extends ExternalResource
 
 	private void deleteContactQuietly(Contact contact)
 	{
-		ContactDeleteDriver contactDelete = api.contactDelete();
+		ContactsViewDriver contactsView = api.contacts()
+			.show();
 		
+		ContactViewDriver contactView;
 		try
 		{
-			contactDelete.show(contact);
+			contactView = contactsView.contact(contact.getName());
 		}
-		catch (MicrobrowserException exception)
+		catch (IllegalArgumentException exception)
 		{
 			// ignore unknown contact
 			return;
 		}
 		
-		contactDelete.delete();
+		contactView.deleteForm()
+			.delete();
 	}
 }

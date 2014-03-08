@@ -15,7 +15,6 @@ package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,21 +37,18 @@ public class ApplicationDriver
 	
 	private final ContactsViewDriver contactsView;
 
-	private final ContactDeleteDriver contactDelete;
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	public ApplicationDriver(RootDriver root, SignInDriver signIn, SignOutDriver signOut,
-		ContactsViewDriver contactsView, ContactDeleteDriver contactDelete)
+		ContactsViewDriver contactsView)
 	{
 		this.root = root;
 		this.signIn = signIn;
 		this.signOut = signOut;
 		this.contactsView = contactsView;
-		this.contactDelete = contactDelete;
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -77,10 +73,5 @@ public class ApplicationDriver
 	public ContactsViewDriver contacts()
 	{
 		return contactsView;
-	}
-
-	public ContactDeleteDriver contactDelete()
-	{
-		return contactDelete;
 	}
 }

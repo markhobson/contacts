@@ -8,5 +8,9 @@
 		<h1 itemprop="name">${contact.content.name}</h1>
 		<link itemprop="url" href="${contact.id.href}"/>
 	</div>
+	
+	<div>
+		<a rel="delete" href="${contact.getLink('delete').href}" class="btn btn-danger">Delete</a>
+	</div>
 
 </tag:page>
