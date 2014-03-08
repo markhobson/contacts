@@ -39,7 +39,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 		Contact actual = ui().contacts()
 			.createForm()
 			.show()
-			.getContact();
+			.get();
 		
 		assertThat(actual, samePropertyValuesAs(new Contact("")));
 	}
@@ -51,7 +51,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 		Contact actual = ui().contacts()
 			.createForm()
 			.show()
-			.setContact(new Contact("x"))
+			.set(new Contact("x"))
 			.create()
 			.getContact();
 		

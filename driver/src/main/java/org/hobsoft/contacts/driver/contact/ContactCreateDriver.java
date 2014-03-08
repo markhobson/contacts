@@ -62,7 +62,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return this;
 	}
 
-	public Contact getContact()
+	public Contact get()
 	{
 		checkVisible();
 		
@@ -71,7 +71,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return new Contact(name);
 	}
 
-	public ContactCreateDriver setContact(Contact contact)
+	public ContactCreateDriver set(Contact contact)
 	{
 		checkVisible();
 		
