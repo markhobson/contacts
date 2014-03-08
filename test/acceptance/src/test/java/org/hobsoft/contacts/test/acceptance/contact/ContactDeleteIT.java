@@ -65,7 +65,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		
 		Contact actual = ui().contactDelete()
 			.show(contact)
-			.getContact();
+			.get();
 		
 		assertThat(actual.getName(), is("x"));
 	}

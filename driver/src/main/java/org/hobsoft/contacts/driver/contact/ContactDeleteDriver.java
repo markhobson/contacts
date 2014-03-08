@@ -66,7 +66,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 		return this;
 	}
 
-	public Contact getContact()
+	public Contact get()
 	{
 		checkVisible();
 		
