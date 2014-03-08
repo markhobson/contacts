@@ -42,7 +42,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		show();
 		
-		assertTrue(driver().isVisible());
+		assertTrue(page().isVisible());
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		show();
 		
-		assertTrue(driver().isSignOutVisible());
+		assertTrue(page().isSignOutVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -60,5 +60,5 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 
 	protected abstract void show();
 	
-	protected abstract AbstractPageDriver driver();
+	protected abstract AbstractPageDriver page();
 }

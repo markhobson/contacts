@@ -68,14 +68,14 @@ public class ContactViewIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		driver().show(contact);
+		page().show(contact);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ContactViewDriver driver()
+	protected ContactViewDriver page()
 	{
 		return ui().contactView();
 	}
