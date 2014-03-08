@@ -36,9 +36,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	public void pageShowsContact()
 	{
 		Contact contact = api().contacts()
-			.createForm()
-			.set(new Contact("x"))
-			.create()
+			.create(new Contact("x"))
 			.get();
 		
 		Contact actual = ui().contacts()
@@ -61,9 +59,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	protected ContactViewDriver show()
 	{
 		api().contacts()
-			.createForm()
-			.set(new Contact("x"))
-			.create()
+			.create(new Contact("x"))
 			.get();
 		
 		return ui().contacts()

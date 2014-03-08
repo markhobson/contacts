@@ -87,6 +87,12 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		throw new IllegalArgumentException("Cannot find contact: " + name);
 	}
+	
+	public ContactViewDriver create(Contact contact)
+	{
+		return createForm().set(contact)
+			.create();
+	}
 
 	public ContactCreateDriver createForm()
 	{
