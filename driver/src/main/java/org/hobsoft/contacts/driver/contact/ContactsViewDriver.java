@@ -66,7 +66,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		return contactCreate;
 	}
 	
-	public List<Contact> getContacts()
+	public List<Contact> getAll()
 	{
 		checkVisible();
 		

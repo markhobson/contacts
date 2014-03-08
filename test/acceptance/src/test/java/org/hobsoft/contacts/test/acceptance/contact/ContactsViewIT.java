@@ -59,7 +59,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		ui().contacts()
 			.show();
 		
-		assertThat(ui().contacts().getContacts(), contains(
+		assertThat(ui().contacts().getAll(), contains(
 			samePropertyValuesAs(contact1),
 			samePropertyValuesAs(contact2),
 			samePropertyValuesAs(contact3)
