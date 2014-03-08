@@ -51,18 +51,6 @@ public class ContactViewDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public ContactViewDriver show(Contact contact)
-	{
-		return show(contact.getId());
-	}
-	
-	public ContactViewDriver show(long id)
-	{
-		document().get(url("/contact/" + id));
-		
-		return this;
-	}
-
 	public Contact get()
 	{
 		checkVisible();
