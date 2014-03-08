@@ -38,7 +38,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsName()
 	{
-		Contact contact = ui().contactsView()
+		Contact contact = api().contactsView()
 			.create()
 			.show()
 			.setContact(new Contact("x"))
@@ -57,7 +57,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void deleteDeletesContact()
 	{
-		Contact contact = ui().contactsView()
+		Contact contact = api().contactsView()
 			.create()
 			.show()
 			.setContact(new Contact("x"))
@@ -68,7 +68,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show(contact)
 			.delete();
 		
-		ui().contactView()
+		api().contactView()
 			.show(contact);
 		// TODO: assert 404
 		fail();
@@ -78,7 +78,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContactView()
 	{
-		Contact contact = ui().contactsView()
+		Contact contact = api().contactsView()
 			.create()
 			.show()
 			.setContact(new Contact("x"))

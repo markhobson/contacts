@@ -35,7 +35,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Authenticated
 	public void pageShowsContact()
 	{
-		Contact contact = ui().contactsView()
+		Contact contact = api().contactsView()
 			.create()
 			.show()
 			.setContact(new Contact("x"))
