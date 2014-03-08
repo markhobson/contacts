@@ -76,7 +76,7 @@ public class SignInIT extends AbstractIT
 			.show()
 			.signIn(new Credentials("mark", "password"));
 		
-		assertTrue(ui().contactsView().isVisible());
+		assertTrue(ui().contacts().isVisible());
 	}
 	
 	@Test

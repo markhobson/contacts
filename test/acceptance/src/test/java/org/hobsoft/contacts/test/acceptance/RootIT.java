@@ -41,6 +41,6 @@ public class RootIT extends AbstractIT
 	{
 		ui().show();
 		
-		assertTrue(ui().contactsView().isVisible());
+		assertTrue(ui().contacts().isVisible());
 	}
 }

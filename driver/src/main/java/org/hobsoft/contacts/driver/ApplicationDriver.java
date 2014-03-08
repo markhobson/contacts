@@ -78,7 +78,7 @@ public class ApplicationDriver
 		return signOut;
 	}
 
-	public ContactsViewDriver contactsView()
+	public ContactsViewDriver contacts()
 	{
 		return contactsView;
 	}
