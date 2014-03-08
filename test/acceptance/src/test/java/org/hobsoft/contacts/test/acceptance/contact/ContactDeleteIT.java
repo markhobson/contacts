@@ -61,7 +61,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		Contact actual = ui().contactDelete()
 			.show(contact)
@@ -79,7 +79,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		ui().contactDelete()
 			.show(contact)
@@ -99,13 +99,13 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		ui().contactDelete()
 			.show(contact)
 			.cancel();
 		
-		assertThat(ui().contactView().getContact(), samePropertyValuesAs(contact));
+		assertThat(ui().contactView().get(), samePropertyValuesAs(contact));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		return ui().contactDelete()
 			.show(contact);

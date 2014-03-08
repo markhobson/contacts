@@ -88,7 +88,7 @@ public class ContactCreateDriver extends AbstractPageDriver
 		
 		if (contactViewDriver.isVisible())
 		{
-			contactListener.contactCreated(contactViewDriver.getContact());
+			contactListener.contactCreated(contactViewDriver.get());
 		}
 		
 		return contactViewDriver;

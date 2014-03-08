@@ -40,11 +40,11 @@ public class ContactViewIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		Contact actual = ui().contactView()
 			.show(contact)
-			.getContact();
+			.get();
 		
 		Contact expected = new Contact("x");
 		expected.setId(contact.getId());
@@ -66,7 +66,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		return ui().contactView()
 			.show(contact);

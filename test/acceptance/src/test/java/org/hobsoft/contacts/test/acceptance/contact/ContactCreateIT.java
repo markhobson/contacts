@@ -53,7 +53,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 			.show()
 			.set(new Contact("x"))
 			.create()
-			.getContact();
+			.get();
 		
 		Contact expected = new Contact("x");
 		expected.setId(actual.getId());

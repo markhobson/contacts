@@ -52,7 +52,7 @@ public class ContactViewDriver extends AbstractPageDriver
 		return this;
 	}
 
-	public Contact getContact()
+	public Contact get()
 	{
 		checkVisible();
 		
