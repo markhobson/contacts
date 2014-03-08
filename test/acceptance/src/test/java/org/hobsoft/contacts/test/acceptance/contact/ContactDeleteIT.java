@@ -103,23 +103,12 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		// TODO: simplify when we have client
-		
-		Contact contact;
-		
-		if (ui().contactsView().create().show().isVisible())
-		{
-			contact = ui().contactsView()
-				.create()
-				.setContact(new Contact("x"))
-				.create()
-				.getContact();
-		}
-		else
-		{
-			contact = new Contact();
-			contact.setId(1L);
-		}
+		Contact contact = api().contactsView()
+			.create()
+			.show()
+			.setContact(new Contact("x"))
+			.create()
+			.getContact();
 		
 		ui().contactDelete()
 			.show(contact);
