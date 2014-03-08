@@ -78,7 +78,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		
 		ui().contacts()
 			.show()
-			.clickContact("x");
+			.contact("x");
 		
 		assertTrue(ui().contactView().isVisible());
 	}

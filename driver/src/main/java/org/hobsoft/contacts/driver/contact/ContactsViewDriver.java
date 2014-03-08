@@ -80,7 +80,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		return contacts;
 	}
 
-	public void clickContact(String name)
+	public void contact(String name)
 	{
 		checkVisible();
 		
