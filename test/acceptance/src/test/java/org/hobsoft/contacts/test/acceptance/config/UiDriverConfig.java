@@ -17,7 +17,6 @@ import java.net.URL;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.RootDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
@@ -41,18 +40,10 @@ public class UiDriverConfig implements DriverConfig
 	@Override
 	@Bean
 	@UI
-	public ApplicationDriver applicationDriver(@UI RootDriver root, @UI SignInDriver signIn, @UI SignOutDriver signOut,
-		@UI ContactsViewDriver contactsView)
+	public ApplicationDriver applicationDriver(@UI DriverConfiguration config, @UI SignInDriver signIn,
+		@UI SignOutDriver signOut, @UI ContactsViewDriver contactsView)
 	{
-		return new ApplicationDriver(root, signIn, signOut, contactsView);
-	}
-	
-	@Override
-	@Bean
-	@UI
-	public RootDriver rootDriver(@UI DriverConfiguration config)
-	{
-		return new RootDriver(config);
+		return new ApplicationDriver(config, signIn, signOut, contactsView);
 	}
 	
 	@Override

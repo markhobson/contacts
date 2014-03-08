@@ -39,28 +39,24 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	public void pageShowsContacts()
 	{
 		Contact contact1 = api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		Contact contact2 = api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("y"))
 			.create()
 			.get();
 		Contact contact3 = api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("z"))
 			.create()
 			.get();
 		
-		ui().contacts()
-			.show();
+		ContactsViewDriver actual = ui().contacts();
 		
-		assertThat(ui().contacts().getAll(), contains(
+		assertThat(actual.getAll(), contains(
 			samePropertyValuesAs(contact1),
 			samePropertyValuesAs(contact2),
 			samePropertyValuesAs(contact3)
@@ -72,13 +68,11 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	public void contactWhenClickedShowsContactView()
 	{
 		api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create();
 		
 		ContactViewDriver actual = ui().contacts()
-			.show()
 			.contact("x");
 		
 		assertTrue(actual.isVisible());
@@ -94,7 +88,6 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Override
 	protected ContactsViewDriver show()
 	{
-		return ui().contacts()
-			.show();
+		return ui().contacts();
 	}
 }

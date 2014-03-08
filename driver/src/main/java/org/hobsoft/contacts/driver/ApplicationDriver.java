@@ -23,14 +23,12 @@ import org.springframework.stereotype.Component;
  * Web UI driver entry point for the application.
  */
 @Component
-public class ApplicationDriver
+public class ApplicationDriver extends AbstractDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final RootDriver root;
-	
 	private final SignInDriver signIn;
 
 	private final SignOutDriver signOut;
@@ -42,10 +40,11 @@ public class ApplicationDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ApplicationDriver(RootDriver root, SignInDriver signIn, SignOutDriver signOut,
+	public ApplicationDriver(DriverConfiguration config, SignInDriver signIn, SignOutDriver signOut,
 		ContactsViewDriver contactsView)
 	{
-		this.root = root;
+		super(config, "/");
+		
 		this.signIn = signIn;
 		this.signOut = signOut;
 		this.contactsView = contactsView;
@@ -55,11 +54,6 @@ public class ApplicationDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public void show()
-	{
-		root.show();
-	}
-
 	public SignInDriver signIn()
 	{
 		return signIn;
@@ -72,6 +66,8 @@ public class ApplicationDriver
 
 	public ContactsViewDriver contacts()
 	{
+		document().get(url("/"));
+
 		return contactsView;
 	}
 }

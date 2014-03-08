@@ -11,35 +11,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.test.acceptance;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 /**
- * Web UI driver for the root page.
+ * Acceptance test for the application entry point.
  */
-@Component
-public class RootDriver extends AbstractDriver
+public class ApplicationIT extends AbstractIT
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constructors
+	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Autowired
-	public RootDriver(DriverConfiguration config)
+	@Test
+	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		super(config, "/");
+		ui().contacts();
+		
+		assertTrue(ui().signIn().isVisible());
 	}
 	
-	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
-	// ----------------------------------------------------------------------------------------------------------------
-	
-	public RootDriver show()
+	@Test
+	@Authenticated
+	public void pageWhenAuthenticatedShowsContactsView()
 	{
-		document().get(url("/"));
+		ContactsViewDriver actual = ui().contacts();
 		
-		return this;
+		assertTrue(actual.isVisible());
 	}
 }

@@ -75,8 +75,7 @@ public class ContactRule extends ExternalResource
 
 	private void deleteContactQuietly(Contact contact)
 	{
-		ContactsViewDriver contactsView = api.contacts()
-			.show();
+		ContactsViewDriver contactsView = api.contacts();
 		
 		ContactViewDriver contactView;
 		try

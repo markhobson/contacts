@@ -57,13 +57,11 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void pageShowsName()
 	{
 		api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create();
 		
 		Contact actual = ui().contacts()
-			.show()
 			.contact("x")
 			.deleteForm()
 			.get();
@@ -76,19 +74,17 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void deleteDeletesContact()
 	{
 		api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
 		ui().contacts()
-			.show()
 			.contact("x")
 			.deleteForm()
 			.delete();
 		
-		ContactsViewDriver contactsView = api().contacts().show();
+		ContactsViewDriver contactsView = api().contacts();
 		thrown.expect(IllegalArgumentException.class);
 		contactsView.contact("x");
 	}
@@ -98,14 +94,12 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void cancelShowsContactView()
 	{
 		Contact contact = api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
 		ContactViewDriver actual = ui().contacts()
-			.show()
 			.contact("x")
 			.deleteForm()
 			.cancel();
@@ -124,14 +118,12 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	protected ContactDeleteDriver show()
 	{
 		api().contacts()
-			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
 		return ui().contacts()
-			.show()
 			.contact("x")
 			.deleteForm();
 	}
