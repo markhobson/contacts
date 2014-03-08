@@ -57,7 +57,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void pageShowsName()
 	{
 		Contact contact = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -75,7 +75,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void deleteDeletesContact()
 	{
 		Contact contact = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -95,7 +95,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void cancelShowsContactView()
 	{
 		Contact contact = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -119,7 +119,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	protected ContactDeleteDriver show()
 	{
 		Contact contact = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()

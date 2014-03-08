@@ -38,19 +38,19 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	public void pageShowsContacts()
 	{
 		Contact contact1 = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
 			.getContact();
 		Contact contact2 = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("y"))
 			.create()
 			.getContact();
 		Contact contact3 = api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("z"))
 			.create()
@@ -71,7 +71,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	public void contactWhenClickedShowsContactView()
 	{
 		api().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create();

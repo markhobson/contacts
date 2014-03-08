@@ -61,7 +61,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		return this;
 	}
 
-	public ContactCreateDriver create()
+	public ContactCreateDriver createForm()
 	{
 		return contactCreate;
 	}

@@ -37,7 +37,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	public void pageShowsForm()
 	{
 		Contact actual = ui().contacts()
-			.create()
+			.createForm()
 			.show()
 			.getContact();
 		
@@ -49,7 +49,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	public void submitCreatesContact()
 	{
 		Contact actual = ui().contacts()
-			.create()
+			.createForm()
 			.show()
 			.setContact(new Contact("x"))
 			.create()
@@ -65,7 +65,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	public void cancelShowsContactsView()
 	{
 		ui().contacts()
-			.create()
+			.createForm()
 			.show()
 			.cancel();
 		
@@ -83,7 +83,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	protected ContactCreateDriver show()
 	{
 		return ui().contacts()
-			.create()
+			.createForm()
 			.show();
 	}
 }
