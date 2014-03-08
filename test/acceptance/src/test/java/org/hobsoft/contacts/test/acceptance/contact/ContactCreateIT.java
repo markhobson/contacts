@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.contact;
 
-import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -82,16 +82,14 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected void show()
 	{
-		ui().contactsView()
-			.create()
-			.show();
+		driver().show();
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected AbstractPageDriver driver()
+	protected ContactCreateDriver driver()
 	{
 		return ui().contactsView()
 			.create();

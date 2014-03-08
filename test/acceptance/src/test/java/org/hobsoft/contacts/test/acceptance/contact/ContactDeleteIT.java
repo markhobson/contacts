@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.contact;
 
-import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
@@ -125,15 +125,14 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.create()
 			.getContact();
 		
-		ui().contactDelete()
-			.show(contact);
+		driver().show(contact);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected AbstractPageDriver driver()
+	protected ContactDeleteDriver driver()
 	{
 		return ui().contactDelete();
 	}
