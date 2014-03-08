@@ -59,6 +59,11 @@ public class ContactViewDriver extends AbstractPageDriver
 		
 		return ContactParser.parse(item);
 	}
+	
+	public ContactsViewDriver delete()
+	{
+		return deleteForm().delete();
+	}
 
 	public ContactDeleteDriver deleteForm()
 	{

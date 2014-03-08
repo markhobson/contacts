@@ -88,7 +88,6 @@ public class ContactRule extends ExternalResource
 			return;
 		}
 		
-		contactView.deleteForm()
-			.delete();
+		contactView.delete();
 	}
 }
