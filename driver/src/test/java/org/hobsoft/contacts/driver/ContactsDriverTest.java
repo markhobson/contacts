@@ -13,8 +13,8 @@
  */
 package org.hobsoft.contacts.driver;
 
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -31,6 +31,6 @@ public class ContactsDriverTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullConfiguration()
 	{
-		new ContactsViewDriver(null, mock(ContactCreateDriver.class));
+		new ContactsViewDriver(null, mock(ContactListener.class));
 	}
 }

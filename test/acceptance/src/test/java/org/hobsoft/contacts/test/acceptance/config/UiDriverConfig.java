@@ -20,7 +20,6 @@ import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.RootDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
@@ -77,9 +76,9 @@ public class UiDriverConfig implements DriverConfig
 	@Override
 	@Bean
 	@UI
-	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config, @UI ContactCreateDriver contactCreate)
+	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config, ContactListener contactListener)
 	{
-		return new ContactsViewDriver(config, contactCreate);
+		return new ContactsViewDriver(config, contactListener);
 	}
 	
 	@Override
@@ -88,15 +87,6 @@ public class UiDriverConfig implements DriverConfig
 	public ContactViewDriver contactViewDriver(@UI DriverConfiguration config)
 	{
 		return new ContactViewDriver(config);
-	}
-	
-	@Override
-	@Bean
-	@UI
-	public ContactCreateDriver contactCreateDriver(@UI DriverConfiguration config, ContactListener contactListener,
-		@UI ContactViewDriver contactView)
-	{
-		return new ContactCreateDriver(config, contactListener, contactView);
 	}
 	
 	@Override

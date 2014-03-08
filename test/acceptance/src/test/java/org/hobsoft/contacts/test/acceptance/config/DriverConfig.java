@@ -18,7 +18,6 @@ import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.RootDriver;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
@@ -42,12 +41,9 @@ public interface DriverConfig
 	
 	SignOutDriver signOutDriver(DriverConfiguration config);
 	
-	ContactsViewDriver contactsViewDriver(DriverConfiguration config, ContactCreateDriver contactCreate);
+	ContactsViewDriver contactsViewDriver(DriverConfiguration config, ContactListener contactListener);
 	
 	ContactViewDriver contactViewDriver(DriverConfiguration config);
-	
-	ContactCreateDriver contactCreateDriver(DriverConfiguration config, ContactListener contactListener,
-		ContactViewDriver contactView);
 	
 	ContactDeleteDriver contactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsView,
 		ContactViewDriver contactView);

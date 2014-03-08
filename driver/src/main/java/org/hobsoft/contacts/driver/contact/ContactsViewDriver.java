@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.openqa.selenium.WebElement;
@@ -36,18 +37,18 @@ public class ContactsViewDriver extends AbstractPageDriver
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final ContactCreateDriver contactCreate;
-
+	private final ContactListener contactListener;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactsViewDriver(DriverConfiguration config, ContactCreateDriver contactCreate)
+	public ContactsViewDriver(DriverConfiguration config, ContactListener contactListener)
 	{
 		super(config, "/contacts");
 		
-		this.contactCreate = checkNotNull(contactCreate, "contactCreate");
+		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -67,7 +68,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		document().getLink("create").follow();
 		
-		return contactCreate;
+		return new ContactCreateDriver(getConfiguration(), contactListener);
 	}
 	
 	public List<Contact> getAll()

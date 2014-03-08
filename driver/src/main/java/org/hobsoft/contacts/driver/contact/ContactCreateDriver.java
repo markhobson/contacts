@@ -35,20 +35,16 @@ public class ContactCreateDriver extends AbstractPageDriver
 
 	private final ContactListener contactListener;
 	
-	private final ContactViewDriver contactViewDriver;
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener,
-		ContactViewDriver contactViewDriver)
+	public ContactCreateDriver(DriverConfiguration config, ContactListener contactListener)
 	{
 		super(config, "/contacts/create");
 		
 		this.contactListener = checkNotNull(contactListener, "contactListener");
-		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -78,6 +74,8 @@ public class ContactCreateDriver extends AbstractPageDriver
 		checkVisible();
 		
 		getForm().submit();
+		
+		ContactViewDriver contactViewDriver = new ContactViewDriver(getConfiguration());
 		
 		if (contactViewDriver.isVisible())
 		{
