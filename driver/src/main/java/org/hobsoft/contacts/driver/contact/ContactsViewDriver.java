@@ -63,6 +63,10 @@ public class ContactsViewDriver extends AbstractPageDriver
 
 	public ContactCreateDriver createForm()
 	{
+		checkVisible();
+		
+		document().getLink("create").follow();
+		
 		return contactCreate;
 	}
 	

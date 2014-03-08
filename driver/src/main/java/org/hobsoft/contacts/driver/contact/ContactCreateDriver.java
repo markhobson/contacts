@@ -55,13 +55,6 @@ public class ContactCreateDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public ContactCreateDriver show()
-	{
-		document().get(url("/contacts/create"));
-		
-		return this;
-	}
-
 	public Contact get()
 	{
 		checkVisible();
