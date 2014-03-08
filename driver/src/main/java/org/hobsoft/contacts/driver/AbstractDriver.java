@@ -57,15 +57,7 @@ public abstract class AbstractDriver implements Driver
 	@Override
 	public final boolean isVisible()
 	{
-		if (document() == null)
-		{
-			return false;
-		}
-		
-		String self = document().getLink("self").getHref();
-		String selfPath = quietNewUrl(self).getPath();
-		
-		return Pattern.matches(selfPathPattern, selfPath);
+		return Pattern.matches(selfPathPattern, getSelfPath());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -88,7 +80,7 @@ public abstract class AbstractDriver implements Driver
 	
 	protected final void checkVisible()
 	{
-		checkState(isVisible(), "Expected self: " + selfPathPattern);
+		checkState(isVisible(), "Self expected: %s but was: %s", selfPathPattern, getSelfPath());
 	}
 	
 	protected final MicrodataDocument document()
@@ -119,6 +111,17 @@ public abstract class AbstractDriver implements Driver
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
+	private String getSelfPath()
+	{
+		if (document() == null)
+		{
+			return "";
+		}
+		
+		String self = document().getLink("self").getHref();
+		return quietNewUrl(self).getPath();
+	}
+	
 	private static URL quietNewUrl(String spec)
 	{
 		try
