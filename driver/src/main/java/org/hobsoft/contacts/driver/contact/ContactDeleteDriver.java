@@ -34,20 +34,16 @@ public class ContactDeleteDriver extends AbstractPageDriver
 
 	private final ContactsViewDriver contactsDriver;
 	
-	private final ContactViewDriver contactViewDriver;
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver,
-		ContactViewDriver contactViewDriver)
+	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver)
 	{
 		super(config, "/contact/\\d+/delete");
 		
 		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
-		this.contactViewDriver = checkNotNull(contactViewDriver, "contactViewDriver");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -90,6 +86,6 @@ public class ContactDeleteDriver extends AbstractPageDriver
 
 		document().getLink("cancel").follow();
 		
-		return contactViewDriver;
+		return new ContactViewDriver(getConfiguration());
 	}
 }

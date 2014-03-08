@@ -93,9 +93,9 @@ public class ApiDriverConfig implements DriverConfig
 	@Bean(name = "apiContactDeleteDriver")
 	@API
 	public ContactDeleteDriver contactDeleteDriver(@API DriverConfiguration config,
-		@API ContactsViewDriver contactsView, @API ContactViewDriver contactView)
+		@API ContactsViewDriver contactsView)
 	{
-		return new ContactDeleteDriver(config, contactsView, contactView);
+		return new ContactDeleteDriver(config, contactsView);
 	}
 	
 	@Bean(name = "apiDriverConfiguration")
