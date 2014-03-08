@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.contact;
 
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
@@ -76,11 +77,11 @@ public class ContactsViewIT extends AbstractSecurePageIT
 			.set(new Contact("x"))
 			.create();
 		
-		ui().contacts()
+		ContactViewDriver actual = ui().contacts()
 			.show()
 			.contact("x");
 		
-		assertTrue(ui().contactView().isVisible());
+		assertTrue(actual.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

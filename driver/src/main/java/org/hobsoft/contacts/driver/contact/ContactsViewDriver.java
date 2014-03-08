@@ -85,7 +85,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		return contacts;
 	}
 
-	public void contact(String name)
+	public ContactViewDriver contact(String name)
 	{
 		checkVisible();
 		
@@ -96,7 +96,8 @@ public class ContactsViewDriver extends AbstractPageDriver
 			if (name.equals(contact.getName()))
 			{
 				item.getProperty("url").unwrap(WebElement.class).click();
-				return;
+				
+				return new ContactViewDriver(getConfiguration());
 			}
 		}
 		

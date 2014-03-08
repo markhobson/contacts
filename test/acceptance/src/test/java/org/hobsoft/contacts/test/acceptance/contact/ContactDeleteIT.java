@@ -15,10 +15,10 @@ package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
-import org.hobsoft.microbrowser.MicrobrowserException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -85,9 +85,9 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show(contact)
 			.delete();
 		
-		ContactViewDriver contactView = api().contactView();
-		thrown.expect(MicrobrowserException.class);
-		contactView.show(contact);
+		ContactsViewDriver contactsView = api().contacts().show();
+		thrown.expect(IllegalArgumentException.class);
+		contactsView.contact("x");
 	}
 	
 	@Test
@@ -101,11 +101,11 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.create()
 			.get();
 		
-		ui().contactDelete()
+		ContactViewDriver actual = ui().contactDelete()
 			.show(contact)
 			.cancel();
 		
-		assertThat(ui().contactView().get(), samePropertyValuesAs(contact));
+		assertThat(actual.get(), samePropertyValuesAs(contact));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

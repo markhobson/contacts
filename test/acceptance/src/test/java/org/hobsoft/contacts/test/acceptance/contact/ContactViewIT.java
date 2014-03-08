@@ -42,8 +42,9 @@ public class ContactViewIT extends AbstractSecurePageIT
 			.create()
 			.get();
 		
-		Contact actual = ui().contactView()
-			.show(contact)
+		Contact actual = ui().contacts()
+			.show()
+			.contact("x")
 			.get();
 		
 		Contact expected = new Contact("x");
@@ -61,14 +62,15 @@ public class ContactViewIT extends AbstractSecurePageIT
 	@Override
 	protected ContactViewDriver show()
 	{
-		Contact contact = api().contacts()
+		api().contacts()
 			.show()
 			.createForm()
 			.set(new Contact("x"))
 			.create()
 			.get();
 		
-		return ui().contactView()
-			.show(contact);
+		return ui().contacts()
+			.show()
+			.contact("x");
 	}
 }
