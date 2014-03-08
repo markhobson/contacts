@@ -19,7 +19,6 @@ import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.microbrowser.jsoup.JsoupMicrobrowser;
@@ -39,10 +38,10 @@ public class ApiDriverConfig implements DriverConfig
 	@Override
 	@Bean(name = "apiApplicationDriver")
 	@API
-	public ApplicationDriver applicationDriver(@API DriverConfiguration config, @API SignInDriver signIn,
-		@API SignOutDriver signOut, @API ContactsViewDriver contactsView)
+	public ApplicationDriver applicationDriver(@API DriverConfiguration config, ContactListener contactListener,
+		@API SignInDriver signIn, @API SignOutDriver signOut)
 	{
-		return new ApplicationDriver(config, signIn, signOut, contactsView);
+		return new ApplicationDriver(config, contactListener, signIn, signOut);
 	}
 	
 	@Override
@@ -59,14 +58,6 @@ public class ApiDriverConfig implements DriverConfig
 	public SignOutDriver signOutDriver(@API DriverConfiguration config)
 	{
 		return new SignOutDriver(config);
-	}
-	
-	@Override
-	@Bean(name = "apiContactsViewDriver")
-	@API
-	public ContactsViewDriver contactsViewDriver(@API DriverConfiguration config, ContactListener contactListener)
-	{
-		return new ContactsViewDriver(config, contactListener);
 	}
 	
 	@Bean(name = "apiDriverConfiguration")

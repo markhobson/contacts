@@ -19,7 +19,6 @@ import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
@@ -40,10 +39,10 @@ public class UiDriverConfig implements DriverConfig
 	@Override
 	@Bean
 	@UI
-	public ApplicationDriver applicationDriver(@UI DriverConfiguration config, @UI SignInDriver signIn,
-		@UI SignOutDriver signOut, @UI ContactsViewDriver contactsView)
+	public ApplicationDriver applicationDriver(@UI DriverConfiguration config, ContactListener contactListener,
+		@UI SignInDriver signIn, @UI SignOutDriver signOut)
 	{
-		return new ApplicationDriver(config, signIn, signOut, contactsView);
+		return new ApplicationDriver(config, contactListener, signIn, signOut);
 	}
 	
 	@Override
@@ -60,14 +59,6 @@ public class UiDriverConfig implements DriverConfig
 	public SignOutDriver signOutDriver(@UI DriverConfiguration config)
 	{
 		return new SignOutDriver(config);
-	}
-	
-	@Override
-	@Bean
-	@UI
-	public ContactsViewDriver contactsViewDriver(@UI DriverConfiguration config, ContactListener contactListener)
-	{
-		return new ContactsViewDriver(config, contactListener);
 	}
 	
 	@Bean
