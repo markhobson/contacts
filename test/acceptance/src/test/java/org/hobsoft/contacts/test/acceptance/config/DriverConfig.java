@@ -42,5 +42,5 @@ public interface DriverConfig
 	
 	ContactsViewDriver contactsViewDriver(DriverConfiguration config, ContactListener contactListener);
 	
-	ContactDeleteDriver contactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsView);
+	ContactDeleteDriver contactDeleteDriver(DriverConfiguration config, ContactListener contactListener);
 }

@@ -15,6 +15,7 @@ package org.hobsoft.contacts.driver.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,18 @@ public class ContactDeleteDriver extends AbstractPageDriver
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final ContactsViewDriver contactsDriver;
+	private final ContactListener contactListener;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactDeleteDriver(DriverConfiguration config, ContactsViewDriver contactsDriver)
+	public ContactDeleteDriver(DriverConfiguration config, ContactListener contactListener)
 	{
 		super(config, "/contact/\\d+/delete");
 		
-		this.contactsDriver = checkNotNull(contactsDriver, "contactsDriver");
+		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -77,7 +78,7 @@ public class ContactDeleteDriver extends AbstractPageDriver
 		
 		document().getForm("contactDelete").submit();
 		
-		return contactsDriver;
+		return new ContactsViewDriver(getConfiguration(), contactListener);
 	}
 
 	public ContactViewDriver cancel()

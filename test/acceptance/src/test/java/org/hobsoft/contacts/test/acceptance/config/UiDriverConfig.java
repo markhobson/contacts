@@ -83,9 +83,9 @@ public class UiDriverConfig implements DriverConfig
 	@Override
 	@Bean
 	@UI
-	public ContactDeleteDriver contactDeleteDriver(@UI DriverConfiguration config, @UI ContactsViewDriver contactsView)
+	public ContactDeleteDriver contactDeleteDriver(@UI DriverConfiguration config, ContactListener contactListener)
 	{
-		return new ContactDeleteDriver(config, contactsView);
+		return new ContactDeleteDriver(config, contactListener);
 	}
 	
 	@Bean

@@ -82,10 +82,9 @@ public class ApiDriverConfig implements DriverConfig
 	@Override
 	@Bean(name = "apiContactDeleteDriver")
 	@API
-	public ContactDeleteDriver contactDeleteDriver(@API DriverConfiguration config,
-		@API ContactsViewDriver contactsView)
+	public ContactDeleteDriver contactDeleteDriver(@API DriverConfiguration config, ContactListener contactListener)
 	{
-		return new ContactDeleteDriver(config, contactsView);
+		return new ContactDeleteDriver(config, contactListener);
 	}
 	
 	@Bean(name = "apiDriverConfiguration")
