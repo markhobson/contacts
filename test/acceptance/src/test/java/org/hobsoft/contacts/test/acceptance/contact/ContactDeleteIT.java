@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the delete contact page.
@@ -105,8 +105,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show(contact)
 			.cancel();
 		
-		// TODO: assert correct contact
-		assertTrue(ui().contactView().isVisible());
+		assertThat(ui().contactView().getContact(), samePropertyValuesAs(contact));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
