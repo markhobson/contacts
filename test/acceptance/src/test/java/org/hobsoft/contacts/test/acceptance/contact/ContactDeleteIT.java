@@ -14,22 +14,40 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
+import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
-import org.junit.Ignore;
+import org.hobsoft.microbrowser.MicrobrowserException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * Acceptance test for the delete contact page.
  */
 public class ContactDeleteIT extends AbstractSecurePageIT
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private ExpectedException thrown = ExpectedException.none();
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	@Rule
+	public ExpectedException getThrown()
+	{
+		return thrown;
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
@@ -52,7 +70,6 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		assertThat(actual.getName(), is("x"));
 	}
 	
-	@Ignore("Reinstate when we can assert contact not found")
 	@Test
 	@Authenticated
 	public void deleteDeletesContact()
@@ -68,10 +85,9 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.show(contact)
 			.delete();
 		
-		api().contactView()
-			.show(contact);
-		// TODO: assert 404
-		fail();
+		ContactViewDriver contactView = api().contactView();
+		thrown.expect(MicrobrowserException.class);
+		contactView.show(contact);
 	}
 	
 	@Test

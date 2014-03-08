@@ -14,9 +14,11 @@
 package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.config.API;
+import org.hobsoft.microbrowser.MicrobrowserException;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -60,11 +62,30 @@ public class ContactRule extends ExternalResource
 	{
 		for (Contact contact : contactCollector.getCreatedContacts())
 		{
-			api.contactDelete()
-				.show(contact)
-				.delete();
+			deleteContactQuietly(contact);
 		}
 		
 		contactCollector.clear();
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private void deleteContactQuietly(Contact contact)
+	{
+		ContactDeleteDriver contactDelete = api.contactDelete();
+		
+		try
+		{
+			contactDelete.show(contact);
+		}
+		catch (MicrobrowserException exception)
+		{
+			// ignore unknown contact
+			return;
+		}
+		
+		contactDelete.delete();
 	}
 }
