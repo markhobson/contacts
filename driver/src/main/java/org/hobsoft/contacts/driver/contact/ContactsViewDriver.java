@@ -55,15 +55,6 @@ public class ContactsViewDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public ContactCreateDriver createForm()
-	{
-		checkVisible();
-		
-		document().getLink("create").follow();
-		
-		return new ContactCreateDriver(getConfiguration(), contactListener);
-	}
-	
 	public List<Contact> getAll()
 	{
 		checkVisible();
@@ -95,5 +86,14 @@ public class ContactsViewDriver extends AbstractPageDriver
 		}
 		
 		throw new IllegalArgumentException("Cannot find contact: " + name);
+	}
+
+	public ContactCreateDriver createForm()
+	{
+		checkVisible();
+		
+		document().getLink("create").follow();
+		
+		return new ContactCreateDriver(getConfiguration(), contactListener);
 	}
 }
