@@ -33,23 +33,23 @@ public class ApiDriverConfig
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Bean(name = "apiApplicationDriver")
+	@Bean
 	@API
-	public ApplicationDriver applicationDriver(@API DriverConfiguration config, ContactListener contactListener)
+	public ApplicationDriver apiApplicationDriver(@API DriverConfiguration config, ContactListener contactListener)
 	{
 		return new ApplicationDriver(config, contactListener);
 	}
 	
-	@Bean(name = "apiDriverConfiguration")
+	@Bean
 	@API
-	public DriverConfiguration driverConfiguration(@API StatefulMicrobrowser microbrowser, URL serverUrl)
+	public DriverConfiguration apiDriverConfiguration(@API StatefulMicrobrowser microbrowser, URL serverUrl)
 	{
 		return new DriverConfiguration(microbrowser, serverUrl);
 	}
 	
-	@Bean(name = "apiMicrobrowser")
+	@Bean
 	@API
-	public StatefulMicrobrowser microbrowser()
+	public StatefulMicrobrowser apiMicrobrowser()
 	{
 		return new StatefulMicrobrowser(new JsoupMicrobrowser());
 	}

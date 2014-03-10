@@ -36,21 +36,21 @@ public class UiDriverConfig
 	
 	@Bean
 	@UI
-	public ApplicationDriver applicationDriver(@UI DriverConfiguration config, ContactListener contactListener)
+	public ApplicationDriver uiApplicationDriver(@UI DriverConfiguration config, ContactListener contactListener)
 	{
 		return new ApplicationDriver(config, contactListener);
 	}
 	
 	@Bean
 	@UI
-	public DriverConfiguration driverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
+	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
 	{
 		return new DriverConfiguration(microbrowser, serverUrl);
 	}
 	
 	@Bean
 	@UI
-	public StatefulMicrobrowser microbrowser(WebDriver webDriver)
+	public StatefulMicrobrowser uiMicrobrowser(WebDriver webDriver)
 	{
 		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver));
 	}
