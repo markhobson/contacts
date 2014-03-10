@@ -15,7 +15,6 @@ package org.hobsoft.contacts.test.acceptance.config;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.auth.SignOutDriver;
 import org.hobsoft.contacts.driver.event.ContactListener;
 
@@ -29,9 +28,7 @@ public interface DriverConfig
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	ApplicationDriver applicationDriver(DriverConfiguration config, ContactListener contactListener,
-		SignInDriver signIn, SignOutDriver signOut);
-	
-	SignInDriver signInDriver(DriverConfiguration config);
+		SignOutDriver signOut);
 	
 	SignOutDriver signOutDriver(DriverConfiguration config);
 }

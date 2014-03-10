@@ -32,8 +32,6 @@ public class ApplicationDriver extends AbstractDriver
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private final SignInDriver signIn;
-
 	private final SignOutDriver signOut;
 
 	private final ContactListener contactListener;
@@ -43,13 +41,11 @@ public class ApplicationDriver extends AbstractDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ApplicationDriver(DriverConfiguration config, ContactListener contactListener, SignInDriver signIn,
-		SignOutDriver signOut)
+	public ApplicationDriver(DriverConfiguration config, ContactListener contactListener, SignOutDriver signOut)
 	{
 		super(config, "/");
 		
 		this.contactListener = checkNotNull(contactListener, "contactListener");
-		this.signIn = signIn;
 		this.signOut = signOut;
 	}
 
@@ -59,7 +55,7 @@ public class ApplicationDriver extends AbstractDriver
 	
 	public SignInDriver signIn()
 	{
-		return signIn;
+		return new SignInDriver(getConfiguration());
 	}
 
 	public SignOutDriver signOut()
