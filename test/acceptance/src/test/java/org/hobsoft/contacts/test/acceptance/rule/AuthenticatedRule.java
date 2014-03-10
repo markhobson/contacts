@@ -72,7 +72,7 @@ public class AuthenticatedRule implements TestRule
 			public void evaluate() throws Throwable
 			// CHECKSTYLE:ON
 			{
-				ui.signIn()
+				ui.signInForm()
 					.show()
 					.signIn(credentials);
 				

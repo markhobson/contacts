@@ -54,7 +54,7 @@ public class ApiDriverRule extends ExternalResource
 	@Override
 	protected void before()
 	{
-		api.signIn()
+		api.signInForm()
 			.show()
 			.signIn(new Credentials("mark", "password"));
 	}

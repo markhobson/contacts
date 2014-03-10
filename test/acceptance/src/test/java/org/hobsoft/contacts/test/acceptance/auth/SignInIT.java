@@ -34,45 +34,45 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signIn().isVisible());
+		assertTrue(ui().signInForm().isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedIsVisible()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signIn().isVisible());
+		assertTrue(ui().signInForm().isVisible());
 	}
 	
 	@Test
 	public void pageWhenUnauthenticatedDoesNotShowSignOut()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show();
 		
-		assertFalse(ui().signIn().isSignOutVisible());
+		assertFalse(ui().signInForm().isSignOutVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedShowsSignOut()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signIn().isSignOutVisible());
+		assertTrue(ui().signInForm().isSignOutVisible());
 	}
 	
 	@Test
 	public void signInWithKnownCredentialsShowsContactsView()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show()
 			.signIn(new Credentials("mark", "password"));
 		
@@ -82,10 +82,10 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void signInWithUnknownCredentialsShowsError()
 	{
-		ui().signIn()
+		ui().signInForm()
 			.show()
 			.signIn(new Credentials("mark", ""));
 		
-		assertEquals("Incorrect username or password.", ui().signIn().getErrorMessage());
+		assertEquals("Incorrect username or password.", ui().signInForm().getErrorMessage());
 	}
 }

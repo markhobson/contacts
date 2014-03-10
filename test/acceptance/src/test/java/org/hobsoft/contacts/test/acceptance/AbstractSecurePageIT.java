@@ -35,7 +35,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		show();
 		
-		assertTrue(ui().signIn().isVisible());
+		assertTrue(ui().signInForm().isVisible());
 	}
 	
 	@Test

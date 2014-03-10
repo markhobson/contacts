@@ -33,7 +33,7 @@ public class ApplicationIT extends AbstractIT
 	{
 		ui().contacts();
 		
-		assertTrue(ui().signIn().isVisible());
+		assertTrue(ui().signInForm().isVisible());
 	}
 	
 	@Test

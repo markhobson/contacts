@@ -50,7 +50,7 @@ public class ApplicationDriver extends AbstractDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public SignInDriver signIn()
+	public SignInDriver signInForm()
 	{
 		return new SignInDriver(getConfiguration());
 	}

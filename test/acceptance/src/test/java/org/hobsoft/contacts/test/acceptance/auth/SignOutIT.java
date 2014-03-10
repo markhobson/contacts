@@ -36,7 +36,7 @@ public class SignOutIT extends AbstractIT
 		ui().signOut()
 			.signOut();
 		
-		assertTrue(ui().signIn().isVisible());
+		assertTrue(ui().signInForm().isVisible());
 	}
 	
 	@Test
@@ -46,6 +46,6 @@ public class SignOutIT extends AbstractIT
 		ui().signOut()
 			.signOut();
 		
-		assertEquals("You have been signed out.", ui().signIn().getSuccessMessage());
+		assertEquals("You have been signed out.", ui().signInForm().getSuccessMessage());
 	}
 }
