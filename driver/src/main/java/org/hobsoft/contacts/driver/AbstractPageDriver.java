@@ -13,6 +13,8 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.contacts.driver.auth.SignInDriver;
+
 /**
  * Base web UI driver for common page elements.
  */
@@ -33,8 +35,13 @@ public abstract class AbstractPageDriver extends AbstractDriver
 
 	public boolean isSignOutVisible()
 	{
-		checkVisible();
-		
 		return document().hasLink("logout");
+	}
+	
+	public SignInDriver signOut()
+	{
+		document().getLink("logout").follow();
+		
+		return new SignInDriver(getConfiguration());
 	}
 }

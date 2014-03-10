@@ -82,8 +82,10 @@ public class AuthenticatedRule implements TestRule
 				}
 				finally
 				{
-					ui.signOut()
-						.signOut();
+					if (ui.isSignOutVisible())
+					{
+						ui.signOut();
+					}
 				}
 			}
 		};

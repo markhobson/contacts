@@ -65,8 +65,7 @@ public class ApiDriverRule extends ExternalResource
 	@Override
 	protected void after()
 	{
-		api.signOut()
-			.signOut();
+		api.signOut();
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
