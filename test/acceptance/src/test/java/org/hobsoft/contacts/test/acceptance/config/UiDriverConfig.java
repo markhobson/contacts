@@ -28,13 +28,12 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for the UI application driver.
  */
 @Configuration
-public class UiDriverConfig implements DriverConfig
+public class UiDriverConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// DriverConfig methods
+	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Override
 	@Bean
 	@UI
 	public ApplicationDriver applicationDriver(@UI DriverConfiguration config, ContactListener contactListener)

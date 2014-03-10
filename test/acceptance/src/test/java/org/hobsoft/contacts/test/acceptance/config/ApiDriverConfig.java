@@ -27,13 +27,12 @@ import org.springframework.context.annotation.Configuration;
  * Spring configuration for the API application driver.
  */
 @Configuration
-public class ApiDriverConfig implements DriverConfig
+public class ApiDriverConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// DriverConfig methods
+	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Override
 	@Bean(name = "apiApplicationDriver")
 	@API
 	public ApplicationDriver applicationDriver(@API DriverConfiguration config, ContactListener contactListener)
