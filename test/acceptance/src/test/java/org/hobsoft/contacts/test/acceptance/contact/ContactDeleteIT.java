@@ -72,8 +72,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	public void deleteDeletesContact()
 	{
 		api().contacts()
-			.create(new Contact("x"))
-			.get();
+			.create(new Contact("x"));
 		
 		ui().contacts()
 			.contact("x")
@@ -112,8 +111,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	protected ContactDeleteDriver show()
 	{
 		api().contacts()
-			.create(new Contact("x"))
-			.get();
+			.create(new Contact("x"));
 		
 		return ui().contacts()
 			.contact("x")

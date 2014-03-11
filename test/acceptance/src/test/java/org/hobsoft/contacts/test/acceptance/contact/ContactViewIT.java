@@ -59,8 +59,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 	protected ContactViewDriver show()
 	{
 		api().contacts()
-			.create(new Contact("x"))
-			.get();
+			.create(new Contact("x"));
 		
 		return ui().contacts()
 			.contact("x");
