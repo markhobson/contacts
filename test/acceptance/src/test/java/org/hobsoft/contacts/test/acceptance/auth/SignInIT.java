@@ -14,6 +14,8 @@
 package org.hobsoft.contacts.test.acceptance.auth;
 
 import org.hobsoft.contacts.driver.auth.Credentials;
+import org.hobsoft.contacts.driver.auth.SignInDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
@@ -34,58 +36,58 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		ui().signInForm()
+		SignInDriver signInForm = ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signInForm().isVisible());
+		assertTrue(signInForm.isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedIsVisible()
 	{
-		ui().signInForm()
+		SignInDriver signInForm = ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signInForm().isVisible());
+		assertTrue(signInForm.isVisible());
 	}
 	
 	@Test
 	public void pageWhenUnauthenticatedDoesNotShowSignOut()
 	{
-		ui().signInForm()
+		SignInDriver signInForm = ui().signInForm()
 			.show();
 		
-		assertFalse(ui().signInForm().isSignOutVisible());
+		assertFalse(signInForm.isSignOutVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void pageWhenAuthenticatedShowsSignOut()
 	{
-		ui().signInForm()
+		SignInDriver signInForm = ui().signInForm()
 			.show();
 		
-		assertTrue(ui().signInForm().isSignOutVisible());
+		assertTrue(signInForm.isSignOutVisible());
 	}
 	
 	@Test
 	public void signInWithKnownCredentialsShowsContactsView()
 	{
-		ui().signInForm()
+		ContactsViewDriver contactsView = ui().signInForm()
 			.show()
 			.signIn(new Credentials("mark", "password"));
 		
-		assertTrue(ui().contacts().isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 	
 	@Test
 	public void signInWithUnknownCredentialsShowsError()
 	{
-		ui().signInForm()
+		SignInDriver signInForm = ui().signInForm()
 			.show()
-			.signIn(new Credentials("mark", ""));
+			.signInWithError(new Credentials("mark", ""));
 		
-		assertEquals("Incorrect username or password.", ui().signInForm().getErrorMessage());
+		assertEquals("Incorrect username or password.", signInForm.getErrorMessage());
 	}
 }

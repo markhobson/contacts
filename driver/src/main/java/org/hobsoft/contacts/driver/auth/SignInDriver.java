@@ -15,6 +15,7 @@ package org.hobsoft.contacts.driver.auth;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -65,7 +66,7 @@ public class SignInDriver extends AbstractPageDriver
 			.getValue();
 	}
 	
-	public void signIn(Credentials credentials)
+	public ContactsViewDriver signIn(Credentials credentials)
 	{
 		checkVisible();
 
@@ -74,5 +75,14 @@ public class SignInDriver extends AbstractPageDriver
 			.setParameter("username", credentials.getUsername())
 			.setParameter("password", credentials.getPassword())
 			.submit();
+		
+		return new ContactsViewDriver(getConfiguration());
+	}
+	
+	public SignInDriver signInWithError(Credentials credentials)
+	{
+		signIn(credentials);
+		
+		return new SignInDriver(getConfiguration());
 	}
 }
