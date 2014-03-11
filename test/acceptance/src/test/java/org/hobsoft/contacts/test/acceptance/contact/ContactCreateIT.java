@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
+import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
@@ -62,11 +63,11 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Authenticated
 	public void cancelShowsContactsView()
 	{
-		ui().contacts()
+		ContactsViewDriver contactsView = ui().contacts()
 			.createForm()
 			.cancel();
 		
-		assertTrue(ui().contacts().isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

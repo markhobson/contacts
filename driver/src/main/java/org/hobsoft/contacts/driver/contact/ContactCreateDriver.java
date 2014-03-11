@@ -74,12 +74,13 @@ public class ContactCreateDriver extends AbstractPageDriver
 		return contactViewDriver;
 	}
 
-	// TODO: return ContactsViewDriver
-	public void cancel()
+	public ContactsViewDriver cancel()
 	{
 		checkVisible();
 		
 		document().getLink("cancel").follow();
+		
+		return new ContactsViewDriver(getConfiguration());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
