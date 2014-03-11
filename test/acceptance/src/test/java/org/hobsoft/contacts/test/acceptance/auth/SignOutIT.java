@@ -34,17 +34,17 @@ public class SignOutIT extends AbstractIT
 	@Authenticated
 	public void signOutShowsSignIn()
 	{
-		SignInDriver signIn = ui().signOut();
+		SignInDriver signInForm = ui().signOut();
 		
-		assertTrue(signIn.isVisible());
+		assertTrue(signInForm.isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public void signOutShowsSuccessMessage()
 	{
-		SignInDriver signIn = ui().signOut();
+		SignInDriver signInForm = ui().signOut();
 		
-		assertEquals("You have been signed out.", signIn.getSuccessMessage());
+		assertEquals("You have been signed out.", signInForm.getSuccessMessage());
 	}
 }

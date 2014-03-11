@@ -40,8 +40,8 @@ public class ApplicationIT extends AbstractIT
 	@Authenticated
 	public void pageWhenAuthenticatedShowsContactsView()
 	{
-		ContactsViewDriver actual = ui().contacts();
+		ContactsViewDriver contactsView = ui().contacts();
 		
-		assertTrue(actual.isVisible());
+		assertTrue(contactsView.isVisible());
 	}
 }

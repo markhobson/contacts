@@ -64,10 +64,10 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		api().contacts()
 			.create(new Contact("x"));
 		
-		ContactViewDriver actual = ui().contacts()
+		ContactViewDriver contactView = ui().contacts()
 			.contact("x");
 		
-		assertTrue(actual.isVisible());
+		assertTrue(contactView.isVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

@@ -42,18 +42,18 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	@Authenticated
 	public final void pageWhenAuthenticatedIsVisible()
 	{
-		AbstractPageDriver actual = show();
+		AbstractPageDriver page = show();
 		
-		assertTrue(actual.isVisible());
+		assertTrue(page.isVisible());
 	}
 	
 	@Test
 	@Authenticated
 	public final void pageShowsSignOut()
 	{
-		AbstractPageDriver actual = show();
+		AbstractPageDriver page = show();
 		
-		assertTrue(actual.isSignOutVisible());
+		assertTrue(page.isSignOutVisible());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
