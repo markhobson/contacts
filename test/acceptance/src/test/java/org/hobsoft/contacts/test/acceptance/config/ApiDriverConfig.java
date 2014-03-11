@@ -35,16 +35,17 @@ public class ApiDriverConfig
 	
 	@Bean
 	@API
-	public ApplicationDriver apiApplicationDriver(@API DriverConfiguration config, ContactListener contactListener)
+	public ApplicationDriver apiApplicationDriver(@API DriverConfiguration config)
 	{
-		return new ApplicationDriver(config, contactListener);
+		return new ApplicationDriver(config);
 	}
 	
 	@Bean
 	@API
-	public DriverConfiguration apiDriverConfiguration(@API StatefulMicrobrowser microbrowser, URL serverUrl)
+	public DriverConfiguration apiDriverConfiguration(@API StatefulMicrobrowser microbrowser, URL serverUrl,
+		ContactListener contactListener)
 	{
-		return new DriverConfiguration(microbrowser, serverUrl);
+		return new DriverConfiguration(microbrowser, serverUrl, contactListener);
 	}
 	
 	@Bean

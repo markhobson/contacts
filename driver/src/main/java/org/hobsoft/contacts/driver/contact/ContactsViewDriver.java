@@ -18,14 +18,11 @@ import java.util.List;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Web UI driver for the view contacts page.
@@ -34,21 +31,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ContactsViewDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final ContactListener contactListener;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactsViewDriver(DriverConfiguration config, ContactListener contactListener)
+	public ContactsViewDriver(DriverConfiguration config)
 	{
 		super(config, "/contacts");
-		
-		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -81,7 +70,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 			{
 				item.getProperty("url").unwrap(WebElement.class).click();
 				
-				return new ContactViewDriver(getConfiguration(), contactListener);
+				return new ContactViewDriver(getConfiguration());
 			}
 		}
 		
@@ -100,6 +89,6 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		document().getLink("create").follow();
 		
-		return new ContactCreateDriver(getConfiguration(), contactListener);
+		return new ContactCreateDriver(getConfiguration());
 	}
 }

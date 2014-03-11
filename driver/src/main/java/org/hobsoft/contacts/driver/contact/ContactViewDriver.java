@@ -15,13 +15,10 @@ package org.hobsoft.contacts.driver.contact;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Web UI driver for the view contact page.
@@ -30,21 +27,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ContactViewDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final ContactListener contactListener;
-
-	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactViewDriver(DriverConfiguration config, ContactListener contactListener)
+	public ContactViewDriver(DriverConfiguration config)
 	{
 		super(config, "/contact/\\d+");
-		
-		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -71,6 +60,6 @@ public class ContactViewDriver extends AbstractPageDriver
 		
 		document().getLink("delete").follow();
 		
-		return new ContactDeleteDriver(getConfiguration(), contactListener);
+		return new ContactDeleteDriver(getConfiguration());
 	}
 }

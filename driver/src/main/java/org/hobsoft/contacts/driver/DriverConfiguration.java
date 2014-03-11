@@ -15,6 +15,7 @@ package org.hobsoft.contacts.driver;
 
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -31,15 +32,18 @@ public final class DriverConfiguration
 	private final StatefulMicrobrowser browser;
 	
 	private final URL serverUrl;
+
+	private final ContactListener contactListener;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public DriverConfiguration(StatefulMicrobrowser browser, URL serverUrl)
+	public DriverConfiguration(StatefulMicrobrowser browser, URL serverUrl, ContactListener contactListener)
 	{
 		this.browser = checkNotNull(browser, "browser");
 		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
+		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -54,5 +58,10 @@ public final class DriverConfiguration
 	public URL getServerUrl()
 	{
 		return serverUrl;
+	}
+	
+	public ContactListener getContactListener()
+	{
+		return contactListener;
 	}
 }

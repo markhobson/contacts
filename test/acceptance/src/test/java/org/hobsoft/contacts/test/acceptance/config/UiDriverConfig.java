@@ -36,16 +36,17 @@ public class UiDriverConfig
 	
 	@Bean
 	@UI
-	public ApplicationDriver uiApplicationDriver(@UI DriverConfiguration config, ContactListener contactListener)
+	public ApplicationDriver uiApplicationDriver(@UI DriverConfiguration config)
 	{
-		return new ApplicationDriver(config, contactListener);
+		return new ApplicationDriver(config);
 	}
 	
 	@Bean
 	@UI
-	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl)
+	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl,
+		ContactListener contactListener)
 	{
-		return new DriverConfiguration(microbrowser, serverUrl);
+		return new DriverConfiguration(microbrowser, serverUrl, contactListener);
 	}
 	
 	@Bean

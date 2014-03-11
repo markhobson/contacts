@@ -15,11 +15,8 @@ package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.driver.event.ContactListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Web UI driver entry point for the application.
@@ -28,21 +25,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ApplicationDriver extends AbstractPageDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// fields
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private final ContactListener contactListener;
-	
-	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ApplicationDriver(DriverConfiguration config, ContactListener contactListener)
+	public ApplicationDriver(DriverConfiguration config)
 	{
 		super(config, "/");
-		
-		this.contactListener = checkNotNull(contactListener, "contactListener");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -58,7 +47,7 @@ public class ApplicationDriver extends AbstractPageDriver
 	{
 		home();
 		
-		return new ContactsViewDriver(getConfiguration(), contactListener);
+		return new ContactsViewDriver(getConfiguration());
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
