@@ -20,6 +20,7 @@ import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -76,7 +77,7 @@ public class SignInIT extends AbstractIT
 	{
 		ContactsViewDriver contactsView = ui().signInForm()
 			.show()
-			.signIn(new Credentials("mark", "password"));
+			.signIn(USER);
 		
 		assertTrue(contactsView.isVisible());
 	}

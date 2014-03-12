@@ -14,11 +14,12 @@
 package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.test.acceptance.config.API;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -56,7 +57,7 @@ public class ApiDriverRule extends ExternalResource
 	{
 		api.signInForm()
 			.show()
-			.signIn(new Credentials("mark", "password"));
+			.signIn(USER);
 	}
 	
 	/**
