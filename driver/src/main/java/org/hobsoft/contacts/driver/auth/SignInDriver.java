@@ -68,6 +68,20 @@ public class SignInDriver extends AbstractPageDriver
 	
 	public ContactsViewDriver signIn(Credentials credentials)
 	{
+		signInImpl(credentials);
+		
+		return new ContactsViewDriver(getConfiguration());
+	}
+
+	public SignInDriver signInWithError(Credentials credentials)
+	{
+		signInImpl(credentials);
+		
+		return new SignInDriver(getConfiguration());
+	}
+
+	private void signInImpl(Credentials credentials)
+	{
 		checkVisible();
 
 		document()
@@ -75,14 +89,5 @@ public class SignInDriver extends AbstractPageDriver
 			.setParameter("username", credentials.getUsername())
 			.setParameter("password", credentials.getPassword())
 			.submit();
-		
-		return new ContactsViewDriver(getConfiguration());
-	}
-	
-	public SignInDriver signInWithError(Credentials credentials)
-	{
-		signIn(credentials);
-		
-		return new SignInDriver(getConfiguration());
 	}
 }
