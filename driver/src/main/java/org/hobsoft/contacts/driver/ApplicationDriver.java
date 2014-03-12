@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,13 @@ public class ApplicationDriver extends AbstractPageDriver
 	public SignInDriver signInForm()
 	{
 		return new SignInDriver(getConfiguration());
+	}
+	
+	public ContactsViewDriver signIn(Credentials credentials)
+	{
+		return signInForm()
+			.show()
+			.signIn(credentials);
 	}
 
 	public ContactsViewDriver contacts()
