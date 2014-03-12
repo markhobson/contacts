@@ -16,10 +16,10 @@ package org.hobsoft.contacts.test.acceptance.contact;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -32,14 +32,13 @@ public class ContactViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	@Authenticated
 	public void pageShowsContact()
 	{
 		Contact contact = api().contacts()
 			.create(new Contact("x"))
 			.get();
 		
-		Contact actual = ui().contacts()
+		Contact actual = ui().signIn(USER)
 			.contact("x")
 			.get();
 		
@@ -61,7 +60,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 		api().contacts()
 			.create(new Contact("x"));
 		
-		return ui().contacts()
+		return ui().signIn(USER)
 			.contact("x");
 	}
 }

@@ -16,8 +16,8 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.ApiDriverRule;
-import org.hobsoft.contacts.test.acceptance.rule.AuthenticatedRule;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
+import org.hobsoft.contacts.test.acceptance.rule.SignOutRule;
 import org.junit.Rule;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ public abstract class AbstractIT
 	private ContactRule contactRule;
 	
 	@Autowired
-	private AuthenticatedRule authenticatedRule;
+	private SignOutRule signOutRule;
 	
 	@Autowired
 	@UI
@@ -58,7 +58,7 @@ public abstract class AbstractIT
 	{
 		return RuleChain.outerRule(apiDriverRule)
 			// TODO: switch order of following rules once contactRule uses API again
-			.around(authenticatedRule)
+			.around(signOutRule)
 			.around(contactRule);
 	}
 

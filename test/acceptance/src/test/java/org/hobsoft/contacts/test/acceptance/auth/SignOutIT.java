@@ -15,9 +15,9 @@ package org.hobsoft.contacts.test.acceptance.auth;
 
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -31,19 +31,19 @@ public class SignOutIT extends AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	@Authenticated
 	public void signOutShowsSignIn()
 	{
-		SignInDriver signInForm = ui().signOut();
+		SignInDriver signInForm = ui().signIn(USER)
+			.signOut();
 		
 		assertTrue(signInForm.isVisible());
 	}
 	
 	@Test
-	@Authenticated
 	public void signOutShowsSuccessMessage()
 	{
-		SignInDriver signInForm = ui().signOut();
+		SignInDriver signInForm = ui().signIn(USER)
+			.signOut();
 		
 		assertEquals("You have been signed out.", signInForm.getSuccessMessage());
 	}

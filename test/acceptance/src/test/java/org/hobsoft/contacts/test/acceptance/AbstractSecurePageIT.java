@@ -14,7 +14,6 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.AbstractPageDriver;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -39,7 +38,6 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	}
 	
 	@Test
-	@Authenticated
 	public final void pageWhenAuthenticatedIsVisible()
 	{
 		AbstractPageDriver page = show();
@@ -48,7 +46,6 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	}
 	
 	@Test
-	@Authenticated
 	public final void pageShowsSignOut()
 	{
 		AbstractPageDriver page = show();

@@ -18,13 +18,13 @@ import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -53,13 +53,12 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	@Authenticated
 	public void pageShowsName()
 	{
 		api().contacts()
 			.create(new Contact("x"));
 		
-		Contact actual = ui().contacts()
+		Contact actual = ui().signIn(USER)
 			.contact("x")
 			.deleteForm()
 			.get();
@@ -68,13 +67,12 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	}
 	
 	@Test
-	@Authenticated
 	public void deleteDeletesContact()
 	{
 		api().contacts()
 			.create(new Contact("x"));
 		
-		ui().contacts()
+		ui().signIn(USER)
 			.contact("x")
 			.deleteForm()
 			.delete();
@@ -85,14 +83,13 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	}
 	
 	@Test
-	@Authenticated
 	public void cancelShowsContactView()
 	{
 		Contact contact = api().contacts()
 			.create(new Contact("x"))
 			.get();
 		
-		ContactViewDriver actual = ui().contacts()
+		ContactViewDriver actual = ui().signIn(USER)
 			.contact("x")
 			.deleteForm()
 			.cancel();
@@ -113,7 +110,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 		api().contacts()
 			.create(new Contact("x"));
 		
-		return ui().contacts()
+		return ui().signIn(USER)
 			.contact("x")
 			.deleteForm();
 	}

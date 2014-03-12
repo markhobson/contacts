@@ -17,7 +17,6 @@ import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
@@ -44,32 +43,12 @@ public class SignInIT extends AbstractIT
 	}
 	
 	@Test
-	@Authenticated
-	public void pageWhenAuthenticatedIsVisible()
-	{
-		SignInDriver signInForm = ui().signInForm()
-			.show();
-		
-		assertTrue(signInForm.isVisible());
-	}
-	
-	@Test
 	public void pageWhenUnauthenticatedDoesNotShowSignOut()
 	{
 		SignInDriver signInForm = ui().signInForm()
 			.show();
 		
 		assertFalse(signInForm.isSignOutVisible());
-	}
-	
-	@Test
-	@Authenticated
-	public void pageWhenAuthenticatedShowsSignOut()
-	{
-		SignInDriver signInForm = ui().signInForm()
-			.show();
-		
-		assertTrue(signInForm.isSignOutVisible());
 	}
 	
 	@Test

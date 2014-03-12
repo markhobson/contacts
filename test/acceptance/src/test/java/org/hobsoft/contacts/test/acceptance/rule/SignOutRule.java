@@ -14,21 +14,18 @@
 package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.test.acceptance.config.UI;
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
+import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * JUnit rule to sign-in and sign-out around tests annotated with {@code @Authenticated}.
+ * JUnit rule to sign-out after tests.
  */
 @Component
-public class AuthenticatedRule implements TestRule
+public class SignOutRule extends ExternalResource
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -41,51 +38,21 @@ public class AuthenticatedRule implements TestRule
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Autowired
-	public AuthenticatedRule(@UI ApplicationDriver ui)
+	public SignOutRule(@UI ApplicationDriver ui)
 	{
 		this.ui = checkNotNull(ui, "ui");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
-	// TestRule methods
+	// ExternalResource methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public Statement apply(final Statement base, Description description)
+	protected void after()
 	{
-		Authenticated authenticated = description.getAnnotation(Authenticated.class);
-		
-		if (authenticated == null)
+		if (ui.isSignOutVisible())
 		{
-			return base;
+			ui.signOut();
 		}
-		
-		final Credentials credentials = new Credentials(authenticated.username(), authenticated.password());
-		
-		return new Statement()
-		{
-			@Override
-			// CHECKSTYLE:OFF
-			public void evaluate() throws Throwable
-			// CHECKSTYLE:ON
-			{
-				ui.signIn(credentials);
-				
-				try
-				{
-					base.evaluate();
-				}
-				finally
-				{
-					if (ui.isSignOutVisible())
-					{
-						ui.signOut();
-					}
-				}
-			}
-		};
 	}
 }

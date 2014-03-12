@@ -17,10 +17,10 @@ import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
-import org.hobsoft.contacts.test.acceptance.rule.Authenticated;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -34,10 +34,9 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	@Authenticated
 	public void pageShowsForm()
 	{
-		Contact actual = ui().contacts()
+		Contact actual = ui().signIn(USER)
 			.createForm()
 			.get();
 		
@@ -45,10 +44,9 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	}
 	
 	@Test
-	@Authenticated
 	public void submitCreatesContact()
 	{
-		Contact actual = ui().contacts()
+		Contact actual = ui().signIn(USER)
 			.createForm()
 			.set(new Contact("x"))
 			.create()
@@ -60,10 +58,9 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	}
 	
 	@Test
-	@Authenticated
 	public void cancelShowsContactsView()
 	{
-		ContactsViewDriver contactsView = ui().contacts()
+		ContactsViewDriver contactsView = ui().signIn(USER)
 			.createForm()
 			.cancel();
 		
@@ -80,7 +77,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	@Override
 	protected ContactCreateDriver show()
 	{
-		return ui().contacts()
+		return ui().signIn(USER)
 			.createForm();
 	}
 }
