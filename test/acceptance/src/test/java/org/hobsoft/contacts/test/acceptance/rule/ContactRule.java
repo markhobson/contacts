@@ -18,7 +18,7 @@ import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.model.Contact;
-import org.hobsoft.contacts.test.acceptance.config.UI;
+import org.hobsoft.contacts.test.acceptance.config.API;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,9 +43,8 @@ public class ContactRule extends ExternalResource
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	// TODO: use API when contact() works under jsoup
 	@Autowired
-	public ContactRule(ContactCollector contactCollector, @UI ApplicationDriver api)
+	public ContactRule(ContactCollector contactCollector, @API ApplicationDriver api)
 	{
 		this.contactCollector = checkNotNull(contactCollector, "contactCollector");
 		this.api = checkNotNull(api, "api");
