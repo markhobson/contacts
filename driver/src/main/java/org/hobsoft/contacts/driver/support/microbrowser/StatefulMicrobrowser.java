@@ -13,10 +13,14 @@
  */
 package org.hobsoft.contacts.driver.support.microbrowser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hobsoft.microbrowser.Form;
 import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
+import org.hobsoft.microbrowser.MicrodataItem;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -88,6 +92,18 @@ public class StatefulMicrobrowser extends DelegatingMicrobrowser
 			}
 			
 			@Override
+			public MicrodataItem getItem(String type)
+			{
+				return newStatefulItem(super.getItem(type));
+			}
+			
+			@Override
+			public List<MicrodataItem> getItems(String type)
+			{
+				return newStatefulItems(super.getItems(type));
+			}
+			
+			@Override
 			public Link getLink(String rel)
 			{
 				return newStatefulLink(super.getLink(rel));
@@ -99,6 +115,30 @@ public class StatefulMicrobrowser extends DelegatingMicrobrowser
 				return newStatefulForm(super.getForm(name));
 			}
 		};
+	}
+	
+	private MicrodataItem newStatefulItem(MicrodataItem delegate)
+	{
+		return new DelegatingMicrodataItem(delegate)
+		{
+			@Override
+			public Link getLink(String rel)
+			{
+				return newStatefulLink(super.getLink(rel));
+			}
+		};
+	}
+
+	private List<MicrodataItem> newStatefulItems(List<MicrodataItem> delegates)
+	{
+		List<MicrodataItem> items = new ArrayList<>();
+		
+		for (MicrodataItem delegate : delegates)
+		{
+			items.add(newStatefulItem(delegate));
+		}
+		
+		return items;
 	}
 	
 	private Link newStatefulLink(Link delegate)
