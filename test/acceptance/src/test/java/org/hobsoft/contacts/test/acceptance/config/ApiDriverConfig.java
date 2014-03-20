@@ -18,7 +18,6 @@ import java.net.URL;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
-import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.jsoup.JsoupMicrobrowser;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +52,6 @@ public class ApiDriverConfig
 	@API
 	public Microbrowser apiMicrobrowser()
 	{
-		return new StatefulMicrobrowser(new JsoupMicrobrowser());
+		return new JsoupMicrobrowser();
 	}
 }

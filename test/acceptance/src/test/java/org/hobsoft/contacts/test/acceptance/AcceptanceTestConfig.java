@@ -19,7 +19,7 @@ import java.net.URL;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
-import org.hobsoft.contacts.test.acceptance.rule.ApiDriverRule;
+import org.hobsoft.contacts.test.acceptance.rule.SignOutRule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import({ApiDriverConfig.class, UiDriverConfig.class})
-@ComponentScan(basePackageClasses = ApiDriverRule.class)
+@ComponentScan(basePackageClasses = SignOutRule.class)
 public class AcceptanceTestConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------

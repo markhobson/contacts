@@ -14,8 +14,8 @@
 package org.hobsoft.contacts.test.acceptance;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.test.acceptance.config.API;
 import org.hobsoft.contacts.test.acceptance.config.UI;
-import org.hobsoft.contacts.test.acceptance.rule.ApiDriverRule;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
 import org.hobsoft.contacts.test.acceptance.rule.SignOutRule;
 import org.junit.Rule;
@@ -37,13 +37,14 @@ public abstract class AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	private ApiDriverRule apiDriverRule;
-	
-	@Autowired
 	private ContactRule contactRule;
 	
 	@Autowired
 	private SignOutRule signOutRule;
+	
+	@Autowired
+	@API
+	private ApplicationDriver api;
 	
 	@Autowired
 	@UI
@@ -56,8 +57,7 @@ public abstract class AbstractIT
 	@Rule
 	public RuleChain getRuleChain()
 	{
-		return RuleChain.outerRule(apiDriverRule)
-			.around(contactRule)
+		return RuleChain.outerRule(contactRule)
 			.around(signOutRule);
 	}
 
@@ -67,7 +67,7 @@ public abstract class AbstractIT
 
 	protected final ApplicationDriver api()
 	{
-		return apiDriverRule.api();
+		return api;
 	}
 	
 	protected final ApplicationDriver ui()

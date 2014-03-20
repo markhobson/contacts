@@ -37,13 +37,13 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Test
 	public void pageShowsContacts()
 	{
-		Contact contact1 = api().contacts()
+		Contact contact1 = api().signIn(USER)
 			.create(new Contact("x"))
 			.get();
-		Contact contact2 = api().contacts()
+		Contact contact2 = api().signIn(USER)
 			.create(new Contact("y"))
 			.get();
-		Contact contact3 = api().contacts()
+		Contact contact3 = api().signIn(USER)
 			.create(new Contact("z"))
 			.get();
 		
@@ -59,7 +59,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	@Test
 	public void contactWhenClickedShowsContactView()
 	{
-		api().contacts()
+		api().signIn(USER)
 			.create(new Contact("x"));
 		
 		ContactViewDriver contactView = ui().signIn(USER)

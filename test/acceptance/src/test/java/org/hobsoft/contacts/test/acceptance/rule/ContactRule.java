@@ -23,6 +23,8 @@ import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -74,7 +76,7 @@ public class ContactRule extends ExternalResource
 
 	private void deleteContactQuietly(Contact contact)
 	{
-		ContactsViewDriver contactsView = api.contacts();
+		ContactsViewDriver contactsView = api.signIn(USER);
 		
 		ContactViewDriver contactView;
 		try

@@ -55,13 +55,6 @@ public class ApplicationDriver extends AbstractPageDriver
 			.signIn(credentials);
 	}
 
-	public ContactsViewDriver contacts()
-	{
-		MicrodataDocument document = home();
-		
-		return new ContactsViewDriver(getConfiguration(), document);
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// AbstractPageDriver methods
 	// ----------------------------------------------------------------------------------------------------------------

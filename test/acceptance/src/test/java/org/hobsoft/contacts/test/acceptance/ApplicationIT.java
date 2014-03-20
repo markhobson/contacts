@@ -29,14 +29,6 @@ public class ApplicationIT extends AbstractIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	public void pageWhenUnauthenticatedShowsSignIn()
-	{
-		ui().contacts();
-		
-		assertTrue(ui().signInForm().isVisible());
-	}
-	
-	@Test
 	public void pageWhenAuthenticatedShowsContactsView()
 	{
 		ContactsViewDriver contactsView = ui().signIn(USER);
