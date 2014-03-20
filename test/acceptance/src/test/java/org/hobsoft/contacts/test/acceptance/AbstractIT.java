@@ -57,9 +57,8 @@ public abstract class AbstractIT
 	public RuleChain getRuleChain()
 	{
 		return RuleChain.outerRule(apiDriverRule)
-			// TODO: switch order of following rules once contactRule uses API again
-			.around(signOutRule)
-			.around(contactRule);
+			.around(contactRule)
+			.around(signOutRule);
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
