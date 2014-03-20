@@ -16,6 +16,8 @@ package org.hobsoft.contacts.driver;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.contacts.driver.support.microbrowser.MicrodataDocumentAdapter;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +34,8 @@ public class ApplicationDriver extends AbstractPageDriver
 	@Autowired
 	public ApplicationDriver(DriverConfiguration config)
 	{
-		super(config, "/");
+		// TODO: remove this bootstrap document
+		super(config, new MicrodataDocumentAdapter(config.getBrowser()), "/");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -41,9 +44,9 @@ public class ApplicationDriver extends AbstractPageDriver
 	
 	public SignInDriver signInForm()
 	{
-		home();
+		MicrodataDocument document = home();
 		
-		return new SignInDriver(getConfiguration());
+		return new SignInDriver(getConfiguration(), document);
 	}
 	
 	public ContactsViewDriver signIn(Credentials credentials)
@@ -54,9 +57,9 @@ public class ApplicationDriver extends AbstractPageDriver
 
 	public ContactsViewDriver contacts()
 	{
-		home();
+		MicrodataDocument document = home();
 		
-		return new ContactsViewDriver(getConfiguration());
+		return new ContactsViewDriver(getConfiguration(), document);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -75,8 +78,8 @@ public class ApplicationDriver extends AbstractPageDriver
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private void home()
+	private MicrodataDocument home()
 	{
-		document().get(url("/"));
+		return document().get(url("/"));
 	}
 }

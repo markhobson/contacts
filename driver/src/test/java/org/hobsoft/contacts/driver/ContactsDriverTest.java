@@ -14,7 +14,10 @@
 package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
 
 /**
  * Tests {@code ContactsDriver}.
@@ -28,6 +31,6 @@ public class ContactsDriverTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullConfiguration()
 	{
-		new ContactsViewDriver(null);
+		new ContactsViewDriver(null, mock(MicrodataDocument.class));
 	}
 }

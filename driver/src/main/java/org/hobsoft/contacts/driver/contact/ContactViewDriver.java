@@ -16,6 +16,7 @@ package org.hobsoft.contacts.driver.contact;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,9 +32,9 @@ public class ContactViewDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactViewDriver(DriverConfiguration config)
+	public ContactViewDriver(DriverConfiguration config, MicrodataDocument document)
 	{
-		super(config, "/contact/\\d+");
+		super(config, document, "/contact/\\d+");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -58,8 +59,8 @@ public class ContactViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		document().getLink("delete").follow();
+		MicrodataDocument document = document().getLink("delete").follow();
 		
-		return new ContactDeleteDriver(getConfiguration());
+		return new ContactDeleteDriver(getConfiguration(), document);
 	}
 }

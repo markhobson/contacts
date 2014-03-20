@@ -13,6 +13,8 @@
  */
 package org.hobsoft.contacts.driver;
 
+import org.hobsoft.microbrowser.MicrodataDocument;
+
 /**
  * Concrete {@code AbstractDriver} implementation for testing.
  */
@@ -22,8 +24,8 @@ public class FakeDriver extends AbstractDriver
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public FakeDriver(DriverConfiguration config, String self)
+	public FakeDriver(DriverConfiguration config, MicrodataDocument document, String self)
 	{
-		super(config, self);
+		super(config, document, self);
 	}
 }

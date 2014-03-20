@@ -17,6 +17,7 @@ import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.Form;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +32,9 @@ public class ContactCreateDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public ContactCreateDriver(DriverConfiguration config)
+	public ContactCreateDriver(DriverConfiguration config, MicrodataDocument document)
 	{
-		super(config, "/contacts/create");
+		super(config, document, "/contacts/create");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -62,9 +63,9 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		getForm().submit();
+		MicrodataDocument document = getForm().submit();
 		
-		ContactViewDriver contactViewDriver = new ContactViewDriver(getConfiguration());
+		ContactViewDriver contactViewDriver = new ContactViewDriver(getConfiguration(), document);
 		
 		if (contactViewDriver.isVisible())
 		{
@@ -78,9 +79,9 @@ public class ContactCreateDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		document().getLink("cancel").follow();
+		MicrodataDocument document = document().getLink("cancel").follow();
 		
-		return new ContactsViewDriver(getConfiguration());
+		return new ContactsViewDriver(getConfiguration(), document);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

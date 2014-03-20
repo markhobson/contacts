@@ -35,15 +35,18 @@ public abstract class AbstractDriver implements Driver
 	
 	private final DriverConfiguration config;
 	
+	private final MicrodataDocument document;
+	
 	private final String selfPathPattern;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public AbstractDriver(DriverConfiguration config, String selfPathPattern)
+	public AbstractDriver(DriverConfiguration config, MicrodataDocument document, String selfPathPattern)
 	{
 		this.config = checkNotNull(config, "config");
+		this.document = checkNotNull(document, "document");
 		this.selfPathPattern = checkNotNull(selfPathPattern, "selfPathPattern");
 	}
 	
@@ -85,6 +88,8 @@ public abstract class AbstractDriver implements Driver
 	
 	protected final MicrodataDocument document()
 	{
+		// TODO: return document when drivers stateful
+			
 		StatefulMicrobrowser browser = config.getBrowser();
 		
 		if (browser.hasDocument())

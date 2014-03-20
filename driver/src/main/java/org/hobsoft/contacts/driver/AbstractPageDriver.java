@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.driver;
 
 import org.hobsoft.contacts.driver.auth.SignInDriver;
+import org.hobsoft.microbrowser.MicrodataDocument;
 
 /**
  * Base web UI driver for common page elements.
@@ -24,9 +25,9 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public AbstractPageDriver(DriverConfiguration config, String self)
+	public AbstractPageDriver(DriverConfiguration config, MicrodataDocument document, String self)
 	{
-		super(config, self);
+		super(config, document, self);
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -40,8 +41,8 @@ public abstract class AbstractPageDriver extends AbstractDriver
 	
 	public SignInDriver signOut()
 	{
-		document().getLink("logout").follow();
+		MicrodataDocument document = document().getLink("logout").follow();
 		
-		return new SignInDriver(getConfiguration());
+		return new SignInDriver(getConfiguration(), document);
 	}
 }

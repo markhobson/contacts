@@ -16,6 +16,7 @@ package org.hobsoft.contacts.driver.auth;
 import org.hobsoft.contacts.driver.AbstractPageDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,9 +31,9 @@ public class SignInDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public SignInDriver(DriverConfiguration config)
+	public SignInDriver(DriverConfiguration config, MicrodataDocument document)
 	{
-		super(config, "/login");
+		super(config, document, "/login");
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
@@ -61,23 +62,23 @@ public class SignInDriver extends AbstractPageDriver
 	
 	public ContactsViewDriver signIn(Credentials credentials)
 	{
-		signInImpl(credentials);
+		MicrodataDocument document = signInImpl(credentials);
 		
-		return new ContactsViewDriver(getConfiguration());
+		return new ContactsViewDriver(getConfiguration(), document);
 	}
 
 	public SignInDriver signInWithError(Credentials credentials)
 	{
-		signInImpl(credentials);
+		MicrodataDocument document = signInImpl(credentials);
 		
-		return new SignInDriver(getConfiguration());
+		return new SignInDriver(getConfiguration(), document);
 	}
 
-	private void signInImpl(Credentials credentials)
+	private MicrodataDocument signInImpl(Credentials credentials)
 	{
 		checkVisible();
 
-		document()
+		return document()
 			.getForm("login")
 			.setParameter("username", credentials.getUsername())
 			.setParameter("password", credentials.getPassword())
