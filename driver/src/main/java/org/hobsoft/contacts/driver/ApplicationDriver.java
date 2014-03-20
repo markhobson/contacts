@@ -41,13 +41,14 @@ public class ApplicationDriver extends AbstractPageDriver
 	
 	public SignInDriver signInForm()
 	{
+		home();
+		
 		return new SignInDriver(getConfiguration());
 	}
 	
 	public ContactsViewDriver signIn(Credentials credentials)
 	{
 		return signInForm()
-			.show()
 			.signIn(credentials);
 	}
 

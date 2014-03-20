@@ -36,8 +36,7 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void pageWhenUnauthenticatedShowsSignIn()
 	{
-		SignInDriver signInForm = ui().signInForm()
-			.show();
+		SignInDriver signInForm = ui().signInForm();
 		
 		assertTrue(signInForm.isVisible());
 	}
@@ -45,8 +44,7 @@ public class SignInIT extends AbstractIT
 	@Test
 	public void pageWhenUnauthenticatedDoesNotShowSignOut()
 	{
-		SignInDriver signInForm = ui().signInForm()
-			.show();
+		SignInDriver signInForm = ui().signInForm();
 		
 		assertFalse(signInForm.isSignOutVisible());
 	}
@@ -55,7 +53,6 @@ public class SignInIT extends AbstractIT
 	public void signInWithKnownCredentialsShowsContactsView()
 	{
 		ContactsViewDriver contactsView = ui().signInForm()
-			.show()
 			.signIn(USER);
 		
 		assertTrue(contactsView.isVisible());
@@ -65,7 +62,6 @@ public class SignInIT extends AbstractIT
 	public void signInWithUnknownCredentialsShowsError()
 	{
 		SignInDriver signInForm = ui().signInForm()
-			.show()
 			.signInWithError(new Credentials("mark", ""));
 		
 		assertEquals("Incorrect username or password.", signInForm.getErrorMessage());

@@ -39,13 +39,6 @@ public class SignInDriver extends AbstractPageDriver
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	public SignInDriver show()
-	{
-		document().get(url("/login"));
-		
-		return this;
-	}
-
 	public String getSuccessMessage()
 	{
 		checkVisible();
