@@ -88,16 +88,20 @@ public abstract class AbstractDriver implements Driver
 	
 	protected final MicrodataDocument document()
 	{
-		// TODO: return document when drivers stateful
-			
-		StatefulMicrobrowser browser = config.getBrowser();
-		
-		if (browser.hasDocument())
+		// TODO: remove this when all drivers stateful
+		if (config.getBrowser() instanceof StatefulMicrobrowser)
 		{
-			return browser.getDocument();
+			StatefulMicrobrowser browser = (StatefulMicrobrowser) config.getBrowser();
+			
+			if (browser.hasDocument())
+			{
+				return browser.getDocument();
+			}
+			
+			return new MicrodataDocumentAdapter(browser);
 		}
 		
-		return new MicrodataDocumentAdapter(browser);
+		return document;
 	}
 	
 	protected final String url(String spec)

@@ -19,6 +19,7 @@ import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
+import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +44,7 @@ public class UiDriverConfig
 	
 	@Bean
 	@UI
-	public DriverConfiguration uiDriverConfiguration(@UI StatefulMicrobrowser microbrowser, URL serverUrl,
+	public DriverConfiguration uiDriverConfiguration(@UI Microbrowser microbrowser, URL serverUrl,
 		ContactListener contactListener)
 	{
 		return new DriverConfiguration(microbrowser, serverUrl, contactListener);
@@ -51,7 +52,7 @@ public class UiDriverConfig
 	
 	@Bean
 	@UI
-	public StatefulMicrobrowser uiMicrobrowser(WebDriver webDriver)
+	public Microbrowser uiMicrobrowser(WebDriver webDriver)
 	{
 		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver));
 	}
