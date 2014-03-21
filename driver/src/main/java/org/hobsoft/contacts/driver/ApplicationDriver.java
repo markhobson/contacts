@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Web UI driver entry point for the application.
+ * Entry point for the web application driver.
  */
 @Component
 public class ApplicationDriver

@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Web UI driver for the delete contact page.
+ * Driver for the delete contact page.
  */
 @Component
 public class ContactDeleteDriver extends AbstractPageDriver

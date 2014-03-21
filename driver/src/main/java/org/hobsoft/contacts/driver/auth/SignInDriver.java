@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Web UI driver for the sign-in page.
+ * Driver for the sign-in page.
  */
 @Component
 public class SignInDriver extends AbstractPageDriver

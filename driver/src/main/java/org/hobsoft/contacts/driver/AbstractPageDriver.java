@@ -17,7 +17,7 @@ import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
 /**
- * Base web UI driver for common page elements.
+ * Base web application driver for common page elements.
  */
 public abstract class AbstractPageDriver extends AbstractDriver
 {

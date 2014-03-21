@@ -14,7 +14,7 @@
 package org.hobsoft.contacts.driver;
 
 /**
- * Defines a web UI driver.
+ * Defines a web application driver for a specific page.
  */
 public interface Driver
 {

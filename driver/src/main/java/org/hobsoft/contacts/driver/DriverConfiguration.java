@@ -21,7 +21,7 @@ import org.hobsoft.microbrowser.Microbrowser;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Configuration for web UI drivers.
+ * Configuration for web application drivers.
  */
 public final class DriverConfiguration
 {

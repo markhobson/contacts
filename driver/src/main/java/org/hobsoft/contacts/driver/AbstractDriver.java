@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Base web UI driver.
+ * Base web application driver.
  */
 public abstract class AbstractDriver implements Driver
 {

@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Web UI driver for the view contacts page.
+ * Driver for the view contacts page.
  */
 @Component
 public class ContactsViewDriver extends AbstractPageDriver
