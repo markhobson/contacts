@@ -32,19 +32,19 @@ public class DriverConfigurationTest
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullBrowser() throws MalformedURLException
+	public void constructorWithNullBrowserThrowsException() throws MalformedURLException
 	{
 		new DriverConfiguration(null, newUrl(), mock(ContactListener.class));
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullServerUrl()
+	public void constructorWithNullServerUrlThrowsException()
 	{
 		new DriverConfiguration(mock(Microbrowser.class), null, mock(ContactListener.class));
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullContactListener() throws MalformedURLException
+	public void constructorWithNullContactListenerThrowsException() throws MalformedURLException
 	{
 		new DriverConfiguration(mock(Microbrowser.class), newUrl(), null);
 	}

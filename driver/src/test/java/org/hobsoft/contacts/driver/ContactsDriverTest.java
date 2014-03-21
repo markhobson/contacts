@@ -34,13 +34,13 @@ public class ContactsDriverTest
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullConfiguration()
+	public void constructorWithNullConfigurationThrowsException()
 	{
 		new ContactsViewDriver(null, mock(MicrodataDocument.class));
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void constructWithNullDocument() throws MalformedURLException
+	public void constructorWithNullDocumentThrowsException() throws MalformedURLException
 	{
 		new ContactsViewDriver(newConfig(), null);
 	}
