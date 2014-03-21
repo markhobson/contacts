@@ -89,18 +89,6 @@ public abstract class AbstractDriver implements Driver
 		return document;
 	}
 	
-	protected final String url(String spec)
-	{
-		try
-		{
-			return new URL(config.getServerUrl(), spec).toString();
-		}
-		catch (MalformedURLException exception)
-		{
-			throw new IllegalArgumentException(exception);
-		}
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------

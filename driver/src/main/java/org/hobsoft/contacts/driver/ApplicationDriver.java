@@ -16,17 +16,24 @@ package org.hobsoft.contacts.driver;
 import org.hobsoft.contacts.driver.auth.Credentials;
 import org.hobsoft.contacts.driver.auth.SignInDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.driver.support.microbrowser.MicrodataDocumentAdapter;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Web UI driver entry point for the application.
  */
 @Component
-public class ApplicationDriver extends AbstractDriver
+public class ApplicationDriver
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// fields
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private final DriverConfiguration config;
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
@@ -34,8 +41,7 @@ public class ApplicationDriver extends AbstractDriver
 	@Autowired
 	public ApplicationDriver(DriverConfiguration config)
 	{
-		// TODO: remove this bootstrap document
-		super(config, new MicrodataDocumentAdapter(config.getBrowser()), "/");
+		this.config = checkNotNull(config, "config");
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
@@ -44,23 +50,15 @@ public class ApplicationDriver extends AbstractDriver
 	
 	public SignInDriver signInForm()
 	{
-		MicrodataDocument document = home();
+		String url = config.getServerUrl().toString();
+		MicrodataDocument document = config.getBrowser().get(url);
 		
-		return new SignInDriver(getConfiguration(), document);
+		return new SignInDriver(config, document);
 	}
 	
 	public ContactsViewDriver signIn(Credentials credentials)
 	{
 		return signInForm()
 			.signIn(credentials);
-	}
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private MicrodataDocument home()
-	{
-		return document().get(url("/"));
 	}
 }

@@ -121,16 +121,6 @@ public class AbstractDriverTest
 		driver.checkVisible();
 	}
 	
-	@Test
-	public void urlReturnsResolvedUrl() throws MalformedURLException
-	{
-		DriverConfiguration config = new DriverConfiguration(mock(Microbrowser.class), new URL("http://localhost/"),
-			mock(ContactListener.class));
-		AbstractDriver driver = new FakeDriver(config, mock(MicrodataDocument.class), "s");
-		
-		assertEquals("http://localhost/x", driver.url("x"));
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
