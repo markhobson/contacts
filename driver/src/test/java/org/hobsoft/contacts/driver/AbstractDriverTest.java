@@ -16,14 +16,13 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.microbrowser.Link;
-import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.hobsoft.contacts.driver.MockDriverConfigurations.newConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -148,16 +147,6 @@ public class AbstractDriverTest
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private static DriverConfiguration newConfig() throws MalformedURLException
-	{
-		return new DriverConfiguration(mock(Microbrowser.class), newUrl(), mock(ContactListener.class));
-	}
-
-	private static URL newUrl() throws MalformedURLException
-	{
-		return new URL("http://localhost/");
-	}
-	
 	private static MicrodataDocument newDocumentWithSelf(URL selfHref)
 	{
 		Link self = mock(Link.class);
