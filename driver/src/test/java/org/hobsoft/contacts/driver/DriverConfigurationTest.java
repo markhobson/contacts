@@ -34,7 +34,7 @@ public class DriverConfigurationTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullBrowser() throws MalformedURLException
 	{
-		new DriverConfiguration(null, new URL("http://localhost:8080/"), mock(ContactListener.class));
+		new DriverConfiguration(null, newUrl(), mock(ContactListener.class));
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -46,6 +46,15 @@ public class DriverConfigurationTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullContactListener() throws MalformedURLException
 	{
-		new DriverConfiguration(mock(Microbrowser.class), new URL("http://localhost:8080/"), null);
+		new DriverConfiguration(mock(Microbrowser.class), newUrl(), null);
+	}
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static URL newUrl() throws MalformedURLException
+	{
+		return new URL("http://localhost/");
 	}
 }
