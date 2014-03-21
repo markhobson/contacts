@@ -17,8 +17,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Pattern;
 
-import org.hobsoft.contacts.driver.support.microbrowser.MicrodataDocumentAdapter;
-import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -88,19 +86,6 @@ public abstract class AbstractDriver implements Driver
 	
 	protected final MicrodataDocument document()
 	{
-		// TODO: remove this when all drivers stateful
-		if (config.getBrowser() instanceof StatefulMicrobrowser)
-		{
-			StatefulMicrobrowser browser = (StatefulMicrobrowser) config.getBrowser();
-			
-			if (browser.hasDocument())
-			{
-				return browser.getDocument();
-			}
-			
-			return new MicrodataDocumentAdapter(browser);
-		}
-		
 		return document;
 	}
 	

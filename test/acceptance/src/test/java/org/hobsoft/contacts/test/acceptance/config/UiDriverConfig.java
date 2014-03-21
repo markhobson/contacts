@@ -18,7 +18,6 @@ import java.net.URL;
 import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
-import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.selenium.SeleniumMicrobrowser;
 import org.openqa.selenium.WebDriver;
@@ -54,6 +53,6 @@ public class UiDriverConfig
 	@UI
 	public Microbrowser uiMicrobrowser(WebDriver webDriver)
 	{
-		return new StatefulMicrobrowser(new SeleniumMicrobrowser(webDriver));
+		return new SeleniumMicrobrowser(webDriver);
 	}
 }
