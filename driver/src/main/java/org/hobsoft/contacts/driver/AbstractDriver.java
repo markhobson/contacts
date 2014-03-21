@@ -13,8 +13,6 @@
  */
 package org.hobsoft.contacts.driver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.regex.Pattern;
 
 import org.hobsoft.microbrowser.MicrodataDocument;
@@ -95,19 +93,6 @@ public abstract class AbstractDriver implements Driver
 
 	private String getSelfPath()
 	{
-		String self = document().getLink("self").getHref();
-		return quietNewUrl(self).getPath();
-	}
-	
-	private static URL quietNewUrl(String spec)
-	{
-		try
-		{
-			return new URL(spec);
-		}
-		catch (MalformedURLException exception)
-		{
-			throw new IllegalArgumentException("Invalid URL: " + spec);
-		}
+		return document().getLink("self").getHref().getPath();
 	}
 }
