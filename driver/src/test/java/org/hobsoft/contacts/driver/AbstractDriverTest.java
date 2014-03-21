@@ -48,7 +48,7 @@ public class AbstractDriverTest
 	@Test
 	public void constructorSetsProperties() throws MalformedURLException
 	{
-		DriverConfiguration config = createConfig();
+		DriverConfiguration config = newConfig();
 		MicrodataDocument document = mock(MicrodataDocument.class);
 		
 		AbstractDriver driver = new FakeDriver(config, document, "x");
@@ -67,20 +67,20 @@ public class AbstractDriverTest
 	@Test(expected = NullPointerException.class)
 	public void constructorWithNullDocumentThrowsException() throws MalformedURLException
 	{
-		new FakeDriver(createConfig(), null, "x");
+		new FakeDriver(newConfig(), null, "x");
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void constructorWithNullSelfPathPatternThrowsException() throws MalformedURLException
 	{
-		new FakeDriver(createConfig(), mock(MicrodataDocument.class), null);
+		new FakeDriver(newConfig(), mock(MicrodataDocument.class), null);
 	}
 	
 	@Test
 	public void isVisibleWhenSelfEqualReturnsTrue() throws MalformedURLException
 	{
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/x"));
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "/x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
 		assertTrue(driver.isVisible());
 	}
@@ -89,7 +89,7 @@ public class AbstractDriverTest
 	public void isVisibleWhenSelfUnequalReturnsFalse() throws MalformedURLException
 	{
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/y"));
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "/x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
 		assertFalse(driver.isVisible());
 	}
@@ -99,7 +99,7 @@ public class AbstractDriverTest
 	{
 		MicrodataDocument document = mock(MicrodataDocument.class);
 		when(document.hasLink("self")).thenReturn(false);
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "x");
 		
 		assertFalse(driver.isVisible());
 	}
@@ -108,7 +108,7 @@ public class AbstractDriverTest
 	public void isVisibleWhenSelfNullReturnsFalse() throws MalformedURLException
 	{
 		MicrodataDocument document = newDocumentWithSelf(null);
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "x");
 		
 		assertFalse(driver.isVisible());
 	}
@@ -117,7 +117,7 @@ public class AbstractDriverTest
 	public void checkVisibleWhenSelfEqualReturns() throws MalformedURLException
 	{
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/x"));
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "/x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
 		driver.checkVisible();
 	}
@@ -126,7 +126,7 @@ public class AbstractDriverTest
 	public void checkVisibleWhenSelfUnequalThrowsException() throws MalformedURLException
 	{
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/y"));
-		AbstractDriver driver = new FakeDriver(createConfig(), document, "/x");
+		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
 		thrown.expect(IllegalStateException.class);
 		thrown.expectMessage("Self expected: /x but was: /y");
@@ -148,12 +148,12 @@ public class AbstractDriverTest
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private static DriverConfiguration createConfig() throws MalformedURLException
+	private static DriverConfiguration newConfig() throws MalformedURLException
 	{
-		return new DriverConfiguration(mock(Microbrowser.class), createUrl(), mock(ContactListener.class));
+		return new DriverConfiguration(mock(Microbrowser.class), newUrl(), mock(ContactListener.class));
 	}
 
-	private static URL createUrl() throws MalformedURLException
+	private static URL newUrl() throws MalformedURLException
 	{
 		return new URL("http://localhost/");
 	}
