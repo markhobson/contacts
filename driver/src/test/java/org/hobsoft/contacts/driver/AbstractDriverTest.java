@@ -16,13 +16,14 @@ package org.hobsoft.contacts.driver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.test.FakeDriver;
 import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.hobsoft.contacts.driver.MockDriverConfigurations.newConfig;
+import static org.hobsoft.contacts.driver.test.MockDriverConfigurations.newConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

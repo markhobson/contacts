@@ -11,11 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.driver;
+package org.hobsoft.contacts.driver.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.hobsoft.contacts.driver.DriverConfiguration;
 import org.hobsoft.contacts.driver.event.ContactListener;
 import org.hobsoft.microbrowser.Microbrowser;
 

@@ -19,7 +19,7 @@ import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.junit.Test;
 
-import static org.hobsoft.contacts.driver.MockDriverConfigurations.newConfig;
+import static org.hobsoft.contacts.driver.test.MockDriverConfigurations.newConfig;
 import static org.mockito.Mockito.mock;
 
 /**
