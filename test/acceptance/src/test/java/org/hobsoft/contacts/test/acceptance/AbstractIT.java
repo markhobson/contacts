@@ -17,7 +17,7 @@ import org.hobsoft.contacts.driver.ApplicationDriver;
 import org.hobsoft.contacts.test.acceptance.config.API;
 import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;
-import org.hobsoft.contacts.test.acceptance.rule.SignOutRule;
+import org.hobsoft.contacts.test.acceptance.rule.WebDriverCookieRule;
 import org.junit.Rule;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
@@ -40,7 +40,7 @@ public abstract class AbstractIT
 	private ContactRule contactRule;
 	
 	@Autowired
-	private SignOutRule signOutRule;
+	private WebDriverCookieRule cookieRule;
 	
 	@Autowired
 	@API
@@ -58,7 +58,7 @@ public abstract class AbstractIT
 	public RuleChain getRuleChain()
 	{
 		return RuleChain.outerRule(contactRule)
-			.around(signOutRule);
+			.around(cookieRule);
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
