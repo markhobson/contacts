@@ -13,6 +13,7 @@
  */
 package org.hobsoft.contacts.driver;
 
+import java.net.URL;
 import java.util.regex.Pattern;
 
 import org.hobsoft.microbrowser.MicrodataDocument;
@@ -68,6 +69,11 @@ public abstract class AbstractDriver implements Driver
 		return config;
 	}
 	
+	public final MicrodataDocument document()
+	{
+		return document;
+	}
+	
 	public final String getSelfPathPattern()
 	{
 		return selfPathPattern;
@@ -82,17 +88,24 @@ public abstract class AbstractDriver implements Driver
 		checkState(isVisible(), "Self expected: %s but was: %s", selfPathPattern, getSelfPath());
 	}
 	
-	protected final MicrodataDocument document()
-	{
-		return document;
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	private String getSelfPath()
 	{
-		return document().getLink("self").getHref().getPath();
+		if (!document().hasLink("self"))
+		{
+			return "";
+		}
+		
+		URL href = document().getLink("self").getHref();
+		
+		if (href == null)
+		{
+			return "";
+		}
+		
+		return href.getPath();
 	}
 }
