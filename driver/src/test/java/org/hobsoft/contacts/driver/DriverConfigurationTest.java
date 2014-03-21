@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.event.ContactListener;
-import org.hobsoft.contacts.driver.support.microbrowser.StatefulMicrobrowser;
+import org.hobsoft.microbrowser.Microbrowser;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -40,12 +40,12 @@ public class DriverConfigurationTest
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullServerUrl()
 	{
-		new DriverConfiguration(mock(StatefulMicrobrowser.class), null, mock(ContactListener.class));
+		new DriverConfiguration(mock(Microbrowser.class), null, mock(ContactListener.class));
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void constructWithNullContactListener() throws MalformedURLException
 	{
-		new DriverConfiguration(mock(StatefulMicrobrowser.class), new URL("http://localhost:8080/"), null);
+		new DriverConfiguration(mock(Microbrowser.class), new URL("http://localhost:8080/"), null);
 	}
 }
