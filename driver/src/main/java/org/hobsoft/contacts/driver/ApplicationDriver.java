@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * Web UI driver entry point for the application.
  */
 @Component
-public class ApplicationDriver extends AbstractPageDriver
+public class ApplicationDriver extends AbstractDriver
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
@@ -55,18 +55,6 @@ public class ApplicationDriver extends AbstractPageDriver
 			.signIn(credentials);
 	}
 
-	// ----------------------------------------------------------------------------------------------------------------
-	// AbstractPageDriver methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	@Override
-	public SignInDriver signOut()
-	{
-		home();
-		
-		return super.signOut();
-	}
-	
 	// ----------------------------------------------------------------------------------------------------------------
 	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
