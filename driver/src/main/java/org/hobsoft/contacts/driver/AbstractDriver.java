@@ -95,11 +95,6 @@ public abstract class AbstractDriver implements Driver
 
 	private String getSelfPath()
 	{
-		if (document() == null)
-		{
-			return "";
-		}
-		
 		String self = document().getLink("self").getHref();
 		return quietNewUrl(self).getPath();
 	}
