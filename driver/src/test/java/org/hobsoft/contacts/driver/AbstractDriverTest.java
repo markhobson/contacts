@@ -15,6 +15,7 @@ package org.hobsoft.contacts.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 
 import org.hobsoft.contacts.driver.test.FakeDriver;
 import org.hobsoft.microbrowser.Link;
@@ -98,7 +99,7 @@ public class AbstractDriverTest
 	public void isVisibleWhenSelfMissingReturnsFalse() throws MalformedURLException
 	{
 		MicrodataDocument document = mock(MicrodataDocument.class);
-		when(document.hasLink("self")).thenReturn(false);
+		when(document.getLinks("self")).thenReturn(Collections.<Link>emptyList());
 		AbstractDriver driver = new FakeDriver(newConfig(), document, "x");
 		
 		assertFalse(driver.isVisible());
@@ -154,8 +155,7 @@ public class AbstractDriverTest
 		when(self.getHref()).thenReturn(selfHref);
 		
 		MicrodataDocument document = mock(MicrodataDocument.class);
-		when(document.hasLink("self")).thenReturn(true);
-		when(document.getLink("self")).thenReturn(self);
+		when(document.getLinks("self")).thenReturn(Collections.singletonList(self));
 		
 		return document;
 	}

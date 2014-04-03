@@ -14,8 +14,10 @@
 package org.hobsoft.contacts.driver;
 
 import java.net.URL;
+import java.util.List;
 import java.util.regex.Pattern;
 
+import org.hobsoft.microbrowser.Link;
 import org.hobsoft.microbrowser.MicrodataDocument;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -94,12 +96,14 @@ public abstract class AbstractDriver implements Driver
 
 	private String getSelfPath()
 	{
-		if (!document().hasLink("self"))
+		List<Link> links = document().getLinks("self");
+		
+		if (links.isEmpty())
 		{
 			return "";
 		}
 		
-		URL href = document().getLink("self").getHref();
+		URL href = links.get(0).getHref();
 		
 		if (href == null)
 		{

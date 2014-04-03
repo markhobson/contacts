@@ -36,7 +36,7 @@ public abstract class AbstractPageDriver extends AbstractDriver
 
 	public boolean isSignOutVisible()
 	{
-		return document().hasLink("logout");
+		return !document().getLinks("logout").isEmpty();
 	}
 	
 	public SignInDriver signOut()
