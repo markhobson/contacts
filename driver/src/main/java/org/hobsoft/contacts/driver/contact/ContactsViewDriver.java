@@ -24,6 +24,8 @@ import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.driver.MicrodataSchema.PERSON;
+
 /**
  * Driver for the view contacts page.
  */
@@ -50,7 +52,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 		
 		List<Contact> contacts = new ArrayList<>();
 		
-		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
+		for (MicrodataItem item : document().getItems(PERSON))
 		{
 			contacts.add(ContactParser.parse(item));
 		}
@@ -62,7 +64,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		for (MicrodataItem item : document().getItems("http://schema.org/Person"))
+		for (MicrodataItem item : document().getItems(PERSON))
 		{
 			Contact contact = ContactParser.parse(item);
 			

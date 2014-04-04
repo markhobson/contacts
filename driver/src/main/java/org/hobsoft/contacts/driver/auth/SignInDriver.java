@@ -20,6 +20,9 @@ import org.hobsoft.microbrowser.MicrodataDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.driver.MicrodataSchema.ERROR;
+import static org.hobsoft.contacts.driver.MicrodataSchema.SUCCESS;
+
 /**
  * Driver for the sign-in page.
  */
@@ -45,7 +48,7 @@ public class SignInDriver extends AbstractPageDriver
 		checkVisible();
 		
 		return document()
-			.getItem("http://www.hobsoft.org/microdata/success")
+			.getItem(SUCCESS)
 			.getProperty("message")
 			.getValue();
 	}
@@ -55,7 +58,7 @@ public class SignInDriver extends AbstractPageDriver
 		checkVisible();
 		
 		return document()
-			.getItem("http://www.hobsoft.org/microdata/error")
+			.getItem(ERROR)
 			.getProperty("message")
 			.getValue();
 	}

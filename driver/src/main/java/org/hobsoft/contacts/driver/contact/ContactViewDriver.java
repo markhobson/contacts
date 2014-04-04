@@ -21,6 +21,8 @@ import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.driver.MicrodataSchema.PERSON;
+
 /**
  * Driver for the view contact page.
  */
@@ -45,7 +47,7 @@ public class ContactViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataItem item = document().getItem("http://schema.org/Person");
+		MicrodataItem item = document().getItem(PERSON);
 		
 		return ContactParser.parse(item);
 	}
