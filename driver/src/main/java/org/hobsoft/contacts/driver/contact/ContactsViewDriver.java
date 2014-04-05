@@ -89,7 +89,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 	{
 		checkVisible();
 		
-		MicrodataDocument document = document().getLink("create").follow();
+		MicrodataDocument document = document().getLink("create-form").follow();
 		
 		return new ContactCreateDriver(getConfiguration(), document);
 	}
