@@ -13,9 +13,6 @@
  */
 package org.hobsoft.contacts.driver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Microdata schema item type constants.
  */
@@ -25,11 +22,11 @@ public final class MicrodataSchema
 	// constants
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static final URL SUCCESS = newUrl("http://www.hobsoft.org/microdata/success");
+	public static final String SUCCESS = "http://www.hobsoft.org/microdata/success";
 	
-	public static final URL ERROR = newUrl("http://www.hobsoft.org/microdata/error");
+	public static final String ERROR = "http://www.hobsoft.org/microdata/error";
 	
-	public static final URL PERSON = newUrl("http://schema.org/Person");
+	public static final String PERSON = "http://schema.org/Person";
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
@@ -38,21 +35,5 @@ public final class MicrodataSchema
 	private MicrodataSchema()
 	{
 		throw new AssertionError();
-	}
-	
-	// ----------------------------------------------------------------------------------------------------------------
-	// private methods
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private static URL newUrl(String spec)
-	{
-		try
-		{
-			return new URL(spec);
-		}
-		catch (MalformedURLException exception)
-		{
-			throw new IllegalStateException("Invalid URL: " + spec);
-		}
 	}
 }
