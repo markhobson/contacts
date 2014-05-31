@@ -16,6 +16,7 @@ package org.hobsoft.contacts.driver.contact;
 import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.hobsoft.microbrowser.MicrodataProperty;
+import org.hobsoft.microbrowser.MicrodataPropertyNotFoundException;
 
 /**
  * Microdata parser for contacts.
@@ -59,7 +60,7 @@ final class ContactParser
 		{
 			return item.getProperty(name);
 		}
-		catch (IllegalArgumentException exception)
+		catch (MicrodataPropertyNotFoundException exception)
 		{
 			return null;
 		}
