@@ -19,11 +19,10 @@ import java.net.URL;
 import org.hobsoft.contacts.driver.event.ContactCollector;
 import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
-import org.hobsoft.contacts.test.acceptance.rule.WebDriverCookieRule;
+import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -31,8 +30,7 @@ import org.springframework.context.annotation.Import;
  * Spring configuration for acceptance tests.
  */
 @Configuration
-@Import({ApiDriverConfig.class, UiDriverConfig.class})
-@ComponentScan(basePackageClasses = WebDriverCookieRule.class)
+@Import({ApiDriverConfig.class, UiDriverConfig.class, RuleConfig.class})
 public class AcceptanceTestConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
