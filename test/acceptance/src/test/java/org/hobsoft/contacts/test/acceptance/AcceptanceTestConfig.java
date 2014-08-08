@@ -13,7 +13,6 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.driver.event.ContactCollector;
@@ -22,6 +21,7 @@ import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,32 +34,20 @@ import org.springframework.context.annotation.Import;
 public class AcceptanceTestConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constants
+	// fields
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	private static final String DEFAULT_SERVER_PROTOCOL = "http";
-	
-	private static final String DEFAULT_SERVER_HOST = "localhost";
-	
-	private static final String SERVER_PORT_PROPERTY = "serverPort";
-	
-	private static final String DEFAULT_SERVER_PORT = "8080";
-	
-	private static final String DEFAULT_SERVER_PATH = "/";
+
+	@Value("http://localhost:#{systemProperties.serverPort?:8080}/")
+	private URL serverUrl;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Bean
-	public URL serverUrl() throws MalformedURLException
+	public URL serverUrl()
 	{
-		String protocol = DEFAULT_SERVER_PROTOCOL;
-		String host = DEFAULT_SERVER_HOST;
-		int port = Integer.valueOf(System.getProperty(SERVER_PORT_PROPERTY, DEFAULT_SERVER_PORT));
-		String path = DEFAULT_SERVER_PATH;
-		
-		return new URL(protocol, host, port, path);
+		return serverUrl;
 	}
 	
 	@Bean(destroyMethod = "quit")
