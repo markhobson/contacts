@@ -76,7 +76,7 @@ public class ContactsViewDriver extends AbstractPageDriver
 			}
 		}
 		
-		throw new IllegalArgumentException("Cannot find contact: " + name);
+		throw new ContactNotFoundException(name);
 	}
 	
 	public ContactViewDriver create(Contact contact)

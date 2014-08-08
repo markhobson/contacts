@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.model.Contact;
@@ -78,7 +79,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.delete();
 		
 		ContactsViewDriver contactsView = api().signIn(USER);
-		thrown.expect(IllegalArgumentException.class);
+		thrown.expect(ContactNotFoundException.class);
 		contactsView.contact("x");
 	}
 	

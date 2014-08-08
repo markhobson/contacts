@@ -14,6 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.rule;
 
 import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
@@ -83,7 +84,7 @@ public class ContactRule extends ExternalResource
 		{
 			contactView = contactsView.contact(contact.getName());
 		}
-		catch (IllegalArgumentException exception)
+		catch (ContactNotFoundException exception)
 		{
 			// ignore unknown contact
 			return;
