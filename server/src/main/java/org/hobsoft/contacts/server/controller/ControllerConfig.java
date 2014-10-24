@@ -13,6 +13,9 @@
  */
 package org.hobsoft.contacts.server.controller;
 
+import org.hobsoft.contacts.server.support.spring.mustache.MustacheConfig;
+import org.hobsoft.contacts.server.support.spring.mustache.MustacheConfigurer;
+import org.hobsoft.contacts.server.support.spring.mustache.MustacheViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -57,11 +60,28 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Bean
-	public ViewResolver viewResolver()
+	public ViewResolver jspViewResolver()
 	{
 		UrlBasedViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jspx");
+		return viewResolver;
+	}
+	
+	@Bean
+	public MustacheConfig mustacheConfig()
+	{
+		return new MustacheConfigurer();
+	}
+	
+	@Bean
+	public ViewResolver mustacheViewResolver()
+	{
+		UrlBasedViewResolver viewResolver = new MustacheViewResolver();
+		viewResolver.setPrefix("/view/");
+		viewResolver.setSuffix(".mustache");
+		viewResolver.setViewNames("");
+		viewResolver.setOrder(1);
 		return viewResolver;
 	}
 }
