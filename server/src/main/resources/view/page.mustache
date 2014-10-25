@@ -1,0 +1,46 @@
+<!DOCTYPE html>	
+
+<html>
+
+	<head>
+		<title>{{$title}}{{/title}}</title>
+		<link href="{{$self}}{{/self}}" rel="self"/>
+		<link href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+		<script src="/webjars/jquery/1.9.0/jquery.min.js"></script>
+		<script src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+	
+		<nav class="navbar navbar-default" role="navigation">
+		
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".contacts-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Contacts</a>
+			</div>
+			
+			<div class="collapse navbar-collapse contacts-navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					{{#user}}
+						<li>
+							<a rel="logout" href="/logout">Sign out</a>
+						</li>
+					{{/user}}
+				</ul>
+			</div>
+			
+		</nav>
+		
+		<div class="container">
+			{{$container}}
+			{{/container}}
+		</div>
+		
+	</body>
+	
+</html>

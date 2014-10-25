@@ -1,0 +1,19 @@
+{{<../page}}
+	{{$title}}Delete contact{{/title}}
+	{{$self}}{{contact.id.href}}/delete{{/self}}
+	{{$container}}
+		<div itemscope="itemscope" itemtype="http://schema.org/Person">
+			<h1>Delete contact</h1>
+		
+			<p>Are you sure you want to delete contact "<span itemprop="name">{{contact.content.name}}</span>"?</p>
+			
+			<form name="contactDelete" method="post" action="{{contact.id.href}}">
+				<input type="hidden" name="_method" value="DELETE"/>
+				<div class="btn-toolbar">
+					<button type="submit" name="submit" class="btn btn-danger">Delete</button>
+					<a rel="cancel" href="{{contact.id.href}}" class="btn btn-default">Cancel</a>
+				</div>
+			</form>	
+		</div>
+	{{/container}}
+{{/../page}}

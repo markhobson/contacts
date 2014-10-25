@@ -80,7 +80,7 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 		UrlBasedViewResolver viewResolver = new MustacheViewResolver();
 		viewResolver.setPrefix("/view/");
 		viewResolver.setSuffix(".mustache");
-		viewResolver.setViewNames("");
+		viewResolver.setViewNames("contact/contactDelete");
 		viewResolver.setOrder(1);
 		return viewResolver;
 	}
