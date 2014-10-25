@@ -23,6 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -59,6 +60,14 @@ public class PageControllerAdviceTest
 		User actual = advice.getUser(principal);
 		
 		assertThat(actual, is(user));
+	}
+	
+	@Test
+	public void getUserWithNullReturnsNull()
+	{
+		User actual = advice.getUser(null);
+		
+		assertThat(actual, is(nullValue()));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

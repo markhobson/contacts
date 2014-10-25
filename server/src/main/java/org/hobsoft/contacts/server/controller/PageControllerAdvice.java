@@ -30,6 +30,11 @@ public class PageControllerAdvice
 	@ModelAttribute
 	public User getUser(Principal principal)
 	{
+		if (principal == null)
+		{
+			return null;
+		}
+		
 		return (User) ((Authentication) principal).getPrincipal();
 	}
 }
