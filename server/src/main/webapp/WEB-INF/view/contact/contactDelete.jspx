@@ -1,4 +1,4 @@
-<tag:page self="${contact.getLink('delete').href}" title="Delete contact"
+<tag:page self="${contact.id.href}/delete" title="Delete contact"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:tag="urn:jsptagdir:/WEB-INF/tags"
 >
