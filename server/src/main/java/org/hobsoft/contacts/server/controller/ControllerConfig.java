@@ -81,7 +81,8 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 		viewResolver.setPrefix("/view/");
 		viewResolver.setSuffix(".mustache");
 		viewResolver.setViewNames("contact/contactCreate",
-			"contact/contactDelete");
+			"contact/contactDelete",
+			"contact/contactsView");
 		viewResolver.setOrder(1);
 		return viewResolver;
 	}
