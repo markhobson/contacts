@@ -5,7 +5,7 @@
 >
 	<jsp:directive.page contentType="text/html"/>
 
-	<c:if test="${param.logout != null}">
+	<c:if test="${!empty logout}">
 		<div itemscope="itemscope" itemtype="http://www.hobsoft.org/microdata/success" class="alert alert-success">
 			<span itemprop="message">You have been signed out.</span>
 		</div>

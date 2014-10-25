@@ -13,10 +13,14 @@
  */
 package org.hobsoft.contacts.server.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -30,8 +34,15 @@ public class AuthenticationController
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	public ModelAndView loginForm()
+	public ModelAndView loginForm(@RequestParam(required = false) String logout)
 	{
-		return new ModelAndView("auth/login");
+		Map<String, Object> model = new HashMap<>();
+		
+		if (logout != null)
+		{
+			model.put("logout", "logout");
+		}
+		
+		return new ModelAndView("auth/login", model);
 	}
 }
