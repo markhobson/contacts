@@ -1,0 +1,16 @@
+{{<../page}}
+	{{$title}}Contact{{/title}}
+	{{$self}}{{contact.id.href}}{{/self}}
+	{{$container}}
+		{{#contact}}
+			<div itemscope="itemscope" itemtype="http://schema.org/Person">
+				<h1 itemprop="name">{{content.name}}</h1>
+				<link itemprop="url" href="{{id.href}}"/>
+			</div>
+			
+			<div>
+				<a rel="delete" href="{{id.href}}/delete" class="btn btn-danger">Delete</a>
+			</div>
+		{{/contact}}
+	{{/container}}
+{{/../page}}
