@@ -47,15 +47,23 @@ public class AuthenticationControllerTest
 	@Test
 	public void loginFormWithLogoutAddsAttribute()
 	{
-		ModelAndView actual = controller.loginForm("");
+		ModelAndView actual = controller.loginForm("", null);
 		
 		assertEquals("logout", actual.getModel().get("logout"));
 	}
 	
 	@Test
+	public void loginFormWithErrorAddsAttribute()
+	{
+		ModelAndView actual = controller.loginForm(null, "");
+		
+		assertEquals("error", actual.getModel().get("error"));
+	}
+	
+	@Test
 	public void loginFormReturnsView()
 	{
-		ModelAndView actual = controller.loginForm(null);
+		ModelAndView actual = controller.loginForm(null, null);
 		
 		assertEquals("auth/login", actual.getViewName());
 	}

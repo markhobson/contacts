@@ -34,13 +34,19 @@ public class AuthenticationController
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	public ModelAndView loginForm(@RequestParam(required = false) String logout)
+	public ModelAndView loginForm(@RequestParam(required = false) String logout,
+		@RequestParam(required = false) String error)
 	{
 		Map<String, Object> model = new HashMap<>();
 		
 		if (logout != null)
 		{
 			model.put("logout", "logout");
+		}
+		
+		if (error != null)
+		{
+			model.put("error", "error");
 		}
 		
 		return new ModelAndView("auth/login", model);

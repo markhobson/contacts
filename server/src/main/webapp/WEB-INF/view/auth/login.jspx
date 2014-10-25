@@ -11,7 +11,7 @@
 		</div>
 	</c:if>
 	
-	<c:if test="${param.error != null}">
+	<c:if test="${!empty error}">
 		<div itemscope="itemscope" itemtype="http://www.hobsoft.org/microdata/error" class="alert alert-danger">
 			<span itemprop="message">Incorrect username or password.</span>
 		</div>
