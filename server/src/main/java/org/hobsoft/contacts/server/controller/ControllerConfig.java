@@ -21,7 +21,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -37,15 +36,6 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	// WebMvcConfigurationSupport methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void addViewControllers(ViewControllerRegistry registry)
-	{
-		registry.addViewController("/login").setViewName("auth/login");
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
