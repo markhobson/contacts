@@ -22,7 +22,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
@@ -50,15 +49,6 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Bean
-	public ViewResolver jspViewResolver()
-	{
-		UrlBasedViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/view/");
-		viewResolver.setSuffix(".jspx");
-		return viewResolver;
-	}
-	
-	@Bean
 	public MustacheConfig mustacheConfig()
 	{
 		return new MustacheConfigurer();
@@ -70,11 +60,6 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 		UrlBasedViewResolver viewResolver = new MustacheViewResolver();
 		viewResolver.setPrefix("/view/");
 		viewResolver.setSuffix(".mustache");
-		viewResolver.setViewNames("contact/contactCreate",
-			"contact/contactDelete",
-			"contact/contactsView",
-			"contact/contactView");
-		viewResolver.setOrder(1);
 		return viewResolver;
 	}
 }
