@@ -37,7 +37,7 @@ public class AcceptanceTestConfig
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	@Value("http://localhost:#{systemProperties.serverPort?:8080}/")
+	@Value("http://localhost:#{systemProperties['serverPort']?:8080}/")
 	private URL serverUrl;
 	
 	// ----------------------------------------------------------------------------------------------------------------
