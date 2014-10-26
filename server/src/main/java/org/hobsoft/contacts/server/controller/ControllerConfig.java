@@ -13,16 +13,15 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.server.support.spring.mustache.MustacheConfig;
-import org.hobsoft.contacts.server.support.spring.mustache.MustacheConfigurer;
-import org.hobsoft.contacts.server.support.spring.mustache.MustacheViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.mustache.MustacheTemplateFactory;
+import org.springframework.web.servlet.view.mustache.MustacheViewResolver;
+import org.springframework.web.servlet.view.mustache.java.MustacheJTemplateFactory;
 
 /**
  * Spring configuration for controllers.
@@ -49,16 +48,17 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Bean
-	public MustacheConfig mustacheConfig()
+	public MustacheTemplateFactory mustacheTemplateFactory()
 	{
-		return new MustacheConfigurer();
+		return new MustacheJTemplateFactory();
 	}
 	
 	@Bean
 	public ViewResolver mustacheViewResolver()
 	{
-		UrlBasedViewResolver viewResolver = new MustacheViewResolver();
-		viewResolver.setPrefix("/view/");
+		MustacheViewResolver viewResolver = new MustacheViewResolver();
+		viewResolver.setTemplateFactory(mustacheTemplateFactory());
+		viewResolver.setPrefix("classpath:/view/");
 		viewResolver.setSuffix(".mustache");
 		return viewResolver;
 	}

@@ -81,6 +81,13 @@
 			<artifactId>spring-hateoas</artifactId>
 		</dependency>
 		
+		<!-- Spring MVC Mustache -->
+		
+		<dependency>
+			<groupId>com.github.sps.mustache</groupId>
+			<artifactId>mustache-spring-view</artifactId>
+		</dependency>
+		
 		<!-- Mustache -->
 		
 		<dependency>
