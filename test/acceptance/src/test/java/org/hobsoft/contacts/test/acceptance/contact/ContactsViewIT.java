@@ -36,7 +36,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Test
-	public void pageShowsContacts()
+	public void pageWhenContactsShowsContacts()
 	{
 		Contact contact1 = api().signIn(USER)
 			.create(new Contact("x"))
