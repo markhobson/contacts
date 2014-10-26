@@ -20,6 +20,7 @@ import org.hobsoft.contacts.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
@@ -34,6 +35,14 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	@Test
+	public void pageWhenNoContactsShowsMessage()
+	{
+		ContactsViewDriver actual = ui().signIn(USER);
+		
+		assertThat(actual.getCaptionMessage(), is("No contacts found."));
+	}
 	
 	@Test
 	public void pageWhenContactsShowsContacts()

@@ -24,6 +24,7 @@ import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.hobsoft.contacts.driver.MicrodataSchema.CAPTION;
 import static org.hobsoft.contacts.driver.MicrodataSchema.PERSON;
 
 /**
@@ -45,6 +46,14 @@ public class ContactsViewDriver extends AbstractPageDriver
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	public String getCaptionMessage()
+	{
+		return document()
+			.getItem(CAPTION)
+			.getProperty("message")
+			.getValue();
+	}
 	
 	public List<Contact> getAll()
 	{

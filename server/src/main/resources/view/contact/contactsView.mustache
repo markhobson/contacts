@@ -4,22 +4,30 @@
 	{{$container}}
 		<h1>Contacts</h1>
 		
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#contacts}}
-					<tr itemscope="itemscope" itemtype="http://schema.org/Person">
-						<td itemprop="name">
-							<a rel="item" href="{{id.href}}" itemprop="url">{{content.name}}</a>
-						</td>
+		{{^contacts}}
+			<p itemscope="itemscope" itemtype="http://www.hobsoft.org/microdata/caption">
+				<span itemprop="message">No contacts found.</span>
+			</p>
+		{{/contacts}}
+		
+		{{^contacts.isEmpty}}
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
 					</tr>
-				{{/contacts}}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{{#contacts}}
+						<tr itemscope="itemscope" itemtype="http://schema.org/Person">
+							<td itemprop="name">
+								<a rel="item" href="{{id.href}}" itemprop="url">{{content.name}}</a>
+							</td>
+						</tr>
+					{{/contacts}}
+				</tbody>
+			</table>
+		{{/contacts.isEmpty}}
 		
 		<div>
 			<a rel="create-form" href="/contacts/create" class="btn btn-success">Create</a>

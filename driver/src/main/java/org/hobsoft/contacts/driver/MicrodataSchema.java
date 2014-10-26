@@ -26,6 +26,8 @@ public final class MicrodataSchema
 	
 	public static final String ERROR = "http://www.hobsoft.org/microdata/error";
 	
+	public static final String CAPTION = "http://www.hobsoft.org/microdata/caption";
+	
 	public static final String PERSON = "http://schema.org/Person";
 
 	// ----------------------------------------------------------------------------------------------------------------
