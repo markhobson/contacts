@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.driver.event;
 
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.model.Contact;
 
 /**
  * Event listener for contacts.

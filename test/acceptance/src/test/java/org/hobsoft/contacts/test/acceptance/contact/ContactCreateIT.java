@@ -15,7 +15,7 @@ package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hobsoft.contacts.driver.contact.ContactCreateDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Test;
 

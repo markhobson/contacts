@@ -17,7 +17,7 @@ import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
 import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Rule;
 import org.junit.Test;

@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.driver.contact;
 
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.model.Contact;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.hobsoft.microbrowser.MicrodataProperty;
 import org.hobsoft.microbrowser.MicrodataPropertyNotFoundException;

@@ -18,7 +18,7 @@ import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
 import org.hobsoft.contacts.driver.contact.ContactViewDriver;
 import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
 import org.hobsoft.contacts.driver.event.ContactCollector;
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.driver.model.Contact;
 import org.hobsoft.contacts.test.acceptance.config.API;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
