@@ -11,27 +11,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
+package org.hobsoft.contacts.client.auth;
 
-import org.hobsoft.contacts.client.auth.Credentials;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
- * User credentials for acceptance tests.
+ * Tests {@code Credentials}.
  */
-public final class AcceptanceTestCredentials
+public class CredentialsTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constants
+	// tests
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static final Credentials USER = new Credentials("mark", "password");
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// constructors
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private AcceptanceTestCredentials()
+	@Test
+	public void constructorSetsProperties()
 	{
-		throw new AssertionError();
+		Credentials actual = new Credentials("x", "y");
+		
+		assertEquals("username", "x", actual.getUsername());
+		assertEquals("password", "y", actual.getPassword());
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullUsernameThrowsException()
+	{
+		new Credentials(null, "x");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullPasswordThrowsException()
+	{
+		new Credentials("x", null);
 	}
 }

@@ -11,51 +11,58 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.client.model;
 
-import org.hobsoft.contacts.client.AbstractPageDriver;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Base acceptance test for pages that require authentication.
+ * Model for a contact.
  */
-public abstract class AbstractSecurePageIT extends AbstractIT
+public class Contact
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// tests
+	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Ignore("TODO: how to navigate to secured page with HATEOAS?")
-	@Test
-	public final void pageWhenUnauthenticatedShowsSignIn()
-	{
-		show();
-		
-		assertTrue(ui().signInForm().isVisible());
-	}
+	private Long id;
 	
-	@Test
-	public final void pageWhenAuthenticatedIsVisible()
-	{
-		AbstractPageDriver page = show();
-		
-		assertTrue(page.isVisible());
-	}
-	
-	@Test
-	public final void pageShowsSignOut()
-	{
-		AbstractPageDriver page = show();
-		
-		assertTrue(page.isSignOutVisible());
-	}
+	private String name;
 	
 	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
+	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	protected abstract AbstractPageDriver show();
+	public Contact()
+	{
+		setName("");
+	}
+	
+	public Contact(String name)
+	{
+		setName(name);
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	public Long getId()
+	{
+		return id;
+	}
+	
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = checkNotNull(name, "name");
+	}
 }

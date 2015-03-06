@@ -15,9 +15,9 @@ package org.hobsoft.contacts.test.acceptance.config;
 
 import java.net.URL;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.DriverConfiguration;
-import org.hobsoft.contacts.driver.event.ContactListener;
+import org.hobsoft.contacts.client.ApplicationDriver;
+import org.hobsoft.contacts.client.DriverConfiguration;
+import org.hobsoft.contacts.client.event.ContactListener;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.hobsoft.microbrowser.jsoup.JsoupMicrobrowser;
 import org.springframework.context.annotation.Bean;

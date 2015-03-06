@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
+import org.hobsoft.contacts.client.ApplicationDriver;
 import org.hobsoft.contacts.test.acceptance.config.API;
 import org.hobsoft.contacts.test.acceptance.config.UI;
 import org.hobsoft.contacts.test.acceptance.rule.ContactRule;

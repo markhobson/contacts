@@ -11,28 +11,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.client;
+
+import java.net.MalformedURLException;
 
 import org.hobsoft.contacts.client.contact.ContactsViewDriver;
+import org.hobsoft.microbrowser.MicrodataDocument;
 import org.junit.Test;
 
-import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
-import static org.junit.Assert.assertTrue;
+import static org.hobsoft.contacts.client.test.MockDriverConfigurations.newConfig;
+import static org.mockito.Mockito.mock;
 
 /**
- * Acceptance test for the application entry point.
+ * Tests {@code ContactsDriver}.
  */
-public class ApplicationIT extends AbstractIT
+public class ContactsDriverTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Test
-	public void pageWhenAuthenticatedShowsContactsView()
+
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullConfigurationThrowsException()
 	{
-		ContactsViewDriver contactsView = ui().signIn(USER);
-		
-		assertTrue(contactsView.isVisible());
+		new ContactsViewDriver(null, mock(MicrodataDocument.class));
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullDocumentThrowsException() throws MalformedURLException
+	{
+		new ContactsViewDriver(newConfig(), null);
 	}
 }

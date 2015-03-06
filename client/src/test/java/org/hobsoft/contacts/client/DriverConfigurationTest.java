@@ -11,51 +11,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.client;
 
-import org.hobsoft.contacts.client.AbstractPageDriver;
-import org.junit.Ignore;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.microbrowser.Microbrowser;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
- * Base acceptance test for pages that require authentication.
+ * Tests {@code DriverConfiguration}.
  */
-public abstract class AbstractSecurePageIT extends AbstractIT
+public class DriverConfigurationTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
 	// ----------------------------------------------------------------------------------------------------------------
-	
-	@Ignore("TODO: how to navigate to secured page with HATEOAS?")
-	@Test
-	public final void pageWhenUnauthenticatedShowsSignIn()
+
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullBrowserThrowsException() throws MalformedURLException
 	{
-		show();
-		
-		assertTrue(ui().signInForm().isVisible());
+		new DriverConfiguration(null, newUrl(), mock(ContactListener.class));
 	}
 	
-	@Test
-	public final void pageWhenAuthenticatedIsVisible()
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullServerUrlThrowsException()
 	{
-		AbstractPageDriver page = show();
-		
-		assertTrue(page.isVisible());
+		new DriverConfiguration(mock(Microbrowser.class), null, mock(ContactListener.class));
 	}
 	
-	@Test
-	public final void pageShowsSignOut()
+	@Test(expected = NullPointerException.class)
+	public void constructorWithNullContactListenerThrowsException() throws MalformedURLException
 	{
-		AbstractPageDriver page = show();
-		
-		assertTrue(page.isSignOutVisible());
+		new DriverConfiguration(mock(Microbrowser.class), newUrl(), null);
 	}
-	
+
 	// ----------------------------------------------------------------------------------------------------------------
-	// protected methods
+	// private methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	protected abstract AbstractPageDriver show();
+	private static URL newUrl() throws MalformedURLException
+	{
+		return new URL("http://localhost/");
+	}
 }

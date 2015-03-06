@@ -11,27 +11,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
+package org.hobsoft.contacts.client.test;
 
-import org.hobsoft.contacts.client.auth.Credentials;
+import org.hobsoft.contacts.client.AbstractDriver;
+import org.hobsoft.contacts.client.DriverConfiguration;
+import org.hobsoft.microbrowser.MicrodataDocument;
 
 /**
- * User credentials for acceptance tests.
+ * Concrete {@code AbstractDriver} implementation for testing.
  */
-public final class AcceptanceTestCredentials
+public class FakeDriver extends AbstractDriver
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// constants
-	// ----------------------------------------------------------------------------------------------------------------
-
-	public static final Credentials USER = new Credentials("mark", "password");
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	public FakeDriver(DriverConfiguration config, MicrodataDocument document, String self)
 	{
-		throw new AssertionError();
+		super(config, document, self);
 	}
 }

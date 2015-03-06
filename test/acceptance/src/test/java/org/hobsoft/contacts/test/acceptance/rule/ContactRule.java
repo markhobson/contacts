@@ -13,12 +13,12 @@
  */
 package org.hobsoft.contacts.test.acceptance.rule;
 
-import org.hobsoft.contacts.driver.ApplicationDriver;
-import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
-import org.hobsoft.contacts.driver.contact.ContactViewDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.driver.event.ContactCollector;
-import org.hobsoft.contacts.driver.model.Contact;
+import org.hobsoft.contacts.client.ApplicationDriver;
+import org.hobsoft.contacts.client.contact.ContactNotFoundException;
+import org.hobsoft.contacts.client.contact.ContactViewDriver;
+import org.hobsoft.contacts.client.contact.ContactsViewDriver;
+import org.hobsoft.contacts.client.event.ContactCollector;
+import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.contacts.test.acceptance.config.API;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;

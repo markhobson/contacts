@@ -11,27 +11,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
+package org.hobsoft.contacts.client.test;
 
-import org.hobsoft.contacts.client.auth.Credentials;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.hobsoft.contacts.client.DriverConfiguration;
+import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.microbrowser.Microbrowser;
+
+import static org.mockito.Mockito.mock;
 
 /**
- * User credentials for acceptance tests.
+ * Factory for {@code DriverConfiguration} mocks.
  */
-public final class AcceptanceTestCredentials
+public final class MockDriverConfigurations
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// constants
-	// ----------------------------------------------------------------------------------------------------------------
-
-	public static final Credentials USER = new Credentials("mark", "password");
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	private MockDriverConfigurations()
 	{
 		throw new AssertionError();
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public static DriverConfiguration newConfig() throws MalformedURLException
+	{
+		return new DriverConfiguration(mock(Microbrowser.class), newUrl(), mock(ContactListener.class));
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// private methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	private static URL newUrl() throws MalformedURLException
+	{
+		return new URL("http://localhost/");
 	}
 }

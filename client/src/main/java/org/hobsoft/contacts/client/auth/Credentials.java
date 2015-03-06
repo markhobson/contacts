@@ -11,27 +11,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
+package org.hobsoft.contacts.client.auth;
 
-import org.hobsoft.contacts.client.auth.Credentials;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * User credentials for acceptance tests.
+ * Authorisation details.
  */
-public final class AcceptanceTestCredentials
+public final class Credentials
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constants
+	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static final Credentials USER = new Credentials("mark", "password");
+	private final String username;
 
+	private final String password;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	public Credentials(String username, String password)
 	{
-		throw new AssertionError();
+		this.username = checkNotNull(username, "username");
+		this.password = checkNotNull(password, "password");
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public String getUsername()
+	{
+		return username;
+	}
+	
+	public String getPassword()
+	{
+		return password;
 	}
 }

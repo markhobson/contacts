@@ -11,54 +11,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance;
+package org.hobsoft.contacts.client;
 
 import java.net.URL;
 
-import org.hobsoft.contacts.client.event.ContactCollector;
-import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
-import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
-import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.microbrowser.Microbrowser;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Spring configuration for acceptance tests.
+ * Configuration for web application drivers.
  */
-@Configuration
-@Import({ApiDriverConfig.class, UiDriverConfig.class, RuleConfig.class})
-public class AcceptanceTestConfig
+public final class DriverConfiguration
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	private final Microbrowser browser;
+	
+	private final URL serverUrl;
 
-	@Value("http://localhost:#{systemProperties['serverPort']?:8080}/")
-	private URL serverUrl;
+	private final ContactListener contactListener;
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	public DriverConfiguration(Microbrowser browser, URL serverUrl, ContactListener contactListener)
+	{
+		this.browser = checkNotNull(browser, "browser");
+		this.serverUrl = checkNotNull(serverUrl, "serverUrl");
+		this.contactListener = checkNotNull(contactListener, "contactListener");
+	}
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@Bean
-	public URL serverUrl()
+	public Microbrowser getBrowser()
+	{
+		return browser;
+	}
+	
+	public URL getServerUrl()
 	{
 		return serverUrl;
 	}
 	
-	@Bean(destroyMethod = "quit")
-	public WebDriver webDriver()
+	public ContactListener getContactListener()
 	{
-		return new FirefoxDriver();
-	}
-	
-	@Bean
-	public ContactCollector contactCollector()
-	{
-		return new ContactCollector();
+		return contactListener;
 	}
 }

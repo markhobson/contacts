@@ -11,27 +11,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
-
-import org.hobsoft.contacts.client.auth.Credentials;
+package org.hobsoft.contacts.client.contact;
 
 /**
- * User credentials for acceptance tests.
+ * Indicates that a contact cannot be found.
  */
-public final class AcceptanceTestCredentials
+public class ContactNotFoundException extends RuntimeException
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// constants
-	// ----------------------------------------------------------------------------------------------------------------
-
-	public static final Credentials USER = new Credentials("mark", "password");
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	public ContactNotFoundException(String name)
 	{
-		throw new AssertionError();
+		super(name);
 	}
 }

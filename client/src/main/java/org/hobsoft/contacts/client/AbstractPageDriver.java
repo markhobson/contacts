@@ -11,27 +11,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
+package org.hobsoft.contacts.client;
 
-import org.hobsoft.contacts.client.auth.Credentials;
+import org.hobsoft.contacts.client.auth.SignInDriver;
+import org.hobsoft.microbrowser.MicrodataDocument;
 
 /**
- * User credentials for acceptance tests.
+ * Base web application driver for common page elements.
  */
-public final class AcceptanceTestCredentials
+public abstract class AbstractPageDriver extends AbstractDriver
 {
-	// ----------------------------------------------------------------------------------------------------------------
-	// constants
-	// ----------------------------------------------------------------------------------------------------------------
-
-	public static final Credentials USER = new Credentials("mark", "password");
-
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	public AbstractPageDriver(DriverConfiguration config, MicrodataDocument document, String self)
 	{
-		throw new AssertionError();
+		super(config, document, self);
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public boolean isSignOutVisible()
+	{
+		return !document().getLinks("logout").isEmpty();
+	}
+	
+	public SignInDriver signOut()
+	{
+		MicrodataDocument document = document().getLink("logout").follow();
+		
+		return new SignInDriver(getConfiguration(), document);
 	}
 }

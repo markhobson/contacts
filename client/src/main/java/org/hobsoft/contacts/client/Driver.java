@@ -11,27 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
-
-import org.hobsoft.contacts.client.auth.Credentials;
+package org.hobsoft.contacts.client;
 
 /**
- * User credentials for acceptance tests.
+ * Defines a web application driver for a specific page.
  */
-public final class AcceptanceTestCredentials
+public interface Driver
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// constants
+	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static final Credentials USER = new Credentials("mark", "password");
-
-	// ----------------------------------------------------------------------------------------------------------------
-	// constructors
-	// ----------------------------------------------------------------------------------------------------------------
-
-	private AcceptanceTestCredentials()
-	{
-		throw new AssertionError();
-	}
+	boolean isVisible();
 }

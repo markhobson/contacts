@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.test.acceptance.auth;
 
-import org.hobsoft.contacts.driver.auth.SignInDriver;
+import org.hobsoft.contacts.client.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.junit.Test;
 

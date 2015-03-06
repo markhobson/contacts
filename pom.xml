@@ -136,7 +136,7 @@
 			
 			<dependency>
 				<groupId>org.hobsoft.contacts</groupId>
-				<artifactId>contacts-driver</artifactId>
+				<artifactId>contacts-client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			
@@ -234,7 +234,7 @@
 	</dependencyManagement>
 	
 	<modules>
-		<module>driver</module>
+		<module>client</module>
 		<module>server</module>
 		<module>test</module>
 	</modules>

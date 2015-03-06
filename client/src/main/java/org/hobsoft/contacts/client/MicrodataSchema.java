@@ -11,26 +11,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.test.acceptance.auth;
-
-import org.hobsoft.contacts.client.auth.Credentials;
+package org.hobsoft.contacts.client;
 
 /**
- * User credentials for acceptance tests.
+ * Microdata schema item type constants.
  */
-public final class AcceptanceTestCredentials
+public final class MicrodataSchema
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// constants
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public static final Credentials USER = new Credentials("mark", "password");
+	public static final String SUCCESS = "http://www.hobsoft.org/microdata/success";
+	
+	public static final String ERROR = "http://www.hobsoft.org/microdata/error";
+	
+	public static final String CAPTION = "http://www.hobsoft.org/microdata/caption";
+	
+	public static final String PERSON = "http://schema.org/Person";
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private AcceptanceTestCredentials()
+	private MicrodataSchema()
 	{
 		throw new AssertionError();
 	}

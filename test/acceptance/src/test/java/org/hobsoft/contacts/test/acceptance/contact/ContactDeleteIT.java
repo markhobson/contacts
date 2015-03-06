@@ -13,11 +13,11 @@
  */
 package org.hobsoft.contacts.test.acceptance.contact;
 
-import org.hobsoft.contacts.driver.contact.ContactDeleteDriver;
-import org.hobsoft.contacts.driver.contact.ContactNotFoundException;
-import org.hobsoft.contacts.driver.contact.ContactViewDriver;
-import org.hobsoft.contacts.driver.contact.ContactsViewDriver;
-import org.hobsoft.contacts.driver.model.Contact;
+import org.hobsoft.contacts.client.contact.ContactDeleteDriver;
+import org.hobsoft.contacts.client.contact.ContactNotFoundException;
+import org.hobsoft.contacts.client.contact.ContactViewDriver;
+import org.hobsoft.contacts.client.contact.ContactsViewDriver;
+import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Rule;
 import org.junit.Test;
