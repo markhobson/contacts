@@ -18,84 +18,92 @@
 		<serverPort>9998</serverPort>
 	</properties>
 
-	<build>
-
-		<plugins>
-		
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<configuration>
-					<systemPropertyVariables>
-						<serverPort>${serverPort}</serverPort>
-					</systemPropertyVariables>
-				</configuration>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<configuration>
-					<container>
-						<containerId>jetty9x</containerId>
-						<artifactInstaller>
-							<groupId>org.eclipse.jetty</groupId>
-							<artifactId>jetty-distribution</artifactId>
-							<version>${jettyVersion}</version>
-						</artifactInstaller>
-					</container>
-					<wait>false</wait>
-				</configuration>
-				<executions>
+	<profiles>
+	
+		<profile>
+			<id>it</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
 				
-					<execution>
-						<id>start-server</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
 						<configuration>
-							<configuration>
-								<properties>
-									<cargo.servlet.port>${serverPort}</cargo.servlet.port>
-								</properties>
-							</configuration>
-							<deployables>
-								<deployable>
-									<groupId>org.hobsoft.contacts</groupId>
-									<artifactId>contacts-server</artifactId>
-									<type>war</type>
-									<properties>
-										<context>/</context>
-									</properties>
-								</deployable>
-							</deployables>
+							<systemPropertyVariables>
+								<serverPort>${serverPort}</serverPort>
+							</systemPropertyVariables>
 						</configuration>
-					</execution>
+						<executions>
+							<execution>
+								<id>integration-test</id>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 					
-					<execution>
-						<id>stop-server</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>jetty9x</containerId>
+								<artifactInstaller>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-distribution</artifactId>
+									<version>${jettyVersion}</version>
+								</artifactInstaller>
+							</container>
+							<wait>false</wait>
+						</configuration>
+						<executions>
+						
+							<execution>
+								<id>start-server</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+								<configuration>
+									<configuration>
+										<properties>
+											<cargo.servlet.port>${serverPort}</cargo.servlet.port>
+										</properties>
+									</configuration>
+									<deployables>
+										<deployable>
+											<groupId>org.hobsoft.contacts</groupId>
+											<artifactId>contacts-server</artifactId>
+											<type>war</type>
+											<properties>
+												<context>/</context>
+											</properties>
+										</deployable>
+									</deployables>
+								</configuration>
+							</execution>
+							
+							<execution>
+								<id>stop-server</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+							
+						</executions>
+					</plugin>
 					
-				</executions>
-			</plugin>
-			
-		</plugins>
-			
-	</build>
+				</plugins>
+			</build>
+		</profile>
+	
+	</profiles>
 	
 	<dependencies>
 	
