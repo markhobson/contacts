@@ -95,13 +95,6 @@
 			<artifactId>compiler</artifactId>
 		</dependency>
 		
-		<!-- Contacts -->
-		
-		<dependency>
-			<groupId>org.hobsoft.contacts</groupId>
-			<artifactId>contacts-model</artifactId>
-		</dependency>
-		
 		<!-- Servlet -->
 		
 		<dependency>

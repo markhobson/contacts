@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.server.model.Contact;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

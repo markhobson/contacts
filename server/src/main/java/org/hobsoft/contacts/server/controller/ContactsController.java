@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hobsoft.contacts.model.Contact;
+import org.hobsoft.contacts.server.model.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
 import org.springframework.beans.factory.annotation.Autowired;
