@@ -29,6 +29,7 @@
 	
 	<properties>
 		<serverPort>9998</serverPort>
+		<display>:20</display>
 	</properties>
 
 	<profiles>
@@ -42,9 +43,29 @@
 				<plugins>
 				
 					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>selenium-maven-plugin</artifactId>
+						<configuration>
+							<display>${display}</display>
+						</configuration>
+						<executions>
+							<execution>
+								<id>xvfb</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>xvfb</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<configuration>
+							<environmentVariables>
+								<DISPLAY>${display}</DISPLAY>
+							</environmentVariables>
 							<systemPropertyVariables>
 								<serverPort>${serverPort}</serverPort>
 							</systemPropertyVariables>
