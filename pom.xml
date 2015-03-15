@@ -28,6 +28,39 @@
 	<version>0.1.0-SNAPSHOT</version>
 	
 	<name>Contacts Parent</name>
+	<url>https://github.com/markhobson/contacts</url>
+	
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<developers>
+		<developer>
+			<id>markhobson</id>
+			<name>Mark Hobson</name>
+			<email>markhobson@gmail.com</email>
+			<roles>
+				<role>Project Lead</role>
+			</roles>
+			<timezone>0</timezone>
+		</developer>
+	</developers>
+	
+	<scm>
+		<connection>scm:git:git@github.com:markhobson/contacts.git</connection>
+		<developerConnection>scm:git:git@github.com:markhobson/contacts.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/markhobson/contacts</url>
+	</scm>
+	
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/markhobson/contacts/issues</url>
+	</issueManagement>
 	
 	<properties>
 		<springVersion>3.2.11.RELEASE</springVersion>
