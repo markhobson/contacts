@@ -30,7 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static java.util.Arrays.asList;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -83,7 +84,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.createForm();
 		
-		assertEquals("contact/contactCreate", actual.getViewName());
+		assertThat(actual.getViewName(), is("contact/contactCreate"));
 	}
 	
 	@Test
@@ -107,8 +108,8 @@ public class ContactsControllerTest
 		
 		ResponseEntity<Object> actual = controller.create(contact);
 		
-		assertEquals(HttpStatus.SEE_OTHER, actual.getStatusCode());
-		assertEquals(new URI("x"), actual.getHeaders().getLocation());
+		assertThat(actual.getStatusCode(), is(HttpStatus.SEE_OTHER));
+		assertThat(actual.getHeaders().getLocation(), is(new URI("x")));
 	}
 
 	@Test
@@ -123,7 +124,7 @@ public class ContactsControllerTest
 		
 		ModelAndView actual = controller.getAll();
 		
-		assertEquals(resources, actual.getModel().get("contacts"));
+		assertThat(actual.getModel().get("contacts"), is(resources));
 	}
 	
 	@Test
@@ -131,7 +132,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.getAll();
 		
-		assertEquals("contact/contactsView", actual.getViewName());
+		assertThat(actual.getViewName(), is("contact/contactsView"));
 	}
 	
 	@Test
@@ -145,7 +146,7 @@ public class ContactsControllerTest
 		
 		ModelAndView actual = controller.get(1);
 		
-		assertEquals(resource, actual.getModel().get("contact"));
+		assertThat(actual.getModel().get("contact"), is(resource));
 	}
 
 	@Test
@@ -153,7 +154,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.get(1);
 		
-		assertEquals("contact/contactView", actual.getViewName());
+		assertThat(actual.getViewName(), is("contact/contactView"));
 	}
 	
 	@Test
@@ -167,7 +168,7 @@ public class ContactsControllerTest
 		
 		ModelAndView actual = controller.deleteForm(1);
 		
-		assertEquals(resource, actual.getModel().get("contact"));
+		assertThat(actual.getModel().get("contact"), is(resource));
 	}
 
 	@Test
@@ -175,7 +176,7 @@ public class ContactsControllerTest
 	{
 		ModelAndView actual = controller.deleteForm(1);
 		
-		assertEquals("contact/contactDelete", actual.getViewName());
+		assertThat(actual.getViewName(), is("contact/contactDelete"));
 	}
 	
 	@Test
@@ -203,8 +204,8 @@ public class ContactsControllerTest
 		
 		ResponseEntity<Object> actual = controller.delete(1);
 		
-		assertEquals(HttpStatus.SEE_OTHER, actual.getStatusCode());
-		assertEquals(new URI("x"), actual.getHeaders().getLocation());
+		assertThat(actual.getStatusCode(), is(HttpStatus.SEE_OTHER));
+		assertThat(actual.getHeaders().getLocation(), is(new URI("x")));
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------

@@ -15,8 +15,10 @@ package org.hobsoft.contacts.server.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@code Contact}.
@@ -32,8 +34,8 @@ public class ContactTest
 	{
 		Contact contact = new Contact();
 		
-		assertNull("id", contact.getId());
-		assertEquals("name", "", contact.getName());
+		assertThat("id", contact.getId(), is(nullValue()));
+		assertThat("name", contact.getName(), isEmptyString());
 	}
 
 	@Test
@@ -41,8 +43,8 @@ public class ContactTest
 	{
 		Contact contact = new Contact("x");
 		
-		assertNull("id", contact.getId());
-		assertEquals("name", "x", contact.getName());
+		assertThat("id", contact.getId(), is(nullValue()));
+		assertThat("name", contact.getName(), is("x"));
 	}
 
 	@Test
@@ -52,7 +54,7 @@ public class ContactTest
 		
 		contact.setId(1L);
 		
-		assertEquals(Long.valueOf(1), contact.getId());
+		assertThat(contact.getId(), is(1L));
 	}
 	
 	@Test
@@ -62,7 +64,7 @@ public class ContactTest
 		
 		contact.setId(null);
 		
-		assertNull(contact.getId());
+		assertThat(contact.getId(), is(nullValue()));
 	}
 	
 	@Test
@@ -72,7 +74,7 @@ public class ContactTest
 		
 		contact.setName("x");
 		
-		assertEquals("x", contact.getName());
+		assertThat(contact.getName(), is("x"));
 	}
 	
 	@Test(expected = NullPointerException.class)

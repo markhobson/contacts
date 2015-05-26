@@ -17,7 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@code AuthenticationController}.
@@ -49,7 +50,7 @@ public class AuthenticationControllerTest
 	{
 		ModelAndView actual = controller.loginForm("", null);
 		
-		assertEquals("logout", actual.getModel().get("logout"));
+		assertThat(actual.getModel().get("logout"), is("logout"));
 	}
 	
 	@Test
@@ -57,7 +58,7 @@ public class AuthenticationControllerTest
 	{
 		ModelAndView actual = controller.loginForm(null, "");
 		
-		assertEquals("error", actual.getModel().get("error"));
+		assertThat(actual.getModel().get("error"), is("error"));
 	}
 	
 	@Test
@@ -65,6 +66,6 @@ public class AuthenticationControllerTest
 	{
 		ModelAndView actual = controller.loginForm(null, null);
 		
-		assertEquals("auth/login", actual.getViewName());
+		assertThat(actual.getViewName(), is("auth/login"));
 	}
 }

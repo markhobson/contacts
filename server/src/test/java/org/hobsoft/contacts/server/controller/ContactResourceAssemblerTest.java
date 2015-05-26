@@ -22,7 +22,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@code ContactResourceAssembler}.
@@ -64,7 +65,7 @@ public class ContactResourceAssemblerTest
 		contact.setId(1L);
 		
 		Link actual = resourceAssembler.toResource(contact).getId();
-		assertEquals(new Link("http://localhost/contact/1"), actual);
+		assertThat(actual, is(new Link("http://localhost/contact/1")));
 	}
 
 	@Test
@@ -74,7 +75,7 @@ public class ContactResourceAssemblerTest
 		contact.setId(1L);
 		
 		Link actual = resourceAssembler.toResource(contact).getLink("collection");
-		assertEquals(new Link("http://localhost/contacts", "collection"), actual);
+		assertThat(actual, is(new Link("http://localhost/contacts", "collection")));
 	}
 	
 	@Test
@@ -84,6 +85,6 @@ public class ContactResourceAssemblerTest
 		contact.setId(1L);
 		
 		Link actual = resourceAssembler.toResource(contact).getLink("delete");
-		assertEquals(new Link("http://localhost/contact/1/delete", "delete"), actual);
+		assertThat(actual, is(new Link("http://localhost/contact/1/delete", "delete")));
 	}
 }
