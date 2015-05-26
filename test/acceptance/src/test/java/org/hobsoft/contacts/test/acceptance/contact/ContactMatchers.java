@@ -16,7 +16,9 @@ package org.hobsoft.contacts.test.acceptance.contact;
 import org.hamcrest.Matcher;
 import org.hobsoft.contacts.client.model.Contact;
 
-import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hobsoft.hamcrest.compose.ComposeMatchers.compose;
+import static org.hobsoft.hamcrest.compose.ComposeMatchers.hasFeature;
 
 /**
  * Hamcrest matcher factory methods for contacts.
@@ -38,6 +40,7 @@ final class ContactMatchers
 
 	public static Matcher<Contact> contactEqualTo(Contact expected)
 	{
-		return samePropertyValuesAs(expected);
+		return compose("a contact with", hasFeature("id", Contact::getId, equalTo(expected.getId())))
+			.and(hasFeature("name", Contact::getName, equalTo(expected.getName())));
 	}
 }

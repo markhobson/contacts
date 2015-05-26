@@ -157,6 +157,14 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Hamcrest Compose -->
+		
+		<dependency>
+			<groupId>org.hobsoft.hamcrest</groupId>
+			<artifactId>hamcrest-compose</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Spring -->
 		
 		<dependency>
