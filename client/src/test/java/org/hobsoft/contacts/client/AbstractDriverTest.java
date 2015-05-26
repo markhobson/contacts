@@ -24,10 +24,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hobsoft.contacts.client.test.MockDriverConfigurations.newConfig;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -54,9 +53,9 @@ public class AbstractDriverTest
 		
 		AbstractDriver driver = new FakeDriver(config, document, "x");
 		
-		assertEquals("configuration", config, driver.getConfiguration());
-		assertEquals("document", document, driver.document());
-		assertEquals("selfPathPattern", "x", driver.getSelfPathPattern());
+		assertThat("configuration", driver.getConfiguration(), is(config));
+		assertThat("document", driver.document(), is(document));
+		assertThat("selfPathPattern", driver.getSelfPathPattern(), is("x"));
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -83,7 +82,7 @@ public class AbstractDriverTest
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/x"));
 		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
-		assertTrue(driver.isVisible());
+		assertThat(driver.isVisible(), is(true));
 	}
 
 	@Test
@@ -92,7 +91,7 @@ public class AbstractDriverTest
 		MicrodataDocument document = newDocumentWithSelf(new URL("http://localhost/y"));
 		AbstractDriver driver = new FakeDriver(newConfig(), document, "/x");
 		
-		assertFalse(driver.isVisible());
+		assertThat(driver.isVisible(), is(false));
 	}
 	
 	@Test
@@ -102,7 +101,7 @@ public class AbstractDriverTest
 		when(document.getLinks("self")).thenReturn(Collections.<Link>emptyList());
 		AbstractDriver driver = new FakeDriver(newConfig(), document, "x");
 		
-		assertFalse(driver.isVisible());
+		assertThat(driver.isVisible(), is(false));
 	}
 	
 	@Test
@@ -111,7 +110,7 @@ public class AbstractDriverTest
 		MicrodataDocument document = newDocumentWithSelf(null);
 		AbstractDriver driver = new FakeDriver(newConfig(), document, "x");
 		
-		assertFalse(driver.isVisible());
+		assertThat(driver.isVisible(), is(false));
 	}
 	
 	@Test

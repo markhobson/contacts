@@ -15,7 +15,8 @@ package org.hobsoft.contacts.client.auth;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@code Credentials}.
@@ -31,8 +32,8 @@ public class CredentialsTest
 	{
 		Credentials actual = new Credentials("x", "y");
 		
-		assertEquals("username", "x", actual.getUsername());
-		assertEquals("password", "y", actual.getPassword());
+		assertThat("username", actual.getUsername(), is("x"));
+		assertThat("password", actual.getPassword(), is("y"));
 	}
 	
 	@Test(expected = NullPointerException.class)
