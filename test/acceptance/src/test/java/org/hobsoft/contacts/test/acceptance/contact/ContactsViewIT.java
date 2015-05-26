@@ -25,7 +25,6 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the view contacts page.
@@ -75,7 +74,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		ContactViewDriver contactView = ui().signIn(USER)
 			.contact("x");
 		
-		assertTrue(contactView.isVisible());
+		assertThat(contactView.isVisible(), is(true));
 	}
 	
 	@Test
@@ -84,7 +83,7 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		ContactCreateDriver contactCreate = ui().signIn(USER)
 			.createForm();
 		
-		assertTrue(contactCreate.isVisible());
+		assertThat(contactCreate.isVisible(), is(true));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

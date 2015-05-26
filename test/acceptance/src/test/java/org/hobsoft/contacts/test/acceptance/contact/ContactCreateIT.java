@@ -19,10 +19,10 @@ import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Acceptance test for the create contact page.
@@ -64,7 +64,7 @@ public class ContactCreateIT extends AbstractSecurePageIT
 			.createForm()
 			.cancel();
 		
-		assertTrue(contactsView.isVisible());
+		assertThat(contactsView.isVisible(), is(true));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

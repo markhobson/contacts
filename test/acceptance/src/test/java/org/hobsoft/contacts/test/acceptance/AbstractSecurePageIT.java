@@ -17,7 +17,8 @@ import org.hobsoft.contacts.client.AbstractPageDriver;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Base acceptance test for pages that require authentication.
@@ -34,7 +35,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		show();
 		
-		assertTrue(ui().signInForm().isVisible());
+		assertThat(ui().signInForm().isVisible(), is(true));
 	}
 	
 	@Test
@@ -42,7 +43,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		AbstractPageDriver page = show();
 		
-		assertTrue(page.isVisible());
+		assertThat(page.isVisible(), is(true));
 	}
 	
 	@Test
@@ -50,7 +51,7 @@ public abstract class AbstractSecurePageIT extends AbstractIT
 	{
 		AbstractPageDriver page = show();
 		
-		assertTrue(page.isSignOutVisible());
+		assertThat(page.isSignOutVisible(), is(true));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

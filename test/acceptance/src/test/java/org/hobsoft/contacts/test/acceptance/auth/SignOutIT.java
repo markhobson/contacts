@@ -17,9 +17,9 @@ import org.hobsoft.contacts.client.auth.SignInDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Acceptance test for signing out page.
@@ -36,7 +36,7 @@ public class SignOutIT extends AbstractIT
 		SignInDriver signInForm = ui().signIn(USER)
 			.signOut();
 		
-		assertTrue(signInForm.isVisible());
+		assertThat(signInForm.isVisible(), is(true));
 	}
 	
 	@Test
@@ -45,6 +45,6 @@ public class SignOutIT extends AbstractIT
 		SignInDriver signInForm = ui().signIn(USER)
 			.signOut();
 		
-		assertEquals("You have been signed out.", signInForm.getSuccessMessage());
+		assertThat(signInForm.getSuccessMessage(), is("You have been signed out."));
 	}
 }

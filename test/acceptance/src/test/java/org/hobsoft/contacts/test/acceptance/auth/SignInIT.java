@@ -19,10 +19,9 @@ import org.hobsoft.contacts.client.contact.ContactsViewDriver;
 import org.hobsoft.contacts.test.acceptance.AbstractIT;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Acceptance test for the sign in page.
@@ -38,7 +37,7 @@ public class SignInIT extends AbstractIT
 	{
 		SignInDriver signInForm = ui().signInForm();
 		
-		assertTrue(signInForm.isVisible());
+		assertThat(signInForm.isVisible(), is(true));
 	}
 	
 	@Test
@@ -46,7 +45,7 @@ public class SignInIT extends AbstractIT
 	{
 		SignInDriver signInForm = ui().signInForm();
 		
-		assertFalse(signInForm.isSignOutVisible());
+		assertThat(signInForm.isSignOutVisible(), is(false));
 	}
 	
 	@Test
@@ -55,7 +54,7 @@ public class SignInIT extends AbstractIT
 		ContactsViewDriver contactsView = ui().signInForm()
 			.signIn(USER);
 		
-		assertTrue(contactsView.isVisible());
+		assertThat(contactsView.isVisible(), is(true));
 	}
 	
 	@Test
@@ -64,6 +63,6 @@ public class SignInIT extends AbstractIT
 		SignInDriver signInForm = ui().signInForm()
 			.signInWithError(new Credentials("mark", ""));
 		
-		assertEquals("Incorrect username or password.", signInForm.getErrorMessage());
+		assertThat(signInForm.getErrorMessage(), is("Incorrect username or password."));
 	}
 }

@@ -16,8 +16,9 @@ package org.hobsoft.contacts.test.acceptance;
 import org.hobsoft.contacts.client.contact.ContactsViewDriver;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Acceptance test for the application entry point.
@@ -33,6 +34,6 @@ public class ApplicationIT extends AbstractIT
 	{
 		ContactsViewDriver contactsView = ui().signIn(USER);
 		
-		assertTrue(contactsView.isVisible());
+		assertThat(contactsView.isVisible(), is(true));
 	}
 }
