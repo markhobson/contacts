@@ -18,8 +18,8 @@ import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
+import static org.hobsoft.contacts.test.acceptance.contact.ContactMatchers.contactEqualTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -44,7 +44,7 @@ public class ContactViewIT extends AbstractSecurePageIT
 		
 		Contact expected = new Contact("x");
 		expected.setId(contact.getId());
-		assertThat(actual, samePropertyValuesAs(expected));
+		assertThat(actual, contactEqualTo(expected));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

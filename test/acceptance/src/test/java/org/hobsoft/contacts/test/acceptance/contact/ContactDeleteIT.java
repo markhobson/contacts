@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
+import static org.hobsoft.contacts.test.acceptance.contact.ContactMatchers.contactEqualTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -95,7 +95,7 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 			.deleteForm()
 			.cancel();
 		
-		assertThat(actual.get(), samePropertyValuesAs(contact));
+		assertThat(actual.get(), contactEqualTo(contact));
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------

@@ -22,8 +22,8 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hobsoft.contacts.test.acceptance.auth.AcceptanceTestCredentials.USER;
+import static org.hobsoft.contacts.test.acceptance.contact.ContactMatchers.contactEqualTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -59,9 +59,9 @@ public class ContactsViewIT extends AbstractSecurePageIT
 		ContactsViewDriver actual = ui().signIn(USER);
 		
 		assertThat(actual.getAll(), contains(
-			samePropertyValuesAs(contact1),
-			samePropertyValuesAs(contact2),
-			samePropertyValuesAs(contact3)
+			contactEqualTo(contact1),
+			contactEqualTo(contact2),
+			contactEqualTo(contact3)
 		));
 	}
 	
