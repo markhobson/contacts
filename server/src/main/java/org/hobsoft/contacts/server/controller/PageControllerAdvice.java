@@ -26,6 +26,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class PageControllerAdvice
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
 	// TODO: use @AuthenticationPrincipal when it works
 	@ModelAttribute
 	public User getUser(Principal principal)
