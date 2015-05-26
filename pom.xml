@@ -66,7 +66,7 @@
 		<springVersion>3.2.11.RELEASE</springVersion>
 		<springSecurityVersion>3.2.5.RELEASE</springSecurityVersion>
 		<slf4jVersion>1.7.5</slf4jVersion>
-		<jettyVersion>9.1.4.v20140401</jettyVersion>
+		<jettyVersion>9.2.10.v20150310</jettyVersion>
 	</properties>
 	
 	<build>
@@ -87,7 +87,7 @@
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven2-plugin</artifactId>
-					<version>1.4.8</version>
+					<version>1.4.14</version>
 				</plugin>
 				
 				<plugin>
