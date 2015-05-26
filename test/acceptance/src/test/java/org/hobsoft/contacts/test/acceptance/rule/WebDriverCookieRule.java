@@ -46,9 +46,6 @@ public class WebDriverCookieRule extends ExternalResource
 	// ExternalResource methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void after()
 	{

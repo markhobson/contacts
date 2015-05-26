@@ -90,9 +90,6 @@ public class ContactsViewIT extends AbstractSecurePageIT
 	// AbstractSecurePageIT methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected ContactsViewDriver show()
 	{

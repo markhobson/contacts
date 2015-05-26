@@ -52,9 +52,6 @@ public class FakeContactRepository implements ContactRepository
 	// ContactRepository methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void create(Contact contact)
 	{
@@ -69,18 +66,12 @@ public class FakeContactRepository implements ContactRepository
 		contactsById.put(id, contact);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public List<Contact> getAll()
 	{
 		return ImmutableList.copyOf(contactsById.values());
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Contact get(long id)
 	{
@@ -94,9 +85,6 @@ public class FakeContactRepository implements ContactRepository
 		return contact;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void delete(Contact contact)
 	{

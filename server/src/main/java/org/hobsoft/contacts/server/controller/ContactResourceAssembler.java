@@ -32,9 +32,6 @@ public class ContactResourceAssembler extends AbstractResourceAssembler<Contact,
 	// ResourceAssembler methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Resource<Contact> toResource(Contact contact)
 	{

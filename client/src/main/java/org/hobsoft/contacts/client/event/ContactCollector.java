@@ -45,9 +45,6 @@ public class ContactCollector implements ContactListener
 	// ContactListener methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void contactCreated(Contact contact)
 	{

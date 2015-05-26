@@ -53,9 +53,6 @@ public abstract class AbstractDriver implements Driver
 	// Driver methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final boolean isVisible()
 	{

@@ -102,9 +102,6 @@ public class ContactDeleteIT extends AbstractSecurePageIT
 	// AbstractSecurePageIT methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected ContactDeleteDriver show()
 	{

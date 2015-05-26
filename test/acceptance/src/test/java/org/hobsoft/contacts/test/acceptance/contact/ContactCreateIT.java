@@ -71,9 +71,6 @@ public class ContactCreateIT extends AbstractSecurePageIT
 	// AbstractSecurePageIT methods
 	// ----------------------------------------------------------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected ContactCreateDriver show()
 	{

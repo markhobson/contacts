@@ -34,9 +34,6 @@ public class ControllerConfig extends WebMvcConfigurationSupport
 	// WebMvcConfigurationSupport methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry)
 	{

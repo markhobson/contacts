@@ -57,9 +57,6 @@ public class ContactRule extends ExternalResource
 	// ExternalResource methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void after()
 	{

@@ -30,9 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	// WebSecurityConfigurerAdapter methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
@@ -52,9 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.permitAll();
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
