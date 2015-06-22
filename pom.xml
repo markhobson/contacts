@@ -67,6 +67,7 @@
 		<springSecurityVersion>4.0.1.RELEASE</springSecurityVersion>
 		<slf4jVersion>1.7.5</slf4jVersion>
 		<jettyVersion>9.2.10.v20150310</jettyVersion>
+		<microbrowserVersion>0.1.0-SNAPSHOT</microbrowserVersion>
 	</properties>
 	
 	<build>
@@ -274,19 +275,19 @@
 			<dependency>
 				<groupId>org.hobsoft.microbrowser</groupId>
 				<artifactId>microbrowser-api</artifactId>
-				<version>0.1.0-SNAPSHOT</version>
+				<version>${microbrowserVersion}</version>
 			</dependency>
 			
 			<dependency>
 				<groupId>org.hobsoft.microbrowser</groupId>
 				<artifactId>microbrowser-jsoup</artifactId>
-				<version>0.1.0-SNAPSHOT</version>
+				<version>${microbrowserVersion}</version>
 			</dependency>
 			
 			<dependency>
 				<groupId>org.hobsoft.microbrowser</groupId>
 				<artifactId>microbrowser-selenium</artifactId>
-				<version>0.1.0-SNAPSHOT</version>
+				<version>${microbrowserVersion}</version>
 			</dependency>
 			
 		</dependencies>
