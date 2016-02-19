@@ -40,7 +40,7 @@ public enum Relation
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	private Relation(String rel)
+	Relation(String rel)
 	{
 		this.rel = checkNotNull(rel, "rel");
 	}
