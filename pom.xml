@@ -63,7 +63,7 @@
 	</issueManagement>
 	
 	<properties>
-		<springVersion>4.1.6.RELEASE</springVersion>
+		<springVersion>4.2.4.RELEASE</springVersion>
 		<springSecurityVersion>4.0.1.RELEASE</springSecurityVersion>
 		<slf4jVersion>1.7.5</slf4jVersion>
 		<jettyVersion>9.2.10.v20150310</jettyVersion>
