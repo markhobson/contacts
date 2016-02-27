@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.server.model.Contact;
+import org.hobsoft.contacts.domain.Contact;
 import org.hobsoft.contacts.server.support.spring.hateoas.AbstractResourceAssembler;
 import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
 import org.springframework.hateoas.Resource;

@@ -17,7 +17,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import org.hobsoft.contacts.server.model.Contact;
+import org.hobsoft.contacts.domain.Contact;
 import org.hobsoft.contacts.server.repository.ContactRepository;
 import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
 import org.junit.Before;

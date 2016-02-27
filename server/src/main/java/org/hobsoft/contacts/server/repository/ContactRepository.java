@@ -15,7 +15,7 @@ package org.hobsoft.contacts.server.repository;
 
 import java.util.List;
 
-import org.hobsoft.contacts.server.model.Contact;
+import org.hobsoft.contacts.domain.Contact;
 
 /**
  * Repository for contacts.

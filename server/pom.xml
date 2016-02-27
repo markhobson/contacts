@@ -132,6 +132,13 @@
 			<artifactId>bootstrap</artifactId>
 		</dependency>
 		
+		<!-- Contacts -->
+	
+		<dependency>
+			<groupId>org.hobsoft.contacts</groupId>
+			<artifactId>contacts-domain</artifactId>
+		</dependency>
+	
 		<!-- SLF4J -->
 		
 		<dependency>

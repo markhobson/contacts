@@ -195,6 +195,12 @@
 			
 			<dependency>
 				<groupId>org.hobsoft.contacts</groupId>
+				<artifactId>contacts-domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.hobsoft.contacts</groupId>
 				<artifactId>contacts-server</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
@@ -304,6 +310,7 @@
 	
 	<modules>
 		<module>client</module>
+		<module>domain</module>
 		<module>server</module>
 		<module>test</module>
 	</modules>

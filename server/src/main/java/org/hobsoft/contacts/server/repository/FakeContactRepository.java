@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hobsoft.contacts.server.model.Contact;
+import org.hobsoft.contacts.domain.Contact;
 import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.ImmutableList;
