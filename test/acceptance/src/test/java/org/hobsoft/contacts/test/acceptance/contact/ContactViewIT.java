@@ -13,8 +13,8 @@
  */
 package org.hobsoft.contacts.test.acceptance.contact;
 
+import org.hobsoft.contacts.client.contact.Contact;
 import org.hobsoft.contacts.client.contact.ContactViewDriver;
-import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.contacts.test.acceptance.AbstractSecurePageIT;
 import org.junit.Test;
 

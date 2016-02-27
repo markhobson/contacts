@@ -11,9 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.client.event;
-
-import org.hobsoft.contacts.client.model.Contact;
+package org.hobsoft.contacts.client.contact;
 
 /**
  * Event listener for contacts.

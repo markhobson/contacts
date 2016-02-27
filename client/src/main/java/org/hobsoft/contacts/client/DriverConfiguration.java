@@ -15,7 +15,7 @@ package org.hobsoft.contacts.client;
 
 import java.net.URL;
 
-import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.contacts.client.contact.ContactListener;
 import org.hobsoft.microbrowser.Microbrowser;
 
 import static com.google.common.base.Preconditions.checkNotNull;

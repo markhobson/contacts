@@ -15,7 +15,7 @@ package org.hobsoft.contacts.test.acceptance;
 
 import java.net.URL;
 
-import org.hobsoft.contacts.client.event.ContactCollector;
+import org.hobsoft.contacts.client.contact.ContactCollector;
 import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;

@@ -15,7 +15,6 @@ package org.hobsoft.contacts.client.contact;
 
 import org.hobsoft.contacts.client.AbstractPageDriver;
 import org.hobsoft.contacts.client.DriverConfiguration;
-import org.hobsoft.contacts.client.model.Contact;
 import org.hobsoft.microbrowser.MicrodataDocument;
 import org.hobsoft.microbrowser.MicrodataItem;
 import org.springframework.beans.factory.annotation.Autowired;

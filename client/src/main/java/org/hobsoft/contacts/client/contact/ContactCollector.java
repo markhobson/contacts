@@ -11,13 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.client.event;
+package org.hobsoft.contacts.client.contact;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.hobsoft.contacts.client.model.Contact;
 import org.springframework.stereotype.Component;
 
 /**

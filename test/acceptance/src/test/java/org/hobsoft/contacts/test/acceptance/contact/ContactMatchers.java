@@ -14,7 +14,7 @@
 package org.hobsoft.contacts.test.acceptance.contact;
 
 import org.hamcrest.Matcher;
-import org.hobsoft.contacts.client.model.Contact;
+import org.hobsoft.contacts.client.contact.Contact;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hobsoft.hamcrest.compose.ComposeMatchers.compose;

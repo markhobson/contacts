@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.hobsoft.contacts.client.DriverConfiguration;
-import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.contacts.client.contact.ContactListener;
 import org.hobsoft.microbrowser.Microbrowser;
 
 import static org.mockito.Mockito.mock;

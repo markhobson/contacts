@@ -16,7 +16,7 @@ package org.hobsoft.contacts.client;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hobsoft.contacts.client.event.ContactListener;
+import org.hobsoft.contacts.client.contact.ContactListener;
 import org.hobsoft.microbrowser.Microbrowser;
 import org.junit.Test;
 
