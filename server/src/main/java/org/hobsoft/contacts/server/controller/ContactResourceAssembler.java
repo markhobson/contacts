@@ -14,9 +14,8 @@
 package org.hobsoft.contacts.server.controller;
 
 import org.hobsoft.contacts.domain.Contact;
-import org.hobsoft.contacts.server.support.spring.hateoas.AbstractResourceAssembler;
 import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
-import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -26,16 +25,25 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * Spring Hateoas resource assembler for contacts.
  */
 @Component
-public class ContactResourceAssembler extends AbstractResourceAssembler<Contact, Resource<Contact>>
+public class ContactResourceAssembler extends ResourceAssemblerSupport<Contact, ContactResource>
 {
+	// ----------------------------------------------------------------------------------------------------------------
+	// constructors
+	// ----------------------------------------------------------------------------------------------------------------
+
+	public ContactResourceAssembler()
+	{
+		super(ContactsController.class, ContactResource.class);
+	}
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// ResourceAssembler methods
 	// ----------------------------------------------------------------------------------------------------------------
 
 	@Override
-	public Resource<Contact> toResource(Contact contact)
+	public ContactResource toResource(Contact contact)
 	{
-		Resource<Contact> resource = new Resource<>(contact);
+		ContactResource resource = new ContactResource(contact);
 		
 		resource.add(linkTo(methodOn(ContactsController.class).get(contact.getId()))
 			.withSelfRel());

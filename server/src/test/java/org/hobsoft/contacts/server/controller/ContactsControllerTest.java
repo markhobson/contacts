@@ -23,7 +23,6 @@ import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
@@ -91,7 +90,7 @@ public class ContactsControllerTest
 	public void createCreatesContact()
 	{
 		Contact contact = new Contact();
-		Resource<Contact> resource = new Resource<>(contact, createLink(Relation.SELF));
+		ContactResource resource = new ContactResource(contact, createLink(Relation.SELF));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		controller.create(contact);
@@ -103,7 +102,7 @@ public class ContactsControllerTest
 	public void createReturnsSeeOtherAndLocation() throws URISyntaxException
 	{
 		Contact contact = new Contact();
-		Resource<Contact> resource = new Resource<>(contact, new Link("x"));
+		ContactResource resource = new ContactResource(contact, new Link("x"));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ResponseEntity<Object> actual = controller.create(contact);
@@ -119,7 +118,7 @@ public class ContactsControllerTest
 		List<Contact> contacts = asList(contact);
 		when(contactRepository.getAll()).thenReturn(contacts);
 		
-		List<Resource<Contact>> resources = asList(new Resource<>(contact));
+		List<ContactResource> resources = asList(new ContactResource(contact));
 		when(contactResourceAssembler.toResources(contacts)).thenReturn(resources);
 		
 		ModelAndView actual = controller.getAll();
@@ -141,7 +140,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<>(contact);
+		ContactResource resource = new ContactResource(contact);
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ModelAndView actual = controller.get(1);
@@ -163,7 +162,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<>(contact);
+		ContactResource resource = new ContactResource(contact);
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ModelAndView actual = controller.deleteForm(1);
@@ -185,7 +184,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<>(contact, createLink(Relation.COLLECTION));
+		ContactResource resource = new ContactResource(contact, createLink(Relation.COLLECTION));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 
 		controller.delete(1);
@@ -199,7 +198,7 @@ public class ContactsControllerTest
 		Contact contact = new Contact();
 		when(contactRepository.get(1)).thenReturn(contact);
 		
-		Resource<Contact> resource = new Resource<>(contact, new Link("x", Relation.COLLECTION.rel()));
+		ContactResource resource = new ContactResource(contact, new Link("x", Relation.COLLECTION.rel()));
 		when(contactResourceAssembler.toResource(contact)).thenReturn(resource);
 		
 		ResponseEntity<Object> actual = controller.delete(1);

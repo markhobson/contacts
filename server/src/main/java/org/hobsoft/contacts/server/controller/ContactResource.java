@@ -11,37 +11,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.support.spring.hateoas;
+package org.hobsoft.contacts.server.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.hateoas.ResourceAssembler;
-import org.springframework.hateoas.ResourceSupport;
+import org.hobsoft.contacts.domain.Contact;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 
 /**
- * Base resource assembler that provides support for collections.
- * 
- * @param <T>
- *            the entity type
- * @param <D>
- *            the resource type
+ * Spring Hateoas resource for a contact.
  */
-public abstract class AbstractResourceAssembler<T, D extends ResourceSupport> implements ResourceAssembler<T, D>
+public class ContactResource extends Resource<Contact>
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// public methods
+	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public List<D> toResources(Iterable<? extends T> entities)
+	public ContactResource(Contact contact, Link... links)
 	{
-		List<D> resources = new ArrayList<>();
-		
-		for (T entity : entities)
-		{
-			resources.add(toResource(entity));
-		}
-		
-		return resources;
+		super(contact, links);
 	}
 }
