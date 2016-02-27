@@ -13,15 +13,22 @@
  */
 package org.hobsoft.contacts.server.repository;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring configuration for repositories.
  */
 @Configuration
-@ComponentScan
 public class RepositoryConfig
 {
-	// no explicit beans
+	// ----------------------------------------------------------------------------------------------------------------
+	// public methods
+	// ----------------------------------------------------------------------------------------------------------------
+
+	@Bean
+	public ContactRepository contactRepository()
+	{
+		return new FakeContactRepository();
+	}
 }

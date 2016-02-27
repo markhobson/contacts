@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hobsoft.contacts.domain.Contact;
-import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.ImmutableList;
 
@@ -27,7 +26,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * In-memory contact repository implementation.
  */
-@Repository
 public class FakeContactRepository implements ContactRepository
 {
 	// ----------------------------------------------------------------------------------------------------------------
