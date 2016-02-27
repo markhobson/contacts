@@ -29,6 +29,6 @@ public class RepositoryConfig
 	@Bean
 	public ContactRepository contactRepository()
 	{
-		return new FakeContactRepository();
+		return new MemoryContactRepository();
 	}
 }

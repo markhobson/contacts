@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * In-memory contact repository implementation.
  */
-public class FakeContactRepository implements ContactRepository
+public class MemoryContactRepository implements ContactRepository
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// fields
@@ -40,7 +40,7 @@ public class FakeContactRepository implements ContactRepository
 	// constructors
 	// ----------------------------------------------------------------------------------------------------------------
 
-	public FakeContactRepository()
+	public MemoryContactRepository()
 	{
 		contactsById = new LinkedHashMap<>();
 		nextId = 1;
