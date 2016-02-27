@@ -14,7 +14,7 @@
 package org.hobsoft.contacts.server.controller;
 
 import org.hobsoft.contacts.domain.Contact;
-import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
+import org.hobsoft.contacts.server.Relation;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 import org.hobsoft.contacts.domain.Contact;
 import org.hobsoft.contacts.domain.ContactRepository;
-import org.hobsoft.contacts.server.support.spring.hateoas.Relation;
+import org.hobsoft.contacts.server.Relation;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.hateoas.Link;
