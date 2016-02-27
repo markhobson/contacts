@@ -16,7 +16,6 @@ package org.hobsoft.contacts.server;
 import javax.servlet.Filter;
 
 import org.hobsoft.contacts.server.controller.ControllerConfig;
-import org.hobsoft.contacts.server.security.SecurityConfig;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
