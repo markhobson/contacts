@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.repository;
+package org.hobsoft.contacts.server;
 
 import org.hobsoft.contacts.domain.ContactRepository;
 import org.hobsoft.contacts.domain.MemoryContactRepository;
@@ -19,10 +19,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring configuration for repositories.
+ * Spring configuration for the domain.
  */
 @Configuration
-public class RepositoryConfig
+public class DomainConfig
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods

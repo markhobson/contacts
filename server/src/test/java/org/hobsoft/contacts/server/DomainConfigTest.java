@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.repository;
+package org.hobsoft.contacts.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +19,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Tests {@code RepositoryConfig}.
+ * Tests {@code DomainConfig}.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RepositoryConfig.class)
-public class RepositoryConfigTest
+@ContextConfiguration(classes = DomainConfig.class)
+public class DomainConfigTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests

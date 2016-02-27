@@ -13,7 +13,7 @@
  */
 package org.hobsoft.contacts.server.controller;
 
-import org.hobsoft.contacts.server.repository.RepositoryConfig;
+import org.hobsoft.contacts.server.DomainConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,7 +24,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * Tests {@code ControllerConfig}.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ControllerConfig.class, RepositoryConfig.class})
+@ContextConfiguration(classes = {ControllerConfig.class, DomainConfig.class})
 @WebAppConfiguration
 public class ControllerConfigTest
 {
