@@ -11,13 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.repository;
+package org.hobsoft.contacts.domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hobsoft.contacts.domain.Contact;
 
 import com.google.common.collect.ImmutableList;
 

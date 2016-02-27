@@ -13,6 +13,8 @@
  */
 package org.hobsoft.contacts.server.repository;
 
+import org.hobsoft.contacts.domain.ContactRepository;
+import org.hobsoft.contacts.domain.MemoryContactRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
