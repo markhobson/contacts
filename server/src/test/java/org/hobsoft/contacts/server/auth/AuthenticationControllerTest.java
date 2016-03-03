@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.controller;
+package org.hobsoft.contacts.server.auth;
 
 import org.junit.Before;
 import org.junit.Test;
