@@ -17,8 +17,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.mustache.MustacheTemplateFactory;
 import org.springframework.web.servlet.view.mustache.MustacheViewResolver;
 import org.springframework.web.servlet.view.mustache.java.MustacheJTemplateFactory;
@@ -27,15 +28,16 @@ import org.springframework.web.servlet.view.mustache.java.MustacheJTemplateFacto
  * Spring configuration for controllers.
  */
 @Configuration
+@EnableWebMvc
 @ComponentScan
-public class ControllerConfig extends WebMvcConfigurationSupport
+public class ControllerConfig extends WebMvcConfigurerAdapter
 {
 	// ----------------------------------------------------------------------------------------------------------------
-	// WebMvcConfigurationSupport methods
+	// WebMvcConfigurerAdapter methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
 	@Override
-	protected void addResourceHandlers(ResourceHandlerRegistry registry)
+	public void addResourceHandlers(ResourceHandlerRegistry registry)
 	{
 		registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
 	}
