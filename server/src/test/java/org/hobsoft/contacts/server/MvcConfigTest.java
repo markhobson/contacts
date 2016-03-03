@@ -11,9 +11,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.controller;
+package org.hobsoft.contacts.server;
 
-import org.hobsoft.contacts.server.DomainConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,12 +20,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
- * Tests {@code ControllerConfig}.
+ * Tests {@code MvcConfig}.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ControllerConfig.class, DomainConfig.class})
+@ContextConfiguration(classes = {MvcConfig.class, DomainConfig.class})
 @WebAppConfiguration
-public class ControllerConfigTest
+public class MvcConfigTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests

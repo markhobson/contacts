@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hobsoft.contacts.server.controller;
+package org.hobsoft.contacts.server;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.mustache.java.MustacheJTemplateFacto
 @Configuration
 @EnableWebMvc
 @ComponentScan
-public class ControllerConfig extends WebMvcConfigurerAdapter
+public class MvcConfig extends WebMvcConfigurerAdapter
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// WebMvcConfigurerAdapter methods
