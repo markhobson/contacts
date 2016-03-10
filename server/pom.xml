@@ -23,36 +23,26 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>contacts-server</artifactId>
-	<packaging>war</packaging>
 	
 	<name>Contacts Server</name>
 	
 	<build>
 	
-		<pluginManagement>
+		<plugins>
 		
-			<plugins>
-			
-				<!-- Servlet 3 does not require web.xml -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<configuration>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
-				</plugin>
-				
-				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<configuration>
-						<reload>manual</reload>
-					</configuration>
-				</plugin>
-			
-			</plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		
-		</pluginManagement>
+		</plugins>
 		
 	</build>
 	
@@ -73,15 +63,11 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Spring Boot -->
+		
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
 		<!-- Spring Security -->
@@ -139,28 +125,6 @@
 			<artifactId>contacts-domain</artifactId>
 		</dependency>
 	
-		<!-- SLF4J -->
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<!-- Logback -->
-		
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
 		<!-- JUnit -->
 		
 		<dependency>

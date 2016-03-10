@@ -67,7 +67,7 @@
 								<DISPLAY>${display}</DISPLAY>
 							</environmentVariables>
 							<systemPropertyVariables>
-								<serverPort>${serverPort}</serverPort>
+								<server.port>${serverPort}</server.port>
 							</systemPropertyVariables>
 						</configuration>
 						<executions>
@@ -78,58 +78,6 @@
 									<goal>verify</goal>
 								</goals>
 							</execution>
-						</executions>
-					</plugin>
-					
-					<plugin>
-						<groupId>org.codehaus.cargo</groupId>
-						<artifactId>cargo-maven2-plugin</artifactId>
-						<configuration>
-							<container>
-								<containerId>jetty9x</containerId>
-								<artifactInstaller>
-									<groupId>org.eclipse.jetty</groupId>
-									<artifactId>jetty-distribution</artifactId>
-									<version>${jettyVersion}</version>
-								</artifactInstaller>
-							</container>
-							<wait>false</wait>
-						</configuration>
-						<executions>
-						
-							<execution>
-								<id>start-server</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>start</goal>
-								</goals>
-								<configuration>
-									<configuration>
-										<properties>
-											<cargo.servlet.port>${serverPort}</cargo.servlet.port>
-										</properties>
-									</configuration>
-									<deployables>
-										<deployable>
-											<groupId>org.hobsoft.contacts</groupId>
-											<artifactId>contacts-server</artifactId>
-											<type>war</type>
-											<properties>
-												<context>/</context>
-											</properties>
-										</deployable>
-									</deployables>
-								</configuration>
-							</execution>
-							
-							<execution>
-								<id>stop-server</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>stop</goal>
-								</goals>
-							</execution>
-							
 						</executions>
 					</plugin>
 					
@@ -185,6 +133,14 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Spring Boot -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Microbrowser -->
 	
 		<dependency>
@@ -208,7 +164,6 @@
 		<dependency>
 			<groupId>org.hobsoft.contacts</groupId>
 			<artifactId>contacts-server</artifactId>
-			<type>war</type>
 			<scope>test</scope>
 		</dependency>
 		

@@ -16,12 +16,15 @@ package org.hobsoft.contacts.test.acceptance;
 import java.net.URL;
 
 import org.hobsoft.contacts.client.contact.ContactCollector;
+import org.hobsoft.contacts.server.ApplicationConfig;
 import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -37,12 +40,18 @@ public class AcceptanceTestConfig
 	// fields
 	// ----------------------------------------------------------------------------------------------------------------
 
-	@Value("http://localhost:#{systemProperties['serverPort']?:8080}/")
+	@Value("http://localhost:#{systemProperties['server.port']?:8080}/")
 	private URL serverUrl;
 	
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
+	
+	@Bean
+	public ConfigurableApplicationContext server()
+	{
+		return SpringApplication.run(ApplicationConfig.class);
+	}
 	
 	@Bean
 	public URL serverUrl()
