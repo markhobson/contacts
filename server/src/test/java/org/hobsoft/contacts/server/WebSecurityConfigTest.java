@@ -19,11 +19,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Tests {@code SecurityConfig}.
+ * Tests {@code WebSecurityConfig}.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SecurityConfig.class)
-public class SecurityConfigTest
+@ContextConfiguration(classes = WebSecurityConfig.class)
+public class WebSecurityConfigTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
