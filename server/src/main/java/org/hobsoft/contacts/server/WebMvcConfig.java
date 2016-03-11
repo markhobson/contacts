@@ -45,7 +45,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
 		MustacheViewResolver viewResolver = new MustacheViewResolver();
 		viewResolver.setTemplateFactory(mustacheTemplateFactory());
 		viewResolver.setPrefix("classpath:/templates/");
-		viewResolver.setSuffix(".mustache");
+		viewResolver.setSuffix(".html");
 		return viewResolver;
 	}
 }
