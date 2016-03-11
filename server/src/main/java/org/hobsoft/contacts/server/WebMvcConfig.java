@@ -27,7 +27,7 @@ import org.springframework.web.servlet.view.mustache.java.MustacheJTemplateFacto
  */
 @Configuration
 @ComponentScan
-public class MvcConfig extends WebMvcConfigurerAdapter
+public class WebMvcConfig extends WebMvcConfigurerAdapter
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// public methods

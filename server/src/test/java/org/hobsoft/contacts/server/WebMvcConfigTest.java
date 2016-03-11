@@ -20,12 +20,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
- * Tests {@code MvcConfig}.
+ * Tests {@code WebMvcConfig}.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MvcConfig.class, DomainConfig.class})
+@ContextConfiguration(classes = {WebMvcConfig.class, DomainConfig.class})
 @WebAppConfiguration
-public class MvcConfigTest
+public class WebMvcConfigTest
 {
 	// ----------------------------------------------------------------------------------------------------------------
 	// tests
