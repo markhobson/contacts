@@ -23,7 +23,7 @@ import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,7 +50,9 @@ public class AcceptanceTestConfig
 	@Bean
 	public ConfigurableApplicationContext server()
 	{
-		return SpringApplication.run(ApplicationConfig.class);
+		return new SpringApplicationBuilder(ApplicationConfig.class)
+			.properties("spring.main.banner-mode=off")
+			.run();
 	}
 	
 	@Bean
