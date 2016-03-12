@@ -65,13 +65,13 @@ public class ContactsController
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@RequestMapping(value = "/contacts/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(path = "/contacts/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView createForm()
 	{
 		return new ModelAndView("contact/contactCreate");
 	}
 	
-	@RequestMapping(value = "/contacts", method = RequestMethod.POST,
+	@RequestMapping(path = "/contacts", method = RequestMethod.POST,
 		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ResponseEntity<Object> create(Contact contact)
 	{
@@ -85,7 +85,7 @@ public class ContactsController
 		return new ResponseEntity<>(headers, HttpStatus.SEE_OTHER);
 	}
 	
-	@RequestMapping(value = "/contacts", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(path = "/contacts", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView getAll()
 	{
 		List<Contact> contacts = contactRepository.getAll();
@@ -96,7 +96,7 @@ public class ContactsController
 		return new ModelAndView("contact/contactsView", model);
 	}
 	
-	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(path = "/contact/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView get(@PathVariable long id)
 	{
 		Contact contact = contactRepository.get(id);
@@ -107,7 +107,7 @@ public class ContactsController
 		return new ModelAndView("contact/contactView", model);
 	}
 
-	@RequestMapping(value = "/contact/{id}/delete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(path = "/contact/{id}/delete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView deleteForm(@PathVariable long id)
 	{
 		Contact contact = contactRepository.get(id);
@@ -118,7 +118,7 @@ public class ContactsController
 		return new ModelAndView("contact/contactDelete", model);
 	}
 	
-	@RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/contact/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable long id)
 	{
 		Contact contact = contactRepository.get(id);

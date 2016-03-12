@@ -33,7 +33,7 @@ public class AuthenticationController
 	// public methods
 	// ----------------------------------------------------------------------------------------------------------------
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	@RequestMapping(path = "/login", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ModelAndView loginForm(@RequestParam(required = false) String logout,
 		@RequestParam(required = false) String error)
 	{
