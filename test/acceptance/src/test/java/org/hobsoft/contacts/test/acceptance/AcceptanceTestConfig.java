@@ -21,7 +21,7 @@ import org.hobsoft.contacts.test.acceptance.config.ApiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.config.UiDriverConfig;
 import org.hobsoft.contacts.test.acceptance.rule.RuleConfig;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -64,7 +64,7 @@ public class AcceptanceTestConfig
 	@Bean(destroyMethod = "quit")
 	public WebDriver webDriver()
 	{
-		return new FirefoxDriver();
+		return new ChromeDriver();
 	}
 	
 	@Bean
